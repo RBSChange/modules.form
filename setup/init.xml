@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+	<binding fileName="modules/list/persistentdocument/import/list_binding.xml" />
+	<binding fileName="modules/generic/persistentdocument/import/generic_binding.xml" />
+	<binding fileName="modules/form/persistentdocument/import/form_binding.xml" />
+
+	<rootfolder module="preferences">
+		<formpreferences />
+	</rootfolder>
+	
+	<systemfolder module="list" relatedmodule="form">
+		<staticlist listid="modules_form/listdisplaytypes" label="Types d'affichage des listes"
+			description="Types d'affichage des listes">
+			<staticitem label="Liste" value="list" />
+			<staticitem label="Boutons" value="buttons" />
+		</staticlist>
+
+		<staticlist listid="modules_form/booleandisplaytypes" label="Types d'affichage des champs booléens"
+			description="Types d'affichage des champs booléens">
+			<staticitem label="Boutons radio" value="radio" />
+			<staticitem label="Case à cocher" value="checkbox" />
+		</staticlist>
+
+		<staticlist listid="modules_form/recommand" label="Choix pour la recommandation à un ami"
+			description="Choix pour la recommandation à un ami">
+			<staticitem label="&amp;modules.form.bo.general.recommand.Site;" value="site" />
+			<staticitem label="&amp;modules.form.bo.general.recommand.Page;" value="page" />
+		</staticlist>
+
+		<staticlist listid="modules_form/messagesendingtype" label="Action sur la reponse"
+			description="Action sur la reponse">
+			<staticitem label="&amp;modules.form.bo.general.Send-email-and-mailbox;" value="2" />
+			<staticitem label="&amp;modules.form.bo.general.Send-email-only;" value="1" />
+			<staticitem label="&amp;modules.form.bo.general.Do-not-send-message;" value="0" />
+		</staticlist>
+		
+		<staticlist listid="modules_form/textvalidators" label="Validateurs pour les champs textes"
+			description="Validateurs pour les champs textes">
+			<staticitem label="&amp;modules.form.bo.general.validators.None;" value="" />
+			<staticitem label="&amp;modules.form.bo.general.validators.Email;" value="email:true" />
+			<staticitem label="&amp;modules.form.bo.general.validators.Emails;" value="emails:true" />
+			<staticitem label="&amp;modules.form.bo.general.validators.Url;" value="url:true" />
+			<staticitem label="&amp;modules.form.bo.general.validators.Integer;" value="integer:true" />
+			<staticitem label="&amp;modules.form.bo.general.validators.Float;" value="float:true" />
+		</staticlist>
+
+		<dynamiclist listid="modules_form/markup" label="Liste des mises en page pour les formulaires"
+			description="Liste des mises en page pour les formulaires" />
+		
+		<dynamiclist listid="modules_form/recipientgrouplist" label="Liste des groupes d'envoi"
+			description="Liste des groupes d'envoi" />
+			
+		<dynamiclist listid="modules_form/activationvalues" label="Valeurs d'activation"
+			description="Liste des valeurs d'activation en fonction de la question sélectionnée." />
+	</systemfolder>
+	
+	<preferences />
+</script>

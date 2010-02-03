@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="document-name">
+    <locale lang="fr">champ de sélection des destinataires</locale>
+    <locale lang="en">recipients selection field</locale>
+    <locale lang="de">Auswahlfeld der Empfänger</locale>
+  </entity>
+  <entity id="edition-form-title">
+    <locale lang="fr">propriétés du champ de sélection des destinataires</locale>
+    <locale lang="en">recipients selection field properties</locale>
+    <locale lang="de">Eigenschaften Auswahlfeld der Empfänger</locale>
+  </entity>
+  <entity id="label">
+    <locale lang="fr">libellé</locale>
+    <locale lang="en">label</locale>
+    <locale lang="de">Name</locale>
+  </entity>
+  <entity id="label-help">
+    <locale lang="fr">libellé</locale>
+    <locale lang="en">label</locale>
+    <locale lang="de">Name</locale>
+  </entity>
+  <entity id="helpText">
+    <locale lang="fr">texte d'aide</locale>
+    <locale lang="en">help text</locale>
+    <locale lang="de">Hilfetext</locale>
+  </entity>
+  <entity id="helpText-help">
+    <locale lang="fr">texte d'aide</locale>
+    <locale lang="en">help text</locale>
+    <locale lang="de">Hilfetext</locale>
+  </entity>
+  <entity id="multiple">
+    <locale lang="fr">sélection multiple</locale>
+    <locale lang="en">multiple selection</locale>
+    <locale lang="de">Mehrfachauswahl</locale>
+  </entity>
+  <entity id="multiple-help">
+    <locale lang="fr">sélection multiple</locale>
+    <locale lang="en">multiple selection</locale>
+    <locale lang="de">Mehrfachauswahl</locale>
+  </entity>
+  <entity id="display">
+    <locale lang="fr">affichage</locale>
+    <locale lang="en">display</locale>
+    <locale lang="de">Anzeige</locale>
+  </entity>
+  <entity id="display-help">
+    <locale lang="fr">type d'affichage</locale>
+    <locale lang="en">display type</locale>
+    <locale lang="de">Anzeigetyp</locale>
+  </entity>
+  <entity id="hasBlankOption">
+    <locale lang="fr">ajouter une en-tête</locale>
+    <locale lang="en">add header</locale>
+    <locale lang="de">Eine Kopfzeile hinzufügen</locale>
+  </entity>
+  <entity id="hasBlankOption-help">
+    <locale lang="fr">Permet d'avoir une en-tête en début de liste. Si la liste est obligatoire, l'utilisateur devra alors choisir une valeur dans la liste plutôt que la première (et pas forcément pertinente) soit sélectionnée par défaut.</locale>
+    <locale lang="en">add header</locale>
+    <locale lang="de">Ermöglicht eine Kopfzeile am Listenanfang anzuzeigen. 
+			Ist die Liste obligatorisch, wird der Benutzer einen Wert aus der Liste wählen müssen, statt ihn aleatorisch
+			anzeigen zu lassen (was nicht immer relevant ist)</locale>
+  </entity>
+  <entity id="activationQuestion">
+    <locale lang="fr">champ</locale>
+  </entity>
+  <entity id="activationQuestion-help">
+    <locale lang="fr">champ qui conditionnera l'activation de ce champ.</locale>
+  </entity>
+  <entity id="activationValue">
+    <locale lang="fr">valeur</locale>
+  </entity>
+  <entity id="activationValue-help">
+    <locale lang="fr">valeur que devra avoir le champ pour activer ce champ.</locale>
+  </entity>
+</localization>

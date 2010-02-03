@@ -1,0 +1,6 @@
+<input type="text" name="formParam[${field/name}]" tal:attributes="value field/value; title field/title" size="10" maxlength="10" class="date-picker" id="field_${field/id}" /><span i18n:translate="&amp;modules.form.frontoffice.datepicker.format;">jj/mm/aaaa</span>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){$('#field_${field/id}').datePicker({startDate: '${field/startDate}', endDate: '${field/endDate}'});});
+//]]>
+</script>

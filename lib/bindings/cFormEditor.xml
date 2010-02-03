@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:xbl="http://www.mozilla.org/xbl" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<!-- Preferences sections -->
+	<binding id="cCaptchaPreferencesSection" extends="layout.cDocumentEditor#cFieldsGroup">
+		<resources>
+			<stylesheet src="modules.uixul.cFieldsGroup" />
+		</resources>
+		<content>
+			<xul:groupbox flex="1">
+				<xul:caption xbl:inherits="label" />
+				<xul:hbox>
+					<xul:grid flex="1">
+						<xul:columns>
+							<xul:column />
+							<xul:column flex="1" />
+						</xul:columns>
+						<xul:rows>
+							<children />
+						</xul:rows>
+					</xul:grid>
+					<xul:vbox align="center" flex="2" style="border-left: 3px dotted silver">
+						<xul:spacer flex="2" />
+						<xul:image anonid="captcha-preview" />
+						<xul:spacer flex="1" />
+						<xul:button anonid="refresh-captcha-button" label="&amp;modules.form.document.preferences.captcha.ReloadSpaced;" image="{HttpHost}/icons/small/shadow/refresh.png" />
+						<xul:spacer flex="2" />
+					</xul:vbox>
+				</xul:hbox>
+			</xul:groupbox>
+		</content>
+		<implementation>
+			<constructor><![CDATA[
+					var _this = this;					
+					var node = document.getAnonymousElementByAttribute(this, 'anonid', 'refresh-captcha-button');
+					node.addEventListener('command', function () { _this.updateCaptchaPreview(); }, true);
+			]]></constructor>
+		
+			<method name="updateCaptchaPreview">
+				<parameter name="values" />
+				<body><![CDATA[
+					var panel = this.getPanel();
+					var captchaFields = [ 'iw', 'ih', 'fs', 'fd', 'ml' ];
+					var parameters = [ ];
+					for (var i = 0; i < captchaFields.length; i++)
+					{
+						var name = captchaFields[i];
+						parameters[name] = panel.fields[name].value;
+					}
+					parameters['renew'] = true;
+					parameters['random'] = Math.random()*10000; // to ensure refresh each time.
+					var url = wCore.buildeServerUrl('form', 'Captcha', parameters);
+					var img = document.getAnonymousElementByAttribute(this, 'anonid', 'captcha-preview');
+					img.setAttribute('src', url);
+					img.setAttribute('width', parameters['iw']);
+					img.setAttribute('height', parameters['ih']);
+				]]></body>
+			</method>
+		</implementation>
+		<handlers>			
+			<handler event="fieldChanged"><![CDATA[
+				this.updateCaptchaPreview();
+			]]></handler>
+		</handlers>
+	</binding>
+	
+	<!-- Fields -->
+	<binding id="cActivationConditionsSection" extends="layout.cDocumentEditor#cFieldsGroup">
+		<implementation>
+			<field name="mInitialized">false</field>
+			
+			<constructor><![CDATA[
+				var me = this;
+				this.getPanel().addEventListener('panelInitializeComplete', function () { me.setActivation(); }, true);
+			]]></constructor>
+		
+			<method name="setActivation">
+				<body><![CDATA[
+					try
+					{
+						this.mInitialized = true;
+						var panel = this.getPanel();
+						var questionField = panel.fields.activationQuestion;
+						var valueField = panel.fields.activationValue;
+						var questionId = questionField.value;
+						if (questionId != '')
+						{
+							valueField.disabled = false;
+						}
+						else
+						{
+							valueField.disabled = true;
+							valueField.value = '';
+						}				
+						valueField.replaceItems({questionId: questionId});
+					}
+					catch (e)
+					{
+						wCore.error('cActivationConditionsSection.setActivation', [], e);
+					}
+				]]></body>
+			</method>
+		</implementation>
+		<handlers>			
+			<handler event="fieldChanged"><![CDATA[
+				if (this.mInitialized && event.originalTarget.name == 'activationQuestion')
+				{
+					this.setActivation();
+				}					
+			]]></handler>
+		</handlers>
+	</binding>
+	
+	<!-- List field -->
+	<binding id="cFieldNameChooserSection" extends="layout.cDocumentEditor#cFieldsGroup">
+		<implementation>
+			<field name="mInitialized">false</field>
+			
+			<constructor><![CDATA[
+				var me = this;
+				this.getPanel().addEventListener('panelInitializeComplete', function () { me.initAll(); }, true);
+			]]></constructor>
+		
+			<method name="initAll">
+				<body><![CDATA[
+					try
+					{
+						this.mInitialized = true;
+						var panel = this.getPanel();
+						var fieldReceiver = panel.fields.isReceiver;
+						var fieldFieldName = panel.fields.fieldName;
+						var fieldRecommand = panel.fields.isRecommand;
+						
+						if (fieldReceiver.value == 'true')
+						{
+							fieldRecommand.value = '';
+							fieldFieldName.value = 'receiverIds';
+							fieldFieldName.disabled = true;
+						}
+						else if(fieldRecommand.value == 'site' || fieldRecommand.value == 'page')
+						{
+							fieldReceiver.value = 'false';
+							fieldFieldName.value = 'recommandFeature';
+							fieldFieldName.disabled = true;
+						}
+						else
+						{
+							fieldFieldName.disabled = false;
+							if (fieldFieldName.value == 'receiverIds' || fieldFieldName.value == 'recommandFeature')
+							{
+								fieldFieldName.value = '';
+							}
+						}
+					}
+					catch (e)
+					{
+						wCore.error('cFieldNameChooserSection.initAll', [], e);
+					}
+				]]></body>
+			</method>
+			
+			<method name="updateReceiver">
+				<body><![CDATA[
+					try
+					{
+						var panel = this.getPanel();
+						var fieldReceiver = panel.fields.isReceiver;
+						var fieldFieldName = panel.fields.fieldName;
+						var fieldRecommand = panel.fields.isRecommand;
+					
+						var value = 'receiverIds';
+						if (fieldReceiver.value == 'true')
+						{
+							fieldRecommand.value = '';
+							fieldFieldName.value = value;
+							fieldFieldName.disabled = true;
+						}
+						else
+						{
+							fieldFieldName.disabled = false;
+							if (fieldFieldName.value == value)
+							{
+								fieldFieldName.value = '';
+							}
+						}
+					}
+					catch (e)
+					{
+						wCore.error('cFieldNameChooserSection.updateReceiver', [], e);
+					}
+				]]></body>
+			</method>
+			
+			<method name="updateRecommand">
+				<body><![CDATA[
+					try
+					{
+						var panel = this.getPanel();
+						var fieldReceiver = panel.fields.isReceiver;
+						var fieldFieldName = panel.fields.fieldName;
+						var fieldRecommand = panel.fields.isRecommand;
+						
+						var value = 'recommandFeature';
+						if(fieldRecommand.value == 'site' || fieldRecommand.value == 'page')
+						{
+							fieldReceiver.value = 'false';
+							fieldFieldName.value = value;
+							fieldFieldName.disabled = true;
+						}
+						else
+						{
+							fieldFieldName.disabled = false;
+							if(fieldFieldName.value == value)
+							{
+								fieldFieldName.value = '';
+							}
+						}
+					}
+					catch (e)
+					{
+						wCore.error('cFieldNameChooserSection.updateRecommand', [], e);
+					}
+				]]></body>
+			</method>
+		</implementation>
+		<handlers>			
+			<handler event="fieldChanged"><![CDATA[
+				if (this.mInitialized)
+				{
+					if (event.originalTarget.name == 'isReceiver')
+					{
+						this.updateReceiver();
+					}
+					else if (event.originalTarget.name == 'isRecommand')
+					{
+						this.updateRecommand();
+					}
+				}
+			]]></handler>
+		</handlers>
+	</binding>
+	
+	<!-- Hidden field -->
+	<binding id="cBlankOptionChooserSection" extends="layout.cDocumentEditor#cFieldsGroup">
+		<implementation>
+			<field name="mInitialized">false</field>
+			
+			<constructor><![CDATA[
+				var me = this;
+				this.getPanel().addEventListener('panelInitializeComplete', function () { me.setBlankOption(); }, true);
+			]]></constructor>
+		
+			<method name="setBlankOption">
+				<body><![CDATA[
+					try
+					{
+						this.mInitialized = true;
+						var panel = this.getPanel();
+						var hasBlankOption = panel.fields.hasBlankOption;
+						
+						if (panel.fields.multiple.value == 'true')
+						{
+							hasBlankOption.value = 'false';
+							hasBlankOption.disabled = true;
+						}
+						else
+						{
+							hasBlankOption.disabled = false;
+						}
+					}
+					catch (e)
+					{
+						wCore.error('cBlankOptionChooserSection.setBlankOption', [], e);
+					}
+				]]></body>
+			</method>
+		</implementation>
+		<handlers>			
+			<handler event="fieldChanged"><![CDATA[
+				if (this.mInitialized && event.originalTarget.name == 'multiple')
+				{
+					this.setBlankOption();
+				}
+			]]></handler>
+		</handlers>
+	</binding>
+	
+	<!-- Text and email fields -->
+	<binding id="cTextFieldConfiguratorSection" extends="layout.cDocumentEditor#cFieldsGroup">
+		<implementation>
+			<field name="mInitialized">false</field>
+			
+			<constructor><![CDATA[
+				var me = this;
+				this.getPanel().addEventListener('panelInitializeComplete', function () { me.updateMultiline(); }, true);
+			]]></constructor>
+		
+			<method name="updateMultiline">
+				<body><![CDATA[
+					try
+					{
+						this.mInitialized = true;
+						var panel = this.getPanel();						
+						var rows = panel.fields.rows;
+						var colsLabel = document.getAnonymousElementByAttribute(panel, 'control', panel.fields.cols.getAttribute('id'));
+						
+						if (panel.fields.multiline.value == 'true')
+						{
+							rows.disabled = false;
+							if (rows.value == '' || rows.value == '0' || rows.value == '1')
+							{
+								rows.value = '2';
+							}
+							colsLabel.setAttribute('value', '&amp;modules.form.document.text.Cols;');
+						}
+						else
+						{
+							rows.disabled = true;
+							rows.value = '1';
+							colsLabel.setAttribute('value', '&amp;modules.form.document.text.Size;');
+						}
+					}
+					catch (e)
+					{
+						wCore.error('cTextFieldConfiguratorSection.updateMultiline', [], e);
+					}
+				]]></body>
+			</method>
+		</implementation>
+		<handlers>			
+			<handler event="fieldChanged"><![CDATA[
+				if (this.mInitialized && event.originalTarget.name == 'multiline')
+				{
+					this.updateMultiline();
+				}
+			]]></handler>
+		</handlers>
+	</binding>
+</bindings>

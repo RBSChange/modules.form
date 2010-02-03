@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="document-name">
+    <locale lang="fr">champ liste</locale>
+    <locale lang="en">list field</locale>
+    <locale lang="de">Listenfeld</locale>
+  </entity>
+  <entity id="edition-form-title">
+    <locale lang="fr">propriétés du champ liste</locale>
+    <locale lang="en">list field's properties</locale>
+    <locale lang="de">Eigenschaften Listenfeld</locale>
+  </entity>
+  <entity id="label">
+    <locale lang="fr">libellé</locale>
+    <locale lang="en">label</locale>
+    <locale lang="de">Name</locale>
+  </entity>
+  <entity id="label-help">
+    <locale lang="fr">
+			libellé du champ (visible sur le site)
+		</locale>
+    <locale lang="en">
+			field label (displayed on the website)
+		</locale>
+    <locale lang="de">Feldname (auf der Webseite sichtbar)</locale>
+  </entity>
+  <entity id="fieldName">
+    <locale lang="fr">nom du champ</locale>
+    <locale lang="en">field name</locale>
+    <locale lang="de">Feldname</locale>
+  </entity>
+  <entity id="fieldName-help">
+    <locale lang="fr">
+			Le nom du champ doit être composé de lettres et de chiffres
+			uniquement et doit commencer par une lettre.
+		</locale>
+    <locale lang="en">
+			The field name must be composed of letters and digits and
+			must begin with a letter.
+		</locale>
+    <locale lang="de">Der Feldname muss ausschliesslich aus Buchstaben und Ziffern bestehen und muss mit einem Buchstaben beginnen.</locale>
+  </entity>
+  <entity id="validators">
+    <locale lang="fr">validateurs</locale>
+    <locale lang="en">validators</locale>
+    <locale lang="de">Bestätiger</locale>
+  </entity>
+  <entity id="validators-help">
+    <locale lang="fr">
+			Liste des validateurs du champ, séparés par des
+			points-virgules.
+		</locale>
+    <locale lang="en">
+			validators list for the field, separated by semicolons.
+		</locale>
+    <locale lang="de">Bestätigerliste des Feldes, durch Punkt-Kommata getrennt.</locale>
+  </entity>
+  <entity id="helpText">
+    <locale lang="fr">texte d'aide du champ</locale>
+    <locale lang="en">help text</locale>
+    <locale lang="de">Hilfetext des Feldes</locale>
+  </entity>
+  <entity id="helpText-help">
+    <locale lang="fr">
+			Le texte d'aide du champ indique aux internautes comment
+			remplir le champ
+		</locale>
+    <locale lang="en">
+			The help text tells the users how to fill this field in
+		</locale>
+    <locale lang="de">Der Hilfetext des Feldes gibt den Benutzern an, wie das Feld zu füllen ist</locale>
+  </entity>
+  <entity id="trueLabel">
+    <locale lang="fr">libellé si vrai</locale>
+    <locale lang="en">label when true</locale>
+    <locale lang="de">Name wenn Wehr</locale>
+  </entity>
+  <entity id="trueLabel-help">
+    <locale lang="fr">libellé si vrai</locale>
+    <locale lang="en">label when true</locale>
+    <locale lang="de">Name wenn Wahr</locale>
+  </entity>
+  <entity id="falseLabel">
+    <locale lang="fr">libellé si faux</locale>
+    <locale lang="en">label when false</locale>
+    <locale lang="de">Name wenn Falsch</locale>
+  </entity>
+  <entity id="falseLabel-help">
+    <locale lang="fr">libellé si faux</locale>
+    <locale lang="en">label when false</locale>
+    <locale lang="de">Name wenn Falsch</locale>
+  </entity>
+  <entity id="display">
+    <locale lang="fr">affichage</locale>
+    <locale lang="en">display</locale>
+    <locale lang="de">Anzeige</locale>
+  </entity>
+  <entity id="display-help">
+    <locale lang="fr">affichage</locale>
+    <locale lang="en">display</locale>
+    <locale lang="de">Anzeige</locale>
+  </entity>
+  <entity id="dataSource">
+    <locale lang="fr">liste des options</locale>
+    <locale lang="en">list for options</locale>
+    <locale lang="de">Optionenliste</locale>
+  </entity>
+  <entity id="dataSource-help">
+    <locale lang="fr">
+			liste permettant de composer les options à choisir.
+			Glisser/déposer une liste depuis le module Listes à droite,
+			dans l'arbre de ressources.
+		</locale>
+    <locale lang="en">
+			list that composes the options to choose. Drag and drop a
+			list from the List module at the right.
+		</locale>
+    <locale lang="de">Liste für die Auswahl der Optionen. 
+			Fügen Sie durch Drag and Drop eine Liste aus dem Modul Listen rechts in den Ressourcenbaum ein.</locale>
+  </entity>
+  <entity id="multiple">
+    <locale lang="fr">sélection multiple</locale>
+    <locale lang="en">multiple selection</locale>
+    <locale lang="de">mehrfache Selektion</locale>
+  </entity>
+  <entity id="multiple-help">
+    <locale lang="fr">
+			détermine si l'internaute pourra sélectionner plusieurs
+			éléments de la liste
+		</locale>
+    <locale lang="en">
+			determins if the internaut will be able to select more than
+			1 element in the list
+		</locale>
+    <locale lang="de">Bestimmt, ob der Benutzer mehrere Elemente der Liste wählen darf</locale>
+  </entity>
+  <entity id="required">
+    <locale lang="fr">champ obligatoire</locale>
+    <locale lang="en">required field</locale>
+    <locale lang="de">obligatorisches Feld</locale>
+  </entity>
+  <entity id="required-help">
+    <locale lang="fr">
+			détermine s'il s'agit d'un champ obligatoire
+		</locale>
+    <locale lang="en">
+			determins if the field will be a required field
+		</locale>
+    <locale lang="de">bestimmt ob es sich um ein obligatorisches Feld handelt</locale>
+  </entity>
+  <entity id="hasBlankOption">
+    <locale lang="fr">Ajouter une en-tête</locale>
+    <locale lang="de">Kopfzeile hinzufügen</locale>
+  </entity>
+  <entity id="hasBlankOption-help">
+    <locale lang="fr">
+			Permet d'avoir une en-tête en début de liste. Si la liste
+			est obligatoire, l'utilisateur devra alors choisir une
+			valeur dans la liste plutôt que la première (et pas
+			forcément pertinente) soit sélectionnée par défaut.
+		</locale>
+    <locale lang="en">
+			Displays a header above the list. If the list is obligatory,
+			the user will thus have to chose a value in the list, rather
+			than the first one.
+		</locale>
+    <locale lang="de">Ermöglicht eine Kopfzeile am Listenanfang anzuzeigen. 
+			Ist die Liste obligatorisch, wird der Benutzer einen Wert aus der Liste wählen müssen, statt ihn aleatorisch
+			anzeigen zu lassen (was nicht immer relevant ist)</locale>
+  </entity>
+  <entity id="activationQuestion">
+    <locale lang="fr">champ</locale>
+  </entity>
+  <entity id="activationQuestion-help">
+    <locale lang="fr">champ qui conditionnera l'activation de ce champ.</locale>
+  </entity>
+  <entity id="activationValue">
+    <locale lang="fr">valeur</locale>
+  </entity>
+  <entity id="activationValue-help">
+    <locale lang="fr">valeur que devra avoir le champ pour activer ce champ.</locale>
+  </entity>
+</localization>

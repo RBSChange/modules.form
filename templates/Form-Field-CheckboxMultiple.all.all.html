@@ -1,0 +1,5 @@
+<label tal:repeat="item field/items" class="nocmx" id="field_${field/id}_${item/value}">
+	<input type="checkbox" name="formParam[${field/name}][]" tal:condition="item/selected" tal:attributes="value item/value;" tal:content="item/label" checked="checked" />
+	<input type="checkbox" name="formParam[${field/name}][]" tal:condition="not: item/selected" tal:attributes="value item/value" />
+	<span tal:replace="item/label"></span>
+</label>

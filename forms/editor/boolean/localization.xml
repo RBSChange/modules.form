@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel>
+	<section labeli18n="modules.form.bo.general.General">
+		<field name="label" />
+		<field name="helpText" />
+	</section>
+	<section labeli18n="modules.form.bo.general.Display-settings">
+		<field name="trueLabel" />
+		<field name="falseLabel" />
+	</section>				
+</panel>

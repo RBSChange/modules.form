@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="module-name">
+    <locale lang="fr">formulaires</locale>
+    <locale lang="en">forms</locale>
+    <locale lang="de">Formulare</locale>
+  </entity>
+  <entity id="tree-root-name">
+    <locale lang="fr">formulaires</locale>
+    <locale lang="en">forms</locale>
+    <locale lang="de">Formulare</locale>
+  </entity>
+  <entity id="system-folder-name">
+    <locale lang="fr">formulaires</locale>
+    <locale lang="en">forms</locale>
+    <locale lang="de">Formulare</locale>
+  </entity>
+  <entity id="form-response-title">
+    <locale lang="fr">réponse au formulaire {form}</locale>
+    <locale lang="en">answer to form {form}</locale>
+    <locale lang="de">Formularantwort {form}</locale>
+  </entity>
+  <entity id="required-field">
+    <locale lang="fr">champ requis</locale>
+    <locale lang="en">required champ</locale>
+    <locale lang="de">benötigtes Feld</locale>
+  </entity>
+  <entity id="field.password">
+    <locale lang="fr">mot de passe</locale>
+    <locale lang="en">password</locale>
+    <locale lang="de">Passwort</locale>
+  </entity>
+  <entity id="field.text">
+    <locale lang="fr">texte</locale>
+    <locale lang="en">text</locale>
+    <locale lang="de">Text</locale>
+  </entity>
+  <entity id="field.multiline-text">
+    <locale lang="fr">texte multi-ligne</locale>
+    <locale lang="en">multiline text</locale>
+    <locale lang="de">mehrzeiliger Text</locale>
+  </entity>
+  <entity id="field.mail">
+    <locale lang="fr">mail</locale>
+    <locale lang="en">mail</locale>
+    <locale lang="de">E-mail</locale>
+  </entity>
+  <entity id="field.boolean">
+    <locale lang="fr">vrai/faux</locale>
+    <locale lang="en">true/false</locale>
+    <locale lang="de">Wahr/Falsch</locale>
+  </entity>
+  <entity id="field.date">
+    <locale lang="fr">date</locale>
+    <locale lang="en">date</locale>
+  </entity>
+  <entity id="field.single-selection-list">
+    <locale lang="fr">liste à sélection unique</locale>
+    <locale lang="en">single selection list</locale>
+    <locale lang="de">einlmalige Auswahlliste</locale>
+  </entity>
+  <entity id="field.multiple-selection-list">
+    <locale lang="fr">liste à sélection multiple</locale>
+    <locale lang="en">multiple selection list</locale>
+    <locale lang="de">mehrfache Auswahlliste</locale>
+  </entity>
+  <entity id="field.file">
+    <locale lang="fr">fichier à télécharger</locale>
+    <locale lang="en">upload file</locale>
+    <locale lang="de">Datei zum herunterladen</locale>
+  </entity>
+  <entity id="field.hidden">
+    <locale lang="fr">champ caché</locale>
+    <locale lang="en">hidden field</locale>
+    <locale lang="de">verstecktes Feld</locale>
+  </entity>
+  <entity id="field.group">
+    <locale lang="fr">groupe de champs</locale>
+    <locale lang="en">fields group</locale>
+    <locale lang="de">Feldgruppe</locale>
+  </entity>
+  <entity id="validators.email">
+    <locale lang="fr">adresse e-mail</locale>
+    <locale lang="en">e-mail address</locale>
+    <locale lang="de">E-mailadresse</locale>
+  </entity>
+  <entity id="validators.emails">
+    <locale lang="fr">adresses e-mail séparées par des virgules</locale>
+    <locale lang="en">e-mail addresses separated with commas</locale>
+    <locale lang="de">E-mailadressen getrennt durch Kommata</locale>
+  </entity>
+  <entity id="validators.url">
+    <locale lang="fr">URL</locale>
+    <locale lang="en">URL</locale>
+    <locale lang="de">URL</locale>
+  </entity>
+  <entity id="validators.integer">
+    <locale lang="fr">nombre entier</locale>
+    <locale lang="en">integer</locale>
+    <locale lang="de">ganze Zahl</locale>
+  </entity>
+  <entity id="validators.float">
+    <locale lang="fr">nombre décimal</locale>
+    <locale lang="en">floatting point number</locale>
+    <locale lang="de">Dezimalzahl</locale>
+  </entity>
+  <entity id="validators.none">
+    <locale lang="fr">aucun</locale>
+    <locale lang="en">none</locale>
+    <locale lang="de">keiner</locale>
+  </entity>
+  <entity id="additionnal-validators">
+    <locale lang="fr">validateurs supplémentaires</locale>
+    <locale lang="en">additionnal validators</locale>
+    <locale lang="de">zusätzliche Bestätiger</locale>
+  </entity>
+  <entity id="generic-validators">
+    <locale lang="fr">validateurs de base</locale>
+    <locale lang="en">basic validators</locale>
+    <locale lang="de">Basisbestätiger</locale>
+  </entity>
+  <entity id="display-settings">
+    <locale lang="fr">paramètres d'affichage</locale>
+    <locale lang="en">display settings</locale>
+    <locale lang="de">Anzeigeparameter</locale>
+  </entity>
+  <entity id="general-properties">
+    <locale lang="fr">propriétés générales</locale>
+    <locale lang="en">general properties</locale>
+    <locale lang="de">allgemeine Eigenschaften</locale>
+  </entity>
+  <entity id="general">
+    <locale lang="fr">propriétés principales</locale>
+    <locale lang="en">main data</locale>
+    <locale lang="de">allgemeine Eigenschaften</locale>
+  </entity>
+  <entity id="advanced">
+    <locale lang="fr">avancé</locale>
+    <locale lang="en">advanced</locale>
+    <locale lang="de">fortgeschritten</locale>
+  </entity>
+  <entity id="captcha">
+    <locale lang="fr">CAPTCHA</locale>
+    <locale lang="en">CAPTCHA</locale>
+    <locale lang="de">CAPTCHA</locale>
+  </entity>
+  <entity id="constraints">
+    <locale lang="fr">validateurs</locale>
+    <locale lang="en">validators</locale>
+    <locale lang="de">Bestätiger</locale>
+  </entity>
+  <entity id="field-name">
+    <locale lang="fr">nom du champ</locale>
+    <locale lang="en">field name</locale>
+    <locale lang="de">Feldname</locale>
+  </entity>
+  <entity id="true-label">
+    <locale lang="fr">libellé si vrai</locale>
+    <locale lang="en">true label</locale>
+    <locale lang="de">Name wenn Wahr</locale>
+  </entity>
+  <entity id="false-label">
+    <locale lang="fr">libellé si faux</locale>
+    <locale lang="en">false label</locale>
+    <locale lang="de">Name wenn Falsch</locale>
+  </entity>
+  <entity id="items">
+    <locale lang="fr">valeurs de la liste</locale>
+    <locale lang="en">list's values</locale>
+    <locale lang="de">Listenwerte</locale>
+  </entity>
+  <entity id="list-id">
+    <locale lang="fr">identifiant de la liste</locale>
+    <locale lang="en">list identifier</locale>
+    <locale lang="de">ListenID</locale>
+  </entity>
+  <entity id="responses-count">
+    <locale lang="fr">nombre de réponses</locale>
+    <locale lang="en">responses count</locale>
+  </entity>
+  <entity id="fields-count">
+    <locale lang="fr">nombre de champs</locale>
+    <locale lang="en">fields count</locale>
+    <locale lang="de">Anzahl Felder</locale>
+  </entity>
+  <entity id="all">
+    <locale lang="fr">aucune restriction</locale>
+    <locale lang="en">no restriction</locale>
+    <locale lang="de">keine Beschränkung</locale>
+  </entity>
+  <entity id="images">
+    <locale lang="fr">images</locale>
+    <locale lang="en">images</locale>
+    <locale lang="de">Bilder</locale>
+  </entity>
+  <entity id="documents">
+    <locale lang="fr">documents</locale>
+    <locale lang="en">documents</locale>
+    <locale lang="de">Dokumente</locale>
+  </entity>
+  <entity id="allowed-file-types">
+    <locale lang="fr">types de fichiers autorisés</locale>
+    <locale lang="en">allowed file types</locale>
+    <locale lang="de">erlaubte Dateitypen</locale>
+  </entity>
+  <entity id="recommand.page">
+    <locale lang="fr">recommander la page</locale>
+    <locale lang="en">recommand page</locale>
+    <locale lang="de">Seite empfehlen</locale>
+  </entity>
+  <entity id="recommand.site">
+    <locale lang="fr">recommander le site</locale>
+    <locale lang="en">recommand website</locale>
+    <locale lang="de">Webseite empfehlen</locale>
+  </entity>
+  <entity id="recommand.choice">
+    <locale lang="fr">choix pour la recommandation à un ami</locale>
+    <locale lang="en">choice for recommand to a friend</locale>
+    <locale lang="de">Auswahl zur Empfehlung an einen Freund</locale>
+  </entity>
+  <entity id="tag.recommand-page">
+    <locale lang="fr">page de recommandation</locale>
+    <locale lang="en">recommand page</locale>
+    <locale lang="de">Empfehlungsseite</locale>
+  </entity>
+  <entity id="sent-email">
+    <locale lang="fr">envoi de message</locale>
+    <locale lang="en">message sending</locale>
+    <locale lang="de">Versand einer Nachricht</locale>
+  </entity>
+  <entity id="send-email-and-mailbox">
+    <locale lang="fr">un email + boîte de réception</locale>
+    <locale lang="en">email + mailbox</locale>
+    <locale lang="de">Eine E-mail + Posteingang</locale>
+  </entity>
+  <entity id="send-email-only">
+    <locale lang="fr">email uniquement</locale>
+    <locale lang="en">email only</locale>
+    <locale lang="de">nur E-mail</locale>
+  </entity>
+  <entity id="do-not-send-message">
+    <locale lang="fr">aucun</locale>
+    <locale lang="en">none</locale>
+    <locale lang="de">keine</locale>
+  </entity>
+  <entity id="message">
+    <locale lang="fr">message</locale>
+    <locale lang="en">message</locale>
+    <locale lang="de">Nachricht</locale>
+  </entity>
+  <entity id="recipients">
+    <locale lang="fr">destinataires</locale>
+    <locale lang="en">recipients</locale>
+    <locale lang="de">Empfänger</locale>
+  </entity>
+  <entity id="notification-help">
+    <locale lang="fr">Le contenu du message est défini dans le module Notification.</locale>
+    <locale lang="en">The message contents are defined in the Notification module.</locale>
+    <locale lang="de">Der Inhalt der Nachricht ist im Modul Notification definiert.</locale>
+  </entity>
+  <entity id="captcha-help">
+    <locale lang="fr">veuillez recopier le code de sécurité de l'image ci-contre dans la zone de saisie</locale>
+    <locale lang="en">please type in the security code of the image in the text zone</locale>
+    <locale lang="de">bitte kopieren Sie folgenden Sicherheitskode in der Erfassungszone</locale>
+  </entity>
+  <entity id="captcha-check-failed">
+    <locale lang="fr">le code de sécurité n'est pas correct</locale>
+    <locale lang="en">the security code is not correct</locale>
+    <locale lang="de">der Sicherheitskode ist nicht korrekt</locale>
+  </entity>
+  <entity id="captcha-click-to-have-another-one">
+    <locale lang="fr">code de sécurité : cliquer pour en avoir un autre</locale>
+    <locale lang="en">security code: click to get another one</locale>
+    <locale lang="de">Sicherheitskode: klicken Sie um einen neuen zu erhalten</locale>
+  </entity>
+  <entity id="field.Recipient-single-selection-list">
+    <locale lang="fr">liste de choix du destinataire</locale>
+    <locale lang="en">single recipient selection list</locale>
+    <locale lang="de">Empfängerauswahlliste</locale>
+  </entity>
+  <entity id="field.Recipient-multiple-selection-list">
+    <locale lang="fr">liste de choix des destinataires</locale>
+    <locale lang="en">multiple recipients selection list</locale>
+    <locale lang="de">Empfängerauswahlliste</locale>
+  </entity>
+  <entity id="activation-conditions">
+    <locale lang="fr">conditions d'activation</locale>
+    <locale lang="en">activation conditions</locale>
+  </entity>
+  <entity id="column.fieldType">
+    <locale lang="fr">type de champ</locale>
+    <locale lang="en">field type</locale>
+  </entity>
+  <entity id="column.fieldRequired">
+    <locale lang="fr">requis</locale>
+    <locale lang="en">required</locale>
+  </entity>
+  <entity id="column.fieldConditioned">
+    <locale lang="fr">conditionné</locale>
+    <locale lang="en">conditioned</locale>
+  </entity>
+  <entity id="activation">
+    <locale lang="fr">actif si "{value}" choisi dans "{question}"</locale>
+    <locale lang="en">activate if "{value}" chosen in "{question}"</locale>
+  </entity>
+<!-- 	<entity id="fieldName">
+		<locale lang="fr">nom du champ</locale>
+		<locale lang="en">field name</locale>
+	</entity>
+
+	<entity id="responseCount">
+		<locale lang="fr">nombre de réponses</locale>
+		<locale lang="en">response count</locale>
+	</entity>
+
+	<entity id="contactEmail">
+		<locale lang="fr">email de destination</locale>
+		<locale lang="en">contact email</locale>
+	</entity>
+
+	<entity id="ActiveResponse">
+		<locale lang="fr">réponses Actives</locale>
+		<locale lang="en">active response</locale>
+	</entity>-->
+</localization>

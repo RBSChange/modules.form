@@ -1,0 +1,15 @@
+<tal:block tal:define="global hasCondition php: FormHelper::hasCondition(group['id'])" />
+<tal:block tal:condition="hasCondition">
+	<tal:block tal:define="global activationlabel php: FormHelper::getActivationLabel(group['id'])" />
+	<tal:block tal:define="global toHide string: toHide" />
+</tal:block>
+
+<li id="groupe${group/id}" tal:attributes="class toHide">
+	<fieldset id="fieldset_${group/id}">	
+		<legend>${group/label}<span tal:condition="hasCondition" class="nojs" change:translate="&modules.form.frontoffice.accessibility.activationSpaced;; value activationlabel">(Si "${activationlabel}")</span></legend>		
+		<div tal:condition="group/description" tal:content="group/description"></div>
+		<ol>
+			<li tal:repeat="elm group/elements" tal:replace="elm" />
+		</ol>
+	</fieldset>
+</li>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel>
+	<section labeli18n="modules.form.bo.general.General">
+		<field name="label" />
+		<field name="dataSource" allow="modules_list_staticlist,modules_list_editablelist,modules_list_dynamiclist" />
+		<field name="required" />
+		<field name="helpText" />
+	</section>
+	<section labeli18n="modules.form.bo.general.Display-settings" class="blank-option-chooser">
+		<field name="display" />
+		<field name="multiple" />
+		<field name="hasBlankOption" />
+	</section>
+	<section labeli18n="modules.form.bo.general.Activation-conditions" class="activation-conditions">
+		<field name="activationQuestion" allow="modules_form_boolean,modules_form_list" />
+		<field name="activationValue" />
+	</section>
+</panel>

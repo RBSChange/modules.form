@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<actions extends="generic">
+	<action name="createForm">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_form', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createGroup">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_group', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createText">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_text', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createMail">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_mail', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createBoolean">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_boolean', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createList">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_list', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createHidden">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_hidden', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createFile">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_file', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createDate">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_date', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createFreecontent">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_freecontent', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createRecipientGroup">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_recipientGroup', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createRecipientGroupList">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_recipientGroupList', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createFolder">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_form_folder', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="deleteIsActive">
+		<parameter name="itemData" />
+		<body><![CDATA[
+	    	return itemData.isLocked !== 'isLocked';
+		]]></body>
+	</action>
+	<action name="viewResponses">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			var item = listWidget.getSelectedItems()[0];
+			wToolkit.openlink('form', 'Export', { cmpref: item.id, output: 'html' });
+	    ]]></body>
+	</action>
+	<action name="viewResponsesIsActive">
+		<parameter name="itemData" />
+		<body><![CDATA[
+	    	return itemData.activeResponse > 0;
+		]]></body>
+	</action>
+	<action name="exportCsv">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			var item = listWidget.getSelectedItems()[0];
+			wToolkit.openlink('form', 'Export', { cmpref: item.id, output: 'csv' });
+	    ]]></body>
+	</action>
+	<action name="exportCsvIsActive">
+		<parameter name="itemData" />
+		<body><![CDATA[
+	    	return itemData.activeResponse > 0;
+		]]></body>
+	</action>
+	<action name="exportAllCsv">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			var item = listWidget.getSelectedItems()[0];
+			wToolkit.openlink('form', 'Export', { cmpref: item.id, output: 'csv', all: 'all' });
+    	]]></body>
+	</action>
+	<action name="exportAllCsvIsActive">
+		<parameter name="itemData" />
+		<body><![CDATA[
+	    	return itemData.responseCount > 0;
+		]]></body>
+	</action>
+	<action name="archiveResponse">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+	      	var item = listWidget.getSelectedItems()[0];
+	      	var lang = this.getContextLang();
+	    	var label = "&amp;modules.form.bo.actions.ConfirmArchiveResponseItem; : " + item.label;
+			if (confirm(label))
+			{
+				this.execute("%label%", "ArchiveResponse", { cmpref: item.id, lang: lang});
+			}	    
+	    ]]></body>
+	</action>
+	<action name="archiveResponseIsActive">
+		<parameter name="itemData" />
+		<body><![CDATA[
+	    	return itemData.activeResponse > 0;
+		]]></body>
+	</action>
+	<action name="previewForm">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			var item = listWidget.getSelectedItems()[0];
+			var href = wCore.buildeServerUrl('form', 'PreviewForm', { cmpref: item.id, lang: this.getContextLang(), });
+			window.open(href, item.label, "menubar=yes, location=yes, toolbar=yes, resizable=yes, scrollbars=yes, status=yes");
+		]]></body>
+	</action>
+</actions>

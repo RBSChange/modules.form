@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
+	model-version="1.0" linked-to-root-module="true" icon="form" 
+	publish-on-day-change="false" has-url="false">
+	<properties>
+		<add name="formid" type="String" min-occurs="1">
+			<constraints>unique:true</constraints>
+		</add>
+		<add name="label" localized="true" />
+		<add name="description" type="XHTMLFragment" localized="true" />
+		<add name="submitButton" type="String" min-occurs="1" localized="true" default-value="&amp;modules.form.frontoffice.Submit-button;" />
+		<add name="recipientGroup" type="modules_form/recipientGroup" max-occurs="-1" />
+		<add name="confirmMessage" type="XHTMLFragment" min-occurs="1" localized="true" />
+		<add name="markup" type="String" min-occurs="1" from-list="modules_form/markup" default-value="default" />
+		<add name="responseCount" type="Integer" default-value="0" />
+		<add name="useBackLink" type="Boolean" default-value="true" />
+		<add name="messageSendingType" type="Integer" min-occurs="1" default-value="2" from-list="modules_form/messagesendingtype" />
+		<add name="notification" type="modules_notification/notification" min-occurs="1" cascade-delete="true" />
+		<add name="useCaptcha" type="Boolean" default-value="false" />
+		<add name="footer" type="XHTMLFragment" localized="true" />
+		<add name="archivedResponseCount" type="Integer" default-value="0" />
+		<add name="confirmpage" type="modules_website/page" />
+	</properties>
+	<children>
+		<child name="groups" type="modules_form/group" />
+		<child name="fields" type="modules_form/field" />
+	</children>
+	<statuses default="ACTIVE" />
+</document>

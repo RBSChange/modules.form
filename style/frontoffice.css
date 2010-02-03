@@ -1,0 +1,216 @@
+textarea,input,select{
+	font-family: inherit;
+	font-size: 100%;
+}
+form label{
+	cursor: pointer;
+}
+fieldset{
+	border: none;
+}
+form.cmxform ul.errors li{
+	list-style-position: inside;
+}
+form.cmxform ol{
+	margin: 0;
+	padding: 0;
+}
+form.cmxform ol li{
+	float: none;
+	clear: both;
+	list-style: none;
+	margin: 4px 0px;
+}
+form.cmxform legend,legend{
+	white-space: normal;
+}
+form.cmxform label{
+	vertical-align: top;
+	display: block;
+	float: left;
+}
+form.cmxform textarea,textarea{
+	margin: 0;
+	padding: 0;
+}
+form.cmxform input.button,input.button{
+	font-size: 1em;
+	cursor: pointer;
+	padding: 0 4px;
+	vertical-align: top;
+	border-width: 1px;
+	border-style: solid;
+}
+form.cmxform fieldset.radio{
+	border: none;
+	margin: 3px 0 0;
+}
+form.cmxform fieldset.radio label{
+	display: block;
+	width: auto;
+}
+input[type="radio"]{
+	margin-right: 4px;
+	float: left;
+}
+li.captcha{
+	text-align: center;
+}
+p.buttons{
+	clear: both;
+	text-align: center;
+}
+a.button{
+	cursor: pointer;
+}
+table.jCalendar{
+	border: 1px solid #000;
+	background: #aaa;
+}
+table.jCalendar th{
+	background: #333;
+	color: #fff;
+	font-weight: bold;
+	padding: 3px 5px;
+}
+table.jCalendar td{
+	background: #ccc;
+	color: #000;
+	padding: 3px 5px;
+	text-align: center;
+}
+table.jCalendar td.other-month{
+	background: #ddd;
+	color: #aaa;
+}
+table.jCalendar td.today{
+	background: #666;
+	color: #fff;
+	font-weight: bold;
+}
+table.jCalendar td.selected{
+	background: #f66;
+	color: #fff;
+	font-weight: bold;
+}
+table.jCalendar td.selected:hover{
+	background: #f33;
+	color: #fff;
+}
+table.jCalendar td:hover,table.jCalendar td.dp-hover{
+	background: #fff;
+	color: #000;
+}
+table.jCalendar td.disabled,table.jCalendar td.disabled:hover{
+	background: #bbb;
+	color: #888;
+}
+div#dp-popup{
+	position: absolute;
+	font-size: 10px;
+	font-family: arial, sans-serif;
+	background: #ccc;
+	padding: 2px;
+	min-height: 172px;
+	min-width: 171px;
+}
+div#dp-popup h2{
+	font-size: 12px;
+	text-align: center;
+	margin: 2px 0;
+	padding: 0;
+}
+a#dp-close{
+	font-size: 11px;
+	padding: 4px 0;
+	text-align: center;
+	display: block;
+}
+a#dp-close:hover{
+	text-decoration: underline;
+}
+div#dp-popup a{
+	color: #000;
+	text-decoration: none;
+	padding: 3px 2px 0;
+}
+div#dp-popup div#dp-nav-prev{
+	position: absolute;
+	top: 2px;
+	left: 4px;
+	width: 100px;
+}
+div#dp-popup div#dp-nav-prev a{
+	float: left;
+}
+div#dp-popup div#dp-nav-prev a,div#dp-popup div#dp-nav-next a{
+	cursor: pointer;
+}
+div#dp-popup div#dp-nav-prev a.disabled,div#dp-popup div#dp-nav-next a.disabled{
+	cursor: default;
+}
+div#dp-popup div#dp-nav-next{
+	position: absolute;
+	top: 2px;
+	right: 4px;
+	width: 100px;
+}
+div#dp-popup div#dp-nav-next a{
+	float: right;
+}
+div#dp-popup a.disabled{
+	cursor: default;
+	color: #aaa;
+}
+div#dp-popup td{
+	cursor: pointer;
+}
+div#dp-popup td.disabled{
+	cursor: default;
+}
+a.dp-choose-date{
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 5px 3px 0;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url(/icons/small/calendar.png) no-repeat 0 2px;
+	vertical-align: top;
+	text-decoration: none;
+}
+a.dp-choose-date.dp-disabled{
+	background-position: 0 -20px;
+	cursor: default;
+}
+input.dp-applied{
+	width: 140px;
+}
+form.cmxform label.option-label{
+	width: auto;
+	margin-left: 0px;
+}
+form.cmxform ul.uploads{
+	margin: 5px 0 5px 33%;
+}
+form.cmxform ul.uploads li{
+	list-style-type: disc;
+	list-style-position: inside;
+	line-height: 2;
+	margin-left: 16px;
+}
+form.cmxform ul.documentpicker-elements{
+	margin: 5px 0 5px 33%;
+}
+form.cmxform ul.documentpicker-elements li{
+	list-style-type: disc;
+	list-style-position: inside;
+	line-height: 2;
+	margin-left: 16px;
+}
+form.cmxform a.picker-choose{
+	line-height: 2;
+}
+
+@import url(/modules/form/style/frontoffice.trident.4.css);
+@import url(/modules/form/style/frontoffice.trident.5.css);

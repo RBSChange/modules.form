@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<panels>
+	<panel name="resume" />
+	<panel name="properties" />
+	<panel name="localization" />
+	<panel name="history" />
+	<panel name="create" />
+	
+	<xul>
+		<javascript>
+			<field name="fileTypes">null</field>
+			
+			<constructor><![CDATA[
+				this.fileTypes = { image: ['jpg','jpeg','png','gif'], document: ['doc','pdf','html','htm','xls','sxw','pps','ppt'] }
+			]]></constructor>
+			
+			<method name="setAllowedTypes">
+				<parameter name="panel" />
+				<parameter name="fieldName" />
+				<parameter name="type" />
+				<body><![CDATA[
+					var field = panel.fields[fieldName];
+					if (!(type in this.fileTypes))
+					{
+						field.value = '';
+					}
+					else
+					{
+						var types = this.fileTypes[type];
+						var vtypes = (field.value == '') ? [] : field.value.split(',');
+						for (var i=0 ; i<types.length ; i++)
+						{
+							var type = types[i];
+							if (!in_array(type, vtypes))
+							{
+								vtypes.push(type);
+							}
+						}
+						field.value = vtypes.join(',');
+					}
+				]]></body>
+			</method>
+		</javascript>
+	</xul>
+</panels>

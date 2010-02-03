@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel>
+	<section labeli18n="modules.form.bo.general.General">
+		<field name="label" />
+		<field name="helpText" />
+		<field name="multiple" />
+		<field name="display" />
+		<field name="hasBlankOption" />
+	</section>
+	<section labeli18n="modules.form.bo.general.Activation-conditions" class="activation-conditions">
+		<field name="activationQuestion" allow="modules_form_boolean,modules_form_list" />
+		<field name="activationValue" />
+	</section>
+</panel>

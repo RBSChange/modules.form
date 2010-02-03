@@ -1,0 +1,71 @@
+<tabbox flex="1">
+
+	<tabs>
+		<tab i18n:attributes="label &modules.generic.backoffice.General;" />
+		<tab i18n:attributes="label &modules.generic.backoffice.Technical-information;" />
+	</tabs>
+
+	<tabpanels flex="1">
+
+		<tabpanel flex="1">
+			<grid flex="1" class="preview">
+				<columns>
+					<column />
+					<column flex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label i18n:translate="&modules.generic.backoffice.Label;">Label</label>
+						<label tal:content="document/attributes/label" />
+					</row>
+					<row>
+						<label i18n:translate="&modules.generic.backoffice.Type;">Type</label>
+						<label tal:content="document/hrtype" />
+					</row>
+					<row>
+						<label i18n:translate="&modules.form.bo.general.Field-name;">Field name</label>
+						<label tal:content="document/attributes/fieldName" />
+					</row>
+					<row>
+						<label i18n:translate="&modules.form.bo.general.Required-field;">Required field</label>
+						<label tal:condition="document/attributes/required" i18n:translate="&modules.uixul.bo.general.Yes;" />
+						<label tal:condition="not: document/attributes/required" i18n:translate="&modules.uixul.bo.general.No;" />
+					</row>
+					<row>
+						<label i18n:translate="&modules.form.bo.general.True-label;">Libellé si vrai</label>
+						<label tal:content="document/attributes/trueLabel" />
+					</row>
+					<row>
+						<label i18n:translate="&modules.form.bo.general.False-label;">Libellé si faux</label>
+						<label tal:content="document/attributes/falseLabel" />
+					</row>
+					<row>
+						<label i18n:translate="&modules.generic.backoffice.Creation-date;">Creation date</label>
+						<label tal:content="document/creation_date" />
+					</row>
+					<row>
+						<label i18n:translate="&modules.generic.backoffice.Modification-date;">Modification date</label>
+						<label tal:content="document/modification_date" />
+					</row>
+				</rows>
+			</grid>
+		</tabpanel>
+
+		<tabpanel flex="1">
+			<grid flex="1" class="preview">
+				<columns>
+					<column />
+					<column flex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label i18n:translate="&modules.generic.backoffice.Id;">ID</label>
+						<label tal:content="document/id" />
+					</row>
+				</rows>
+			</grid>
+		</tabpanel>
+
+	</tabpanels>
+
+</tabbox>

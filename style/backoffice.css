@@ -1,0 +1,56 @@
+treechildren::-moz-tree-image(modules_form_form){
+	list-style-image: url(/icons/small/form.png) ;
+}
+treechildren::-moz-tree-image(modules_form_group){
+	list-style-image: url(/icons/small/ui-group-box.png) ;
+}
+treechildren::-moz-tree-image(modules_form_text){
+	list-style-image: url(/icons/small/ui-text-field.png) ;
+}
+treechildren::-moz-tree-image(modules_form_boolean){
+	list-style-image: url(/icons/small/ui-boolean-field.png) ;
+}
+treechildren::-moz-tree-image(modules_form_list){
+	list-style-image: url(/icons/small/ui-combo-box.png) ;
+}
+treechildren::-moz-tree-image(modules_form_response){
+	list-style-image: url(/icons/small/mail.png) ;
+}
+treechildren::-moz-tree-image(modules_form_password){
+	list-style-image: url(/icons/small/ui-password-field.png) ;
+}
+treechildren::-moz-tree-cell-text(required){
+	font-weight: bold;
+}
+treechildren::-moz-tree-cell-text(conditioned){
+	font-weight: bold;
+}
+treechildren::-moz-tree-image(modules_form_file){
+	list-style-image: url(/icons/small/ui-file-picker.png) ;
+}
+treechildren::-moz-tree-image(modules_form_hidden){
+	list-style-image: url(/icons/small/ui-hidden-field.png) ;
+}
+treechildren::-moz-tree-image(modules_form_date){
+	list-style-image: url(/icons/small/ui-date-picker.png) ;
+}
+treechildren::-moz-tree-image(modules_form_preferences){
+	list-style-image: url(/icons/small/form.png) ;
+}
+treechildren::-moz-tree-cell(isLocked){
+	background-image: url(/icons/small/lock_warning.png) ;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+treechildren::-moz-tree-image(modules_form_freecontent){
+	list-style-image: url(/icons/small/ui-label.png) ;
+}
+treechildren::-moz-tree-image(modules_form_recipientGroup){
+	list-style-image: url(/icons/small/users.png) ;
+}
+treechildren::-moz-tree-image(modules_form_recipientGroupList){
+	list-style-image: url(/icons/small/ui-email-field.png) ;
+}
+treechildren::-moz-tree-image(modules_form_mail){
+	list-style-image: url(/icons/small/ui-email-field.png) ;
+}

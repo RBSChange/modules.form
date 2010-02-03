@@ -1,0 +1,7 @@
+<dl>
+<span tal:repeat="item items" tal:omit-tag="">
+<dt tal:content="item/label" />
+<dd tal:content="item/mailValue" tal:condition="item/mailValue"/>
+<dd tal:content="item/value" tal:condition="not: item/mailValue"/>
+</span>
+</dl>

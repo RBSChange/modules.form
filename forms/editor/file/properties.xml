@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel>
+	<section labeli18n="modules.form.bo.general.General">
+		<field name="label" />
+		<field name="required" />
+		<field name="helpText" />
+		<field name="allowedExtensions" />
+		<row>
+			<rowlabel value=" " />
+			<hbox>
+				<toolbarbutton image="{HttpHost}/icons/small/photo_scenery.png" label="&amp;modules.form.bo.general.Images;" oncommand="var panel = document.getBindingParent(this); panel.documentEditor.setAllowedTypes(panel, 'allowedExtensions', 'image');"/>
+				<toolbarbutton image="{HttpHost}/icons/small/document.png" label="&amp;modules.form.bo.general.Documents;" oncommand="var panel = document.getBindingParent(this); panel.documentEditor.setAllowedTypes(panel, 'allowedExtensions', 'document');"/>
+				<toolbarbutton image="{HttpHost}/icons/small/application.png" label="&amp;modules.form.bo.general.All;" oncommand="var panel = document.getBindingParent(this); panel.documentEditor.setAllowedTypes(panel, 'allowedExtensions', 'all');"/>
+			</hbox>
+		</row>
+		<field name="mediaFolder" />
+	</section>
+	<section labeli18n="modules.form.bo.general.Activation-conditions" class="activation-conditions">
+		<field name="activationQuestion" allow="modules_form_boolean,modules_form_list" />
+		<field name="activationValue" />
+	</section>
+</panel>

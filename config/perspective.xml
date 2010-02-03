@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<perspective>
+	<models>
+		<model name="modules_generic/rootfolder">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="openTreeNodeOrder" />
+				<contextaction name="delete" />
+				<groupactions name="createfolder_">
+					<contextaction name="createFolder" />
+					<contextaction name="createForm" />
+					<contextaction name="createRecipientGroup" />
+				</groupactions>
+				<contextaction name="openFolder" />
+			</contextactions>
+			<children>
+				<child model="modules_generic/folder" />
+				<child model="modules_generic/systemfolder" />
+				<child model="modules_form/form" />
+				<child model="modules_form/recipientGroup" />
+			</children>
+			<drops>
+				<drop model="modules_generic/folder" action="move" />
+				<drop model="modules_form/form" action="move" />
+				<drop model="modules_form/recipientGroup" action="move" />
+			</drops>
+		</model>
+		<model name="modules_generic/folder">
+			<children>
+				<child model="modules_generic/folder" />
+				<child model="modules_form/form" />
+				<child model="modules_form/recipientGroup" />
+			</children>
+			<drops>
+				<drop model="modules_generic/folder" action="move" />
+				<drop model="modules_form/form" action="move" />
+				<drop model="modules_form/recipientGroup" action="move" />
+			</drops>
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+				<contextaction name="openTreeNodeOrder" />
+				<groupactions name="createfolder_">
+					<contextaction name="createFolder" />
+					<contextaction name="createForm" />
+					<contextaction name="createRecipientGroup" />
+				</groupactions>
+				<contextaction name="openFolder" />
+			</contextactions>
+		</model>
+		<model name="modules_generic/systemfolder">
+			<children>
+				<child model="modules_form/form" />
+			</children>
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="openTreeNodeOrder" />
+				<contextaction name="openFolder" />
+			</contextactions>
+		</model>
+		<model name="modules_form/form">
+			<children>
+				<child model="modules_form/text" />
+				<child model="modules_form/mail" />
+				<child model="modules_form/boolean" />
+				<child model="modules_form/list" />
+				<child model="modules_form/group" />
+				<child model="modules_form/file" />
+				<child model="modules_form/hidden" />
+				<child model="modules_form/date" />
+				<child model="modules_form/password" />
+				<child model="modules_form/freecontent" />
+				<child model="modules_form/recipientGroupList" />
+			</children>
+			<drops>
+				<drop model="modules_form/text" action="move" />
+				<drop model="modules_form/mail" action="move" />
+				<drop model="modules_form/boolean" action="move" />
+				<drop model="modules_form/list" action="move" />
+				<drop model="modules_form/group" action="move" />
+				<drop model="modules_form/file" action="move" />
+				<drop model="modules_form/hidden" action="move" />
+				<drop model="modules_form/date" action="move" />
+				<drop model="modules_form/password" action="move" />
+				<drop model="modules_form/freecontent" action="move" />
+				<drop model="modules_form/recipientGroupList" action="move" />
+			</drops>
+			<styles properties="fieldType required isLocked conditioned" />
+			<columns>
+				<column name="fieldType" label="FieldType" flex="2" />
+				<column name="fieldRequired" label="FieldRequired" flex="1" />
+				<column name="fieldConditioned" label="FieldConditioned" flex="1" />
+			</columns>
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+				<contextaction name="openTreeNodeOrder" />
+				<contextaction name="duplicate" />
+				<contextaction name="previewForm" />
+				<contextaction name="viewResponses" />
+				<contextaction name="exportCsv" />
+				<contextaction name="exportAllCsv" />
+				<contextaction name="archiveResponse" />
+				<groupactions name="create_">
+					<contextaction name="createGroup" />
+					<contextaction name="createText" />
+					<contextaction name="createMail" />
+					<contextaction name="createBoolean" />
+					<contextaction name="createList" />
+					<contextaction name="createDate" />
+					<contextaction name="createFile" />
+					<contextaction name="createHidden" />
+					<contextaction name="createFreecontent" />
+					<contextaction name="createRecipientGroupList" />
+				</groupactions>
+				<contextaction name="openFolder" />
+				<contextaction name="refresh"/>
+			</contextactions>
+		</model>
+		<model name="modules_form/group">
+			<children>
+				<child model="modules_form/text" />
+				<child model="modules_form/mail" />
+				<child model="modules_form/boolean" />
+				<child model="modules_form/list" />
+				<child model="modules_form/group" />
+				<child model="modules_form/file" />
+				<child model="modules_form/hidden" />
+				<child model="modules_form/date" />
+				<child model="modules_form/password" />
+				<child model="modules_form/freecontent" />
+				<child model="modules_form/recipientGroupList" />
+			</children>
+			<drops>
+				<drop model="modules_form/text" action="move" />
+				<drop model="modules_form/mail" action="move" />
+				<drop model="modules_form/boolean" action="move" />
+				<drop model="modules_form/list" action="move" />
+				<drop model="modules_form/group" action="move" />
+				<drop model="modules_form/file" action="move" />
+				<drop model="modules_form/hidden" action="move" />
+				<drop model="modules_form/date" action="move" />
+				<drop model="modules_form/password" action="move" />
+				<drop model="modules_form/freecontent" action="move" />
+				<drop model="modules_form/recipientGroupList" action="move" />
+			</drops>
+			<styles properties="fieldType required isLocked conditioned block actualtype" />
+			<columns>
+				<column name="fieldType" label="FieldType" flex="2" />
+				<column name="fieldRequired" label="FieldRequired" flex="1" />
+				<column name="fieldConditioned" label="FieldConditioned" flex="1" />
+				<column name="fieldIsLocked" label="FieldIsLocked" flex="1" />
+			</columns>
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+				<contextaction name="openTreeNodeOrder" />
+				<groupactions name="create_">
+					<contextaction name="createGroup" />
+					<contextaction name="createText" />
+					<contextaction name="createMail" />
+					<contextaction name="createBoolean" />
+					<contextaction name="createList" />
+					<contextaction name="createDate" />
+					<contextaction name="createFile" />
+					<contextaction name="createHidden" />
+					<contextaction name="createFreecontent" />
+					<contextaction name="createRecipientGroupList" />
+				</groupactions>
+				<contextaction name="openFolder" />
+				<contextaction name="refresh"/>
+			</contextactions>
+		</model>
+		<model name="modules_form/text">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/mail">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/boolean">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/list">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/password">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/file">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/hidden">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/date">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/freecontent">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/recipientGroup">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+		<model name="modules_form/recipientGroupList">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+			</contextactions>
+		</model>
+	</models>
+	<toolbar>
+		<toolbarbutton name="edit" />
+		<toolbarbutton name="delete" />
+		<toolbarbutton name="duplicate" />
+		<toolbarbutton name="previewForm" />
+		<toolbarbutton name="viewResponses" />
+	</toolbar>
+	<actions>
+		<action name="refresh" single="true" icon="refresh" label="&amp;modules.uixul.bo.actions.Refresh;"/>
+		<action name="edit" single="true" permission="Load" icon="edit" label="&amp;modules.uixul.bo.actions.Edit;" />
+		<action name="delete" permission="Delete" icon="delete" label="&amp;modules.uixul.bo.actions.Delete;" />
+		<action name="duplicate" icon="duplicate" label="&amp;modules.uixul.bo.actions.Duplicate;" />
+		<action name="previewForm" single="true" permission="PreviewForm" icon="preview" label="&amp;modules.form.bo.actions.PreviewForm;" />
+		<action name="viewResponses" single="true" icon="view-responses" label="&amp;modules.form.bo.actions.View-responses;" />
+		<action name="exportCsv" single="true" permission="ExportCsv" icon="csv-export" label="&amp;modules.uixul.bo.actions.Export-Csv;" />
+		<action name="exportAllCsv" single="true" permission="Export" icon="csv-export" label="&amp;modules.form.bo.actions.Export-csv-all;" />
+		<action name="archiveResponse" single="true" permission="ArchiveResponse" icon="archive" label="&amp;modules.form.bo.actions.ArchiveResponse;" />
+		<action name="move" permission="Move" icon="up_down" label="&amp;modules.uixul.bo.actions.Move;" />
+		<action name="openTreeNodeOrder" single="true" permission="Order" icon="sort" label="&amp;modules.uixul.bo.actions.Set-children-order;" />
+		<action name="openFolder" icon="open-folder" label="&amp;modules.uixul.bo.actions.OpenFolder;" />
+		<action name="createfolder_" single="true" icon="add" actions="createFolder,createForm,createRecipientGroup" />
+		<action name="createFolder" single="true" permission="Insert_folder" group="createfolder_" label="&amp;modules.uixul.bo.actions.Create-folder;" />
+		<action name="createForm" single="true" permission="Insert_form" group="createfolder_" label="&amp;modules.form.bo.actions.Create-Form;" />
+		<action name="createRecipientGroup" single="true" permission="Insert_recipientGroup" group="createfolder_" label="&amp;modules.form.bo.actions.Create-RecipientGroup;" />
+		<action name="create_" single="true" icon="add" actions="createGroup,createText,createMail,createBoolean,createList,createDate,createFile,createHidden,createFreecontent,createRecipientGroupList" />
+		<action name="createGroup" single="true" permission="Insert_group" group="create_" label="&amp;modules.form.bo.actions.Create-Group;" />
+		<action name="createText" single="true" permission="Insert_text" group="create_" label="&amp;modules.form.bo.actions.Create-Text;" />
+		<action name="createMail" single="true" permission="Insert_mail" group="create_" label="&amp;modules.form.bo.actions.Create-Mail;" />
+		<action name="createBoolean" single="true" permission="Insert_boolean" group="create_" label="&amp;modules.form.bo.actions.Create-Boolean;" />
+		<action name="createList" single="true" permission="Insert_list" group="create_" label="&amp;modules.form.bo.actions.Create-List;" />
+		<action name="createDate" single="true" permission="Insert_date" group="create_" label="&amp;modules.form.bo.actions.Create-Date;" />
+		<action name="createFile" single="true" permission="Insert_file" group="create_" label="&amp;modules.form.bo.actions.Create-File;" />
+		<action name="createHidden" single="true" permission="Insert_hidden" group="create_" label="&amp;modules.form.bo.actions.Create-Hidden;" />
+		<action name="createFreecontent" single="true" permission="Insert_freecontent" group="create_" label="&amp;modules.form.bo.actions.Create-Freecontent;" />
+		<action name="createRecipientGroupList" single="true" permission="Insert_recipientGroupList" group="create_" label="&amp;modules.form.bo.actions.Create-RecipientGroupList;" />
+	</actions>
+</perspective>

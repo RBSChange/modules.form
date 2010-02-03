@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="document-name">
+    <locale lang="fr">préférences</locale>
+    <locale lang="en">preferences</locale>
+    <locale lang="de">Präferenzen des Moduls Formular</locale>
+  </entity>
+  <entity id="edition-form-title">
+    <locale lang="fr">préférences du module formulaire</locale>
+    <locale lang="en">module form preferences</locale>
+    <locale lang="de">Präferenzen des Moduls Formular</locale>
+  </entity>
+  <entity id="sender">
+    <locale lang="fr">expéditeur des emails</locale>
+    <locale lang="de">Sender der E-mails</locale>
+  </entity>
+  <entity id="sender-help">
+    <locale lang="fr">expéditeur des emails</locale>
+    <locale lang="de">Sender der E-mails</locale>
+  </entity>
+  <entity id="previewpage">
+    <locale lang="fr">page de prévisulalisation</locale>
+    <locale lang="de">Vorschauseite</locale>
+  </entity>
+  <entity id="previewpage-help">
+    <locale lang="fr">page qui sera utilisée pour la previsualisation des formulaires</locale>
+    <locale lang="de">für die Vorschau der Formulare genutzte Seite</locale>
+  </entity>
+<!-- CAPTCHA -->
+  <entity id="captcha.reload">
+    <locale lang="fr">recharger</locale>
+    <locale lang="de">neu laden</locale>
+  </entity>
+  <entity id="captcha.width">
+    <locale lang="fr">largeur</locale>
+    <locale lang="de">Breite</locale>
+  </entity>
+  <entity id="captcha.width-help">
+    <locale lang="fr">largeur de l'image du CAPTCHA (en pixels)</locale>
+    <locale lang="de">Bildbreite des CAPTCHA (in Pixel)</locale>
+  </entity>
+  <entity id="captcha.height">
+    <locale lang="fr">hauteur</locale>
+    <locale lang="de">Höhe</locale>
+  </entity>
+  <entity id="captcha.height-help">
+    <locale lang="fr">hauteur de l'image du CAPTCHA (en pixels)</locale>
+    <locale lang="de">Bildhöhe des CAPTCHA (in Pixel)</locale>
+  </entity>
+  <entity id="captcha.fontSize">
+    <locale lang="fr">taille des caractères</locale>
+    <locale lang="de">Grösse der Schriftart</locale>
+  </entity>
+  <entity id="captcha.fontSize-help">
+    <locale lang="fr">taille des caractères utilisée pour le code du CAPTCHA (en pixels)</locale>
+    <locale lang="de">Grösse der genutzten Schriftart für den Kode des CAPTCHA (in Pixel)</locale>
+  </entity>
+  <entity id="captcha.fontDepth">
+    <locale lang="fr">profondeur de l'ombre</locale>
+    <locale lang="de">Tiefe des Schattens</locale>
+  </entity>
+  <entity id="captcha.fontDepth-help">
+    <locale lang="fr">profondeur de l'ombre sous le texte (en pixels)</locale>
+    <locale lang="de">Tiefe des Schattens unterhalb des Textes (in Pixel)</locale>
+  </entity>
+  <entity id="captcha.maxLength">
+    <locale lang="fr">nombre de caractères</locale>
+    <locale lang="de">Anzahl Zeichen</locale>
+  </entity>
+  <entity id="captcha.maxLength-help">
+    <locale lang="fr">nombre de caractères maximal composant le code du CAPTCHA</locale>
+    <locale lang="de">maximale Anzahl an Zeichen, die den CAPTCHA zusammenstellen</locale>
+  </entity>
+</localization>

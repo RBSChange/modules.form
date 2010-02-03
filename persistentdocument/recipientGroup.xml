@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
+	model-version="1.0" linked-to-root-module="true" icon="users" 
+	publish-on-day-change="false" has-url="false" table-name-oci="m_form_doc_rcptgrp">
+	<properties>
+		<add name="label" localized="true" />
+		<add name="description" type="LongString" localized="true" max-occurs="1" />
+		<add name="to" type="modules_contactcard/contact" max-occurs="-1" />
+		<add name="cc" type="modules_contactcard/contact" max-occurs="-1" />
+		<add name="bcc" type="modules_contactcard/contact" max-occurs="-1" />
+	</properties>
+	<statuses default="ACTIVE" />
+</document>

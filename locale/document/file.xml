@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="document-name">
+    <locale lang="fr">champ fichier</locale>
+    <locale lang="en">file field</locale>
+    <locale lang="de">Dateifeld</locale>
+  </entity>
+  <entity id="edition-form-title">
+    <locale lang="fr">
+			propriétés du champ fichier à télécharger
+		</locale>
+    <locale lang="en">upload file field's properties</locale>
+    <locale lang="de">Eigenschaften des Feldes Datei zum hochladen</locale>
+  </entity>
+  <entity id="label">
+    <locale lang="fr">libellé</locale>
+    <locale lang="en">label</locale>
+    <locale lang="de">Name</locale>
+  </entity>
+  <entity id="label-help">
+    <locale lang="fr">
+			libellé du champ (visible sur le site)
+		</locale>
+    <locale lang="en">
+			field label (displayed on the website)
+		</locale>
+    <locale lang="de">Feldname (auf der Webseite sichtbar)</locale>
+  </entity>
+  <entity id="fieldName">
+    <locale lang="fr">nom du champ</locale>
+    <locale lang="en">field name</locale>
+    <locale lang="de">Feldname</locale>
+  </entity>
+  <entity id="fieldName-help">
+    <locale lang="fr">
+			Le nom du champ doit être composé de lettres et de chiffres
+			uniquement et doit commencer par une lettre.
+		</locale>
+    <locale lang="en">
+			The field name must be composed of letters and digits and
+			must begin with a letter.
+		</locale>
+    <locale lang="de">Der Feldname muss aus Buchstaben und Zahlen bestehen, und muss mit einem Buchstaben beginnen.</locale>
+  </entity>
+  <entity id="helpText">
+    <locale lang="fr">texte d'aide du champ</locale>
+    <locale lang="en">help text</locale>
+    <locale lang="de">Hilfetext des Feldes</locale>
+  </entity>
+  <entity id="helpText-help">
+    <locale lang="fr">
+			Le texte d'aide du champ indique aux internautes comment
+			remplir le champ
+		</locale>
+    <locale lang="en">
+			The help text tells the users how to fill this field in
+		</locale>
+    <locale lang="de">Der Hilfetext des Feldes zeigt dem Benutzer wie das Feld zu füllen ist</locale>
+  </entity>
+  <entity id="required">
+    <locale lang="fr">champ obligatoire</locale>
+    <locale lang="en">required field</locale>
+    <locale lang="de">obligatorisches Feld</locale>
+  </entity>
+  <entity id="required-help">
+    <locale lang="fr">champ obligatoire</locale>
+    <locale lang="en">required field</locale>
+    <locale lang="de">obligatorisches Feld</locale>
+  </entity>
+  <entity id="allowedExtensions">
+    <locale lang="fr">restreindre le champ à</locale>
+    <locale lang="en"/>
+    <locale lang="de">Feld beschränken auf</locale>
+  </entity>
+  <entity id="allowedExtensions-help">
+    <locale lang="fr">
+			Restreindre les fichiers à certaines extensions. Les
+			extensions sont séparées par des virgules. Par exemple :
+			jpg,jpeg,png,gif. Si ce champ est vide, tous les types de
+			fichiers sont autorisés.
+		</locale>
+    <locale lang="en"/>
+    <locale lang="de">Dateien auf einige Erweiterungen beschränken. Die Erweiterungen sind durch Kommata getrennt. Zum Beispiel:
+			jpg, jpeg, png, gif. Ist diese Feld gültig, sind alle Dateitypen erlaubt.</locale>
+  </entity>
+  <entity id="mediaFolder">
+    <locale lang="fr">dossier de classement</locale>
+    <locale lang="en">destination folder</locale>
+    <locale lang="de">Ordnungsdatei</locale>
+  </entity>
+  <entity id="mediaFolder-help">
+    <locale lang="fr">
+			dossier de classement, dans le module Mediathèque
+		</locale>
+    <locale lang="en">
+			destination folder, in the Media module
+		</locale>
+    <locale lang="de">Ordnungsdatei, im Modul Mediathek</locale>
+  </entity>
+  <entity id="activationQuestion">
+    <locale lang="fr">champ</locale>
+  </entity>
+  <entity id="activationQuestion-help">
+    <locale lang="fr">champ qui conditionnera l'activation de ce champ.</locale>
+  </entity>
+  <entity id="activationValue">
+    <locale lang="fr">valeur</locale>
+  </entity>
+  <entity id="activationValue-help">
+    <locale lang="fr">valeur que devra avoir le champ pour activer ce champ.</locale>
+  </entity>
+</localization>
