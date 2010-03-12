@@ -41,6 +41,9 @@ form.cmxform input.button,input.button{
 	border-width: 1px;
 	border-style: solid;
 }
+form.cmxform .buttons input.button , .buttons input.button{
+	vertical-align: baseline;
+}
 form.cmxform fieldset.radio{
 	border: none;
 	margin: 3px 0 0;
