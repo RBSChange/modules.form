@@ -88,7 +88,8 @@
 		<parameter name="listWidget" />
 		<body><![CDATA[
 			var item = listWidget.getSelectedItems()[0];
-			wToolkit.openlink('form', 'Export', { cmpref: item.id, output: 'html' });
+			var url = wCore.buildeServerUrl('form', 'Export', { cmpref: item.id, output: 'html' });
+			wToolkit.openurl(url);
 	    ]]></body>
 	</action>
 	<action name="viewResponsesIsActive">
@@ -101,7 +102,8 @@
 		<parameter name="listWidget" />
 		<body><![CDATA[
 			var item = listWidget.getSelectedItems()[0];
-			wToolkit.openlink('form', 'Export', { cmpref: item.id, output: 'csv' });
+			var url = wCore.buildeServerUrl('form', 'Export', { cmpref: item.id, output: 'csv' });
+			wToolkit.downloadurl(url);
 	    ]]></body>
 	</action>
 	<action name="exportCsvIsActive">
@@ -114,7 +116,8 @@
 		<parameter name="listWidget" />
 		<body><![CDATA[
 			var item = listWidget.getSelectedItems()[0];
-			wToolkit.openlink('form', 'Export', { cmpref: item.id, output: 'csv', all: 'all' });
+			var url = wCore.buildeServerUrl('form', 'Export', { cmpref: item.id, output: 'csv', all: 'all' });
+			wToolkit.downloadurl(url);
     	]]></body>
 	</action>
 	<action name="exportAllCsvIsActive">
