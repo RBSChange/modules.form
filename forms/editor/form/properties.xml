@@ -5,6 +5,7 @@
 		<field name="useBackLink" />
 		<field name="confirmMessage" />
 		<field name="useCaptcha" />
+		<field name="markup" />
 	</section>
 	<section labeli18n="modules.form.bo.general.Advanced">
 		<field name="submitButton" />
