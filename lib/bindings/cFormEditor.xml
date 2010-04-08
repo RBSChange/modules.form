@@ -24,7 +24,7 @@
 						<xul:spacer flex="2" />
 						<xul:image anonid="captcha-preview" />
 						<xul:spacer flex="1" />
-						<xul:button anonid="refresh-captcha-button" label="&amp;modules.form.document.preferences.captcha.ReloadSpaced;" image="{HttpHost}/icons/small/shadow/refresh.png" />
+						<xul:button anonid="refresh-captcha-button" label="&amp;modules.form.document.preferences.captcha.ReloadSpaced;" image="{IconsBase}/small/shadow/refresh.png" />
 						<xul:spacer flex="2" />
 					</xul:vbox>
 				</xul:hbox>
