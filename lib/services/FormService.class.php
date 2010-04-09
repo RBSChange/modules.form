@@ -1248,6 +1248,7 @@ class form_FormService extends f_persistentdocument_DocumentService
 	/**
 	 * @param f_persistentdocument_PersistentDocument $document
 	 * @param string $forModuleName
+	 * @param array $allowedSections
 	 * @return array
 	 */
 	public function getResume($document, $forModuleName, $allowedSections = null)
