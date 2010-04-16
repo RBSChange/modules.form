@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
-	model-version="1.0" linked-to-root-module="true" icon="form" 
-	publish-on-day-change="false" has-url="false">
+	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd" model-version="1.0"
+	linked-to-root-module="true" icon="form" publish-on-day-change="false" has-url="false">
 	<properties>
 		<add name="formid" type="String" min-occurs="1">
 			<constraints>unique:true</constraints>
@@ -21,6 +20,8 @@
 		<add name="footer" type="XHTMLFragment" localized="true" />
 		<add name="archivedResponseCount" type="Integer" default-value="0" />
 		<add name="confirmpage" type="modules_website/page" />
+		<add name="acknowledgment" type="Boolean" default-value="false" />
+		<add name="acknowledgmentNotification" type="modules_notification/notification" />
 	</properties>
 	<children>
 		<child name="groups" type="modules_form/group" />

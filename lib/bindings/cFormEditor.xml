@@ -337,4 +337,29 @@
 			]]></handler>
 		</handlers>
 	</binding>
+	
+	<!-- Recipient group creation from form -->	
+	<binding id="cRecipientGroupArrayField" extends="form.cField#cDocumentArrayField">
+		<implementation>
+			<constructor><![CDATA[
+				wCore.debug('cRecipientGroupArrayField.constructor');
+				var helpButton = this.getElementByAnonId('helpbutton');
+				var me = this;
+				var button = document.createElement('toolbarbutton');
+				button.setAttribute('image', '{IconsBase}/small/add.png');
+				button.setAttribute('height', '16');
+				button.setAttribute('tooltiptext', "&amp;modules.form.bo.actions.Create-RecipientGroupList;");
+				button.addEventListener('command', function () { me.openCreationForm(); }, true);
+				helpButton.parentNode.appendChild(button);
+			]]></constructor>
+			
+			<method name="openCreationForm">
+				<parameter name="listWidget" />
+				<body><![CDATA[
+		    		var uri = ['form', 'createRecipientGroup'].join(',');
+					openActionUri(uri);
+				]]></body>
+			</method>
+		</implementation>
+	</binding>
 </bindings>

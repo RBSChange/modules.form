@@ -1,68 +1,69 @@
+<?xml version="1.0"?>
 <rights>
-	<actions>
-		<document name="rootfolder" />
-		<document name="folder" />
-		<document name="form" />
-		<document name="boolean" />
-		<document name="date" />
-		<document name="file" />
-		<document name="group" />
-		<document name="hidden" />
-		<document name="list" />
-		<document name="password" />
-		<document name="response" />
-		<document name="text" />
-		<document name="mail" />
-		<document name="freecontent" />
-		<document name="group" />
-		<document name="recipientGroup" />
-		<document name="recipientGroupList" />
-		<document name="response" />
-
-		<action name="ArchiveResponse" />
-		<action name="Export" />
-		<action name="PreviewForm" />
-	</actions>
-	<roles>
-		<role name="Admin">
-			<permission name="*" />
-			<permission name="LoadPermissions.*" />
-			<permission name="SavePermissions.*" />
-			<permission name="GetPreferencesDocument" />
-			<permission name="ArchiveResponse" />
-			<permission name="Export" />
-			<permission name="EditLocale" />
-		</role>
-		<role name="Writer" extend="Guest">
-			<permission name="Order" />
-			<permission name="Move.*" />
-			<permission name="Load.*" />
-			<permission name="Rename.*" />
-			<permission name="PutInTrash.*" />
-			<permission name="Delete.*" />
-			<permission name="Insert.*" />
-			<permission name="Update.*" />
-			<permission name="Activate.*" />
-			<permission name="LoadTags" />
-			<permission name="PreviewForm" />
-		</role>
-		<role name="Translator" extend="Guest">
-			<permission name="Load.*" />
-			<permission name="LoadForTranslation.*" />
-			<permission name="UpdateTranslation.*" />
-		</role>
-		<role name="Validator" extend="Guest">
-			<permission name="Load.*" />
-			<permission name="Activate.*" />
-			<permission name="Cancel.*" />
-			<permission name="Deactivated.*" />
-			<permission name="ReActivate.*" />
-		</role>
-		<role name="Guest" extend="User">
-			<permission name="Enabled" />
-		</role>
-		<role name="User">
-			<permission name="List.*" />
-		</role>
-	</roles>
+  <actions>
+    <document name="rootfolder"/>
+    <document name="folder"/>
+    <document name="form"/>
+    <document name="boolean"/>
+    <document name="date"/>
+    <document name="file"/>
+    <document name="group"/>
+    <document name="hidden"/>
+    <document name="list"/>
+    <document name="password"/>
+    <document name="response"/>
+    <document name="text"/>
+    <document name="mail"/>
+    <document name="freecontent"/>
+    <document name="group"/>
+    <document name="recipientGroup"/>
+    <document name="recipientGroupList"/>
+    <document name="response"/>
+    <action name="ArchiveResponse"/>
+    <action name="Export"/>
+    <action name="PreviewForm"/>
+    <document name="recipientGroupFolder"/>
+  </actions>
+  <roles>
+    <role name="Admin">
+      <permission name="*"/>
+      <permission name="LoadPermissions.*"/>
+      <permission name="SavePermissions.*"/>
+      <permission name="GetPreferencesDocument"/>
+      <permission name="ArchiveResponse"/>
+      <permission name="Export"/>
+      <permission name="EditLocale"/>
+    </role>
+    <role name="Writer" extend="Guest">
+      <permission name="Order"/>
+      <permission name="Move.*"/>
+      <permission name="Load.*"/>
+      <permission name="Rename.*"/>
+      <permission name="PutInTrash.*"/>
+      <permission name="Delete.*"/>
+      <permission name="Insert.*"/>
+      <permission name="Update.*"/>
+      <permission name="Activate.*"/>
+      <permission name="LoadTags"/>
+      <permission name="PreviewForm"/>
+    </role>
+    <role name="Translator" extend="Guest">
+      <permission name="Load.*"/>
+      <permission name="LoadForTranslation.*"/>
+      <permission name="UpdateTranslation.*"/>
+    </role>
+    <role name="Validator" extend="Guest">
+      <permission name="Load.*"/>
+      <permission name="Activate.*"/>
+      <permission name="Cancel.*"/>
+      <permission name="Deactivated.*"/>
+      <permission name="ReActivate.*"/>
+    </role>
+    <role name="Guest" extend="User">
+      <permission name="Enabled"/>
+    </role>
+    <role name="User">
+      <permission name="List.*"/>
+    </role>
+  </roles>
 </rights>

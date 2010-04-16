@@ -8,6 +8,8 @@
 		<formpreferences />
 	</rootfolder>
 	
+	<recipientGroupFolder />
+	
 	<systemfolder module="list" relatedmodule="form">
 		<staticlist listid="modules_form/listdisplaytypes" label="Types d'affichage des listes"
 			description="Types d'affichage des listes">
@@ -53,6 +55,4 @@
 		<dynamiclist listid="modules_form/activationvalues" label="Valeurs d'activation"
 			description="Liste des valeurs d'activation en fonction de la question sélectionnée." />
 	</systemfolder>
-	
-	<preferences />
 </script>

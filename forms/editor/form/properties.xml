@@ -14,7 +14,8 @@
 		<field name="confirmpage" />
 	</section>
 	<section labeli18n="modules.form.bo.general.Sent-email">
-		<field name="recipientGroup" />
+		<field name="acknowledgment" />
+		<field name="recipientGroup" type="recipientGroupArrayField" />
 		<field name="messageSendingType" />
 	</section>
 </panel>

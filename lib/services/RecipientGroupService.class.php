@@ -42,18 +42,10 @@ class form_RecipientGroupService extends f_persistentdocument_DocumentService
 	 */
 	protected function postInsert($document, $parentNodeId = null)
 	{
-		if (is_null($parentNodeId))
+		$folderId = form_RecipientGroupFolderService::getInstance()->getFolder()->getId();
+		if ($parentNodeId !== $folderId)
 		{
-			try
-			{
-				$parentNodeId = TagService::getInstance()->getDocumentByExclusiveTag('default_modules_form_recipientGroups_folder')->getId();
-				$parentNode = TreeService::getInstance()->getInstanceByDocumentId($parentNodeId);
-				TreeService::getInstance()->getInstanceByDocument($document)->MoveToLastChild($parentNode);
-			}
-			catch (TagException $e)
-			{
-				// Nothing to do here.
-			}
+			$this->moveTo($document, $folderId);
 		}
 	}
 }

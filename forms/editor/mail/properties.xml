@@ -6,6 +6,7 @@
 		<field name="helpText" />
 		<field name="isReceiver"/>
 		<field name="useAsReply"/>
+		<field name="acknowledgmentReceiver"/>
 	</section>
 	<section labeli18n="modules.form.bo.general.Display-settings" class="text-field-configurator">
 		<field name="multiline" />

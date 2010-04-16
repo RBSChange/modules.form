@@ -63,7 +63,7 @@
 	<action name="createRecipientGroup">
 		<parameter name="listWidget" />
 		<body><![CDATA[
-			this.createDocumentEditor('modules_form_recipientGroup', listWidget.getSelectedItems()[0].id);
+			this.createDocumentEditor('modules_form_recipientGroup', null);
 		]]></body>
 	</action>
 	<action name="createRecipientGroupList">

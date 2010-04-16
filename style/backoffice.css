@@ -58,3 +58,6 @@ treechildren::-moz-tree-image(modules_form_mail){
 treechildren::-moz-tree-image(modules_form_field){
 	list-style-image: url(/changeicons/small/document.png);
 }
+treechildren::-moz-tree-image(modules_form_recipientGroupFolder){
+	list-style-image: url(/changeicons/small/users-folder.png);
+}

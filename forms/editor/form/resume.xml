@@ -5,6 +5,7 @@
 		<property name="author" labeli18n="modules.uixul.bo.doceditor.property.Author"/>
 		<property name="creationdate" labeli18n="modules.uixul.bo.doceditor.property.Creationdate"/>
 		<property name="notification" labeli18n="modules.form.document.form.Notification" class="openactionuri" />
+		<property name="acknowledgmentNotification" labeli18n="modules.form.document.form.AcknowledgmentNotification" class="openactionuri" />
 	</section>
 
 	<section name="localization" linkedtab="localization" labeli18n="modules.uixul.bo.doceditor.section.Localization" image="{IconsBase}/small/translate.png">

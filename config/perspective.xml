@@ -9,32 +9,29 @@
 				<groupactions name="createfolder_">
 					<contextaction name="createFolder" />
 					<contextaction name="createForm" />
-					<contextaction name="createRecipientGroup" />
 				</groupactions>
 				<contextaction name="openFolder" />
 			</contextactions>
 			<children>
 				<child model="modules_generic/folder" />
 				<child model="modules_generic/systemfolder" />
+				<child model="modules_form/recipientGroupFolder" />
 				<child model="modules_form/form" />
-				<child model="modules_form/recipientGroup" />
 			</children>
 			<drops>
 				<drop model="modules_generic/folder" action="move" />
+				<drop model="modules_form/recipientGroupFolder" action="move" />
 				<drop model="modules_form/form" action="move" />
-				<drop model="modules_form/recipientGroup" action="move" />
 			</drops>
 		</model>
 		<model name="modules_generic/folder">
 			<children>
 				<child model="modules_generic/folder" />
 				<child model="modules_form/form" />
-				<child model="modules_form/recipientGroup" />
 			</children>
 			<drops>
 				<drop model="modules_generic/folder" action="move" />
 				<drop model="modules_form/form" action="move" />
-				<drop model="modules_form/recipientGroup" action="move" />
 			</drops>
 			<contextactions>
 				<contextaction name="edit" />
@@ -43,7 +40,6 @@
 				<groupactions name="createfolder_">
 					<contextaction name="createFolder" />
 					<contextaction name="createForm" />
-					<contextaction name="createRecipientGroup" />
 				</groupactions>
 				<contextaction name="openFolder" />
 			</contextactions>
@@ -225,13 +221,26 @@
 				<contextaction name="delete" />
 			</contextactions>
 		</model>
-		<model name="modules_form/recipientGroup">
+		<model name="modules_form/recipientGroupList">
 			<contextactions>
 				<contextaction name="edit" />
 				<contextaction name="delete" />
 			</contextactions>
 		</model>
-		<model name="modules_form/recipientGroupList">
+		<model name="modules_form/recipientGroupFolder">
+			<drops>
+				<drop model="modules_form/recipientGroup" action="move" />
+			</drops>
+			<children>
+				<child model="modules_form/recipientGroup" />
+			</children>
+			<contextactions>
+				<contextaction name="openFolder" />
+				<contextaction name="createRecipientGroup" />
+				<contextaction name="openTreeNodeOrder" />
+			</contextactions>
+		</model>
+		<model name="modules_form/recipientGroup">
 			<contextactions>
 				<contextaction name="edit" />
 				<contextaction name="delete" />
@@ -272,6 +281,6 @@
 		<action name="createFile" single="true" permission="Insert_file" group="create_" label="&amp;modules.form.bo.actions.Create-File;" />
 		<action name="createHidden" single="true" permission="Insert_hidden" group="create_" label="&amp;modules.form.bo.actions.Create-Hidden;" />
 		<action name="createFreecontent" single="true" permission="Insert_freecontent" group="create_" label="&amp;modules.form.bo.actions.Create-Freecontent;" />
-		<action name="createRecipientGroupList" single="true" permission="Insert_recipientGroupList" group="create_" label="&amp;modules.form.bo.actions.Create-RecipientGroupList;" />
+		<action name="createRecipientGroupList" single="true" permission="Insert_recipientGroupList" group="create_" icon="add" label="&amp;modules.form.bo.actions.Create-RecipientGroupList;" />
 	</actions>
 </perspective>

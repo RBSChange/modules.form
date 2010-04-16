@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd" 
-    model-version="1.0" extend="modules_form/text" icon="ui-email-field">
+	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd" model-version="1.0"
+	extend="modules_form/text" icon="ui-email-field">
 	<properties>
-		<add name="useAsReply" type="Boolean" default-value="false"/>
+		<add name="useAsReply" type="Boolean" default-value="false" />
+		<add name="acknowledgmentReceiver" type="Boolean" default-value="false" />
 	</properties>
 </document>

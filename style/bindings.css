@@ -1,15 +1,18 @@
-cdocumenteditor[module="form"] cfieldsgroup.captcha{
+cdocumenteditor[module="form"] cfieldsgroup.captcha {
 	-moz-binding: url(binding:modules.form.cFormEditor#cCaptchaPreferencesSection);
 }
-cdocumenteditor[module="form"] cfieldsgroup.activation-conditions{
+cdocumenteditor[module="form"] cfieldsgroup.activation-conditions {
 	-moz-binding: url(binding:modules.form.cFormEditor#cActivationConditionsSection);
 }
-cdocumenteditor[module="form"] cfieldsgroup.field-name-chooser{
+cdocumenteditor[module="form"] cfieldsgroup.field-name-chooser {
 	-moz-binding: url(binding:modules.form.cFormEditor#cFieldNameChooserSection);
 }
-cdocumenteditor[module="form"] cfieldsgroup.blank-option-chooser{
+cdocumenteditor[module="form"] cfieldsgroup.blank-option-chooser {
 	-moz-binding: url(binding:modules.form.cFormEditor#cBlankOptionChooserSection);
 }
-cdocumenteditor[module="form"] cfieldsgroup.text-field-configurator{
+cdocumenteditor[module="form"] cfieldsgroup.text-field-configurator {
 	-moz-binding: url(binding:modules.form.cFormEditor#cTextFieldConfiguratorSection);
+}
+cdocumenteditor[module="form"] cfield[fieldtype="recipientGroupArrayField"]{
+	-moz-binding: url(binding:modules.form.cFormEditor#cRecipientGroupArrayField);
 }

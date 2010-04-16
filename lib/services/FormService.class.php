@@ -71,9 +71,15 @@ class form_FormService extends f_persistentdocument_DocumentService
 	 */
 	protected function preSave($document, $parentNodeId = null)
 	{
-		if (is_null($document->getFormid()))
+		if ($document->getFormid() === null)
 		{
 			$document->setFormid(uniqid('formid_'));
+		}
+		
+		if ($document->getAcknowledgment() && $document->getAcknowledgmentNotification() === null)
+		{
+			$this->createacknowledgmentNotification($document);
+			$this->updateNotification($document);
 		}
 	}
 
@@ -93,9 +99,8 @@ class form_FormService extends f_persistentdocument_DocumentService
 		}
 	}
 
-
 	/**
-	 * @param f_persistentdocument_PersistentDocument $document
+	 * @param form_persistentdocument_form $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 */
@@ -106,22 +111,32 @@ class form_FormService extends f_persistentdocument_DocumentService
 			$notification = $document->getNotification();
 			if ($notification !== null)
 			{
-				if (!$notification->isContextLangAvailable())
-				{
-					$notification->setSubject($notification->getVoSubject());
-					$notification->setBody($notification->getVoBody());
-				}
-				$notification->setLabel($document->getLabel());
-				$notification->save();
+				$this->refreshNotification($document, $notification);
+			}
+			
+			$notification = $document->getAcknowledgmentNotification();
+			if ($notification !== null)
+			{
+				$labelPrefix = f_Locale::translate('&modules.form.document.form.Acknowledgment-notification-label-prefix;', null, RequestContext::getInstance()->getLang()) . ' ';
+				$this->refreshNotification($document, $notification, $labelPrefix);
 			}
 		}
-
-		// If there are more than one recipientGroup defined for this form,
-		// the form MUST have a field to select the destination recipientGroup.
-		if ($document->getRecipientGroupCount() > 1 && is_null($this->getFieldByName($document, self::RECIPIENT_GROUP_FIELD_NAME)))
+	}
+	
+	/**
+	 * @param form_persistentdocument_form $form
+	 * @param notification_persistentdocument_notification $notification
+	 * @param string $labelPrefix
+	 */
+	private function refreshNotification($form, $notification, $labelPrefix = '')
+	{
+		if (!$notification->isContextLangAvailable())
 		{
-			throw new form_FormException("The form contains multiple recipients: it must hold a \"recipientGroupList\" field.");
+			$notification->setSubject($notification->getVoSubject());
+			$notification->setBody($notification->getVoBody());
 		}
+		$notification->setLabel($labelPrefix . $form->getLabel());
+		$notification->save();
 	}
 
 	/**
@@ -140,10 +155,8 @@ class form_FormService extends f_persistentdocument_DocumentService
 		}
 	}
 
-
 	/**
 	 * Creates the notification that is bound to the form.
-	 *
 	 * @param form_persistentdocument_form $form
 	 */
 	protected function createNotification($form)
@@ -158,10 +171,46 @@ class form_FormService extends f_persistentdocument_DocumentService
 		$form->setNotification($notification);
 	}
 
+	/**
+	 * Creates the acknowledgment notification for a form.
+	 * @param form_persistentdocument_form $form
+	 */
+	protected function createacknowledgmentNotification($form)
+	{
+		$notification = notification_NotificationService::getInstance()->getNewDocumentInstance();
+		$notification->setLabel(f_Locale::translateUI('&modules.form.document.form.Acknowledgment-notification-label-prefix;') . ' ' . $form->getLabel());
+		$notification->setCodename($form->getFormid().'_acknowledgmentNotification');
+		$notification->setTemplate('default');
+		$notification->setSubject($form->getLabel());
+		$notification->setBody('{'.self::CONTENT_REPLACEMENT_NAME.'}');
+		$notification->save(ModuleService::getInstance()->getSystemFolderId('notification', 'form'));
+		
+		$rqc = RequestContext::getInstance();
+		$contextLang = $rqc->getLang();
+		foreach ($form->getI18nInfo()->getLangs() as $lang)
+		{
+			if ($lang !== $contextLang)
+			{
+				try 
+				{
+					$rqc->beginI18nWork($lang);
+					$labelPrefix = f_Locale::translate('&modules.form.document.form.Acknowledgment-notification-label-prefix;') . ' ';
+					$this->refreshNotification($form, $notification, $labelPrefix);
+					$rqc->endI18nWork();
+				}
+				catch (Exception $e)
+				{
+					$rqc->endI18nWork($e);
+					throw $e;
+				}
+			}
+		}
+		
+		$form->setacknowledgmentNotification($notification);
+	}
 
 	/**
 	 * Called by the FieldService whenever a field is removed from the given $form.
-	 *
 	 * @param form_persistentdocument_form $form
 	 */
 	public function onFieldDeleted($form)
@@ -170,10 +219,8 @@ class form_FormService extends f_persistentdocument_DocumentService
 		$this->updateNotification($form);
 	}
 
-
 	/**
 	 * Called by the FieldService whenever a field is added into the given $form.
-	 *
 	 * @param form_persistentdocument_form $form
 	 */
 	public function onFieldAdded($form)
@@ -193,29 +240,28 @@ class form_FormService extends f_persistentdocument_DocumentService
 		$this->updateNotification($form);
 	}
 
-
 	/**
 	 * Updates the notification for the given $form.
-	 *
 	 * @param form_persistentdocument_form $form
 	 */
 	private function updateNotification($form)
 	{
-		$notification = $form->getNotification();
-		if ( ! is_null($notification) )
+		$fieldArray = array();
+		foreach ($this->getFields($form) as $fieldDoc)
 		{
-			$fieldDocArray = $this->getFields($form);
-			foreach ($fieldDocArray as $fieldDoc)
-			{
-				$fieldArray[] = '{'. $fieldDoc->getFieldName() . '}=' . $fieldDoc->getlabel();
-			}
+			$fieldArray[] = '{'. $fieldDoc->getFieldName() . '}=' . $fieldDoc->getlabel();
 		}
 		$fieldArray[] = '{'. self::CONTENT_REPLACEMENT_NAME. '}';
 		$fieldArray[] = '{'. self::FORM_LABEL_REPLACEMENT_NAME. '}';
+		
+		$notification = $form->getNotification();
+		$notification->setAvailableparameters(implode("\n", $fieldArray));
+		$notification->save();
+		
+		$notification = $form->getAcknowledgmentNotification();
 		$notification->setAvailableparameters(implode("\n", $fieldArray));
 		$notification->save();
 	}
-
 
 	/**
 	 * @param form_persistentdocument_form $form
@@ -425,6 +471,7 @@ class form_FormService extends f_persistentdocument_DocumentService
 		$fields = $this->getFields($form);
 		$copyMail = null;
 		$replyTo = null;
+		$acknowledgmentReceiver = null;
 		foreach ($fields as $field)
 		{
 			if (!$field->getDocumentService()->isConditionValid($field, $data))
@@ -465,6 +512,10 @@ class form_FormService extends f_persistentdocument_DocumentService
 				{
 					$replyTo = $rawValue;
 				}
+				if ($field->getAcknowledgmentReceiver())
+				{
+					$acknowledgmentReceiver = $rawValue;
+				}
 			}
 		}
 
@@ -498,11 +549,20 @@ class form_FormService extends f_persistentdocument_DocumentService
 		{
 			case self::SEND_EMAIL_AND_APPEND_TO_MAILBOX :
 			case self::SEND_EMAIL_ONLY :
-				Framework::debug("[FormService] A message has to be sent: ".$form->getMessageSendingType());
-				return $this->sendEmail($form, $response, $request, $copyMail, $replyTo);
+				Framework::debug(__METHOD__ . " A message has to be sent: ".$form->getMessageSendingType());
+				$result = $this->sendEmail($form, $response, $request, $copyMail, $replyTo);
+				// Acknowledgment.
+				if ($result && $form->getAcknowledgment() && $acknowledgmentReceiver !== null)
+				{
+					if (!$this->sendAcknowledgement($form, $response, $request, $acknowledgmentReceiver, $replyTo))
+					{
+						Framework::info(__METHOD__ . " An error occured during acknowledgment sending to " . $acknowledgmentReceiver);
+					}
+				}
+				return $result;
 				break;
 			default :
-				Framework::debug("[FormService] No message to send.");
+				Framework::debug(__METHOD__ . " No message to send.");
 				break;
 		}
 		return true;
@@ -514,7 +574,6 @@ class form_FormService extends f_persistentdocument_DocumentService
 		$response->setParentForm($form);
 		$form->setResponseCount($form->getResponseCount()+1);
 	}
-
 
 	/**
 	 * @param form_persistentdocument_form $form
@@ -528,7 +587,7 @@ class form_FormService extends f_persistentdocument_DocumentService
 	{
 		$recipients = new mail_MessageRecipients();
 
-		if ( $request->hasParameter('receiverIds') )
+		if ($request->hasParameter('receiverIds'))
 		{
 			$this->handleReceveirIds($request->getParameter('receiverIds'), $recipients);
 		}
@@ -539,7 +598,7 @@ class form_FormService extends f_persistentdocument_DocumentService
 		// example.
 		$this->buildMessageRecipients($form, $recipients, $request);
 
-		if ( ! $recipients->isEmpty() )
+		if (!$recipients->isEmpty())
 		{
 			if ($form->getMessageSendingType() == self::SEND_EMAIL_AND_APPEND_TO_MAILBOX)
 			{
@@ -581,9 +640,9 @@ class form_FormService extends f_persistentdocument_DocumentService
 			$ns->setMessageService($messageService);
 			if ($copyMail === null)
 			{
-				return $ns->send($form->getNotification(), $recipients,
-				$parameters, 'form', $replyTo,
-				$this->getOverrideNotificationSender($form));
+				return $ns->send($form->getNotification(), $recipients,	$parameters, 'form', $replyTo,
+					$this->getOverrideNotificationSender($form)
+				);
 			}
 			else
 			{
@@ -591,13 +650,46 @@ class form_FormService extends f_persistentdocument_DocumentService
 				$copyRecipient->setTo(array($copyMail));
 				$notification = $form->getNotification();
 				$sender = $this->getOverrideNotificationSender($form);
-				return $ns->send($notification, $recipients,
-				$parameters, 'form', $replyTo, $sender)
-				&& $ns->send($notification, $copyRecipient,
-				$parameters, 'form', $replyTo, $sender);
+				return $ns->send($notification, $recipients, $parameters, 'form', $replyTo, $sender)
+					&& $ns->send($notification, $copyRecipient, $parameters, 'form', $replyTo, $sender);
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * @param form_persistentdocument_form $form
+	 * @param form_persistentdocument_response $response
+	 * @param block_BlockRequest $request
+	 * @param String $acknowledgmentReceiver
+	 * @param String $replyTo
+	 * @return void
+	 */
+	private function sendAcknowledgement($form, $response, $request, $acknowledgmentReceiver, $replyTo)
+	{
+		$recipients = new mail_MessageRecipients();
+		$recipients->setTo(array($acknowledgmentReceiver));
+		
+		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType(K::HTML)->load('Form-MailContent');
+		$contentTemplate->setAttribute('items', $response->getAllData());
+		
+		$parameters = $response->getData();
+		$parameters[self::CONTENT_REPLACEMENT_NAME] = $contentTemplate->execute();
+		$parameters[self::FORM_LABEL_REPLACEMENT_NAME] = $form->getLabel();
+		
+		if (Framework::isDebugEnabled())
+		{
+			Framework::debug(__METHOD__ . " Form \"" . $form->getLabel() . "\" (id=" . $form->getId() . ")");
+			Framework::debug(__METHOD__ . " Parameters: " . var_export($parameters, true));
+			Framework::debug(__METHOD__ . " To      : " . join(", ", $recipients->getTo()));
+			Framework::debug(__METHOD__ . " ReplyTo : " . $replyTo);
+		}
+		
+		$ns = notification_NotificationService::getInstance();
+		$ns->setMessageService(MailService::getInstance());
+		$notification = $form->getAcknowledgmentNotification();
+		$senderEmail = $this->getOverrideNotificationSender($form);
+		return $ns->send($notification, $recipients, $parameters, 'form', $replyTo, $senderEmail);
 	}
 
 	/**
@@ -605,7 +697,6 @@ class form_FormService extends f_persistentdocument_DocumentService
 	 */
 	private function getOverrideNotificationSender($form)
 	{
-		$notification = $form->getNotification();
 		$preferenceDocument = ModuleService::getInstance()->getPreferencesDocument('form');
 		if ($preferenceDocument !== null)
 		{
@@ -662,7 +753,7 @@ class form_FormService extends f_persistentdocument_DocumentService
 
 		$recipients->setTo($emailAddressArray);
 	}
-
+	
 	/**
 	 * Builds the mail_MessageRecipients according to the recipients selected by
 	 * the frontoffice user.
@@ -676,105 +767,82 @@ class form_FormService extends f_persistentdocument_DocumentService
 	 */
 	protected function buildMessageRecipients($form, &$recipients, &$request)
 	{
-		$formRecipientCount = $form->getRecipientGroupCount();
-
 		// If there is no recipientGroup, we can exit this method.
-		if ($formRecipientCount == 0)
+		if ($form->getRecipientGroupCount() == 0)
 		{
 			return;
 		}
-
-		// Init to's
-		if ($recipients->hasTo())
-		{
-			$toArray = $recipients->getTo();
-		}
-		else
-		{
-			$toArray = array();
-		}
-
-		// Init cc's
-		if ($recipients->hasCC())
-		{
-			$ccArray = $recipients->getCC();
-		}
-		else
-		{
-			$ccArray = array();
-		}
-
-		// Init bcc's
-		if ($recipients->hasBCC())
-		{
-			$bccArray = $recipients->getBCC();
-		}
-		else
-		{
-			$bccArray = array();
-		}
-
+		
+		// Init arrays.
+		$toArray = ($recipients->hasTo()) ? $recipients->getTo() : array();
+		$ccArray = ($recipients->hasCC()) ? $recipients->getCC() : array();
+		$bccArray = ($recipients->hasBCC()) ? $recipients->getBCC() : array();
+		
 		// The following holds the ID of the recipientGroups selected by the user.
 		$selectedGroupArray = array();
-
-		// If there is only one recipientGroup, it is automatically selected.
-		if ($formRecipientCount == 1)
-		{
-			array_push($selectedGroupArray, $form->getRecipientGroup(0)->getId());
-		}
+		
 		// Retrieve the recipientGroups selected by the user.
 		// Depending on the selection type (single or multiple), this value may
 		// be either a string or an array.
-		else if ($formRecipientCount > 1)
+		if ($request->hasParameter(self::RECIPIENT_GROUP_FIELD_NAME))
 		{
-			$selectedGroupArray = $request->getParameter(self::RECIPIENT_GROUP_FIELD_NAME);
-			if (is_string($selectedGroupArray))
+			$selectedGroupIds = $request->getParameter(self::RECIPIENT_GROUP_FIELD_NAME);
+			if (is_string($selectedGroupIds))
 			{
-				$selectedGroupArray = array($selectedGroupArray);
+				$selectedGroupIds = array($selectedGroupIds);
 			}
+			
 			// Convert each value into an integer.
-			$selectedGroupArray = array_map("intval", $selectedGroupArray);
-
+			$selectedGroupIds = array_map('intval', $selectedGroupIds);
+			
+			foreach ($form->getRecipientGroupArray() as $recipientGroup)
+			{
+				if (in_array($recipientGroup->getId(), $selectedGroupIds))
+				{
+					$selectedGroupArray[] = $recipientGroup;
+				}
+			}
+			
 			// If the form holds more than one recipientGroups and if the request
 			// contains no recipientGroup selection, we throw an Exception.
 			if (count($selectedGroupArray) == 0)
 			{
-				throw new form_FormException("Unable to determine the recipients.");
+				throw new form_FormException('Unable to determine the recipients.');
 			}
 		}
-
+		else
+		{
+			$selectedGroupArray = $form->getRecipientGroupArray();
+		}
+		
 		// Iterates over the form's recipientGroups and skip the ones that have
 		// not been selected by the user.
-		foreach ($form->getRecipientGroupArray() as $recipientGroup)
+		foreach ($selectedGroupArray as $recipientGroup)
 		{
-			if (in_array($recipientGroup->getId(), $selectedGroupArray))
+			foreach ($recipientGroup->getToArray() as $contact)
 			{
-				foreach ($recipientGroup->getToArray() as $contact)
-				{
-					$toArray = array_merge($toArray, $contact->getEmailAddresses());
-				}
-				foreach ($recipientGroup->getCcArray() as $contact)
-				{
-					$ccArray = array_merge($ccArray, $contact->getEmailAddresses());
-				}
-				foreach ($recipientGroup->getBccArray() as $contact)
-				{
-					$bccArray = array_merge($bccArray, $contact->getEmailAddresses());
-				}
+				$toArray = array_merge($toArray, $contact->getEmailAddresses());
+			}
+			foreach ($recipientGroup->getCcArray() as $contact)
+			{
+				$ccArray = array_merge($ccArray, $contact->getEmailAddresses());
+			}
+			foreach ($recipientGroup->getBccArray() as $contact)
+			{
+				$bccArray = array_merge($bccArray, $contact->getEmailAddresses());
 			}
 		}
-
+		
 		// Update mail_MessageRecipients object.
 		$recipients->setTo(array_unique($toArray));
 		$recipients->setCC(array_unique($ccArray));
 		$recipients->setBCC(array_unique($bccArray));
-
+		
 		if ($recipients->isEmpty() && Framework::isWarnEnabled())
 		{
-			Framework::warn(__METHOD__." recipients is empty.");
+			Framework::warn(__METHOD__ . " recipients is empty.");
 		}
 	}
-
 
 	/**
 	 * @param form_persistentdocument_form $form
@@ -786,7 +854,6 @@ class form_FormService extends f_persistentdocument_DocumentService
 		return $response->getDocumentService()->replaceFieldsValue($response, $form->getEmailHeader());
 	}
 
-
 	/**
 	 * @param form_persistentdocument_form $form
 	 * @param form_persistentdocument_response $response
@@ -796,7 +863,6 @@ class form_FormService extends f_persistentdocument_DocumentService
 	{
 		return $response->getDocumentService()->replaceFieldsValue($response, $form->getEmailSubject());
 	}
-
 
 	/**
 	 * @param form_persistentdocument_form $form
@@ -1148,6 +1214,7 @@ class form_FormService extends f_persistentdocument_DocumentService
 	{
 		$newDocument->setFormid(null);
 		$newDocument->setNotification(null);
+		$newDocument->setAcknowledgmentNotification(null);
 		$newDocument->setResponseCount(0);
 		$newDocument->setArchivedResponseCount(0);
 	}
@@ -1169,6 +1236,11 @@ class form_FormService extends f_persistentdocument_DocumentService
 		$newNotification = $newDocument->getNotification();
 		$this->duplicateNotificationInfo($oldNotification, $newNotification);
 		$newNotification->save();
+		
+		$oldNotification = $originalDocument->getAcknowledgmentNotification();
+		$newNotification = $newDocument->getAcknowledgmentNotification();
+		$this->duplicateNotificationInfo($oldNotification, $newNotification);
+		$newNotification->save();		
 
 		$items = $this->getChildrenOf($originalDocument);
 		foreach ($items as $item)
@@ -1254,9 +1326,18 @@ class form_FormService extends f_persistentdocument_DocumentService
 	public function getResume($document, $forModuleName, $allowedSections = null)
 	{
 		$resume = parent::getResume($document, $forModuleName, $allowedSections);
+		
 		$openNotificationUri = join(',' , array('notification', 'openDocument', 'modules_notification_notification', $document->getNotification()->getId(), 'properties'));
 		$backUri = join(',', array('form', 'openDocument', 'modules_form_form', $document->getId(), 'resume'));
 		$resume["properties"]["notification"] = array("uri" => $openNotificationUri, "label" => f_Locale::translateUI("&modules.uixul.bo.doceditor.open;"), "backuri" => $backUri);
+		
+		$acknowledgmentNotification = $document->getAcknowledgmentNotification();
+		if ($acknowledgmentNotification !== null)
+		{
+			$openAcknowledgmentNotificationUri = join(',' , array('notification', 'openDocument', 'modules_notification_notification', $acknowledgmentNotification->getId(), 'properties'));
+		}
+		$resume["properties"]["acknowledgmentNotification"] = array("uri" => $openAcknowledgmentNotificationUri, "label" => f_Locale::translateUI("&modules.uixul.bo.doceditor.open;"), "backuri" => $backUri);
+		
 		return $resume;
 	}
 }
