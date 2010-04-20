@@ -259,8 +259,11 @@ class form_FormService extends f_persistentdocument_DocumentService
 		$notification->save();
 		
 		$notification = $form->getAcknowledgmentNotification();
-		$notification->setAvailableparameters(implode("\n", $fieldArray));
-		$notification->save();
+		if ($notification != null)
+		{
+			$notification->setAvailableparameters(implode("\n", $fieldArray));
+			$notification->save();
+		}
 	}
 
 	/**
@@ -1238,9 +1241,12 @@ class form_FormService extends f_persistentdocument_DocumentService
 		$newNotification->save();
 		
 		$oldNotification = $originalDocument->getAcknowledgmentNotification();
-		$newNotification = $newDocument->getAcknowledgmentNotification();
-		$this->duplicateNotificationInfo($oldNotification, $newNotification);
-		$newNotification->save();		
+		if ($oldNotification !== null)
+		{
+			$newNotification = $newDocument->getAcknowledgmentNotification();
+			$this->duplicateNotificationInfo($oldNotification, $newNotification);
+			$newNotification->save();	
+		}	
 
 		$items = $this->getChildrenOf($originalDocument);
 		foreach ($items as $item)
@@ -1252,6 +1258,7 @@ class form_FormService extends f_persistentdocument_DocumentService
 				$this->duplicate($item->getId(), $newDocument->getId());
 			}
 		}
+		
 	}
 
 	/**
@@ -1335,9 +1342,8 @@ class form_FormService extends f_persistentdocument_DocumentService
 		if ($acknowledgmentNotification !== null)
 		{
 			$openAcknowledgmentNotificationUri = join(',' , array('notification', 'openDocument', 'modules_notification_notification', $acknowledgmentNotification->getId(), 'properties'));
+			$resume["properties"]["acknowledgmentNotification"] = array("uri" => $openAcknowledgmentNotificationUri, "label" => f_Locale::translateUI("&modules.uixul.bo.doceditor.open;"), "backuri" => $backUri);
 		}
-		$resume["properties"]["acknowledgmentNotification"] = array("uri" => $openAcknowledgmentNotificationUri, "label" => f_Locale::translateUI("&modules.uixul.bo.doceditor.open;"), "backuri" => $backUri);
-		
 		return $resume;
 	}
 }
