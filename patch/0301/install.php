@@ -10,9 +10,10 @@ class form_patch_0301 extends patch_BasePatch
 	 */
 	public function execute()
 	{
-		if (!f_util_ClassUtils::methodExists('form_persistentdocument_form ', 'getAcknowledgment'))
+		if (!f_util_ClassUtils::methodExists('form_persistentdocument_form', 'getAcknowledgment'))
 		{
-			ChangeProject::getInstance()->executeTask('compile-documents');
+			$this->log('compile-documents');
+			$this->execChangeCommand('compile-documents');
 		}
 		
 		// Add new properties to form and mail documents.
