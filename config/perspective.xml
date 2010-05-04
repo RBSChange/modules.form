@@ -145,7 +145,6 @@
 				<column name="fieldType" label="FieldType" flex="2" />
 				<column name="fieldRequired" label="FieldRequired" flex="1" />
 				<column name="fieldConditioned" label="FieldConditioned" flex="1" />
-				<column name="fieldIsLocked" label="FieldIsLocked" flex="1" />
 			</columns>
 			<contextactions>
 				<contextaction name="edit" />
@@ -268,19 +267,19 @@
 		<action name="openTreeNodeOrder" single="true" permission="Order" icon="sort" label="&amp;modules.uixul.bo.actions.Set-children-order;" />
 		<action name="openFolder" icon="open-folder" label="&amp;modules.uixul.bo.actions.OpenFolder;" />
 		<action name="createfolder_" single="true" icon="add" actions="createFolder,createForm,createRecipientGroup" />
-		<action name="createFolder" single="true" permission="Insert_folder" group="createfolder_" label="&amp;modules.uixul.bo.actions.Create-folder;" />
-		<action name="createForm" single="true" permission="Insert_form" group="createfolder_" label="&amp;modules.form.bo.actions.Create-Form;" />
-		<action name="createRecipientGroup" single="true" permission="Insert_recipientGroup" group="createfolder_" label="&amp;modules.form.bo.actions.Create-RecipientGroup;" />
+		<action name="createFolder" single="true" icon="create-folder" permission="Insert_folder" group="createfolder_" label="&amp;modules.uixul.bo.actions.Create-folder;" />
+		<action name="createForm" single="true" icon="add" permission="Insert_form" group="createfolder_" label="&amp;modules.form.bo.actions.Create-Form;" />
+		<action name="createRecipientGroup" single="true" icon="add" permission="Insert_recipientGroup" group="createfolder_" label="&amp;modules.form.bo.actions.Create-RecipientGroup;" />
 		<action name="create_" single="true" icon="add" actions="createGroup,createText,createMail,createBoolean,createList,createDate,createFile,createHidden,createFreecontent,createRecipientGroupList" />
-		<action name="createGroup" single="true" permission="Insert_group" group="create_" label="&amp;modules.form.bo.actions.Create-Group;" />
-		<action name="createText" single="true" permission="Insert_text" group="create_" label="&amp;modules.form.bo.actions.Create-Text;" />
-		<action name="createMail" single="true" permission="Insert_mail" group="create_" label="&amp;modules.form.bo.actions.Create-Mail;" />
-		<action name="createBoolean" single="true" permission="Insert_boolean" group="create_" label="&amp;modules.form.bo.actions.Create-Boolean;" />
-		<action name="createList" single="true" permission="Insert_list" group="create_" label="&amp;modules.form.bo.actions.Create-List;" />
-		<action name="createDate" single="true" permission="Insert_date" group="create_" label="&amp;modules.form.bo.actions.Create-Date;" />
-		<action name="createFile" single="true" permission="Insert_file" group="create_" label="&amp;modules.form.bo.actions.Create-File;" />
-		<action name="createHidden" single="true" permission="Insert_hidden" group="create_" label="&amp;modules.form.bo.actions.Create-Hidden;" />
-		<action name="createFreecontent" single="true" permission="Insert_freecontent" group="create_" label="&amp;modules.form.bo.actions.Create-Freecontent;" />
-		<action name="createRecipientGroupList" single="true" permission="Insert_recipientGroupList" group="create_" icon="add" label="&amp;modules.form.bo.actions.Create-RecipientGroupList;" />
+		<action name="createGroup" single="true" icon="add" permission="Insert_group" group="create_" label="&amp;modules.form.bo.actions.Create-Group;" />
+		<action name="createText" single="true" icon="add" permission="Insert_text" group="create_" label="&amp;modules.form.bo.actions.Create-Text;" />
+		<action name="createMail" single="true" icon="add" permission="Insert_mail" group="create_" label="&amp;modules.form.bo.actions.Create-Mail;" />
+		<action name="createBoolean" single="true" icon="add" permission="Insert_boolean" group="create_" label="&amp;modules.form.bo.actions.Create-Boolean;" />
+		<action name="createList" single="true" icon="add" permission="Insert_list" group="create_" label="&amp;modules.form.bo.actions.Create-List;" />
+		<action name="createDate" single="true" icon="add" permission="Insert_date" group="create_" label="&amp;modules.form.bo.actions.Create-Date;" />
+		<action name="createFile" single="true" icon="add" permission="Insert_file" group="create_" label="&amp;modules.form.bo.actions.Create-File;" />
+		<action name="createHidden" single="true" icon="add" permission="Insert_hidden" group="create_" label="&amp;modules.form.bo.actions.Create-Hidden;" />
+		<action name="createFreecontent" single="true" icon="add" permission="Insert_freecontent" group="create_" label="&amp;modules.form.bo.actions.Create-Freecontent;" />
+		<action name="createRecipientGroupList" single="true" icon="add" permission="Insert_recipientGroupList" group="create_" label="&amp;modules.form.bo.actions.Create-RecipientGroupList;" />
 	</actions>
 </perspective>

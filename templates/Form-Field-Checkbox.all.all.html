@@ -1,2 +1,2 @@
-<input tal:condition="field/checked" type="checkbox" name="formParam[${field/name}]" tal:attributes="value field/value; title field/title" id="field_${field/id}" checked="checked" />
-<input tal:condition="not: field/checked" type="checkbox" name="formParam[${field/name}]" tal:attributes="value field/value; title field/title" id="field_${field/id}" />
+<input tal:condition="field/checked" type="checkbox" name="${moduleName}Param[${field/name}]" tal:attributes="value field/value; title field/title" id="field_${field/id}" checked="checked" />
+<input tal:condition="not: field/checked" type="checkbox" name="${moduleName}Param[${field/name}]" tal:attributes="value field/value; title field/title" id="field_${field/id}" />

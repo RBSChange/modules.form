@@ -35,8 +35,6 @@ class form_persistentdocument_field extends form_persistentdocument_fieldbase
 	}	
 
 	/**
-	 * Returns the field's type.
-	 *
 	 * @return string
 	 */
 	public function getType()
@@ -86,12 +84,12 @@ class form_persistentdocument_field extends form_persistentdocument_fieldbase
 	}
 	
 	/**
-	 * @var form_persistentdocument_form
+	 * @var form_persistentdocument_baseform
 	 */
 	private $form;
 	
 	/**
-	 * @return form_persistentdocument_form
+	 * @return form_persistentdocument_baseform
 	 */
 	public function getForm()
 	{
@@ -103,7 +101,7 @@ class form_persistentdocument_field extends form_persistentdocument_fieldbase
 	}
 	
 	/**
-	 * @param form_persistentdocument_form $form
+	 * @param form_persistentdocument_baseform $form
 	 */
 	public function setForm($form)
 	{
@@ -125,7 +123,14 @@ class form_persistentdocument_field extends form_persistentdocument_fieldbase
 	public function inGroup()
 	{
 		$parent = $this->getDocumentService()->getParentOf($this);
-		
 		return $parent instanceof form_persistentdocument_group;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getDefaultValue()
+	{
+		return '';
 	}
 }

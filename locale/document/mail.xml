@@ -1,63 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<localization>
+<localization extend="modules.form.document.field">
 	<entity id="document-name">
 		<locale lang="fr">champ e-mail</locale>
 		<locale lang="en">e-mail field</locale>
 		<locale lang="de">E-mailfeld</locale>
-	</entity>
-	<entity id="label">
-		<locale lang="fr">libellé</locale>
-		<locale lang="en">label</locale>
-		<locale lang="de">Name</locale>
-	</entity>
-	<entity id="label-help">
-		<locale lang="fr">libellé du champ (visible sur le site)</locale>
-		<locale lang="en">field label (displayed on the website)</locale>
-		<locale lang="de">Feldname (auf der Webseite sichtbar)</locale>
-	</entity>
-	<entity id="fieldName">
-		<locale lang="fr">nom du champ</locale>
-		<locale lang="en">field name</locale>
-		<locale lang="de">Feldname</locale>
-	</entity>
-	<entity id="fieldName-help">
-		<locale lang="fr">Le nom du champ doit être composé de lettres et de chiffres uniquement et doit commencer par une lettre.</locale>
-		<locale lang="en">The field name must be composed of letters and digits and must begin with a letter.</locale>
-		<locale lang="de">Feldname muss aus Buchstaben und Ziffern bestehen und muss mit einem Buchstaben beginnen.</locale>
-	</entity>
-	<entity id="validators">
-		<locale lang="fr">validateurs</locale>
-		<locale lang="en">validators</locale>
-		<locale lang="de">Bestätiger</locale>
-	</entity>
-	<entity id="validators-help">
-		<locale lang="fr">Liste des validateurs du champ, séparés par des points-virgules.</locale>
-		<locale lang="en">validators list for the field, separated by semicolons.</locale>
-		<locale lang="de">Bestätigerliste des Feldes, durch Punkt-Kommata getrennt.</locale>
-	</entity>
-	<entity id="required-help">
-		<locale lang="fr">détermine s'il s'agit d'un champ obligatoire</locale>
-		<locale lang="en">determines if the field will be a required field</locale>
-		<locale lang="de">obligatorisches Feld</locale>
-	</entity>
-	<entity id="helpText">
-		<locale lang="fr">texte d'aide du champ</locale>
-		<locale lang="en">help text</locale>
-		<locale lang="de">Hilfetext des Feldes</locale>
-	</entity>
-	<entity id="helpText-help">
-		<locale lang="fr">Le texte d'aide du champ indique aux internautes comment remplir le champ</locale>
-		<locale lang="en">The help text tells the users how to fill this field in</locale>
-		<locale lang="de">Der Hilfetext des Feldes gibt den Benutzern an, wie das Feld zu füllen ist</locale>
-	</entity>
-	<entity id="required">
-		<locale lang="fr">champ obligatoire</locale>
-		<locale lang="en">required field</locale>
-		<locale lang="de">obligatorisches Feld</locale>
-	</entity>
-	<entity id="required-help">
-		<locale lang="fr">champ obligatoire</locale>
-		<locale lang="en">required field</locale>
 	</entity>
 	<entity id="multiline">
 		<locale lang="fr">permettre plusieurs adresses</locale>
@@ -65,9 +11,9 @@
 		<locale lang="de">mehrzeiliger Text</locale>
 	</entity>
 	<entity id="multiline-help">
-		<locale lang="fr">permettre la saisie de plusieurs adresses e-mail séparées par des virgules</locale>
-		<locale lang="en">allow to set several e-mail addresses separated by commas</locale>
-		<locale lang="de">mehrzeiliger Text</locale>
+		<locale lang="fr">permettre la saisie de plusieurs adresses e-mail séparées par des virgules.</locale>
+		<locale lang="en">allow to set several e-mail addresses separated by commas.</locale>
+		<locale lang="de">mehrzeiliger Text.</locale>
 	</entity>
 	<entity id="cols">
 		<locale lang="fr">nombre de colonnes</locale>
@@ -75,9 +21,9 @@
 		<locale lang="de">Anzahl Spalten</locale>
 	</entity>
 	<entity id="cols-help">
-		<locale lang="fr">nombre de colonnes qui définit la taille du champ</locale>
-		<locale lang="en">columns number which defines field's size</locale>
-		<locale lang="de">Anzahl Spalten, die die Feldgrösse bestimmt</locale>
+		<locale lang="fr">nombre de colonnes qui définit la taille du champ.</locale>
+		<locale lang="en">columns number which defines field's size.</locale>
+		<locale lang="de">Anzahl Spalten, die die Feldgrösse bestimmt.</locale>
 	</entity>
 	<entity id="size">
 		<locale lang="fr">taille du champ</locale>
@@ -90,9 +36,9 @@
 		<locale lang="de">Anzahl Zeilen</locale>
 	</entity>
 	<entity id="rows-help">
-		<locale lang="fr">lignes dans la zone de texte multi-ligne</locale>
-		<locale lang="en">rows in the multiline text field</locale>
-		<locale lang="de">Zeilen in der mehrzeiligen Textzone</locale>
+		<locale lang="fr">lignes dans la zone de texte multi-ligne.</locale>
+		<locale lang="en">rows in the multiline text field.</locale>
+		<locale lang="de">Zeilen in der mehrzeiligen Textzone.</locale>
 	</entity>
 	<entity id="useAsReply">
 		<locale lang="fr">utiliser ce champ pour 'répondre à'</locale>
@@ -100,9 +46,9 @@
 		<locale lang="de">dieses Feld nutzen um 'antworten an'</locale>
 	</entity>
 	<entity id="useAsReply-help">
-		<locale lang="fr">la valeur de ce champ sera ajoutée en tant que 'répondre à' de l'e-mail</locale>
-		<locale lang="en">this field's value will be added as 'reply-to' in the e-mail</locale>
-		<locale lang="de">der Wert dieses Feldes wird der E-mail als 'antworten an' hinzugefügt</locale>
+		<locale lang="fr">la valeur de ce champ sera ajoutée en tant que 'répondre à' de l'e-mail.</locale>
+		<locale lang="en">this field's value will be added as 'reply-to' in the e-mail.</locale>
+		<locale lang="de">der Wert dieses Feldes wird der E-mail als 'antworten an' hinzugefügt.</locale>
 	</entity>
 	<entity id="isReceiver">
 		<locale lang="fr">envoyer une copie à cette adresse</locale>
@@ -114,22 +60,16 @@
 		<locale lang="en">Define if the e-mail address in this field will be used as the recipient of the message sent following the form submission.</locale>
 		<locale lang="de">Bestimmt ob die in diesem Feld eingegebene E-mailadresse als Empfänger der gesendeten E-mail nach Absendung des Formulars genutzt wird.</locale>
 	</entity>
-	<entity id="activationQuestion">
-		<locale lang="fr">champ</locale>
-	</entity>
-	<entity id="activationQuestion-help">
-		<locale lang="fr">champ qui conditionnera l'activation de ce champ.</locale>
-	</entity>
-	<entity id="activationValue">
-		<locale lang="fr">valeur</locale>
-	</entity>
-	<entity id="activationValue-help">
-		<locale lang="fr">valeur que devra avoir le champ pour activer ce champ.</locale>
-	</entity>
 	<entity id="acknowledgmentReceiver">
 		<locale lang="fr">destinataire de l'accusé de réception</locale>
 	</entity>
 	<entity id="acknowledgmentReceiver-help">
 		<locale lang="fr">si l'option "accusé de réception" est activée sur le formulaire, cochez "oui" pour que l'accusé de réception soit envoyé à cette adresse.</locale>
+	</entity>
+	<entity id="initializeWithCurrentUserEmail">
+		<locale lang="fr">pré-remplir si connecté</locale>
+	</entity>
+	<entity id="initializeWithCurrentUserEmail-help">
+		<locale lang="fr">cocher "oui" pour que, si l'utilisateur est connecté, ce champ soit pré-rempli son adresse e-mail.</locale>
 	</entity>
 </localization>

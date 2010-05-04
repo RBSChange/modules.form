@@ -36,20 +36,6 @@ class form_ListService extends form_FieldService
 	}
 
 	/**
-	 * @param form_persistentdocument_list
-	 * @return array<string,string>
-	 */
-	public function getPreviewAttributes($document)
-	{
-		$attributes = array();
-		$dataSource = $document->getDataSource();
-		$attributes['listId'] = $dataSource->getListid();
-		$attributes['items'] = $dataSource->getItems();
-		return $attributes;
-	}
-	
-
-	/**
 	 * @see form_FieldService::buildXmlElementResponse()
 	 *
 	 * @param form_persistentdocument_List $field
@@ -114,5 +100,21 @@ class form_ListService extends form_FieldService
 		}
 		
 		return parent::buildXmlElementResponse($fieldElm, $fieldElm, $rawValue);
+	}
+	
+	// Deprecated.
+	
+	/**
+	 * @param form_persistentdocument_list
+	 * @return array<string,string>
+	 * @deprecated with no replacement
+	 */
+	public function getPreviewAttributes($document)
+	{
+		$attributes = array();
+		$dataSource = $document->getDataSource();
+		$attributes['listId'] = $dataSource->getListid();
+		$attributes['items'] = $dataSource->getItems();
+		return $attributes;
 	}
 }

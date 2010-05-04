@@ -1,19 +1,10 @@
 <?php
-class form_FormService extends f_persistentdocument_DocumentService
+class form_FormService extends form_BaseformService
 {
-	const FORM_SUBMITTED_EVENT_NAME = 'formSubmitted';
-	const FORM_VALIDATE_EVENT_NAME = 'formValidate';
-	const FORM_INIT_DATA_EVENT_NAME = 'formInitData';
-
 	const SEND_EMAIL_AND_APPEND_TO_MAILBOX = 2;
 	const SEND_EMAIL_ONLY                  = 1;
 	const DO_NOT_SEND_MESSAGE              = 0;
-
-	// These values also appear in the 'modules_form/field' Document Model, in
-	// the 'notEqual' validator.
-	const CONTENT_REPLACEMENT_NAME    = 'FIELDS';
-	const FORM_LABEL_REPLACEMENT_NAME = 'FORM_LABEL';
-
+	
 	const RECIPIENT_GROUP_FIELD_NAME  = 'recipientGroups';
 	const RECIPIENT_GROUP_LIST_ID     = 'modules_form/recipientgrouplist';
 
@@ -34,7 +25,6 @@ class form_FormService extends f_persistentdocument_DocumentService
 		return self::$instance;
 	}
 
-
 	/**
 	 * @return form_persistentdocument_form
 	 */
@@ -53,41 +43,19 @@ class form_FormService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @param String $formId
-	 * @return form_persistentdocument_form
+	 * Create a query based on 'modules_form/form' model.
+	 * Only documents that are strictly instance of modules_form/form
+	 * (not children) will be retrieved
+	 * @return f_persistentdocument_criteria_Query
 	 */
-	public function getFormByFormId($formId)
+	public function createStrictQuery()
 	{
-		$query = $this->createQuery()->add(Restrictions::eq('formid', $formId));
-		return $query->findUnique();
+		return $this->pp->createQuery('modules_form/form', false);
 	}
-
-
-	/**
-	 * Called when a form is saved: sets a unique ID to the form if it has not been set.
-	 *
-	 * @param form_persistentdocument_form $document
-	 * @param f_persistentdocument_PersistentTreeNode $parentNodeId
-	 */
-	protected function preSave($document, $parentNodeId = null)
-	{
-		if ($document->getFormid() === null)
-		{
-			$document->setFormid(uniqid('formid_'));
-		}
-		
-		if ($document->getAcknowledgment() && $document->getAcknowledgmentNotification() === null)
-		{
-			$this->createacknowledgmentNotification($document);
-			$this->updateNotification($document);
-		}
-	}
-
+	
 	/**
 	 * Called when a form is created:
-	 * - sets a unique ID to the form if it has not been set,
 	 * - creates the notification that is bound to the form.
-	 *
 	 * @param form_persistentdocument_form $document
 	 * @param f_persistentdocument_PersistentTreeNode $parentNodeId
 	 */
@@ -98,54 +66,16 @@ class form_FormService extends f_persistentdocument_DocumentService
 			$this->createNotification($document);
 		}
 	}
-
-	/**
-	 * @param form_persistentdocument_form $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
-	 * @return void
-	 */
-	protected function preUpdate($document, $parentNodeId)
-	{
-		if ($document->isPropertyModified('label'))
-		{
-			$notification = $document->getNotification();
-			if ($notification !== null)
-			{
-				$this->refreshNotification($document, $notification);
-			}
-			
-			$notification = $document->getAcknowledgmentNotification();
-			if ($notification !== null)
-			{
-				$labelPrefix = f_Locale::translate('&modules.form.document.form.Acknowledgment-notification-label-prefix;', null, RequestContext::getInstance()->getLang()) . ' ';
-				$this->refreshNotification($document, $notification, $labelPrefix);
-			}
-		}
-	}
 	
-	/**
-	 * @param form_persistentdocument_form $form
-	 * @param notification_persistentdocument_notification $notification
-	 * @param string $labelPrefix
-	 */
-	private function refreshNotification($form, $notification, $labelPrefix = '')
-	{
-		if (!$notification->isContextLangAvailable())
-		{
-			$notification->setSubject($notification->getVoSubject());
-			$notification->setBody($notification->getVoBody());
-		}
-		$notification->setLabel($labelPrefix . $form->getLabel());
-		$notification->save();
-	}
-
 	/**
 	 * @param form_persistentdocument_form $document
 	 * @return void
 	 */
 	protected function preDelete($document)
 	{
-		if($document->getResponseCount())
+		parent::preDelete($document);
+		
+		if ($document->getResponseCount())
 		{
 			$responses = $this->pp->createQuery('modules_form/response')->add(Restrictions::eq('parentForm.id', $document->getId()))->find();
 			foreach ($responses as $response)
@@ -154,7 +84,7 @@ class form_FormService extends f_persistentdocument_DocumentService
 			}
 		}
 	}
-
+	
 	/**
 	 * Creates the notification that is bound to the form.
 	 * @param form_persistentdocument_form $form
@@ -172,362 +102,22 @@ class form_FormService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * Creates the acknowledgment notification for a form.
 	 * @param form_persistentdocument_form $form
 	 */
-	protected function createacknowledgmentNotification($form)
+	protected function getNotificationsToUpdate($form)
 	{
-		$notification = notification_NotificationService::getInstance()->getNewDocumentInstance();
-		$notification->setLabel(f_Locale::translateUI('&modules.form.document.form.Acknowledgment-notification-label-prefix;') . ' ' . $form->getLabel());
-		$notification->setCodename($form->getFormid().'_acknowledgmentNotification');
-		$notification->setTemplate('default');
-		$notification->setSubject($form->getLabel());
-		$notification->setBody('{'.self::CONTENT_REPLACEMENT_NAME.'}');
-		$notification->save(ModuleService::getInstance()->getSystemFolderId('notification', 'form'));
-		
-		$rqc = RequestContext::getInstance();
-		$contextLang = $rqc->getLang();
-		foreach ($form->getI18nInfo()->getLangs() as $lang)
-		{
-			if ($lang !== $contextLang)
-			{
-				try 
-				{
-					$rqc->beginI18nWork($lang);
-					$labelPrefix = f_Locale::translate('&modules.form.document.form.Acknowledgment-notification-label-prefix;') . ' ';
-					$this->refreshNotification($form, $notification, $labelPrefix);
-					$rqc->endI18nWork();
-				}
-				catch (Exception $e)
-				{
-					$rqc->endI18nWork($e);
-					throw $e;
-				}
-			}
-		}
-		
-		$form->setacknowledgmentNotification($notification);
-	}
-
-	/**
-	 * Called by the FieldService whenever a field is removed from the given $form.
-	 * @param form_persistentdocument_form $form
-	 */
-	public function onFieldDeleted($form)
-	{
-		$this->publishDocument($form);
-		$this->updateNotification($form);
-	}
-
-	/**
-	 * Called by the FieldService whenever a field is added into the given $form.
-	 * @param form_persistentdocument_form $form
-	 */
-	public function onFieldAdded($form)
-	{
-		$this->publishDocument($form);
-		$this->updateNotification($form);
-	}
-
-
-	/**
-	 * Called by the FieldService whenever a field is updated into the given $form.
-	 *
-	 * @param form_persistentdocument_form $form
-	 */
-	public function onFieldChanged($form)
-	{
-		$this->updateNotification($form);
-	}
-
-	/**
-	 * Updates the notification for the given $form.
-	 * @param form_persistentdocument_form $form
-	 */
-	private function updateNotification($form)
-	{
-		$fieldArray = array();
-		foreach ($this->getFields($form) as $fieldDoc)
-		{
-			$fieldArray[] = '{'. $fieldDoc->getFieldName() . '}=' . $fieldDoc->getlabel();
-		}
-		$fieldArray[] = '{'. self::CONTENT_REPLACEMENT_NAME. '}';
-		$fieldArray[] = '{'. self::FORM_LABEL_REPLACEMENT_NAME. '}';
-		
-		$notification = $form->getNotification();
-		$notification->setAvailableparameters(implode("\n", $fieldArray));
-		$notification->save();
-		
-		$notification = $form->getAcknowledgmentNotification();
-		if ($notification != null)
-		{
-			$notification->setAvailableparameters(implode("\n", $fieldArray));
-			$notification->save();
-		}
+		return array_merge(parent::getNotificationsToUpdate($form), array($form->getNotification()));
 	}
 
 	/**
 	 * @param form_persistentdocument_form $form
+	 * @param form_persistentdocument_response $response
 	 * @param block_BlockRequest $request
-	 * @param validation_Errors $errors
-	 * @return void
+	 * @param string $replyTo
+	 * @return array an associative array contaning at least the key "success" with a boolean value. This array will be accessible during the acknowledgment notification sending.
 	 */
-	protected function validate($form, $request, &$errors)
+	protected function handleData($form, $fields, $response, $request, $replyTo)
 	{
-		$fields = $this->getFields($form);
-		foreach ($fields as $field)
-		{
-			$field->getDocumentService()->validate($field, $request, $errors);
-		}
-		if ($form->getUseCaptcha() && !FormHelper::checkCaptcha($request->getParameter(CAPTCHA_SESSION_KEY)))
-		{
-			$errors->append(f_Locale::translate("&modules.form.bo.general.Captcha-check-failed;"));
-		}
-
-		$eventParam = array('form' => $form, 'request' => $request, 'errors' => $errors);
-		f_event_EventManager::dispatchEvent(self::FORM_VALIDATE_EVENT_NAME, $this, $eventParam);
-
-	}
-
-	/**
-	 * @param form_persistentdocument_form $form
-	 * @return Array
-	 */
-	private function getConditionalElementsOf($form)
-	{
-		$pp = $this->getPersistentProvider();
-
-		$fieldsQuery = $pp->createQuery('modules_form/field');
-		$fieldsQuery = $this->setConditionalElementsFilter($fieldsQuery, $form);
-
-		$freecontentsQuery = $pp->createQuery('modules_form/freecontent');
-		$freecontentsQuery = $this->setConditionalElementsFilter($freecontentsQuery, $form);
-
-		$groupsQuery = $pp->createQuery('modules_form/group');
-		$groupsQuery = $this->setConditionalElementsFilter($groupsQuery, $form);
-
-		return array_merge($fieldsQuery->find(), array_merge($freecontentsQuery->find(), $groupsQuery->find()));
-	}
-
-	/**
-	 * @param f_persistentdocument_criteria_Query $query
-	 * @param form_persistentdocument_form $form
-	 * @return f_persistentdocument_criteria_Query
-	 */
-	private function setConditionalElementsFilter($query, $form)
-	{
-		return $query->add(Restrictions::descendentOf($form->getId()))->add(Restrictions::isNotNull('activationQuestion'));
-	}
-
-	/**
-	 * @param form_persistentdocument_form $form
-	 * @return Array
-	 */
-	public function getJQueryForConditionalElementsOf($form)
-	{
-		$elements = $this->getConditionalElementsOf($form);
-
-		$result = array();
-		foreach ($elements as $element)
-		{
-			if ($element->hasCondition())
-			{
-				if ($element instanceof form_persistentdocument_group)
-				{
-					$zone = 'groupe'.$element->getId();
-				}
-				elseif ($element instanceof form_persistentdocument_freecontent)
-				{
-					$zone = 'freecontent'.$element->getId();
-				}
-				else
-				{
-					$zone = 'field'.$element->getId();
-				}
-					
-				$elementId = $element->getId();
-
-				$question = $element->getActivationQuestion();
-				$questionId = $question->getId();
-				$activationValue = $element->getActivationValue();
-				$fieldId = $this->getFieldId($elementId);
-
-				if ($question instanceof form_persistentdocument_boolean)
-				{
-					if($question->getDisplay() == FormHelper::DISPLAY_CHECKBOX)
-					{
-						$result[$elementId] = "conditionalForm.handleCheckboxBoolean('$zone', '$questionId', \"$activationValue\");\n";
-					}
-					elseif ($question->getDisplay() == FormHelper::DISPLAY_RADIO)
-					{
-						$result[$elementId] = "conditionalForm.handleRadio('$zone', '$questionId', \"$activationValue\");\n";
-					}
-				}
-				elseif ($question->getDisplay() == FormHelper::DISPLAY_BUTTONS)
-				{
-					if($question->getMultiple())
-					{
-						$result[$elementId] = "conditionalForm.handleCheckbox('$zone', '$fieldId', \"$activationValue\");\n";
-					}
-					else
-					{
-						$result[$elementId] = "conditionalForm.handleRadio('$zone', '$questionId', \"$activationValue\");\n";
-					}
-				}
-				elseif ($question->getDisplay() == FormHelper::DISPLAY_LIST)
-				{
-					$result[$elementId] = "conditionalForm.handleList('$zone', '$fieldId', \"$activationValue\");\n";
-				}
-			}
-		}
-
-		return $result;
-	}
-
-	/**
-	 * @param Integer $elementId
-	 * @return Boolean
-	 */
-	private function getFieldId($elementId)
-	{
-		$element = DocumentHelper::getDocumentInstance($elementId);
-
-		switch ($this->getQuestionFieldType($elementId))
-		{
-			case FormHelper::DISPLAY_LIST:
-				$fieldName = 'field_'.$element->getActivationQuestion()->getId();
-				break;
-					
-			case FormHelper::DISPLAY_RADIO:
-			case FormHelper::DISPLAY_CHECKBOX:
-				$fieldName = 'field_'.$element->getActivationQuestion()->getId().'_'.FormHelper::getActivationValue($elementId);
-				break;
-					
-			case 'freecontent':
-				$fieldName = 'freecontent'.$element->getActivationQuestion()->getId();
-				break;
-		}
-
-		return $fieldName;
-	}
-
-	/**
-	 * @param Integer $elementId
-	 * @return String
-	 */
-	private function getQuestionFieldType($elementId)
-	{
-		$element = DocumentHelper::getDocumentInstance($elementId);
-
-		$question = $element->getActivationQuestion();
-
-		if ($question instanceof form_persistentdocument_boolean)
-		{
-			if($question->getDisplay() == FormHelper::DISPLAY_CHECKBOX)
-			{
-				return 'checkbox-boolean';
-			}
-		}
-		elseif ($question instanceof form_persistentdocument_freecontent)
-		{
-			return 'freecontent';
-		}
-		else
-		{
-			if ($question->getDisplay() == FormHelper::DISPLAY_BUTTONS)
-			{
-				if($question->getMultiple())
-				{
-					return FormHelper::DISPLAY_CHECKBOX;
-				}
-				else
-				{
-					return FormHelper::DISPLAY_RADIO;
-				}
-			}
-		}
-
-		return $question->getDisplay();
-	}
-
-	/**
-	 * @param form_persistentdocument_form $form
-	 * @param block_BlockRequest $request
-	 * @return void
-	 */
-	public function saveFormData($form, $request)
-	{
-		$errors = new validation_Errors();
-		$this->validate($form, $request, $errors);
-		if ( ! $errors->isEmpty() )
-		{
-			throw new form_FormValidationException("Form does not validate", $errors);
-		}
-
-		$data = $request->getParameters();
-		$domDoc = new DOMDocument('1.0', 'utf-8');
-		$domDoc->formatOutput = true;
-		$rootElm = $domDoc->createElement('response');
-		$rootElm->setAttribute('lang', RequestContext::getInstance()->getLang());
-		$rootElm->setAttribute('date', date('Y-m-d H:i:s'));
-		$domDoc->appendChild($rootElm);
-		$fields = $this->getFields($form);
-		$copyMail = null;
-		$replyTo = null;
-		$acknowledgmentReceiver = null;
-		foreach ($fields as $field)
-		{
-			if (!$field->getDocumentService()->isConditionValid($field, $data))
-			{
-				continue;
-			}
-
-			$fieldName = $field->getFieldName();
-			if ($field instanceof form_persistentdocument_file)
-			{
-				$rawValue = $request->getUploadedFileInformation($fieldName);
-			}
-			else
-			{
-				$rawValue = isset($data[$fieldName]) ? $data[$fieldName] : null;
-			}
-
-			$fieldElm = $domDoc->createElement('field');
-			$fieldElm->setAttribute('name', $fieldName);
-			$fieldElm->setAttribute('label', $field->getLabel());
-			$fieldElm->setAttribute('type', $field->getType());
-
-			$rootElm->appendChild($fieldElm);
-
-			//Special raw data for uploaded file
-			$fieldValue = $field->getDocumentService()->buildXmlElementResponse($field, $fieldElm, $rawValue);
-			if (!empty($fieldValue))
-			{
-				$fieldElm->appendChild($domDoc->createTextNode($fieldValue));
-			}
-			if ($field instanceof form_persistentdocument_mail)
-			{
-				if ($field->getIsReceiver())
-				{
-					$copyMail = $rawValue;
-				}
-				if ($field->getUseAsReply())
-				{
-					$replyTo = $rawValue;
-				}
-				if ($field->getAcknowledgmentReceiver())
-				{
-					$acknowledgmentReceiver = $rawValue;
-				}
-			}
-		}
-
-		$rs = form_ResponseService::getInstance();
-
-		$response = $rs->getNewDocumentInstance();
-		$response->setContents($domDoc->saveXML());
-		$response->setLabel(f_Locale::translate("&modules.form.bo.general.Form-response-title;", array('form' => $form->getLabel())));
-
 		if ($form->getSaveResponse())
 		{
 			$tm = f_persistentdocument_TransactionManager::getInstance();
@@ -545,39 +135,79 @@ class form_FormService extends f_persistentdocument_DocumentService
 				throw $tm->rollBack($e);
 			}
 		}
-
+		
 		f_event_EventManager::dispatchEvent(self::FORM_SUBMITTED_EVENT_NAME, $form, array('response' => $response, 'request' => $request, 'referer' => $request->getParameter(form_FormConstants::BACK_URL_PARAMETER)));
-
-		switch ($form->getMessageSendingType())
+				
+		$sendingType = $form->getMessageSendingType();
+		if ($sendingType !== self::SEND_EMAIL_AND_APPEND_TO_MAILBOX && $sendingType !== self::SEND_EMAIL_ONLY)
 		{
-			case self::SEND_EMAIL_AND_APPEND_TO_MAILBOX :
-			case self::SEND_EMAIL_ONLY :
-				Framework::debug(__METHOD__ . " A message has to be sent: ".$form->getMessageSendingType());
-				$result = $this->sendEmail($form, $response, $request, $copyMail, $replyTo);
-				// Acknowledgment.
-				if ($result && $form->getAcknowledgment() && $acknowledgmentReceiver !== null)
-				{
-					if (!$this->sendAcknowledgement($form, $response, $request, $acknowledgmentReceiver, $replyTo))
-					{
-						Framework::info(__METHOD__ . " An error occured during acknowledgment sending to " . $acknowledgmentReceiver);
-					}
-				}
-				return $result;
-				break;
-			default :
-				Framework::debug(__METHOD__ . " No message to send.");
-				break;
+			Framework::debug(__METHOD__ . " No message to send.");
+			return true;
 		}
-		return true;
+		
+		$copyMail = null;
+		$data = $request->getParameters();
+		foreach ($fields as $field)
+		{
+			if (!$field->getDocumentService()->isConditionValid($field, $data))
+			{
+				continue;
+			}
+
+			if ($field instanceof form_persistentdocument_mail)
+			{
+				if ($field->getIsReceiver())
+				{
+					$fieldName = $field->getFieldName();
+					$copyMail = isset($data[$fieldName]) ? $data[$fieldName] : null;
+				}
+			}
+		}
+
+		Framework::debug(__METHOD__ . " A message has to be sent: ".$form->getMessageSendingType());
+		$result = array();
+		$result['success'] = $this->sendEmail($form, $response, $request, $copyMail, $replyTo);
+		return $result;
 	}
-
-
+	
+	/**
+	 * @param form_persistentdocument_response $response
+	 * @param form_persistentdocument_baseform $form
+	 */
 	protected function addResponseToForm($response, $form)
 	{
 		$response->setParentForm($form);
 		$form->setResponseCount($form->getResponseCount()+1);
 	}
-
+	
+	/**
+	 * @param form_persistentdocument_baseform $document
+	 * @return Integer
+	 */
+	public function fileResponses($document)
+	{
+		try
+		{
+			$this->tm->beginTransaction();
+			$count = form_ResponseService::getInstance()->fileForForm($document);
+			if ($count > 0)
+			{
+				$document->setArchivedResponseCount($document->getArchivedResponseCount() + $count);
+				if ($document->isModified())
+				{
+					$this->pp->updateDocument($document);
+				}
+			}
+			$this->tm->commit();
+			return $count;
+		}
+		catch (Exception $e)
+		{
+			$this->tm->rollBack($e);
+		}
+		return 0;
+	}
+	
 	/**
 	 * @param form_persistentdocument_form $form
 	 * @param form_persistentdocument_response $response
@@ -659,59 +289,11 @@ class form_FormService extends f_persistentdocument_DocumentService
 		}
 		return true;
 	}
-	
-	/**
-	 * @param form_persistentdocument_form $form
-	 * @param form_persistentdocument_response $response
-	 * @param block_BlockRequest $request
-	 * @param String $acknowledgmentReceiver
-	 * @param String $replyTo
-	 * @return void
-	 */
-	private function sendAcknowledgement($form, $response, $request, $acknowledgmentReceiver, $replyTo)
-	{
-		$recipients = new mail_MessageRecipients();
-		$recipients->setTo(array($acknowledgmentReceiver));
-		
-		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType(K::HTML)->load('Form-MailContent');
-		$contentTemplate->setAttribute('items', $response->getAllData());
-		
-		$parameters = $response->getData();
-		$parameters[self::CONTENT_REPLACEMENT_NAME] = $contentTemplate->execute();
-		$parameters[self::FORM_LABEL_REPLACEMENT_NAME] = $form->getLabel();
-		
-		if (Framework::isDebugEnabled())
-		{
-			Framework::debug(__METHOD__ . " Form \"" . $form->getLabel() . "\" (id=" . $form->getId() . ")");
-			Framework::debug(__METHOD__ . " Parameters: " . var_export($parameters, true));
-			Framework::debug(__METHOD__ . " To      : " . join(", ", $recipients->getTo()));
-			Framework::debug(__METHOD__ . " ReplyTo : " . $replyTo);
-		}
-		
-		$ns = notification_NotificationService::getInstance();
-		$ns->setMessageService(MailService::getInstance());
-		$notification = $form->getAcknowledgmentNotification();
-		$senderEmail = $this->getOverrideNotificationSender($form);
-		return $ns->send($notification, $recipients, $parameters, 'form', $replyTo, $senderEmail);
-	}
 
 	/**
-	 * @param form_persistentdocument_form $form
+	 * @param string $receiverIdStr
+	 * @param mail_MessageRecipients $recipients
 	 */
-	private function getOverrideNotificationSender($form)
-	{
-		$preferenceDocument = ModuleService::getInstance()->getPreferencesDocument('form');
-		if ($preferenceDocument !== null)
-		{
-			$defaultSender = $preferenceDocument->getSender();
-			if ($defaultSender !== null)
-			{
-				return f_util_ArrayUtils::firstElement($defaultSender->getEmailAddresses());
-			}
-		}
-		return null;
-	}
-
 	private function handleReceveirIds($receiverIdStr, &$recipients)
 	{
 		$emailAddressArray = array();
@@ -848,62 +430,82 @@ class form_FormService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @param form_persistentdocument_form $form
-	 * @param form_persistentdocument_response $response
-	 * @return void
+	 * @param form_persistentdocument_form $newDocument
+	 * @param form_persistentdocument_form $originalDocument
+	 * @param Integer $parentNodeId
 	 */
-	private function getEmailHeader($form, $response)
+	protected function preDuplicate($newDocument, $originalDocument, $parentNodeId)
 	{
-		return $response->getDocumentService()->replaceFieldsValue($response, $form->getEmailHeader());
+		parent::preDuplicate($newDocument, $originalDocument, $parentNodeId);
+		$newDocument->setNotification(null);
+		$newDocument->setResponseCount(0);
+		$newDocument->setArchivedResponseCount(0);
 	}
 
 	/**
-	 * @param form_persistentdocument_form $form
-	 * @param form_persistentdocument_response $response
-	 * @return void
+	 * this method is call before save the duplicate document.
+	 * $newDocument has a id affected
+	 * Traitment of the children of $originalDocument
+	 *
+	 * @param form_persistentdocument_form $newDocument
+	 * @param form_persistentdocument_form $originalDocument
+	 * @param Integer $parentNodeId
+	 * 
+	 * @throws IllegalOperationException
 	 */
-	private function getEmailSubject($form, $response)
+	protected function postDuplicate($newDocument, $originalDocument, $parentNodeId)
 	{
-		return $response->getDocumentService()->replaceFieldsValue($response, $form->getEmailSubject());
+		$oldNotification = $originalDocument->getNotification();
+		$newNotification = $newDocument->getNotification();
+		$this->duplicateNotificationInfo($oldNotification, $newNotification);
+		$newNotification->save();
+		
+		parent::postDuplicate($newDocument, $originalDocument, $parentNodeId);
 	}
-
+	
 	/**
-	 * @param form_persistentdocument_form $form
-	 * @param form_persistentdocument_response $response
-	 * @return void
+	 * @param f_persistentdocument_PersistentDocument $document
+	 * @param string $forModuleName
+	 * @param array $allowedSections
+	 * @return array
 	 */
-	private function getEmailFooter($form, $response)
+	public function getResume($document, $forModuleName, $allowedSections = null)
 	{
-		return $response->getDocumentService()->replaceFieldsValue($response, $form->getEmailFooter());
+		$resume = parent::getResume($document, $forModuleName, $allowedSections);
+		
+		$openNotificationUri = join(',' , array('notification', 'openDocument', 'modules_notification_notification', $document->getNotification()->getId(), 'properties'));
+		$backUri = join(',', array('form', 'openDocument', 'modules_form_form', $document->getId(), 'resume'));
+		$resume["properties"]["notification"] = array("uri" => $openNotificationUri, "label" => f_Locale::translateUI("&modules.uixul.bo.doceditor.open;"), "backuri" => $backUri);
+		
+		return $resume;
 	}
-
+	
+	// Deprecated.
+	
 	/**
-	 * @param form_persistentdocument_form $form
-	 * @return array<form_persistentdocument_field>
+	 * @param form_persistentdocument_field $document
+	 * @deprecated use form_FieldService::fixRequiredConstraint()
 	 */
-	public function getFields($form)
+	public function fixRequiredConstraint($document)
 	{
-		$query = $this->getPersistentProvider()->createQuery('modules_form/field');
-		$query->add(Restrictions::descendentOf($form->getId()));
+		form_FieldService::getInstance()->fixRequiredConstraint($document);
+	}
+	
+	/**
+	 * @param form_persistentdocument_form
+	 * @deprecated with no replacement
+	 */
+	public function getPreviewAttributes($document)
+	{
+		$attributes = array();
+		$query = f_persistentdocument_PersistentProvider::getInstance()->createQuery('modules_form/field');
+		$query->add(Restrictions::descendentOf($document->getId()));
 		$fields = $query->find();
-		return $fields;
+		$attributes['fieldsCount'] = count($fields);
+		$attributes['responsesCount'] = $document->getResponseCount();
+		return $attributes;
 	}
-
-
-	/**
-	 * @param form_persistentdocument_form $form
-	 * @param string $fieldName
-	 * @return form_persistentdocument_field or null
-	 */
-	public function getFieldByName($form, $fieldName)
-	{
-		$query = $this->getPersistentProvider()->createQuery('modules_form/field');
-		$query->add(Restrictions::descendentOf($form->getId()));
-		$query->add(Restrictions::eq('fieldName', $fieldName));
-		return $query->findUnique();
-	}
-
-
+	
 	/**
 	 * @param array<TreeNode> $nodes
 	 * @param array $contents
@@ -953,13 +555,14 @@ class form_FormService extends f_persistentdocument_DocumentService
 			$contents[$document->getId()] = $templateObject->execute();
 		}
 	}
-
+	
 	/**
 	 * @param array<TreeNode> $nodes
 	 * @param array $contents
 	 * @param block_BlockRequest $request
-	 * @param form_persistentdocument_form $form
+	 * @param form_persistentdocument_baseform $form
 	 * @since 2.0.2
+	 * @deprecated
 	 */
 	public function buildContentsFromRequest($nodes, &$contents, $request, $form)
 	{
@@ -980,9 +583,9 @@ class form_FormService extends f_persistentdocument_DocumentService
 				$elements = array();
 				$this->buildContentsFromRequest($node->getChildren(), $elements, $request, $form);
 				$attributes = array(
-		    		'id'       => $document->getId(),
-		    		'label'    => $document->getLabel(),
-		    		'description'    => $document->getDescription(),
+		    		'id' => $document->getId(),
+		    		'label' => $document->getLabel(),
+		    		'description' => $document->getDescription(),
 		    		'elements' => $elements
 				);
 				$html = $templateObject->setAttribute('group', $attributes);
@@ -992,26 +595,26 @@ class form_FormService extends f_persistentdocument_DocumentService
 				if ($document instanceof form_persistentdocument_field)
 				{
 					$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->setDirectory('templates/markup/'.$form->getMarkup())->load($document->getSurroundingTemplate());
-					$html = FormHelper::fromFieldDocument($document, isset($parameters[$document->getFieldName()]) ? $parameters[$document->getFieldName()] : '');
+					$html = FormHelper::fromFieldDocument($document, isset($parameters[$document->getFieldName()]) ? $parameters[$document->getFieldName()] : $document->getDefaultValue());
 					$attributes = array(
-			    		'id'       => $document->getId(),
-			    		'label'    => $document->getLabel(),
+			    		'id' => $document->getId(),
+			    		'label' => $document->getLabel(),
 			    		'description' => $document->getHelpText(),
 			    		'required' => $document->getRequired(),
-			    		'display'  => f_util_ClassUtils::methodExists($document, 'getDisplay') ? $document->getDisplay() : '',
-			    		'html'     => $html
+			    		'display' => f_util_ClassUtils::methodExists($document, 'getDisplay') ? $document->getDisplay() : '',
+			    		'html' => $html
 					);
 				}
 				else if ($document instanceof form_persistentdocument_freecontent)
 				{
 					$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->setDirectory('templates/markup/'.$form->getMarkup())->load('Form-FreeContent');
 					$attributes = array(
-			    		'id'       => $document->getId(),
-			    		'label'    => $document->getLabel(),
+			    		'id' => $document->getId(),
+			    		'label' => $document->getLabel(),
 			    		'description' => $document->getText(),
 			    		'required' => false,
-			    		'html'     => ''
-			    		);
+			    		'html' => ''
+			    	);
 				}
 				$templateObject->setAttribute('field', $attributes);
 			}
@@ -1019,119 +622,23 @@ class form_FormService extends f_persistentdocument_DocumentService
 			$contents[$document->getId()] = $templateObject->execute();
 		}
 	}
-
-
-	/**
-	 * @param form_persistentdocument_field $document
-	 */
-	public function fixRequiredConstraint($document)
-	{
-		$constraintArray = $document->getConstraintArray();
-		if ($document->getRequired())
-		{
-			if (!isset($constraintArray['blank']) || $constraintArray['blank'] != 'false')
-			{
-				$constraintArray['blank'] = 'false';
-			}
-		}
-		$strArray = array();
-		foreach ($constraintArray as $k => $v)
-		{
-			$strArray[] = $k.':'.$v;
-		}
-		$document->setValidators(join(";", $strArray));
-	}
-
-
-	/**
-	 * @param form_persistentdocument_field $field
-	 * @param integer $parentNodeId
-	 *
-	 * @throws form_FormException When $field is not inside a form
-	 * @throws form_FieldAlreadyExistsException When the name of $field is not available
-	 */
-	public function checkFieldNameAvailable($field, $parentNodeId)
-	{
-		$fieldName = $field->getFieldName();
-		$form = DocumentHelper::getDocumentInstance($parentNodeId);
-		if ( ! ($form instanceof form_persistentdocument_form) )
-		{
-			$ds = f_persistentdocument_DocumentService::getInstance();
-			$ancestors = $ds->getAncestorsOf($form, 'modules_form/form');
-			if (count($ancestors) == 0)
-			{
-				throw new form_FormException("Field \"".$field->__toString()."\" is not inside a form.");
-			}
-			$form = $ancestors[0];
-		}
-		$query = $this->getPersistentProvider()->createQuery('modules_form/field');
-		$query->add(Restrictions::descendentOf($form->getId()));
-		$query->add(Restrictions::eq('fieldName', $fieldName));
-		$result = $query->findUnique();
-		if ( ! is_null($result) && $result->getId() != $field->getId() )
-		{
-			throw new form_FieldAlreadyExistsException(f_Locale::translate('&modules.form.bo.errors.Field-name-alreay-used;', array('fieldName' => $fieldName)));
-		}
-	}
-
-	/**
-	 * Return mail field which is used for reply-to feature
-	 * @param form_persistentdocument_form $document
-	 * @return form_persistentdocument_mail
-	 */
-	public function getReplyToField($document)
-	{
-		$query = $this->pp->createQuery('modules_form/mail');
-		$query->add(Restrictions::descendentOf($document->getId()));
-		$query->add(Restrictions::eq('useAsReply', true));
-		return $query->findUnique();
-	}
-
-
-
-	/**
-	 * @param form_persistentdocument_form
-	 */
-	public function getPreviewAttributes($document)
-	{
-		$attributes = array();
-		$query = f_persistentdocument_PersistentProvider::getInstance()->createQuery('modules_form/field');
-		$query->add(Restrictions::descendentOf($document->getId()));
-		$fields = $query->find();
-		$attributes['fieldsCount'] = count($fields);
-		$attributes['responsesCount'] = $document->getResponseCount();
-		return $attributes;
-	}
-
-
-	/**
-	 * @param form_persistentdocument_form $document
-	 * @return boolean true
-	 */
-	public function isPublishable($document)
-	{
-		return parent::isPublishable($document) && count($this->getFields($document)) > 0;
-	}
-
-
+	
 	/**
 	 * Returns the URL of the page tagged with the following contextual tag:
 	 * contextual_website_website_modules_form_recommand-page
-	 *
 	 * @return String
+	 * @deprecated use sharethis module instead.
 	 */
 	public function getRecommandFormUrl()
 	{
 		try
 		{
-			return LinkHelper::getUrl(
-			website_WebsiteModuleService::getDocumentByContextualTag(
-					'contextual_website_website_modules_form_recommand-page',
-			website_WebsiteModuleService::getInstance()->getCurrentWebsite()
-			),
-			null,
-			array('formParam[recommandFeature]' => website_WebsiteModuleService::getInstance()->getCurrentPageId())
+			$page = TagService::getInstance()->getDocumentByContextualTag(
+				'contextual_website_website_modules_form_recommand-page',
+				website_WebsiteModuleService::getInstance()->getCurrentWebsite()
 			);
+			$parameters = array('formParam[recommandFeature]' => website_WebsiteModuleService::getInstance()->getCurrentPageId());
+			return LinkHelper::getUrl($page, null, $parameters);
 		}
 		catch (Exception $e)
 		{
@@ -1139,23 +646,35 @@ class form_FormService extends f_persistentdocument_DocumentService
 		}
 		return null;
 	}
-
+	
+	/**
+	 * @param String $formId
+	 * @return form_persistentdocument_form
+	 * @deprecated use getByFormId()
+	 */
+	public function getFormByFormId($formId)
+	{
+		return $this->getByFormId($formId);
+	}
+	
 	/**
 	 * @param Integer $formId
 	 * @param block_BlockRequest $formRequest
 	 * @return Boolean
+	 * @deprecated
 	 */
 	public function isPostedFormId($formId, $formRequest)
 	{
 		return !is_null($formRequest) && $formRequest->hasParameter('submit_' . $formId);
 	}
-
+	
 	/**
-	 * @param form_persistentdocument_form $form
+	 * @param form_persistentdocument_baseform $form
 	 * @param block_BlockRequest $formRequest
 	 * @param validation_Errors $errors
 	 * @param array<String> $scriptArray
 	 * @return String
+	 * @deprecated
 	 */
 	public function renderForm($form, $formRequest, $errors, &$scriptArray)
 	{
@@ -1175,7 +694,7 @@ class form_FormService extends f_persistentdocument_DocumentService
 		try
 		{
 			$template = TemplateLoader::getInstance()->setMimeContentType(K::HTML)
-			->setPackageName('modules_form')->setDirectory('templates/markup/'.$markup)->load('Form');
+				->setPackageName('modules_form')->setDirectory('templates/markup/'.$markup)->load('Form');
 
 			$template->setAttribute('form', $form);
 
@@ -1206,144 +725,5 @@ class form_FormService extends f_persistentdocument_DocumentService
 			Framework::exception($e);
 		}
 		return null;
-	}
-
-	/**
-	 * @param form_persistentdocument_form $newDocument
-	 * @param form_persistentdocument_form $originalDocument
-	 * @param Integer $parentNodeId
-	 */
-	protected function preDuplicate($newDocument, $originalDocument, $parentNodeId)
-	{
-		$newDocument->setFormid(null);
-		$newDocument->setNotification(null);
-		$newDocument->setAcknowledgmentNotification(null);
-		$newDocument->setResponseCount(0);
-		$newDocument->setArchivedResponseCount(0);
-	}
-
-	/**
-	 * this method is call before save the duplicate document.
-	 * $newDocument has a id affected
-	 * Traitment of the children of $originalDocument
-	 *
-	 * @param form_persistentdocument_form $newDocument
-	 * @param form_persistentdocument_form $originalDocument
-	 * @param Integer $parentNodeId
-	 *
-	 * @throws IllegalOperationException
-	 */
-	protected function postDuplicate($newDocument, $originalDocument, $parentNodeId)
-	{
-		$oldNotification = $originalDocument->getNotification();
-		$newNotification = $newDocument->getNotification();
-		$this->duplicateNotificationInfo($oldNotification, $newNotification);
-		$newNotification->save();
-		
-		$oldNotification = $originalDocument->getAcknowledgmentNotification();
-		if ($oldNotification !== null)
-		{
-			$newNotification = $newDocument->getAcknowledgmentNotification();
-			$this->duplicateNotificationInfo($oldNotification, $newNotification);
-			$newNotification->save();	
-		}	
-
-		$items = $this->getChildrenOf($originalDocument);
-		foreach ($items as $item)
-		{
-			if ($item instanceof form_persistentdocument_group ||
-			$item instanceof form_persistentdocument_field ||
-			$item instanceof form_persistentdocument_freecontent)
-			{
-				$this->duplicate($item->getId(), $newDocument->getId());
-			}
-		}
-		
-	}
-
-	/**
-	 * @param notification_persistentdocument_notification $oldNotification
-	 * @param notification_persistentdocument_notification $newNotification
-	 */
-	private function duplicateNotificationInfo($oldNotification, $newNotification)
-	{
-		$requestContext = RequestContext::getInstance();
-		foreach ($requestContext->getSupportedLanguages() as $lang)
-		{
-			try
-			{
-				$requestContext->beginI18nWork($lang);
-				if ($newNotification->isContextLangAvailable())
-				{
-					if ($oldNotification->getLabel() != $oldNotification->getSubject())
-					{
-						$newNotification->setSubject(f_Locale::translate('&modules.generic.backoffice.Duplicate-prefix;') . ' '.$oldNotification->getSubject());
-					}
-					$newNotification->setBody($oldNotification->getBody());
-					$newNotification->setHeader($oldNotification->getHeader());
-					$newNotification->setFooter($oldNotification->getFooter());
-					$newNotification->setFooter($oldNotification->getFooter());
-					$newNotification->setTemplate($oldNotification->getTemplate());
-					$newNotification->setSenderEmail($oldNotification->getSenderEmail());
-				}
-				$requestContext->endI18nWork();
-			}
-			catch (Exception $e)
-			{
-				$requestContext->endI18nWork($e);
-			}
-		}
-
-	}
-
-	/**
-	 * @param form_persistentdocument_form $document
-	 * @return Integer
-	 */
-	public function fileResponses($document)
-	{
-		try
-		{
-			$this->tm->beginTransaction();
-			$count = form_ResponseService::getInstance()->fileForForm($document);
-			if ($count > 0)
-			{
-				$document->setArchivedResponseCount($document->getArchivedResponseCount() + $count);
-				if ($document->isModified())
-				{
-					$this->pp->updateDocument($document);
-				}
-			}
-			$this->tm->commit();
-			return $count;
-		}
-		catch (Exception $e)
-		{
-			$this->tm->rollBack($e);
-		}
-		return 0;
-	}
-	
-	/**
-	 * @param f_persistentdocument_PersistentDocument $document
-	 * @param string $forModuleName
-	 * @param array $allowedSections
-	 * @return array
-	 */
-	public function getResume($document, $forModuleName, $allowedSections = null)
-	{
-		$resume = parent::getResume($document, $forModuleName, $allowedSections);
-		
-		$openNotificationUri = join(',' , array('notification', 'openDocument', 'modules_notification_notification', $document->getNotification()->getId(), 'properties'));
-		$backUri = join(',', array('form', 'openDocument', 'modules_form_form', $document->getId(), 'resume'));
-		$resume["properties"]["notification"] = array("uri" => $openNotificationUri, "label" => f_Locale::translateUI("&modules.uixul.bo.doceditor.open;"), "backuri" => $backUri);
-		
-		$acknowledgmentNotification = $document->getAcknowledgmentNotification();
-		if ($acknowledgmentNotification !== null)
-		{
-			$openAcknowledgmentNotificationUri = join(',' , array('notification', 'openDocument', 'modules_notification_notification', $acknowledgmentNotification->getId(), 'properties'));
-			$resume["properties"]["acknowledgmentNotification"] = array("uri" => $openAcknowledgmentNotificationUri, "label" => f_Locale::translateUI("&modules.uixul.bo.doceditor.open;"), "backuri" => $backUri);
-		}
-		return $resume;
 	}
 }

@@ -41,7 +41,6 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		return $this->pp->createQuery('modules_form/field');
 	}
 
-
 	/**
 	 * @param form_persistentdocument_field $field
 	 * @param block_BlockRequest $request
@@ -89,7 +88,6 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		return $field->getActivationQuestion() !== null;
 	}
 	
-	
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
@@ -97,29 +95,27 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	 */
 	protected function preSave($document, $parentNodeId = null)
 	{
-	    $fieldName = $document->getFieldName();
-	    if (f_util_StringUtils::isEmpty($fieldName))
-	    {
-	        $this->fieldNameCounter = $this->fieldNameCounter + 1;
-	        $fieldName = 'f' . time() . $this->fieldNameCounter;   	
-	        if (Framework::isDebugEnabled())
-	    	{
-	    		Framework::debug(__METHOD__ . ' Generate FieldName: ' . $fieldName . ' for document ' . $document->__toString());
-	    	}
-	        $document->setFieldName($fieldName);
-	    }
-	    
-	    $parentDoc = ($parentNodeId != null) ? DocumentHelper::getDocumentInstance($parentNodeId) : $this->getParentOf($document);
-	    $fs = form_FormService::getInstance();
-		$fs->checkFieldNameAvailable($document, $parentDoc->getId());
-		$fs->fixRequiredConstraint($document);      
+		$fieldName = $document->getFieldName();
+		if (f_util_StringUtils::isEmpty($fieldName))
+		{
+			$this->fieldNameCounter = $this->fieldNameCounter + 1;
+			$fieldName = 'f' . time() . $this->fieldNameCounter;
+			if (Framework::isDebugEnabled())
+			{
+				Framework::debug(__METHOD__ . ' Generate FieldName: ' . $fieldName . ' for document ' . $document->__toString());
+			}
+			$document->setFieldName($fieldName);
+		}
+		
+		$parentDoc = ($parentNodeId != null) ? DocumentHelper::getDocumentInstance($parentNodeId) : $this->getParentOf($document);
+		form_BaseformService::getInstance()->checkFieldNameAvailable($document, $parentDoc->getId());
+		$this->fixRequiredConstraint($document);
 	}
 		
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
-	 *
 	 * @throws Exception if no parent form is found.
 	 */
 	protected function postInsert($document, $parentNodeId = null)
@@ -128,11 +124,9 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		$form->getDocumentService()->onFieldAdded($form);
 	}
 
-
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @return void
-	 *
 	 * @throws form_FieldLockedException
 	 */
 	protected function preDelete($document)
@@ -141,8 +135,53 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		{
 			throw new form_FieldLockedException("Cannot delete a locked field: ".$document->__toString());
 		}
+		
+		parent::preDelete($document);
+		
+		$this->addFormToList($document);
+	}
+
+	/**
+	 * @param inquiry_persistentdocument_inquiryform $document
+	 * @return void
+	 */
+	protected function preDeleteLocalized($document)
+	{
+		parent::preDeleteLocalized($document);
+		
+		$this->addFormToList($document);
+	}
+	
+	/**
+	 * @param form_persistentdocument_field $document
+	 * @return void
+	 */
+	protected function postDelete($document)
+	{
+		parent::postDelete($document);
+		
+		$this->applyOnFieldDeleted($document);
+	}
+
+	/**
+	 * @param form_persistentdocument_field $document
+	 * @return void
+	 */
+	protected function postDeleteLocalized($document)
+	{
+		parent::postDeleteLocalized($document);
+		
+		$this->applyOnFieldDeleted($document);
+	}
+	
+	/**
+	 * @param form_persistentdocument_field $document
+	 * @return void
+	 */
+	private function addFormToList($document)
+	{
 		$form = $this->getFormOf($document);
-		if ( ! isset($this->deletedFieldsForms[$document->getId()]) )
+		if (!isset($this->deletedFieldsForms[$document->getId()]))
 		{
 			$this->deletedFieldsForms[$document->getId()] = $form;
 		}
@@ -152,21 +191,19 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	 * @param form_persistentdocument_field $document
 	 * @return void
 	 */
-	protected function postDelete($document)
+	private function applyOnFieldDeleted($document)
 	{
-		if ( isset($this->deletedFieldsForms[$document->getId()]) )
+		if (isset($this->deletedFieldsForms[$document->getId()]))
 		{
 			$form = $this->deletedFieldsForms[$document->getId()];
 			$form->getDocumentService()->onFieldDeleted($form);
 			unset($this->deletedFieldsForms[$document->getId()]);
 		}
 	}
-
-
+	
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @return void
-	 *
 	 * @throws form_FieldLockedException
 	 */
 	protected function preUpdate($document)
@@ -189,7 +226,6 @@ class form_FieldService extends f_persistentdocument_DocumentService
 
 	/**
 	 * Moves $field into the destination node identified by $destId.
-	 *
 	 * @param form_persistentdocument_field $field The field to move.
 	 * @param integer $destId ID of the destination node.
 	 * @param integer $beforeId
@@ -197,15 +233,16 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	 */
 	public function moveTo($field, $destId, $beforeId = null, $afterId = null)
 	{
-		$fieldForm = f_util_ArrayUtils::firstElement($this->getAncestorsOf($field, 'modules_form/form'));
+		$fbs = form_BaseformService::getInstance();
+		$fieldForm = $fbs->getAncestorFormByDocument($field);
 		$destDocument = DocumentHelper::getDocumentInstance($destId);
-		if ($destDocument instanceof form_persistentdocument_form)
+		if ($destDocument instanceof form_persistentdocument_baseform)
 		{
 			$destForm = $destDocument;
 		}
 		else
 		{
-			$destForm = f_util_ArrayUtils::firstElement($this->getAncestorsOf($destDocument, 'modules_form/form'));
+			$destForm = $fbs->getAncestorFormByDocument($destDocument);
 		}
 		
 		if (!DocumentHelper::isEquals($destForm, $fieldForm))
@@ -216,34 +253,28 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		return parent::moveTo($field, $destId, $beforeId, $afterId);
 	}
 
-
 	/**
 	 * Returns the parent form of the given $field.
-	 *
 	 * @param form_persistentdocument_field $field The field to move.
-	 * @return form_persistentdocument_form
-	 *
+	 * @return form_persistentdocument_baseform
 	 * @throws Exception if no parent form is found.
 	 */
 	public function getFormOf($field)
 	{
-		$ancestors = $this->getAncestorsOf($field, 'modules_form/form');
-		if (empty($ancestors))
+		$fbs = form_BaseformService::getInstance();
+		$form = $fbs->getAncestorFormByDocument($field);
+		if ($form === null)
 		{
 			throw new Exception("Could not find parent form for field \"".$field->__toString()."\".");
 		}
-		// There should not be nested forms, but here I get the closest form to
-		// the field.
-		return $ancestors[count($ancestors)-1];
+		return $form;
 	}
 
 	/**
 	 * Returns the parent group of the given $field.
-	 *
 	 * @param form_persistentdocument_field $field The field to move.
 	 * @return form_persistentdocument_group
-	 *
-	 * @throws Exception if no parent form is found.
+	 * @throws Exception if no parent group is found.
 	 */
 	public function getGroupOf($field)
 	{
@@ -252,14 +283,12 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		{
 			throw new Exception("Could not find parent group for field \"".$field->__toString()."\".");
 		}
-
 		return $ancestors[count($ancestors)-1];
 	}
 	
 	/**
 	 * Locks a field so that the user won't be able to delete or edit it into
 	 * the backoffice. The $field has to be saved for the changes to be saved.
-	 *
 	 * @param form_persistentdocument_field $field The field to lock.
 	 */
 	public function lockField($field)
@@ -357,5 +386,26 @@ class form_FieldService extends f_persistentdocument_DocumentService
 			$retValue = f_util_Convert::toString($rawValue);
 		}
 		return $retValue;    
+	}
+	
+	/**
+	 * @param form_persistentdocument_field $document
+	 */
+	public function fixRequiredConstraint($document)
+	{
+		$constraintArray = $document->getConstraintArray();
+		if ($document->getRequired())
+		{
+			if (!isset($constraintArray['blank']) || $constraintArray['blank'] != 'false')
+			{
+				$constraintArray['blank'] = 'false';
+			}
+		}
+		$strArray = array();
+		foreach ($constraintArray as $k => $v)
+		{
+			$strArray[] = $k.':'.$v;
+		}
+		$document->setValidators(join(";", $strArray));
 	}
 }

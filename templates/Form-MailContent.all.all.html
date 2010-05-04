@@ -1,7 +1,7 @@
 <dl>
-<span tal:repeat="item items" tal:omit-tag="">
+<tal:block tal:repeat="item items">
 <dt tal:content="item/label" />
 <dd tal:content="item/mailValue" tal:condition="item/mailValue"/>
 <dd tal:content="item/value" tal:condition="not: item/mailValue"/>
-</span>
+</tal:block>
 </dl>

@@ -47,20 +47,6 @@ class form_RecipientGroupListService extends form_ListService
 		$document->setRequired(true);
 		parent::preSave($document, $parentNodeId);
 	}
-
-
-	/**
-	 * @param form_persistentdocument_recipientGroupList $document
-	 * @return void
-	 */
-	protected function preDelete($document)
-	{
-		if ($this->getFormOf($document)->getRecipientGroupCount() > 1)
-		{
-			throw new form_FormException("This field is required by its form because the form has multiple recipients.");
-		}
-		parent::preDelete($document);
-	}
 	
     /**
      * @param form_persistentdocument_file $field

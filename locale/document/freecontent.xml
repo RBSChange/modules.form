@@ -1,53 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <localization>
-  <entity id="document-name">
-    <locale lang="fr">contenu libre</locale>
-    <locale lang="en">free content</locale>
-    <locale lang="de">freier Inhalt</locale>
-  </entity>
-  <entity id="edition-form-title">
-    <locale lang="fr">propriétés du contenu libre</locale>
-    <locale lang="en">free content properties</locale>
-    <locale lang="de">Eigenschaften freier Inhalt</locale>
-  </entity>
-  <entity id="label">
-    <locale lang="fr">libellé</locale>
-    <locale lang="en">label</locale>
-    <locale lang="de">Name</locale>
-  </entity>
-  <entity id="label-help">
-    <locale lang="fr">
-			libellé (n'est pas affiché sur le site)
-		</locale>
-    <locale lang="en">
-			label (won't be displayed on the website)
-		</locale>
-    <locale lang="de">Name (wird nicht auf der Webseite angezeigt)</locale>
-  </entity>
-  <entity id="text">
-    <locale lang="fr">contenu</locale>
-    <locale lang="en">content</locale>
-    <locale lang="de">Inhalt</locale>
-  </entity>
-  <entity id="text-help">
-    <locale lang="fr">
-			contenu de la zone de texte (mise en page simple possible)
-		</locale>
-    <locale lang="en">
-			free zone contents (markup is possible)
-		</locale>
-    <locale lang="de">Inhalt der Textzone (einfaches Seitenlayout möglich)</locale>
-  </entity>
-  <entity id="activationQuestion">
-    <locale lang="fr">champ</locale>
-  </entity>
-  <entity id="activationQuestion-help">
-    <locale lang="fr">champ qui conditionnera l'activation de ce champ.</locale>
-  </entity>
-  <entity id="activationValue">
-    <locale lang="fr">valeur</locale>
-  </entity>
-  <entity id="activationValue-help">
-    <locale lang="fr">valeur que devra avoir le champ pour activer ce champ.</locale>
-  </entity>
+	<entity id="document-name">
+		<locale lang="fr">contenu libre</locale>
+		<locale lang="en">free content</locale>
+		<locale lang="de">freier Inhalt</locale>
+	</entity>
+	<entity id="label">
+		<locale lang="fr">libellé</locale>
+		<locale lang="en">label</locale>
+		<locale lang="de">Name</locale>
+	</entity>
+	<entity id="label-help">
+		<locale lang="fr">libellé (n'est pas affiché sur le site).</locale>
+		<locale lang="en">label (won't be displayed on the website).</locale>
+		<locale lang="de">Name (wird nicht auf der Webseite angezeigt).</locale>
+	</entity>
+	<entity id="text">
+		<locale lang="fr">contenu</locale>
+		<locale lang="en">content</locale>
+		<locale lang="de">Inhalt</locale>
+	</entity>
+	<entity id="text-help">
+		<locale lang="fr">contenu de la zone de texte (mise en page simple possible).</locale>
+		<locale lang="en">free zone contents (markup is possible).</locale>
+		<locale lang="de">Inhalt der Textzone (einfaches Seitenlayout möglich).</locale>
+	</entity>
+	<entity id="activationQuestion">
+		<locale lang="fr">champ</locale>
+	</entity>
+	<entity id="activationQuestion-help">
+		<locale lang="fr">champ qui conditionnera l'activation de ce champ.</locale>
+	</entity>
+	<entity id="activationValue">
+		<locale lang="fr">valeur</locale>
+	</entity>
+	<entity id="activationValue-help">
+		<locale lang="fr">valeur que devra avoir le champ pour activer ce champ.</locale>
+	</entity>
 </localization>

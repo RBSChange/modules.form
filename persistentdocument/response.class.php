@@ -13,10 +13,10 @@ class form_persistentdocument_response extends form_persistentdocument_responseb
 		$xml->loadXML($this->getContents());
 		$xpath = new DOMXPath($xml);
 		$fieldList = $xpath->query('/response/field');
-		for ($i=0 ; $i<$fieldList->length ; $i++)
+		for ($i = 0; $i < $fieldList->length; $i++)
 		{
 			$item = $fieldList->item($i);
-			if ($item->hasAttribute("mailValue"))
+			if ($item->hasAttribute('mailValue'))
 			{
 				$value = $item->getAttribute('mailValue');
 			}
@@ -28,7 +28,7 @@ class form_persistentdocument_response extends form_persistentdocument_responseb
 		}
 		return $data;
 	}
-
+	
 	/**
 	 * Returns an associative array with all the response data.
 	 *
@@ -41,15 +41,11 @@ class form_persistentdocument_response extends form_persistentdocument_responseb
 		$xml->loadXML($this->getContents());
 		$xpath = new DOMXPath($xml);
 		$fieldList = $xpath->query('/response/field');
-		for ($i=0 ; $i<$fieldList->length ; $i++)
+		for ($i = 0; $i < $fieldList->length; $i++)
 		{
 			$item = $fieldList->item($i);
-			$data[$item->getAttribute('name')] = array(
-				'label' => $item->getAttribute('label'),
-				'type'  => $item->getAttribute('type'),
-				'value' => $item->nodeValue
-				);
-			if ($item->hasAttribute("mailValue"))
+			$data[$item->getAttribute('name')] = array('label' => $item->getAttribute('label'), 'type' => $item->getAttribute('type'), 'value' => $item->nodeValue);
+			if ($item->hasAttribute('mailValue'))
 			{
 				$data[$item->getAttribute('name')]['mailValue'] = $item->getAttribute('mailValue');
 			}

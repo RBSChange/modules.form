@@ -70,7 +70,7 @@ class form_MailService extends form_TextService
 		} 
 		else if ($document->getUseAsReply())
 		{
-		    $oldReplyField = form_FormService::getInstance()->getReplyToField($form);
+		    $oldReplyField = form_BaseFormService::getInstance()->getReplyToField($form);
 		    if ($oldReplyField !== null && $oldReplyField !== $document)
 			{
 			    Framework::error(__METHOD__ . ' Old reply field :' . $oldReplyField->__toString());

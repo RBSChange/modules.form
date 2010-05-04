@@ -1,43 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <localization>
-  <entity id="document-name">
-    <locale lang="fr">réponse</locale>
-    <locale lang="en">response</locale>
-    <locale lang="de">Antwort</locale>
-  </entity>
-  <entity id="edition-form-title">
-    <locale lang="fr">propriétés d'une réponse</locale>
-    <locale lang="en">response properties</locale>
-    <locale lang="de">Eigenschaften einer Antwort</locale>
-  </entity>
-  <entity id="label">
-    <locale lang="fr">libellé</locale>
-    <locale lang="en">label</locale>
-    <locale lang="de">Name</locale>
-  </entity>
-  <entity id="label-help">
-    <locale lang="fr">libellé</locale>
-    <locale lang="en">label</locale>
-    <locale lang="de">Name</locale>
-  </entity>
-  <entity id="parentform">
-    <locale lang="fr">formulaire</locale>
-    <locale lang="en">form</locale>
-    <locale lang="de">Formular</locale>
-  </entity>
-  <entity id="parentform-help">
-    <locale lang="fr">formulaire</locale>
-    <locale lang="en">form</locale>
-    <locale lang="de">Formular</locale>
-  </entity>
-  <entity id="contents">
-    <locale lang="fr">contenu</locale>
-    <locale lang="en">contents</locale>
-    <locale lang="de">Inhalt</locale>
-  </entity>
-  <entity id="contents-help">
-    <locale lang="fr">contenu</locale>
-    <locale lang="en">contents</locale>
-    <locale lang="de">Inhalt</locale>
-  </entity>
+	<entity id="document-name">
+		<locale lang="fr">réponse</locale>
+		<locale lang="en">response</locale>
+		<locale lang="de">Antwort</locale>
+	</entity>
+	<entity id="label">
+		<locale lang="fr">libellé</locale>
+		<locale lang="en">label</locale>
+		<locale lang="de">Name</locale>
+	</entity>
+	<entity id="parentform">
+		<locale lang="fr">formulaire</locale>
+		<locale lang="en">form</locale>
+		<locale lang="de">Formular</locale>
+	</entity>
+	<entity id="contents">
+		<locale lang="fr">contenu</locale>
+		<locale lang="en">contents</locale>
+		<locale lang="de">Inhalt</locale>
+	</entity>
 </localization>

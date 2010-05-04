@@ -10,5 +10,6 @@
 	<statuses default="PUBLICATED" />
 	<children>
 		<child name="fields" type="modules_form/field" />
+		<child name="groups" type="modules_form/group" />
 	</children>
 </document>

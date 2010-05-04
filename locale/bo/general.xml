@@ -303,4 +303,7 @@
 		<locale lang="fr">actif si "{value}" choisi dans "{question}"</locale>
 		<locale lang="en">activate if "{value}" chosen in "{question}"</locale>
 	</entity>
+	<entity id="iphone-specific-configurations">
+		<locale lang="fr">configurations spécifiques à l'iPhone</locale>
+	</entity>
 </localization>

@@ -1,130 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<localization>
+<localization extend="modules.form.document.baseform">
 	<entity id="document-name">
 		<locale lang="fr">formulaire</locale>
 		<locale lang="en">form</locale>
 		<locale lang="de">Formular</locale>
 	</entity>
-	<entity id="label">
-		<locale lang="fr">titre</locale>
-		<locale lang="en">title</locale>
-		<locale lang="de">Titel</locale>
+
+	<entity id="notification">
+		<locale lang="fr">notification</locale>
+		<locale lang="de">Benachrichtigung</locale>
 	</entity>
-	<entity id="label-help">
-		<locale lang="fr">Titre du formulaire, utilisé pour l'affichage sur le site</locale>
-		<locale lang="en">Form's title, displayed on the website</locale>
-		<locale lang="de">Formulartitel, auf der Webseite angezeigt</locale>
-	</entity>
-	<entity id="description">
-		<locale lang="fr">description</locale>
-		<locale lang="en">description</locale>
-		<locale lang="de">Beschreibung</locale>
-	</entity>
-	<entity id="description-help">
-		<locale lang="fr">Description du formulaire, peut servir de texte d'aide. Affiché en en-tête du formulaire sur le site.</locale>
-		<locale lang="en">Form's description, may be used as the form's help text. Displayed on the website as the form's header.</locale>
-		<locale lang="de">Formularbeschreibung, kann auch als Hilfetext genutzt werden. Als Kopftext auf dem Formular der Webseite angezeigt.</locale>
-	</entity>
-	<entity id="submitButton">
-		<locale lang="fr">libellé du bouton d'envoi</locale>
-		<locale lang="en">submit button label</locale>
-		<locale lang="de">Name des Versandknopfes</locale>
-	</entity>
-	<entity id="submitButton-help">
-		<locale lang="fr">libellé du bouton d'envoi (texte qui sera affiché sur le bouton en bas du formulaire. Idéalement, on y affiche "envoyer" ou "soumettre")</locale>
-		<locale lang="en">submit button label (texte displayed on the button at the bottom of the form. Generally, "Send" or "Submit" is used)</locale>
-		<locale lang="de">Name des Versandknopfes (auf dem Knopf unterhalb des Formulars angezeigter Text. Idealerweise nennt er sich "senden" oder "absenden")</locale>
-	</entity>
-	<entity id="contact">
-		<locale lang="fr">Contact</locale>
-		<locale lang="en">Contact</locale>
-		<locale lang="de">Kontakt</locale>
-	</entity>
-	<entity id="contactEmail">
-		<locale lang="fr">adresse e-mail du contact</locale>
-		<locale lang="en">contact's e-mail address</locale>
-		<locale lang="de">E-mailadresse des Kontakts</locale>
-	</entity>
-	<entity id="contactEmail-help">
-		<locale lang="fr">adresse e-mail du contact à laquelle sera envoyée la réponse de l'internaute</locale>
-		<locale lang="en">contact's e-mail address. Users responses will be sent to this address.</locale>
-		<locale lang="de">E-mailadresse des Kontakts zu dem die Antwort des Benutzers gesendet wird.</locale>
-	</entity>
-	<entity id="confirmMessage">
-		<locale lang="fr">message de confirmation</locale>
-		<locale lang="en">confirmation message</locale>
-		<locale lang="de">Bestätigungsnachricht</locale>
-	</entity>
-	<entity id="confirmMessage-help">
-		<locale lang="fr">message de confirmation qui s'affiche en lieu et place du formulaire après une soumission réussie. Il est possible d'utiliser des valeurs saisies par l'internaute dans le formulaire en utilisant la syntaxe suivante : {nomDuChamp}.</locale>
-		<locale lang="en">confirmation message that is displayed instead of the form after a successful submit. You may use user's submitted data with the following syntax: {fieldName}.</locale>
-		<locale lang="de">angezeigte Bestätigungsnachricht an Stelle des Formulars nach erfolgreichem Versand. Es ist möglich die vom Benutzer im Formular eingegebenen Werte zu nutzen indem man folgende Syntax nutzt: {NameDesFeldes}</locale>
-	</entity>
-	<entity id="markup">
-		<locale lang="fr">modèle de mise en page</locale>
-		<locale lang="en">markup</locale>
-		<locale lang="de">Seitenlayoutmodell</locale>
-	</entity>
-	<entity id="markup-help">
-		<locale lang="fr">sélectionnez le modèle de mise en page que vous souhaitez appliquer au formulaire. Le modèle basé sur des listes à puces est recommandé pour des questions d'accessibilité.</locale>
-		<locale lang="en">select the template you wish to apply to the form. the template based on bullet list is recommended for accessibility reasons.</locale>
-		<locale lang="de">wählen Sie das Seitenlayoutmodell welches Sie dem Formular anbringen möchten. Die Aufzählungsliste ist das empfohlene Modell aus Zugangsgründen.</locale>
-	</entity>
-	<entity id="useBackLink">
-		<locale lang="fr">utiliser un lien de retour</locale>
-		<locale lang="en">use a back link</locale>
-		<locale lang="de">einen Zurück-Link benutzen</locale>
-	</entity>
-	<entity id="useBackLink-help">
-		<locale lang="fr">Ceci ajoute un lien de retour à la page visitée avant d'arriver sur le formulaire. Cela peut s'avérer très utile lors de l'utilisation d'un formulaire depuis un autre module.</locale>
-		<locale lang="en">This adds a to link to go back to the page visited before coming to this form.</locale>
-		<locale lang="de">Dies fügt einen Zurück-Link zur besuchten Seite ein, bevor Sie zum Formular gelangen. Dies kann sehr nützlich sein, wenn Sie einen Formular von einem anderen Modul aus nutzen.</locale>
-	</entity>
-	<entity id="formid">
-		<locale lang="fr">formid</locale>
-		<locale lang="de">formid</locale>
-	</entity>
-	<entity id="formid-help">
-		<locale lang="fr">formid</locale>
-		<locale lang="de">formid</locale>
-	</entity>
-	<entity id="response">
-		<locale lang="fr">réponse</locale>
-		<locale lang="de">Antwort</locale>
-	</entity>
-	<entity id="response-help">
-		<locale lang="fr">réponse</locale>
-		<locale lang="de">Antwort</locale>
-	</entity>
-	<entity id="emailSubject">
-		<locale lang="fr">objet de l'email</locale>
-		<locale lang="en">email subject</locale>
-		<locale lang="de">E-mailbetreff</locale>
-	</entity>
-	<entity id="emailSubject-help">
-		<locale lang="fr">objet de l'email. Il est possible d'utiliser des valeurs saisies par l'internaute dans le formulaire en utilisant la syntaxe suivante : {nomDuChamp}.</locale>
-		<locale lang="en">email subject. You may use user's submitted data with the following syntax: {fieldName}.</locale>
-		<locale lang="de">E-mailbetreff. Es ist möglich vom Benutzer im Formular erfasste Werte zu nutzen, indem man folgende Syntax nutzt: {fieldName}.</locale>
-	</entity>
-	<entity id="emailHeader">
-		<locale lang="fr">en-tête de l'email</locale>
-		<locale lang="en">email header</locale>
-		<locale lang="de">E-mail Kopftext</locale>
-	</entity>
-	<entity id="emailHeader-help">
-		<locale lang="fr">en-tête de l'email. Il est possible d'utiliser des valeurs saisies par l'internaute dans le formulaire en utilisant la syntaxe suivante : {nomDuChamp}.</locale>
-		<locale lang="en">email header. You may use user's submitted data with the following syntax: {fieldName}.</locale>
-		<locale lang="de">E-mail Kopftext. Es ist möglich vom Benutzer im Formular erfasste Werte zu nutzen, indem man folgende Syntax nutzt: {NameDesFeldes}.</locale>
-	</entity>
-	<entity id="emailFooter">
-		<locale lang="fr">pied de page de l'email</locale>
-		<locale lang="en">email footer</locale>
-		<locale lang="de">E-mail Fusszeilentext</locale>
-	</entity>
-	<entity id="emailFooter-help">
-		<locale lang="fr">pied de page de l'email. Il est possible d'utiliser des valeurs saisies par l'internaute dans le formulaire en utilisant la syntaxe suivante : {nomDuChamp}.</locale>
-		<locale lang="en">email footer. You may use user's submitted data with the following syntax: {fieldName}.</locale>
-		<locale lang="de">E-mail Fusszeilentext. Es ist möglich vom Benutzer im Formular erfasste Werte zu nutzen, indem man folgende Syntax nutzt: {NameDesFeldes}.</locale>
+	<entity id="notification-help">
+		<locale lang="fr">notification</locale>
+		<locale lang="de">Benachrichtigung</locale>
 	</entity>
 	<entity id="messageSendingType">
 		<locale lang="fr">Envoi de message</locale>
@@ -136,45 +24,6 @@
 		<locale lang="en">Specifies whether the form should send a message each time a response is submitted by a user.</locale>
 		<locale lang="de">Ermöglicht zu spezifizieren, ob das Folmular bei jeder Antwort des Benutzers eine Nachricht senden soll.</locale>
 	</entity>
-	<entity id="notification">
-		<locale lang="fr">notification</locale>
-		<locale lang="de">Benachrichtigung</locale>
-	</entity>
-	<entity id="notification-help">
-		<locale lang="fr">notification</locale>
-		<locale lang="de">Benachrichtigung</locale>
-	</entity>
-	<entity id="responseCount">
-		<locale lang="fr">responseCount</locale>
-		<locale lang="de">responseCount</locale>
-	</entity>
-	<entity id="responseCount-help">
-		<locale lang="fr">responseCount</locale>
-		<locale lang="de">responseCount</locale>
-	</entity>
-	<entity id="useCaptcha">
-		<locale lang="fr">utiliser un CAPTCHA</locale>
-		<locale lang="de">einen CAPTCHA benutzen</locale>
-	</entity>
-	<entity id="useCaptcha-help">
-		<locale lang="fr">Un CAPTCHA (Completely Automated Public Turing test to Tell Computers and Humans Apart) est un système qui permet de s'assurer que le formulaire sera posté par un humain (et non un robot) afin d'éviter le spam. Les CAPTCHA générés par RBS-Change ne contiennent que des chiffres. Attention : utiliser un CAPTCHA (graphique) est contraire aux règles d'accessibilité.</locale>
-		<locale lang="en">A CAPTCHA (Completely Automated Public Turing test to Tell Computers and Humans Apart) is a system allowing to ensure that the form will be posted by a human (and not by a robot) in order to avoid spam. CAPTCHAs generated by RBS Change only contain figures. Warning : use a graphical CAPTCHA goes against accessibility rules.</locale>
-		<locale lang="de">ein CAPTCHA (Completely Automated Public Turing test to Tell Computers and Humans Apart) ist ein System, welches ermöglicht sich zu versichern, dass das Formular von einem Lebenden Wesen (und nicht von einer Maschine) versendet wurde, um SPAM zu vermeiden. Die von RBS-Change generierten CAPTCHA beinhalten ausschliesslich Zahlen.</locale>
-	</entity>
-	<entity id="useCaptcha-warning">
-		<locale lang="fr">Attention : utiliser un CAPTCHA (graphique) est contraire aux règles d'accessibilité.</locale>
-		<locale lang="en">Warning : use a graphical CAPTCHA goes against accessibility rules.</locale>
-	</entity>
-	<entity id="footer">
-		<locale lang="fr">texte de pied de page</locale>
-		<locale lang="en">footer text</locale>
-		<locale lang="de">Fusszeilentext</locale>
-	</entity>
-	<entity id="footer-help">
-		<locale lang="fr">Texte de pied de page du formulaire, généralement utilisé pour afficher des informations quant à la loi Informatique et liberté.</locale>
-		<locale lang="en">Text displayed at the bottom of the form, mainly used to show legal information about the collected data.</locale>
-		<locale lang="de">Fusszeilentext, generell genutzt um Informationen über das Informatikgesetz oder die Freiheit der Nutzung anzuzeigen.</locale>
-	</entity>
 	<entity id="recipientGroup">
 		<locale lang="fr">destinataires</locale>
 		<locale lang="en">recipients</locale>
@@ -184,27 +33,5 @@
 		<locale lang="fr">groupes de destinataires</locale>
 		<locale lang="en">recipient groups</locale>
 		<locale lang="de">Empfängergruppen</locale>
-	</entity>
-	<entity id="confirmpage">
-		<locale lang="fr">page de confirmation</locale>
-		<locale lang="en">confirm page</locale>
-	</entity>
-	<entity id="confirmpage-help">
-		<locale lang="fr">page de confirmation</locale>
-		<locale lang="en">confirm page</locale>
-	</entity>
-	<entity id="acknowledgment">
-		<locale lang="fr">accusé de réception</locale>
-	</entity>
-	<entity id="acknowledgment-help">
-		<locale lang="fr">cochez "oui" pour envoyer un accusé de réception lors de la soumission du formulaire. Pour que cet e-mail soit envoyé, le formulaire doit contenir un champ de type e-mail avec l'option "destinataire de l'accusé de réception" cochée.</locale>
-	</entity>
-	<entity id="acknowledgmentNotification">
-		<locale lang="fr">notification d'accusé de réception</locale>
-	</entity>
-	
-	<entity id="acknowledgment-notification-label-prefix">
-		<locale lang="fr">[Accusé de réception]</locale>
-		<locale lang="en">[Acknowledgment]</locale>
 	</entity>
 </localization>

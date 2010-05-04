@@ -3,7 +3,7 @@
 	<section labeli18n="modules.form.bo.general.General">
 		<field name="label" />
 		<field name="helpText" />
-		<field name="multiple" />
+		<field name="multiple" hidehelp="true" />
 		<field name="display" />
 		<field name="hasBlankOption" />
 	</section>

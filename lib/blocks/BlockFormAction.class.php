@@ -20,6 +20,11 @@ class form_BlockFormAction extends block_BlockAction
 		}
 		
 		$form = DocumentHelper::getDocumentInstance($id);
+		if (!$form->isPublished())
+		{
+			return block_BlockView::NONE;
+		}
+		
 		$form->getDocumentNode()->getDescendents();
 		$this->setParameter('form', $form);
 		

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
-	model-version="1.0" extend="modules_form/field" icon="ui-text-field">
+	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd" model-version="1.0"
+	extend="modules_form/field" icon="ui-text-field">
 	<properties>
 		<add name="isReceiver" type="Boolean" default-value="false" />
 		<add name="multiline" type="Boolean" min-occurs="1" default-value="false" />
@@ -17,5 +17,8 @@
 		<add name="minlength" type="Integer" default-value="0">
 			<constraints>min:0</constraints>
 		</add>
+		<add name="disableAutocorrect" type="Boolean" default-value="false" />
+		<add name="disableAutocapitalize" type="Boolean" default-value="false" />
+		<add name="disableAutocomplete" type="Boolean" default-value="false" />
 	</properties>
 </document>

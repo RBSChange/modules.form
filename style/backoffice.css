@@ -61,3 +61,6 @@ treechildren::-moz-tree-image(modules_form_field){
 treechildren::-moz-tree-image(modules_form_recipientGroupFolder){
 	list-style-image: url(/changeicons/small/users-folder.png);
 }
+treechildren::-moz-tree-image(modules_form_baseform){
+	list-style-image: url(/changeicons/small/form.png);
+}

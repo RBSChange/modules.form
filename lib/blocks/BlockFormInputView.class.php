@@ -9,12 +9,7 @@ class form_BlockFormInputView extends block_BlockView
 	 */
     public function execute($context, $request)
     {
-		$context->addScript('modules.form.lib.js.date-picker.date');
-		$context->addScript('modules.form.lib.js.date-picker.date_'.RequestContext::getInstance()->getLang());
-		$context->addScript('modules.form.lib.js.date-picker.jquery-bgiframe');
-		$context->addScript('modules.form.lib.js.date-picker.jquery-dimensions');
-		$context->addScript('modules.form.lib.js.date-picker.jquery-datePicker');
-		$context->addScript('modules.form.lib.js.form');
+		FormHelper::addScriptsAndStyles($context);
     	$form = $this->getParameter('form');
     	$this->setTemplateName('markup/'.$form->getMarkup().'/Form');
     	$this->setAttribute('form', $form);
@@ -45,7 +40,8 @@ class form_BlockFormInputView extends block_BlockView
 		$this->setAttribute("receiverLabels", $this->getParameter("receiverLabels"));
     	$this->setAttribute('requestParameters', $request->getParameters());
     	$this->setAttribute('backUrl', $backUrl);
-    	
+    	$this->setAttribute('useCaptcha', $form->getDocumentService()->hasToUseCaptcha($form));
+		    	
     	$this->setAttribute('jQueryConditionalElement', $form->getDocumentService()->getJQueryForConditionalElementsOf($form));
     }
 }

@@ -5,5 +5,8 @@
 	<properties>
 		<add name="useAsReply" type="Boolean" default-value="false" />
 		<add name="acknowledgmentReceiver" type="Boolean" default-value="false" />
+		<add name="initializeWithCurrentUserEmail" type="Boolean" default-value="true" />
+		<add name="disableAutocorrect" type="Boolean" default-value="true" />
+		<add name="disableAutocapitalize" type="Boolean" default-value="true" />
 	</properties>
 </document>

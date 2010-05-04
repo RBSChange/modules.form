@@ -7,6 +7,34 @@ abstract class FormHelper
 	const DISPLAY_BUTTONS  = 'buttons';
 
 	/**
+	 * @var string
+	 */
+	private static $moduleName = 'form';
+	
+	/**
+	 * @param string $moduleName
+	 */
+	public static function setModuleName($moduleName = 'form')
+	{
+		if ($moduleName !== null)
+		{
+			self::$moduleName = $moduleName;
+		}
+		else
+		{
+			self::$moduleName = 'form';
+		}
+	}
+	
+	/**
+	 * @return string
+	 */
+	public static function getModuleName()
+	{
+		return self::$moduleName;
+	}
+	
+	/**
 	 * Generate a <input type="text"/> element.
 	 *
 	 * @param string $name
@@ -27,10 +55,8 @@ abstract class FormHelper
 		return self::field('Text', $attributes);
 	}
 
-
 	/**
 	 * Generate a <input type="hidden"/> element.
-	 *
 	 * @param string $name
 	 * @param string $id
 	 * @param string $value
@@ -44,10 +70,8 @@ abstract class FormHelper
 		return self::field('Hidden', $attributes);
 	}
 
-
 	/**
 	 * Generate a <input type="password"/> element.
-	 *
 	 * @param string $name
 	 * @param string $id
 	 * @param array<string,string> $attributes
@@ -64,10 +88,8 @@ abstract class FormHelper
 		return self::field('Password', $attributes);
 	}
 
-
 	/**
 	 * Generate a <textarea/> element.
-	 *
 	 * @param string $name
 	 * @param string $id
 	 * @param string $value
@@ -90,10 +112,8 @@ abstract class FormHelper
 		return self::field('MultilineText', $attributes);
 	}
 
-
 	/**
 	 * Generate a <select/> element, with multiple selection enabled.
-	 *
 	 * @param string $name
 	 * @param string $id
 	 * @param string $value
@@ -111,10 +131,8 @@ abstract class FormHelper
 		return self::listField($name, $id, $value, $items, self::SELECTION_MULTIPLE, $attributes);
 	}
 
-
 	/**
 	 * Generate a <select/> element.
-	 *
 	 * @param string $name
 	 * @param string $id
 	 * @param string $value
@@ -132,10 +150,8 @@ abstract class FormHelper
 		return self::listField($name, $id, $value, $items, self::SELECTION_SINGLE, $attributes);
 	}
 
-
 	/**
 	 * Generate a <input type="checkbox"/> element.
-	 *
 	 * @param string $name
 	 * @param string $id
 	 * @param string $value
@@ -152,10 +168,8 @@ abstract class FormHelper
 		return self::field('Checkbox', $attributes);
 	}
 
-
 	/**
 	 * Generate a <input type="file"/> element.
-	 *
 	 * @param string $name
 	 * @param string $id
 	 * @param string $value
@@ -174,7 +188,13 @@ abstract class FormHelper
 		return self::field('File', $attributes);
 	}
 
-
+	/**
+	 * @param string $name
+	 * @param string $id
+	 * @param string $value
+	 * @param array<string,string> $attributes
+	 * @return string
+	 */
 	public static function dateBox($name, $id, $value, $attributes = array())
 	{
 		$attributes['name']  = $name;
@@ -184,7 +204,6 @@ abstract class FormHelper
 		$attributes['class'] = 'date-picker';
 		return self::field('Date', $attributes);
 	}
-
 
 	/**
 	 * @param form_persistentdocument_field $field
@@ -204,11 +223,9 @@ abstract class FormHelper
 		return "Unknown field type: ".get_class($field, $value);
 	}
 
-
 	/**
 	 * Builds an associative array ready to be given to a URL builder from the
 	 * given associative array $data "fieldName" => "fieldValue".
-	 *
 	 * @param array<fieldName=>fieldValue> $data
 	 * @return array<"formParam"=>array<fieldName=>fieldValue>>
 	 */
@@ -217,13 +234,10 @@ abstract class FormHelper
 		return array('formParam' => $data);
 	}
 
-
 	// PRIVATE METHODS /////////////////////////////////////////////////////////
-
 
 	/**
 	 * Generate a field element from the provided template and attributes.
-	 *
 	 * @param string $template
 	 * @param array<string,string> $attributes
 	 * @return string
@@ -232,6 +246,7 @@ abstract class FormHelper
 	{
 		$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->load('Form-Field-' . $template);
     	$templateObject->setAttribute('field', $attributes);
+    	$templateObject->setAttribute('moduleName', self::getModuleName());
     	return $templateObject->execute();
 	}
 
@@ -242,14 +257,12 @@ abstract class FormHelper
 
 	/**
 	 * Generate a <select/> element.
-	 *
 	 * @param string $name
 	 * @param string $id
 	 * @param string $value
 	 * @param array<string,string> $items
 	 * @param string $type self::SELECTION_SINGLE, self::SELECTION_MULTIPLE, self::SELECTION_SIGNLE_RADIO
 	 * @param array<string,string> $attributes
-	 *
 	 * @return string
 	 */
 	private static function listField($name, $id, $value, $items, $type = self::SELECTION_SINGLE, $attributes = array())
@@ -287,11 +300,9 @@ abstract class FormHelper
 		return self::field($template, $attributes);
 	}
 
-
 	/**
 	 * @param form_persistentdocument_text $field
 	 * @param string $value
-	 *
 	 * @return string
 	 */
 	private static function fromTextFieldDocument($field, $value)
@@ -302,7 +313,6 @@ abstract class FormHelper
 	/**
 	 * @param form_persistentdocument_mail $field
 	 * @param string $value
-	 *
 	 * @return string
 	 */
 	private static function fromMailFieldDocument($field, $value)
@@ -331,6 +341,9 @@ abstract class FormHelper
 		else
 		{
 			$attributes['size'] = $field->getCols();
+			$attributes['autocorrect'] = $field->getDisableAutocorrect() ? 'off' : 'on';
+			$attributes['autocapitalize'] = $field->getDisableAutocapitalize() ? 'off' : 'on';
+			$attributes['autocomplete'] = $field->getDisableAutocomplete() ? 'off' : 'on';
 			return self::textBox($field->getFieldName(), $field->getId(), $value, $attributes);
 		}
 	}
@@ -338,7 +351,6 @@ abstract class FormHelper
 	/**
 	 * @param form_persistentdocument_list $field
 	 * @param string $value
-	 *
 	 * @return string
 	 */
 	private static function fromListFieldDocument($field, $value)
@@ -413,7 +425,6 @@ abstract class FormHelper
 	/**
 	 * @param form_persistentdocument_recipientGroupList $field
 	 * @param string $value
-	 *
 	 * @return string
 	 */
 	private static function fromRecipientGroupListFieldDocument($field, $value)
@@ -425,7 +436,6 @@ abstract class FormHelper
 	/**
 	 * @param form_persistentdocument_password $field
 	 * @param string $value
-	 *
 	 * @return string
 	 */
 	private static function fromPasswordFieldDocument($field, $value)
@@ -436,10 +446,8 @@ abstract class FormHelper
 		return self::passwordBox($field->getFieldName(), $field->getId(), $attributes);
 	}
 
-
 	/**
 	 * @param form_persistentdocument_file $field
-	 *
 	 * @return string
 	 */
 	private static function fromFileFieldDocument($field)
@@ -450,10 +458,8 @@ abstract class FormHelper
 		return self::uploadFileBox($field->getFieldName(), $field->getId(), $attributes);
 	}
 
-
 	/**
 	 * @param form_persistentdocument_hidden $field
-	 *
 	 * @return string
 	 */
 	private static function fromHiddenFieldDocument($field, $value)
@@ -462,10 +468,8 @@ abstract class FormHelper
 		return self::hiddenBox($field->getFieldName(), $field->getId(), $value);
 	}
 
-
 	/**
 	 * @param form_persistentdocument_date $field
-	 *
 	 * @return string
 	 */
 	private static function fromDateFieldDocument($field, $value)
@@ -477,11 +481,9 @@ abstract class FormHelper
 		return self::dateBox($field->getFieldName(), $field->getId(), $value, $attributes);
 	}
 
-
 	/**
 	 * @param form_persistentdocument_boolean $field
 	 * @param string $value
-	 *
 	 * @return string
 	 */
 	private static function fromBooleanFieldDocument($field, $value)
@@ -516,7 +518,6 @@ abstract class FormHelper
 		}
 		return $html;
 	}
-
 
 	/**
 	 * @param String $code
@@ -602,5 +603,20 @@ abstract class FormHelper
 		}
 		
 		return null;
+	}
+		
+	/**
+	 * @param website_Page $page
+	 * @param form_persistentdocument_baseform $form
+	 */
+	public static function addScriptsAndStyles($page)
+	{
+		$page->addStyle('modules.form.frontoffice');
+		$page->addScript('modules.form.lib.js.date-picker.date');
+		$page->addScript('modules.form.lib.js.date-picker.date_'.RequestContext::getInstance()->getLang());
+		$page->addScript('modules.form.lib.js.date-picker.jquery-bgiframe');
+		$page->addScript('modules.form.lib.js.date-picker.jquery-dimensions');
+		$page->addScript('modules.form.lib.js.date-picker.jquery-datePicker');
+		$page->addScript('modules.form.lib.js.form');
 	}
 }

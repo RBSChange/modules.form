@@ -1,61 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <localization>
-  <entity id="document-name">
-    <locale lang="fr">groupe d'envoi</locale>
-    <locale lang="en">recipient group</locale>
-    <locale lang="de">Versandgruppe</locale>
-  </entity>
-  <entity id="edition-form-title">
-    <locale lang="fr">propriétés du groupe d'envoi</locale>
-    <locale lang="en">recipient group properties</locale>
-    <locale lang="de">Eigenschaften Versandgruppe</locale>
-  </entity>
-  <entity id="label">
-    <locale lang="fr">libellé</locale>
-    <locale lang="en">label</locale>
-    <locale lang="de">Name</locale>
-  </entity>
-  <entity id="label-help">
-    <locale lang="fr">libellé</locale>
-    <locale lang="en">label</locale>
-    <locale lang="de">Name</locale>
-  </entity>
-  <entity id="description">
-    <locale lang="fr">description</locale>
-    <locale lang="en">description</locale>
-  </entity>
-  <entity id="description-help">
-    <locale lang="fr">description</locale>
-    <locale lang="en">description</locale>
-  </entity>
-  <entity id="to">
-    <locale lang="fr">destinataires principaux</locale>
-    <locale lang="en">main recipients</locale>
-    <locale lang="de">Hauptempfänger</locale>
-  </entity>
-  <entity id="to-help">
-    <locale lang="fr">destinataires principaux</locale>
-    <locale lang="en">main recipients</locale>
-    <locale lang="de">Hauptempfänger</locale>
-  </entity>
-  <entity id="cc">
-    <locale lang="fr">destinataires secondaires</locale>
-    <locale lang="en">secondary recipients</locale>
-    <locale lang="de">Sekundärempfänger</locale>
-  </entity>
-  <entity id="cc-help">
-    <locale lang="fr">les destinataires secondaires sont placés en copie de l'email envoyé (CC)</locale>
-    <locale lang="en">secondary recipients (CC)</locale>
-    <locale lang="de">die Sekundärempfänger werden in Kopie (CC) der E-mail gesetzt</locale>
-  </entity>
-  <entity id="bcc">
-    <locale lang="fr">destinataires cachés</locale>
-    <locale lang="en">hidden recipients (BCC)</locale>
-    <locale lang="de">versteckte Empfänger</locale>
-  </entity>
-  <entity id="bcc-help">
-    <locale lang="fr">les destinataires cachés sont placés en copie cachée de l'email envoyé (BCC)</locale>
-    <locale lang="en">secondary recipients</locale>
-    <locale lang="de">versteckte Empfänger werden in versteckter Kopie (BCC) der E-mail gesetzt</locale>
-  </entity>
+	<entity id="document-name">
+		<locale lang="fr">groupe d'envoi</locale>
+		<locale lang="en">recipient group</locale>
+		<locale lang="de">Versandgruppe</locale>
+	</entity>
+	<entity id="label">
+		<locale lang="fr">libellé</locale>
+		<locale lang="en">label</locale>
+		<locale lang="de">Name</locale>
+	</entity>
+	<entity id="description">
+		<locale lang="fr">description</locale>
+		<locale lang="en">description</locale>
+	</entity>
+	<entity id="to">
+		<locale lang="fr">destinataires principaux</locale>
+		<locale lang="en">main recipients</locale>
+		<locale lang="de">Hauptempfänger</locale>
+	</entity>
+	<entity id="cc">
+		<locale lang="fr">destinataires secondaires</locale>
+		<locale lang="en">secondary recipients</locale>
+		<locale lang="de">Sekundärempfänger</locale>
+	</entity>
+	<entity id="cc-help">
+		<locale lang="fr">les destinataires secondaires sont placés en copie de l'email envoyé (CC).</locale>
+		<locale lang="en">secondary recipients (CC).</locale>
+		<locale lang="de">die Sekundärempfänger werden in Kopie (CC) der E-mail gesetzt.</locale>
+	</entity>
+	<entity id="bcc">
+		<locale lang="fr">destinataires cachés</locale>
+		<locale lang="en">hidden recipients (BCC)</locale>
+		<locale lang="de">versteckte Empfänger</locale>
+	</entity>
+	<entity id="bcc-help">
+		<locale lang="fr">les destinataires cachés sont placés en copie cachée de l'email envoyé (BCC).</locale>
+		<locale lang="en">secondary recipients.</locale>
+		<locale lang="de">versteckte Empfänger werden in versteckter Kopie (BCC) der E-mail gesetzt.</locale>
+	</entity>
 </localization>
