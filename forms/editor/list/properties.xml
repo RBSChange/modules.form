@@ -12,7 +12,7 @@
 		<field name="hasBlankOption" />
 	</section>
 	<section labeli18n="modules.form.bo.general.Activation-conditions" class="activation-conditions">
-		<field name="activationQuestion" allow="modules_form_boolean,modules_form_list" />
+		<field name="activationQuestion" type="dropdownlist" emptylabel="" nocache="true" />
 		<field name="activationValue" />
 	</section>
 </panel>

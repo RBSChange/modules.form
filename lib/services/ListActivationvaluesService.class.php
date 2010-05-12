@@ -5,7 +5,7 @@ class form_ListActivationvaluesService extends BaseService
 	 * @var form_ListActivationvaluesService
 	 */
 	private static $instance;
-
+	
 	/**
 	 * @return form_ListActivationvaluesService
 	 */
@@ -17,14 +17,13 @@ class form_ListActivationvaluesService extends BaseService
 		}
 		return self::$instance;
 	}
-
+	
 	/**
 	 * @return array<list_Item>
 	 */
 	public final function getItems()
 	{
-		
-		try 
+		try
 		{
 			$request = Controller::getInstance()->getContext()->getRequest();
 			$questionId = intval($request->getParameter('questionId', 0));
@@ -46,8 +45,8 @@ class form_ListActivationvaluesService extends BaseService
 			$trueLabel = $question->getTruelabel();
 			$falseLabel = $question->getFalselabel();
 			
-			$results[$trueLabel] = new list_Item($trueLabel,$trueLabel);
-			$results[$falseLabel] = new list_Item($falseLabel,$falseLabel);
+			$results[$trueLabel] = new list_Item($trueLabel, $trueLabel);
+			$results[$falseLabel] = new list_Item($falseLabel, $falseLabel);
 		}
 		else if ($question instanceof form_persistentdocument_list)
 		{
@@ -56,7 +55,7 @@ class form_ListActivationvaluesService extends BaseService
 		
 		return $results;
 	}
-
+	
 	/**
 	 * @return String
 	 */

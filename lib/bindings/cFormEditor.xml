@@ -72,8 +72,24 @@
 			
 			<constructor><![CDATA[
 				var me = this;
-				this.getPanel().addEventListener('panelInitializeComplete', function () { me.setActivation(); }, true);
+				this.getPanel().addEventListener('panelInitializeComplete', function () { me.loadQuestionList(); me.setActivation(); }, true);
 			]]></constructor>
+		
+			<method name="loadQuestionList">
+				<body><![CDATA[
+					try
+					{
+						var panel = this.getPanel();
+						var editor = panel.documentEditor;
+						var questionField = panel.fields.activationQuestion;
+						questionField.replaceItems({parentId: editor.parentid, documentId: editor.documentid, cmpref: 'modules_form/activationfields'});
+					}
+					catch (e)
+					{
+						wCore.error('cActivationConditionsSection.setActivation', [], e);
+					}
+				]]></body>
+			</method>
 		
 			<method name="setActivation">
 				<body><![CDATA[

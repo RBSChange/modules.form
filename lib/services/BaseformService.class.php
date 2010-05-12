@@ -850,4 +850,27 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		return !$this->hasToUseCaptcha($form) || FormHelper::checkCaptcha(Controller::getInstance()->getContext()->getRequest()->getModuleParameter('form', CAPTCHA_SESSION_KEY));
 	}
+	
+	/**
+	 * @param form_persistentdocument_baseform $form
+	 * @param integer[] $excludeIds
+	 */
+	public function getValidActivationFields($form, $excludeIds = array())
+	{
+		$query = form_FieldService::getInstance()->createQuery();
+		$query->add(Restrictions::descendentOf($form->getId()));
+		if (f_util_ArrayUtils::isNotEmpty($excludeIds))
+		{
+			$query->add(Restrictions::notin('id', $excludeIds));
+		}
+		$validFields = array();
+		foreach ($query->find() as $field)
+		{
+			if ($field instanceof form_persistentdocument_boolean || $field instanceof form_persistentdocument_list)
+			{
+				$validFields[] = $field;
+			}
+		}
+		return $validFields;
+	}
 }

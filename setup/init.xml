@@ -52,6 +52,9 @@
 		<dynamiclist listid="modules_form/recipientgrouplist" label="Liste des groupes d'envoi"
 			description="Liste des groupes d'envoi" />
 			
+		<dynamiclist listid="modules_form/activationfields" label="Champs d'activation"
+			description="Liste des champs pouvant servir de condition d'activation en fonction d'un formulaire donné." />
+			
 		<dynamiclist listid="modules_form/activationvalues" label="Valeurs d'activation"
 			description="Liste des valeurs d'activation en fonction de la question sélectionnée." />
 	</systemfolder>

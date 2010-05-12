@@ -164,7 +164,10 @@ class form_FormService extends form_BaseformService
 			}
 		}
 
-		Framework::debug(__METHOD__ . " A message has to be sent: ".$form->getMessageSendingType());
+		if (Framework::isDebugEnabled())
+		{
+			Framework::debug(__METHOD__ . " A message has to be sent: ".$form->getMessageSendingType());
+		}
 		$result = array();
 		$result['success'] = $this->sendEmail($form, $response, $request, $copyMail, $replyTo);
 		return $result;
