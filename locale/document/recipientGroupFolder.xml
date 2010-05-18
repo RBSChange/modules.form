@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <localization extend="modules.generic.document.folder">
   <entity id="document-name">
-    <locale lang="fr">recipientGroupFolder</locale>
-    <locale lang="en">recipientGroupFolder</locale>
+    <locale lang="fr">Groupes d'envois</locale>
+    <locale lang="en">Recipient groups</locale>
   </entity>
 </localization>
