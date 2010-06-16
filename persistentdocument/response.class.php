@@ -52,4 +52,12 @@ class form_persistentdocument_response extends form_persistentdocument_responseb
 		}
 		return $data;
 	}
+	
+	/**
+	 * @return array
+	 */
+	public function getResponseInfos()
+	{
+		return $this->getDocumentService()->getResponseInfos($this);
+	}
 }

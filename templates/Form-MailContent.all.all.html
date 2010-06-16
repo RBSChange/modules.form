@@ -1,7 +1,16 @@
-<dl>
-<tal:block tal:repeat="item items">
-<dt tal:content="item/label" />
-<dd tal:content="item/mailValue" tal:condition="item/mailValue"/>
-<dd tal:content="item/value" tal:condition="not: item/mailValue"/>
+<tal:block metal:define-macro="groupContent1">
+	<tal:block tal:repeat="node contents">
+		<tal:block tal:condition="node/isGroup">
+			<dt><strong>${node/label}</strong></dt>
+			<dd></dd>
+			<tal:block tal:define="contents node/contents" metal:use-macro="groupContent1" />
+		</tal:block>
+		<tal:block tal:condition="not:node/isGroup">
+			<dt><em>${node/label}</em></dt>
+			<dd>${node/value}</dd>
+		</tal:block>
+	</tal:block>
 </tal:block>
+<dl>
+	<tal:block tal:define="contents response/contents" metal:use-macro="groupContent1" />
 </dl>

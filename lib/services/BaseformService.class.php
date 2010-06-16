@@ -189,7 +189,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * this method is call before save the duplicate document.
+	 * this method is called before save the duplicate document.
 	 * If this method not override in the document service, the document isn't duplicable.
 	 * An IllegalOperationException is so launched.
 	 *
@@ -206,7 +206,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * this method is call after saving the duplicate document.
+	 * this method is called after saving the duplicate document.
 	 * $newDocument has an id affected.
 	 * Traitment of the children of $originalDocument.
 	 *
@@ -570,58 +570,16 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			throw new form_FormValidationException("Form does not validate", $errors);
 		}
 
-		$data = $request->getParameters();
 		$domDoc = new DOMDocument('1.0', 'utf-8');
 		$domDoc->formatOutput = true;
 		$rootElm = $domDoc->createElement('response');
 		$rootElm->setAttribute('lang', RequestContext::getInstance()->getLang());
 		$rootElm->setAttribute('date', date('Y-m-d H:i:s'));
 		$domDoc->appendChild($rootElm);
-		$fields = $this->getFields($form);
+		$fields = $this->getSortedFields($form);
 		$replyTo = null;
 		$acknowledgmentReceiver = null;
-		foreach ($fields as $field)
-		{
-			if (!$field->getDocumentService()->isConditionValid($field, $data))
-			{
-				continue;
-			}
-
-			$fieldName = $field->getFieldName();
-			if ($field instanceof form_persistentdocument_file)
-			{
-				$rawValue = $request->getUploadedFileInformation($fieldName);
-			}
-			else
-			{
-				$rawValue = isset($data[$fieldName]) ? $data[$fieldName] : null;
-			}
-
-			$fieldElm = $domDoc->createElement('field');
-			$fieldElm->setAttribute('name', $fieldName);
-			$fieldElm->setAttribute('label', $field->getLabel());
-			$fieldElm->setAttribute('type', $field->getType());
-
-			$rootElm->appendChild($fieldElm);
-
-			// Special raw data for uploaded file.
-			$fieldValue = $field->getDocumentService()->buildXmlElementResponse($field, $fieldElm, $rawValue);
-			if (!empty($fieldValue))
-			{
-				$fieldElm->appendChild($domDoc->createTextNode($fieldValue));
-			}
-			if ($field instanceof form_persistentdocument_mail)
-			{
-				if ($field->getUseAsReply())
-				{
-					$replyTo = $rawValue;
-				}
-				if ($field->getAcknowledgmentReceiver())
-				{
-					$acknowledgmentReceiver = $rawValue;
-				}
-			}
-		}
+		$this->doMakeXmlResponse($domDoc, $rootElm, $request, $replyTo, $acknowledgmentReceiver, $form);
 
 		$response = form_ResponseService::getInstance()->getNewDocumentInstance();
 		$response->setContents($domDoc->saveXML());
@@ -639,7 +597,79 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			}
 		}
 		return $result;
-	}	
+	}
+	
+	/**
+	 * @param f_persistentdocument_PersistentDocument $parent
+	 */
+	private function doMakeXmlResponse($domDoc, $rootElm, $request, &$replyTo, &$acknowledgmentReceiver, $node, $groupName = null, $level = 0)
+	{
+		$data = $request->getParameters();
+		if ($node instanceof form_persistentdocument_field)
+		{
+			if (!$node->getDocumentService()->isConditionValid($node, $data))
+			{
+				return;
+			}
+			
+			$fieldName = $node->getFieldName();
+			if ($node instanceof form_persistentdocument_file)
+			{
+				$rawValue = $request->getUploadedFileInformation($fieldName);
+			}
+			else
+			{
+				$rawValue = isset($data[$fieldName]) ? $data[$fieldName] : null;
+			}
+			
+			$fieldElm = $domDoc->createElement('field');
+			$fieldElm->setAttribute('name', $fieldName);
+			$fieldElm->setAttribute('label', $node->getLabel());
+			$fieldElm->setAttribute('type', $node->getType());
+			$fieldElm->setAttribute('level', $level);
+			if ($groupName !== null)
+			{
+				$fieldElm->setAttribute('groupName', $groupName);
+			}			
+			$rootElm->appendChild($fieldElm);
+
+			// Special raw data for uploaded file.
+			$fieldValue = $node->getDocumentService()->buildXmlElementResponse($node, $fieldElm, $rawValue);
+			if (!empty($fieldValue))
+			{
+				$fieldElm->appendChild($domDoc->createTextNode($fieldValue));
+			}
+			if ($node instanceof form_persistentdocument_mail)
+			{
+				if ($field->getUseAsReply())
+				{
+					$replyTo = $rawValue;
+				}
+				if ($field->getAcknowledgmentReceiver())
+				{
+					$acknowledgmentReceiver = $rawValue;
+				}
+			}
+		}
+		else if ($node instanceof form_persistentdocument_group)
+		{
+			if (!$node->getDocumentService()->isConditionValid($node, $data))
+			{
+				return;
+			}
+			foreach ($node->getDocumentService()->getChildrenOf($node) as $child)
+			{
+				$this->doMakeXmlResponse($domDoc, $rootElm, $request, $replyTo, $acknowledgmentReceiver, $child, $node->getLabel(), $level+1);
+			}
+		}
+		else
+		{
+			foreach ($node->getDocumentService()->getChildrenOf($node) as $child)
+			{
+				$this->doMakeXmlResponse($domDoc, $rootElm, $request, $replyTo, $acknowledgmentReceiver, $child, $groupName, $level);
+			}
+		}
+	}
 	
 	/**
 	 * @param form_persistentdocument_baseform $form
@@ -698,6 +728,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType(K::HTML)->load('Form-MailContent');
 		$contentTemplate->setAttribute('items', $response->getAllData());
+		$contentTemplate->setAttribute('response', $response->getResponseInfos());
 		
 		$parameters = $response->getData();
 		$parameters[self::CONTENT_REPLACEMENT_NAME] = $contentTemplate->execute();
@@ -731,6 +762,37 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		return $fields;
 	}
 
+	/**
+	 * Warning: this method is heavier than getFields, so if you don't need
+	 * the fields to be ordered, please use getFields.
+	 * @param form_persistentdocument_baseform $form
+	 * @return array<form_persistentdocument_field>
+	 */
+	public function getSortedFields($form)
+	{
+		return $this->doGetSortedFields($form);
+	}
+	
+	/**
+	 * @param f_persistentdocument_PersistentDocument $parent
+	 */
+	private function doGetSortedFields($parent)
+	{
+		$sortedFields = array();
+		
+		foreach ($parent->getDocumentService()->getChildrenOf($parent) as $child)
+		{
+			if ($child instanceof form_persistentdocument_field)
+			{
+				$sortedFields[] = $child;
+			}
+			else
+			{
+				$sortedFields = array_merge($sortedFields, $this->doGetSortedFields($child));
+			}
+		}
+	}
+	
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @param string $fieldName

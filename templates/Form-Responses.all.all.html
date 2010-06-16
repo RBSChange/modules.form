@@ -1,42 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
-<head>
-<title tal:content="form/getLabel"></title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<style type="text/css">
-body,h1,h2,p,dt,dd {
-	font-family: Trebuchet MS, Arial, sans-serif;
-	color: black;
-}
-body, dt, dd {
-	background: white;
-	font-size: 10pt;
-}
-dt {
-	font-weight: bold;
-}
-h1 {
-	font-size: 14pt;
-}
-h2 {
-	border-top: 1px solid black;
-	font-size: 12pt;
-	text-align: right;
-}
-</style>
-</head>
-
-<body>
-<h1>Formulaire "${form/getLabel}", ${responsesCount} réponses</h1>
-<span tal:repeat="response responses" tal:omit-tag="">
-	<h2><span change:datetime="value response/date; format 'd/m/Y H:i:s'" /></h2>
-	<dl>
-		<span tal:repeat="field response/fields" tal:omit-tag="">
-			<dt tal:content="field/label"></dt>
-			<dd tal:content="field/value"></dd>
-		</span>
-	</dl>
-</span>
-</body>
+	<head>
+		<title tal:content="form/getLabel"></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			body, h1, h2, p, dt, dd {
+				font-family: Trebuchet MS, Arial, sans-serif;
+				background: white;
+				color: black;
+				font-size: 10pt;
+			}
+			dt {
+				font-weight: bold;
+			}
+			dd {
+				margin-bottom: 5px;
+			}
+			h1 {
+				font-size: 14pt;
+			}
+			h2 {
+				font-size: 12pt;
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Formulaire "${form/getLabel}", ${responsesCount} réponses</h1>
+		<tal:block tal:repeat="response responses">
+			<hr />
+			<h2><span change:datetime="value response/date; format 'd/m/Y H:i:s'" /></h2>
+			<dl metal:define-macro="groupContent">
+				<tal:block tal:repeat="node contents">
+					<dt>${node/label}</dt>
+					<dd tal:condition="node/isGroup">
+						<dl tal:define="contents node/contents" metal:use-macro="groupContent"></dl>
+					</dd>
+					<dd tal:condition="not:node/isGroup">${node/value}</dd>
+				</tal:block>
+			</dl>
+			<dl tal:define="contents response/contents" metal:use-macro="groupContent"></dl>
+		</tal:block>
+	</body>
 </html>
