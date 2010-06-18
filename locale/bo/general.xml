@@ -305,5 +305,14 @@
 	</entity>
 	<entity id="iphone-specific-configurations">
 		<locale lang="fr">configurations spécifiques à l'iPhone</locale>
+		<locale lang="fr">iphone specific configurations</locale>
+	</entity>
+	<entity id="column.responsecount">
+		<locale lang="fr">Nombre de réponses</locale>
+		<locale lang="fr">number of submissions</locale>
+	</entity>
+	<entity id="column.activeresponse">
+		<locale lang="fr">nombre de réponses actives</locale>
+		<locale lang="fr">number of active submissions</locale>
 	</entity>
 </localization>

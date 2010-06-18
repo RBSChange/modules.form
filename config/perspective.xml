@@ -12,6 +12,10 @@
 				</groupactions>
 				<contextaction name="openFolder" />
 			</contextactions>
+			<columns>
+				<column name="responseCount" label="Responsecount" flex="1"/>
+				<column name="activeResponse" label="Activeresponse" flex="1"/>
+			</columns>
 			<children>
 				<child model="modules_generic/folder" />
 				<child model="modules_generic/systemfolder" />
@@ -29,6 +33,10 @@
 				<child model="modules_generic/folder" />
 				<child model="modules_form/form" />
 			</children>
+			<columns>
+				<column name="responseCount" label="Responsecount" flex="1"/>
+				<column name="activeResponse" label="Activeresponse" flex="1"/>
+			</columns>
 			<drops>
 				<drop model="modules_generic/folder" action="move" />
 				<drop model="modules_form/form" action="move" />
@@ -48,6 +56,10 @@
 			<children>
 				<child model="modules_form/form" />
 			</children>
+			<columns>
+				<column name="responseCount" label="Responsecount" flex="1"/>
+				<column name="activeResponse" label="Activeresponse" flex="1"/>
+			</columns>
 			<contextactions>
 				<contextaction name="edit" />
 				<contextaction name="openTreeNodeOrder" />
