@@ -1,19 +1,19 @@
 <html>
-<head>
-	<title tal:content="email/subject"/>
-	<link rel="stylesheet" tal:replace="email/stylesheetUrl" />
-</head>
-<body>
-	<h1 tal:content="email/subject"></h1>
-	<em tal:condition="email/header" tal:content="email/header"/>
-
-	<dl>
-	<span tal:repeat="item email/items" tal:omit-tag="">
-	<dt tal:content="item/label" />
-	<dd tal:content="item/value" />
-	</span>
-	</dl>
-
-	<em tal:condition="email/footer" tal:content="email/footer"/>
-</body>
+	<head>
+		<title>${email/subject}</title>
+		<link rel="stylesheet" tal:replace="email/stylesheetUrl" />
+	</head>
+	<body>
+		<h1 tal:content="email/subject"></h1>
+		<em tal:condition="email/header">${email/header}</em>
+	
+		<dl>
+		<tal:block tal:repeat="item email/items">
+			<dt tal:content="item/label" />
+			<dd tal:content="item/value" />
+		</tal:block>
+		</dl>
+	
+		<em tal:condition="email/footer">${email/footer}</em>
+	</body>
 </html>

@@ -8,7 +8,7 @@
 	<fieldset id="fieldset_${field/id}" class="radio">	
 		<legend>${field/label}<span tal:condition="hasCondition" class="nojs" change:translate="&modules.form.frontoffice.accessibility.activationSpaced;; value activationlabel">(Si "${activationlabel}")</span><em tal:condition="field/required">*</em></legend>		
 		<ol>
-			<div tal:replace="field/html" />
+			<li tal:replace="field/html" />
 		</ol>
 		<p tal:condition="field/description" tal:content="field/description" class="help-text"></p>
 	</fieldset>
