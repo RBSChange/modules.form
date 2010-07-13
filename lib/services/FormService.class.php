@@ -59,7 +59,7 @@ class form_FormService extends form_BaseformService
 	 * @param form_persistentdocument_form $document
 	 * @param f_persistentdocument_PersistentTreeNode $parentNodeId
 	 */
-	protected function preInsert($document, $parentNodeId = null)
+	protected function preInsert($document, $parentNodeId)
 	{
 		if ($document->getNotification() === null)
 		{
@@ -460,9 +460,12 @@ class form_FormService extends form_BaseformService
 	protected function postDuplicate($newDocument, $originalDocument, $parentNodeId)
 	{
 		$oldNotification = $originalDocument->getNotification();
-		$newNotification = $newDocument->getNotification();
-		$this->duplicateNotificationInfo($oldNotification, $newNotification);
-		$newNotification->save();
+		if ($oldNotification !== null)
+		{
+			$newNotification = $newDocument->getNotification();
+			$this->duplicateNotificationInfo($oldNotification, $newNotification);
+			$newNotification->save();
+		}
 		
 		parent::postDuplicate($newDocument, $originalDocument, $parentNodeId);
 	}

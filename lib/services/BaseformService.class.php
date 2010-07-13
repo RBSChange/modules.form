@@ -89,7 +89,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
 	 * @return void
 	 */
-	protected function preSave($document, $parentNodeId = null)
+	protected function preSave($document, $parentNodeId)
 	{
 		if ($document->getFormid() === null)
 		{
@@ -111,7 +111,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
 	 * @return void
 	 */
-	protected function postSave($document, $parentNodeId = null)
+	protected function postSave($document, $parentNodeId)
 	{
 		$this->updateNotifications($document);
 	}
@@ -219,9 +219,12 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	protected function postDuplicate($newDocument, $originalDocument, $parentNodeId)
 	{
 		$oldNotification = $originalDocument->getAcknowledgmentNotification();
-		$newNotification = $newDocument->getAcknowledgmentNotification();
-		$this->duplicateNotificationInfo($oldNotification, $newNotification);
-		$newNotification->save();		
+		if ($oldNotification !== null)
+		{
+			$newNotification = $newDocument->getAcknowledgmentNotification();
+			$this->duplicateNotificationInfo($oldNotification, $newNotification);
+			$newNotification->save();
+		}		
 
 		$items = $this->getChildrenOf($originalDocument);
 		foreach ($items as $item)

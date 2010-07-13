@@ -4,7 +4,7 @@
 	model-version="1.0" publish-on-day-change="false" has-url="false">
 	<properties>
 		<add name="label" localized="true" />
-		<add name="fieldName" type="String" min-occurs="1">
+		<add name="fieldName" type="String">
 			<constraints>matches:^[a-zA-Z][a-z_\-A-Z\[\]0-9]+$</constraints>
 		</add>
 		<add name="validators" type="LongString" />

@@ -5,8 +5,6 @@ class form_FieldService extends f_persistentdocument_DocumentService
 
 	private $deletedFieldsForms = array();
 	
-	private $fieldNameCounter = 0;
-
 	/**
 	 * @var form_FieldService
 	 */
@@ -95,21 +93,45 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	 */
 	protected function preSave($document, $parentNodeId = null)
 	{
+		$parentDoc = ($parentNodeId != null) ? DocumentHelper::getDocumentInstance($parentNodeId) : $this->getParentOf($document);
+		if (!f_util_StringUtils::isEmpty($document->getFieldName()))
+		{
+			form_BaseformService::getInstance()->checkFieldNameAvailable($document, $parentDoc->getId());
+		}
+		
+		$this->fixRequiredConstraint($document);
+	}
+	
+	/**
+	 * @param form_persistentdocument_field $document
+	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @return void
+	 */
+	protected function postSave($document, $parentNodeId)
+	{
 		$fieldName = $document->getFieldName();
 		if (f_util_StringUtils::isEmpty($fieldName))
 		{
-			$this->fieldNameCounter = $this->fieldNameCounter + 1;
-			$fieldName = 'f' . time() . $this->fieldNameCounter;
-			if (Framework::isDebugEnabled())
+			try
 			{
-				Framework::debug(__METHOD__ . ' Generate FieldName: ' . $fieldName . ' for document ' . $document->__toString());
+				$this->tm->beginTransaction();
+				
+				$fieldName = 'f' . $document->getId();
+				if (Framework::isDebugEnabled())
+				{
+					Framework::debug(__METHOD__ . ' Generate FieldName: ' . $fieldName . ' for document ' . $document->__toString());
+				}
+				$document->setFieldName($fieldName);
+				
+				$this->pp->updateDocument($document);
+				$this->tm->commit();
 			}
-			$document->setFieldName($fieldName);
+			catch (Exception $e)
+			{
+				$this->tm->rollBack($e);
+				throw $e;
+			}
 		}
-		
-		$parentDoc = ($parentNodeId != null) ? DocumentHelper::getDocumentInstance($parentNodeId) : $this->getParentOf($document);
-		form_BaseformService::getInstance()->checkFieldNameAvailable($document, $parentDoc->getId());
-		$this->fixRequiredConstraint($document);
 	}
 		
 	/**
@@ -118,7 +140,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	 * @return void
 	 * @throws Exception if no parent form is found.
 	 */
-	protected function postInsert($document, $parentNodeId = null)
+	protected function postInsert($document, $parentNodeId)
 	{
 		$form = $this->getFormOf($document);
 		$form->getDocumentService()->onFieldAdded($form);
