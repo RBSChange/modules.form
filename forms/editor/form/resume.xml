@@ -6,6 +6,7 @@
 		<property name="creationdate" labeli18n="modules.uixul.bo.doceditor.property.Creationdate" />
 		<property name="notification" labeli18n="modules.form.document.form.Notification" class="openactionuri" />
 		<property name="acknowledgmentNotification" labeli18n="modules.form.document.form.AcknowledgmentNotification" class="openactionuri" />
+		<property name="responseCount" class="action" type="viewResponses" labeli18n="modules.form.document.form.ResponseCount" />
 	</section>
 
 	<section name="publication" labeli18n="modules.uixul.bo.doceditor.section.Status" image="{IconsBase}/small/status.png">

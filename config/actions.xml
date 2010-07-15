@@ -87,16 +87,17 @@
 	<action name="viewResponses">
 		<parameter name="listWidget" />
 		<body><![CDATA[
-			var item = listWidget.getSelectedItems()[0];
-			var url = wCore.buildeServerUrl('form', 'Export', { cmpref: item.id, output: 'html' });
-			wToolkit.openurl(url);
+			var document = listWidget.getSelectedItems()[0];
+			try
+			{
+				this.getController().openModalDialog(this, 'viewFormResponses', {productId: document.id, module: this});
+			}
+			catch (e)
+			{
+				wCore.error('viewFormResponses', [], e);
+				this.refreshMainViewDeck();
+			}
 	    ]]></body>
-	</action>
-	<action name="viewResponsesIsActive">
-		<parameter name="itemData" />
-		<body><![CDATA[
-	    	return itemData.activeResponse > 0;
-		]]></body>
 	</action>
 	<action name="exportCsv">
 		<parameter name="listWidget" />

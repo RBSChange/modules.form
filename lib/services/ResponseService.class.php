@@ -103,7 +103,9 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 		$fieldList = $xpath->query('/response/field');
 		$i = 0;
 		$contents = $this->getResponseContents($i, $fieldList, 0, null);
-		return array('date' => $response->getCreationdate(), 'contents' => $contents);
+		$dateTimeFormat = f_Locale::translateUI('&modules.uixul.bo.datePicker.calendar.dataWriterTimeFormat;');
+		$formattedDate = date_DateFormat::format(date_Calendar::getInstance($response->getUICreationdate()), $dateTimeFormat);
+		return array('date' => $response->getUICreationdate(), 'formattedDate' => $formattedDate, 'contents' => $contents);
 	}
 
 	/**

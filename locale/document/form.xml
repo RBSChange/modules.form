@@ -34,4 +34,8 @@
 		<locale lang="en">recipient groups</locale>
 		<locale lang="de">Empfängergruppen</locale>
 	</entity>
+	<entity id="responseCount">
+		<locale lang="fr">nombre de réponses</locale>
+		<locale lang="en">response count</locale>
+	</entity>
 </localization>

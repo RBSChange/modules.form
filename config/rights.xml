@@ -4,7 +4,11 @@
 		<document name="rootfolder" />
 		<document name="folder" />
 		<document name="baseform" />
-		<document name="form" />
+		<document name="form">
+			<action name="ArchiveResponse" />
+			<action name="Export" />
+			<action name="PreviewForm" />
+		</document>
 		<document name="boolean" />
 		<document name="date" />
 		<document name="file" />
@@ -21,9 +25,6 @@
 		<document name="recipientGroupList" />
 		<document name="recipientGroupFolder" />
 		<document name="response" />
-		<action name="ArchiveResponse" />
-		<action name="Export" />
-		<action name="PreviewForm" />
 	</actions>
 	<roles>
 		<role name="Admin">
@@ -31,8 +32,8 @@
 			<permission name="LoadPermissions.*" />
 			<permission name="SavePermissions.*" />
 			<permission name="GetPreferencesDocument" />
-			<permission name="ArchiveResponse" />
-			<permission name="Export" />
+			<permission name="ArchiveResponse.*" />
+			<permission name="Export.*" />
 			<permission name="EditLocale" />
 		</role>
 		<role name="Writer" extend="Guest">
@@ -46,7 +47,7 @@
 			<permission name="Update.*" />
 			<permission name="Activate.*" />
 			<permission name="LoadTags" />
-			<permission name="PreviewForm" />
+			<permission name="PreviewForm.*" />
 		</role>
 		<role name="Translator" extend="Guest">
 			<permission name="Load.*" />

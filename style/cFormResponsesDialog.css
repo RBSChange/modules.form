@@ -1,0 +1,37 @@
+.dialog-header{
+	background: url(/changeicons/small/view-responses.png) transparent center  left no-repeat!important;
+}
+scrollbox{
+	overflow: auto;
+}
+groupbox{
+	border: 1px solid #bbb !important;
+	-moz-border-radius: 5px !important;
+	background-color: #f9f9f9 !important;
+}
+groupbox caption{
+	padding: 0 !important;
+	margin: 0 !important;
+}
+section.field description{
+	margin-left: 10px;
+	padding-left: 12px;
+}
+section.field label{
+	font-weight: normal;
+	font-style: italic;
+}
+section.group section.field label{
+	font-weight: normal;
+}
+section.group{
+	padding-top: 10px;
+}
+section.group label{
+	font-weight: bold;
+}
+section.group .group-content{
+	margin-left: 10px;	
+	padding-left: 10px;
+	border-left: #999 2px solid;
+}

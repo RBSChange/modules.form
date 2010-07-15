@@ -271,8 +271,8 @@
 		<action name="delete" permission="Delete" icon="delete" label="&amp;modules.uixul.bo.actions.Delete;" />
 		<action name="duplicate" icon="duplicate" label="&amp;modules.uixul.bo.actions.Duplicate;" />
 		<action name="previewForm" single="true" permission="PreviewForm" icon="preview" label="&amp;modules.form.bo.actions.PreviewForm;" />
-		<action name="viewResponses" single="true" icon="view-responses" label="&amp;modules.form.bo.actions.View-responses;" />
-		<action name="exportCsv" single="true" permission="ExportCsv" icon="csv-export" label="&amp;modules.uixul.bo.actions.Export-Csv;" />
+		<action name="viewResponses" single="true" permission="Export" icon="view-responses" label="&amp;modules.form.bo.actions.View-responses;" />
+		<action name="exportCsv" single="true" permission="Export" icon="csv-export" label="&amp;modules.uixul.bo.actions.Export-Csv;" />
 		<action name="exportAllCsv" single="true" permission="Export" icon="csv-export" label="&amp;modules.form.bo.actions.Export-csv-all;" />
 		<action name="archiveResponse" single="true" permission="ArchiveResponse" icon="archive" label="&amp;modules.form.bo.actions.ArchiveResponse;" />
 		<action name="move" permission="Move" icon="up_down" label="&amp;modules.uixul.bo.actions.Move;" />

@@ -378,4 +378,272 @@
 			</method>
 		</implementation>
 	</binding>
+	
+	<!-- From responses dialog -->
+	<binding id="cFormResponsesDialog" extends="core.wDialog#wDialog">
+		<resources>
+			<stylesheet src="modules.uixul.cFieldsGroup" />
+			<stylesheet src="modules.form.cFormResponsesDialog" />
+		</resources>
+		<implementation>
+			<constructor><![CDATA[
+				wCore.debug('cFormResponsesDialog.constructor');
+			]]></constructor>
+			
+			<method name="onInitialize">
+				<body><![CDATA[
+					var result = wCore.executeJSON('form', 'ExportJSON', {cmpref: this.parameters.productId, pageSize: this.mPageSize, startIndex: this.mStartIndex }, null, true);
+					if (result.status !== 'OK')
+					{
+						wToolkit.setNotificationMessage(result.contents.errorMessage, wToolkit.ERROR);
+						this.onCancel();
+						retrun;
+					}
+					
+					this.resizeTo(window.innerWidth-100, window.innerHeight-100);
+					var responses = result.contents.responsesInfos;
+					var responsesNode = this.getElementByAnonId('responses');
+					for (var i = 0; i < responses.length; i++)
+					{
+						var response = responses[i];
+						var section = responsesNode.childNodes[i];
+						if (section == null)
+						{
+							section = document.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'section');
+							section.className = 'response';
+							section.panel = this;
+							responsesNode.appendChild(section);
+						}
+						else
+						{
+							section.removeAttribute('collapsed');
+							while (section.firstChild)
+							{
+								section.removeChild(section.firstChild);
+							}
+						}
+						
+						for (var name in response)
+						{
+							if (name == 'contents')
+							{
+								this.setupContents(section, response[name]);
+							}
+							else
+							{
+								section.setAttribute(name, response[name]);
+								if (response[name] && response[name] != '')
+								{
+									section.removeAttribute(name+'hidden');
+								}
+								else
+								{
+									section.setAttribute(name+'hidden', true);
+								}
+							}
+						}
+					}
+					while (section = responsesNode.childNodes[i])
+					{
+						section.setAttribute('collapsed', 'true');
+						i++;
+					}
+					this.updateNavigation(result.contents);
+				]]></body>
+			</method>
+			
+			<method name="setupContents">
+				<parameter name="parentSection" />
+				<parameter name="contents" />
+				<body><![CDATA[
+					for (var i = 0; i < contents.length ; i++)
+					{
+						var row = contents[i];
+						var section = document.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'section');
+						if (row.isGroup)
+						{
+							section.className = 'group';
+							section.setAttribute('label', row.label);
+							this.setupContents(section, row.contents);
+						}
+						else
+						{
+							section.className = 'field';
+							section.setAttribute('label', row.label);
+							if (row.value)
+							{
+								section.appendChild(document.createTextNode(row.value));
+							}
+							else
+							{
+								section.appendChild(document.createTextNode('-'));
+							}
+						}
+						parentSection.appendChild(section);
+					}
+				]]></body>
+			</method>
+			
+			<method name="onCancel">
+				<body><![CDATA[
+					this.parameters.module.refreshMainViewDeck();
+					this.controller.closeModalDialog();
+				]]></body>
+			</method>
+			
+			<method name="refresh">
+				<body><![CDATA[
+					this.onInitialize();
+				]]></body>
+			</method>
+			
+			<field name="mPageSize">5</field>
+			<field name="mDocumentTotal">0</field>
+			<field name="mStartIndex">0</field>
+			<field name="mEndIndex">0</field>
+			
+			<method name="updateNavigation">
+				<parameter name="contents" />
+				<body><![CDATA[
+					this.mDocumentTotal = parseInt(contents.total);
+					this.mStartIndex = parseInt(contents.startIndex);
+					
+					var viewDoc = contents.responsesInfos.length;
+					this.mEndIndex = this.mStartIndex + viewDoc;
+	
+					this.getElementByAnonId('navigationtotal').value = this.mDocumentTotal;
+					var disableBack = (this.mStartIndex == 0);
+					this.getElementByAnonId('navigationbegin').disabled = disableBack;
+					this.getElementByAnonId('navigationback2').disabled = disableBack;
+					this.getElementByAnonId('navigationback').disabled = disableBack;
+					var disableNext = (this.mEndIndex >= this.mDocumentTotal);
+					this.getElementByAnonId('navigationnext').disabled = disableNext;
+					this.getElementByAnonId('navigationnext2').disabled = disableNext;
+					this.getElementByAnonId('navigationend').disabled = disableNext;
+					
+					var navigationindex = this.getElementByAnonId('navigationindex');
+					navigationindex.value = (this.mStartIndex + 1) + ' - ' + (this.mStartIndex + viewDoc);
+				]]></body>
+			</method>
+
+			<method name="navigateBegin">
+				<body><![CDATA[
+					this.mStartIndex = 0;
+					this.refresh();
+				]]></body>
+			</method>
+
+			<method name="navigateBack">
+				<parameter name="quick" />
+				<body><![CDATA[
+					this.mStartIndex -= this.mPageSize;
+					if (quick && (this.mStartIndex - (5 * this.mPageSize) >= 0))
+					{
+						this.mStartIndex -= (5 * this.mPageSize);
+					}
+					this.refresh();
+				]]></body>
+			</method>
+
+			<method name="navigateNext">
+				<parameter name="quick" />
+				<body><![CDATA[
+					this.mStartIndex += this.mPageSize;
+					if (quick && (this.mStartIndex + (5 * this.mPageSize) < this.mDocumentTotal))
+					{
+						this.mStartIndex += (5 * this.mPageSize);
+					}
+					this.refresh();
+				]]></body>
+			</method>
+
+			<method name="navigateEnd">
+				<body><![CDATA[
+					this.mStartIndex = this.mDocumentTotal - (this.mDocumentTotal % this.mPageSize);
+					if (this.mStartIndex == this.mDocumentTotal)
+					{
+						this.mStartIndex -= this.mPageSize;
+					}
+					this.refresh();
+				]]></body>
+			</method>
+		</implementation>
+		<content>
+			<xul:vbox flex="1">
+				<xul:hbox class="dialog-header">
+					<xul:label value="&amp;modules.form.bo.dialog.Form-responses;" class="dialog-title" />
+					<xul:spacer flex="1" />
+					<xul:toolbarbutton anonid="navigationbegin" disabled="true" oncommand="navigateBegin()" image="{IconsBase}/small/control-begin.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-begin;" />
+					<xul:toolbarbutton anonid="navigationback2" disabled="true" oncommand="navigateBack(true)" image="{IconsBase}/small/control-double-backward.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-back-quick;" />
+					<xul:toolbarbutton anonid="navigationback" disabled="true" oncommand="navigateBack()" image="{IconsBase}/small/control-backward.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-back;" />
+					<xul:hbox align="center">
+						<xul:label anonid="navigationpagelabel" value="&amp;modules.uixul.bo.general.Documents;" />
+						<xul:label anonid="navigationindex" value="0" />
+						<xul:label anonid="navigationpageseparator" value="&amp;modules.uixul.bo.general.out-of;" />
+						<xul:label anonid="navigationtotal" value="0" />
+					</xul:hbox>
+					<xul:toolbarbutton anonid="navigationnext" disabled="true" oncommand="navigateNext()" image="{IconsBase}/small/control-forward.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-next;" />
+					<xul:toolbarbutton anonid="navigationnext2" disabled="true" oncommand="navigateNext(true)" image="{IconsBase}/small/control-double-forward.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-next-quick;" />
+					<xul:toolbarbutton anonid="navigationend" disabled="true" oncommand="navigateEnd()" image="{IconsBase}/small/control-end.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-end;" />
+					<xul:spacer flex="1" />
+					<xul:vbox pack="center">
+						<xul:toolbarbutton height="16" width="16" image="{IconsBase}/small/delete.png" oncommand="onCancel();" tooltiptexts="&amp;modules.uixul.bo.dialog.Cancel;" />
+					</xul:vbox>
+				</xul:hbox>
+				<xul:scrollbox flex="1" orient="vertical">
+					<xul:vbox flex="1" anonid="responses" />
+				</xul:scrollbox>
+			</xul:vbox>
+		</content>
+	</binding>
+	
+	<binding id="cFormResponse">
+		<resources>
+			<stylesheet src="modules.uixul.cFieldsGroup" />
+			<stylesheet src="modules.form.cFormResponsesDialog" />
+		</resources>
+		<implementation>
+			<constructor><![CDATA[
+				wCore.debug('cFormResponse.constructor');
+			]]></constructor>
+		</implementation>
+		<content>
+			<xul:groupbox flex="1">
+				<xul:caption flex="1">
+					<xul:label xbl:inherits="value=formattedDate" />
+				</xul:caption>
+				<xul:vbox flex="1">
+					<xbl:children />
+				</xul:vbox>
+			</xul:groupbox>
+		</content>
+	</binding>
+	
+	<binding id="cFormResponseFieldRow">
+		<resources>
+			<stylesheet src="modules.form.cFormResponsesDialog" />
+		</resources>
+		<content>
+			<xul:vbox flex="1">
+				<xul:label xbl:inherits="value=label" />
+				<xul:description style="-moz-user-select: text; -moz-user-focus: normal">
+					<xbl:children />
+				</xul:description>
+			</xul:vbox>
+		</content>
+	</binding>
+	
+	<binding id="cFormResponseGroupRow">
+		<resources>
+			<stylesheet src="modules.form.cFormResponsesDialog" />
+		</resources>
+		<content>
+			<xul:vbox flex="1">
+				<xul:label xbl:inherits="value=label" />
+				<xul:vbox class="group-content" flex="1">
+					<xbl:children />
+				</xul:vbox>
+			</xul:vbox>
+		</content>
+	</binding>
 </bindings>

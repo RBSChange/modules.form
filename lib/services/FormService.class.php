@@ -471,7 +471,7 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @param f_persistentdocument_PersistentDocument $document
+	 * @param form_persistentdocument_form $document
 	 * @param string $forModuleName
 	 * @param array $allowedSections
 	 * @return array
@@ -480,17 +480,45 @@ class form_FormService extends form_BaseformService
 	{
 		$resume = parent::getResume($document, $forModuleName, $allowedSections);
 		
+		$resume['properties']['responseCount'] = strval($document->getResponseCount());		
 		$openNotificationUri = join(',' , array('notification', 'openDocument', 'modules_notification_notification', $document->getNotification()->getId(), 'properties'));
 		$backUri = join(',', array('form', 'openDocument', 'modules_form_form', $document->getId(), 'resume'));
-		$resume["properties"]["notification"] = array("uri" => $openNotificationUri, "label" => f_Locale::translateUI("&modules.uixul.bo.doceditor.open;"), "backuri" => $backUri);
+		$resume['properties']['notification'] = array('uri' => $openNotificationUri, 'label' => f_Locale::translateUI('&modules.uixul.bo.doceditor.open;'), 'backuri' => $backUri);
 		
 		return $resume;
+	}
+	
+	/**
+	 * @param form_persistentdocument_form $form
+	 * @return array
+	 */
+	public function getResponseDataByForm($form, $offset = 0, $limit = null)
+	{
+		$query = form_ResponseService::getInstance()->createQuery()->add(Restrictions::eq('parentForm', $form))
+			->setProjection(Projections::rowCount('count'));
+		$row = $query->findUnique();
+		$total = $row['count'];
+		$data = array('total' => $total, 'startIndex' => $offset);
+		
+		$query = form_ResponseService::getInstance()->createQuery()->add(Restrictions::eq('parentForm', $form))
+			->addOrder(Order::desc('document_creationdate'));
+		if ($limit !== null)
+		{
+			$query->setFirstResult($offset)->setMaxResults($limit);
+		}
+		
+		$responsesInfos = array();
+		foreach ($query->find() as $response)
+		{
+			$responsesInfos[] = $response->getResponseInfos();
+		}
+		$data['responsesInfos'] = $responsesInfos;
+		return $data;
 	}
 	
 	// Deprecated.
 	
 	/**
-	 * @param form_persistentdocument_field $document
 	 * @deprecated use form_FieldService::fixRequiredConstraint()
 	 */
 	public function fixRequiredConstraint($document)
@@ -499,7 +527,6 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @param form_persistentdocument_form
 	 * @deprecated with no replacement
 	 */
 	public function getPreviewAttributes($document)
@@ -514,10 +541,6 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @param array<TreeNode> $nodes
-	 * @param array $contents
-	 * @param array<string,string> $parameters
-	 * @param form_persistentdocument_form $form
 	 * @deprecated Use buildContentsFromRequest instead (since 2.0.2).
 	 */
 	public function buildContents($nodes, &$contents, &$parameters, $form)
@@ -564,11 +587,6 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @param array<TreeNode> $nodes
-	 * @param array $contents
-	 * @param block_BlockRequest $request
-	 * @param form_persistentdocument_baseform $form
-	 * @since 2.0.2
 	 * @deprecated
 	 */
 	public function buildContentsFromRequest($nodes, &$contents, $request, $form)
@@ -631,9 +649,6 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * Returns the URL of the page tagged with the following contextual tag:
-	 * contextual_website_website_modules_form_recommand-page
-	 * @return String
 	 * @deprecated use sharethis module instead.
 	 */
 	public function getRecommandFormUrl()
@@ -655,8 +670,6 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @param String $formId
-	 * @return form_persistentdocument_form
 	 * @deprecated use getByFormId()
 	 */
 	public function getFormByFormId($formId)
@@ -665,9 +678,6 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @param Integer $formId
-	 * @param block_BlockRequest $formRequest
-	 * @return Boolean
 	 * @deprecated
 	 */
 	public function isPostedFormId($formId, $formRequest)
@@ -676,11 +686,6 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @param form_persistentdocument_baseform $form
-	 * @param block_BlockRequest $formRequest
-	 * @param validation_Errors $errors
-	 * @param array<String> $scriptArray
-	 * @return String
 	 * @deprecated
 	 */
 	public function renderForm($form, $formRequest, $errors, &$scriptArray)

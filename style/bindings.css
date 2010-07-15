@@ -16,3 +16,19 @@ cdocumenteditor[module="form"] cfieldsgroup.text-field-configurator {
 cdocumenteditor[module="form"] cfield[fieldtype="recipientGroupArrayField"]{
 	-moz-binding: url(binding:modules.form.cFormEditor#cRecipientGroupArrayField);
 }
+cdocumenteditor[module="form"] cfield[fieldtype="recipientGroupArrayField"]{
+	-moz-binding: url(binding:modules.form.cFormEditor#cRecipientGroupArrayField);
+}
+
+wdialog[template="viewFormResponses"]{
+	-moz-binding: url(binding:modules.form.cFormEditor#cFormResponsesDialog);
+}
+wdialog[template="viewFormResponses"] section.response{
+	-moz-binding: url(binding:modules.form.cFormEditor#cFormResponse);
+}
+wdialog[template="viewFormResponses"] section.response section.field{
+	-moz-binding: url(binding:modules.form.cFormEditor#cFormResponseFieldRow);
+}
+wdialog[template="viewFormResponses"] section.response section.group{
+	-moz-binding: url(binding:modules.form.cFormEditor#cFormResponseGroupRow);
+}
