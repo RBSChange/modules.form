@@ -782,7 +782,6 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	private function doGetSortedFields($parent)
 	{
 		$sortedFields = array();
-		
 		foreach ($parent->getDocumentService()->getChildrenOf($parent) as $child)
 		{
 			if ($child instanceof form_persistentdocument_field)
@@ -794,6 +793,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 				$sortedFields = array_merge($sortedFields, $this->doGetSortedFields($child));
 			}
 		}
+		return $sortedFields;
 	}
 	
 	/**

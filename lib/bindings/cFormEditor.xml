@@ -472,7 +472,7 @@
 							section.setAttribute('label', row.label);
 							if (row.value)
 							{
-								section.appendChild(document.createTextNode(row.value));
+								section.appendChild(document.createTextNode(row.value.replace(/<br \/>/g, '')));
 							}
 							else
 							{
@@ -612,9 +612,7 @@
 				<xul:caption flex="1">
 					<xul:label xbl:inherits="value=formattedDate" />
 				</xul:caption>
-				<xul:vbox flex="1">
-					<xbl:children />
-				</xul:vbox>
+				<xul:vbox flex="1"><xbl:children /></xul:vbox>
 			</xul:groupbox>
 		</content>
 	</binding>
@@ -626,9 +624,7 @@
 		<content>
 			<xul:vbox flex="1">
 				<xul:label xbl:inherits="value=label" />
-				<xul:description style="-moz-user-select: text; -moz-user-focus: normal">
-					<xbl:children />
-				</xul:description>
+				<xul:description style="-moz-user-select: text; -moz-user-focus: normal; white-space: pre"><xbl:children /></xul:description>
 			</xul:vbox>
 		</content>
 	</binding>
@@ -640,9 +636,7 @@
 		<content>
 			<xul:vbox flex="1">
 				<xul:label xbl:inherits="value=label" />
-				<xul:vbox class="group-content" flex="1">
-					<xbl:children />
-				</xul:vbox>
+				<xul:vbox class="group-content" flex="1"><xbl:children /></xul:vbox>
 			</xul:vbox>
 		</content>
 	</binding>
