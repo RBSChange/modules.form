@@ -24,11 +24,11 @@
 			<fieldlist fieldName="civilite" label="Civilité" display="list" 
 				dataSource-refid="civilite"	multiple="false"/>
 				
-			<fieldtext fieldName="prenom" label="Prénom"
+			<fieldtext fieldName="prenom" label="Prénom" initializeWithCurrentUserFirstname="true"
 				required="true" multiline="false" cols="50" maxlength="255" 
 				validators="blank:false;maxSize:255"/>
 				
-			<fieldtext fieldName="nom" label="Nom" 
+			<fieldtext fieldName="nom" label="Nom" initializeWithCurrentUserLastname="true"
 				required="true" multiline="false" cols="50" maxlength="255" 
 				validators="blank:false;maxSize:255"/>
 				

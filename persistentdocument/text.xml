@@ -20,5 +20,7 @@
 		<add name="disableAutocorrect" type="Boolean" default-value="false" />
 		<add name="disableAutocapitalize" type="Boolean" default-value="false" />
 		<add name="disableAutocomplete" type="Boolean" default-value="false" />
+		<add name="initializeWithCurrentUserFirstname" type="Boolean" />
+		<add name="initializeWithCurrentUserLastname" type="Boolean" />
 	</properties>
 </document>

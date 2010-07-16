@@ -45,4 +45,28 @@ class form_persistentdocument_text extends form_persistentdocument_textbase
     {
     	$this->setValidators($value);
     }
+    
+	/**
+	 * @return mixed
+	 */
+	public function getDefaultValue()
+	{
+		if ($this->getInitializeWithCurrentUserFirstname())
+		{
+			$user = users_UserService::getInstance()->getCurrentFrontEndUser();
+			if ($user !== null)
+			{
+				return $user->getFirstnameAsHtml();
+			}
+		}
+		else if ($this->getInitializeWithCurrentUserLastname())
+		{
+			$user = users_UserService::getInstance()->getCurrentFrontEndUser();
+			if ($user !== null)
+			{
+				return $user->getLastnameAsHtml();
+			}
+		}
+		return '';
+	}
 }

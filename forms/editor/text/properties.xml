@@ -4,6 +4,8 @@
 		<field name="label" />
 		<field name="required" />
 		<field name="helpText" />
+		<field name="initializeWithCurrentUserLastname" />
+		<field name="initializeWithCurrentUserFirstname" />
 	</section>
 	<section labeli18n="modules.form.bo.general.Display-settings" class="text-field-configurator">
 		<field name="multiline" hidehelp="true" />
@@ -13,8 +15,7 @@
 	<section labeli18n="modules.form.bo.general.Constraints">
 		<field name="maxlength" />
 		<field name="minlength" />
-		<field name="boValidator" type="radiolist" listid="modules_form/textvalidators"
-			labeli18n="modules.form.document.text.Validators" />
+		<field name="boValidator" type="radiolist" listid="modules_form/textvalidators" labeli18n="modules.form.document.text.Validators" />
 	</section>
 	<section labeli18n="modules.form.bo.general.Activation-conditions" class="activation-conditions">
 		<field name="activationQuestion" type="dropdownlist" emptylabel="" nocache="true" />

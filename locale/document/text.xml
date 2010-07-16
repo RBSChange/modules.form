@@ -78,6 +78,18 @@
 	<entity id="disableAutocomplete-help">
 		<locale lang="fr">permet de désactiver la complétion automatique.</locale>
 	</entity>
+	<entity id="initializeWithCurrentUserLastname">
+		<locale lang="fr">pré-remplir avec le nom si connecté</locale>
+	</entity>
+	<entity id="initializeWithCurrentUserLastname-help">
+		<locale lang="fr">cocher "oui" pour que, si l'utilisateur est connecté, ce champ soit pré-rempli son nom.</locale>
+	</entity>
+	<entity id="initializeWithCurrentUserFirstname">
+		<locale lang="fr">pré-remplir avec le prénom si connecté</locale>
+	</entity>
+	<entity id="initializeWithCurrentUserFirstname-help">
+		<locale lang="fr">cocher "oui" pour que, si l'utilisateur est connecté, ce champ soit pré-rempli son prénom.</locale>
+	</entity>
 	<entity id="size">
 		<locale lang="fr">taille du champ</locale>
 		<locale lang="en">field size</locale>
