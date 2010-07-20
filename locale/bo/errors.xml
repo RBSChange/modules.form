@@ -6,12 +6,12 @@
     <locale lang="de">ein Feld kann nur innerhalb des Originalformulars verschoben werden</locale>
   </entity>
   <entity id="Field-name-alreay-used">
-    <locale lang="fr">le champ "{fieldName}" est déjà utilisé par un autre champ dans ce formulaire</locale>
-    <locale lang="en">the field "{fieldName}" is already used by another field in this form</locale>
+    <locale lang="fr">le nom "{fieldName}" est déjà utilisé par un autre champ dans ce formulaire</locale>
+    <locale lang="en">the name "{fieldName}" is already used by another field in this form</locale>
     <locale lang="de">das Feld "{fieldName}" wird bereits von einem anderen Feld in diesem Formular genutzt</locale>
   </entity>
   <entity id="Mail-field-for-replyto-exists">
-    <locale lang="fr">un champ mail est déjà configuré dans ce formulaire pour être le champ répondre à </locale>
+    <locale lang="fr">un champ mail est déjà configuré dans ce formulaire pour être le champ "répondre à"</locale>
     <locale lang="en">a mail field is already set to reply-to in this form</locale>
     <locale lang="de">ein E-mailfeld ist bereits in diesem Formular als Anwortfeld konfiguriert</locale>
   </entity>

@@ -354,17 +354,23 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 */
 	protected function createacknowledgmentNotification($form)
 	{
-		$notification = notification_NotificationService::getInstance()->getNewDocumentInstance();
-		$notification->setLabel(f_Locale::translateUI('&modules.form.document.form.Acknowledgment-notification-label-prefix;') . ' ' . $form->getLabel());
-		$notification->setCodename($form->getFormid().'_acknowledgmentNotification');
-		$notification->setTemplate('default');
-		$notification->setSubject($form->getLabel());
-		$notification->setBody($this->getDefaultAcknowledgmentNotificationBody());
-		if ($form->getId() > 0)
+		$ns = notification_NotificationService::getInstance();
+		$codeName = $form->getFormid().'_acknowledgmentNotification';
+		$notification = $ns->getByCodeName($codeName);
+		if ($notification === null)
 		{
-			$notification->setAvailableparameters(implode("\n", $this->getFieldRemplacementsForNotification($form)));
-		}		
-		$notification->save(ModuleService::getInstance()->getSystemFolderId('notification', 'form'));
+			$notification = $ns->getNewDocumentInstance();
+			$notification->setLabel(f_Locale::translateUI('&modules.form.document.form.Acknowledgment-notification-label-prefix;') . ' ' . $form->getLabel());
+			$notification->setCodename($codeName);
+			$notification->setTemplate('default');
+			$notification->setSubject($form->getLabel());
+			$notification->setBody($this->getDefaultAcknowledgmentNotificationBody());
+			if ($form->getId() > 0)
+			{
+				$notification->setAvailableparameters(implode("\n", $this->getFieldRemplacementsForNotification($form)));
+			}		
+			$notification->save(ModuleService::getInstance()->getSystemFolderId('notification', 'form'));
+		}
 		$form->setacknowledgmentNotification($notification);
 	}
 	
@@ -644,11 +650,11 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			}
 			if ($node instanceof form_persistentdocument_mail)
 			{
-				if ($field->getUseAsReply())
+				if ($node->getUseAsReply())
 				{
 					$replyTo = $rawValue;
 				}
-				if ($field->getAcknowledgmentReceiver())
+				if ($node->getAcknowledgmentReceiver())
 				{
 					$acknowledgmentReceiver = $rawValue;
 				}

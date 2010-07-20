@@ -48,7 +48,7 @@
 				required="false" multiline="false" cols="50" maxlength="255"
 				validators="maxSize:255" />	
 								
-			<fieldmail fieldName="email" label="Adresse e-mail" isLocked="true"
+			<fieldmail fieldName="email" label="Adresse e-mail" isLocked="true" initializeWithCurrentUserEmail="true"
 				required="true" multiline="false" cols="50" maxlength="255"
 				validators="blank:false;maxSize:255" />
 				
