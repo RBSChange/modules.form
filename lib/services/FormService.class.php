@@ -597,6 +597,7 @@ class form_FormService extends form_BaseformService
 	public function buildContentsFromRequest($nodes, &$contents, $request, $form)
 	{
 		$parameters = $request->getParameters();
+		$parameters; // Avoid Eclipse warning...
 		$eventParam = array('form' => $form, 'parameters' => &$parameters, 'isPosted' => $this->isPostedFormId($form->getId(), $request));
 		f_event_EventManager::dispatchEvent(self::FORM_INIT_DATA_EVENT_NAME, $this, $eventParam);
 		$request->setParametersByRef($parameters);

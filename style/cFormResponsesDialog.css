@@ -34,3 +34,6 @@ section.group .group-content{
 	padding-left: 10px;
 	border-left: #999 2px solid;
 }
+scrollbox{
+	border-top: 1px solid #DDD;
+}

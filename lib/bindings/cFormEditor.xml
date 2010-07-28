@@ -507,12 +507,12 @@
 						</xul:vbox>
 					</xul:hbox>
 				</xul:vbox>
+				<xul:hbox class="change-toolbox" anonid="paginator-container">
+					<xul:spacer flex="1" />
+					<xul:cpaginator anonid="paginator" hideseparator="true" />
+					<xul:spacer flex="1" />
+				</xul:hbox>
 				<xul:scrollbox flex="1" orient="vertical">
-					<xul:hbox class="change-toolbox">
-						<xul:spacer flex="1" />
-						<xul:cpaginator anonid="paginator" hideseparator="true" />
-						<xul:spacer flex="1" />
-					</xul:hbox>
 					<xul:vbox flex="1" anonid="responses" />
 				</xul:scrollbox>
 			</xul:vbox>
