@@ -386,11 +386,13 @@
 			<stylesheet src="modules.form.cFormResponsesDialog" />
 		</resources>
 		<implementation>
-			<constructor><![CDATA[
-				wCore.debug('cFormResponsesDialog.constructor');
-			]]></constructor>
-			
 			<method name="onInitialize">
+				<body><![CDATA[
+					this.loadData();
+				]]></body>
+			</method>
+					
+			<method name="loadData">
 				<body><![CDATA[
 					var result = wCore.executeJSON('form', 'ExportJSON', {cmpref: this.parameters.productId, pageSize: this.mPageSize, startIndex: this.mStartIndex }, null, true);
 					if (result.status !== 'OK')
@@ -399,9 +401,10 @@
 						this.onCancel();
 						retrun;
 					}
-					
 					this.resizeTo(window.innerWidth-100, window.innerHeight-100);
-					var responses = result.contents.responsesInfos;
+					
+					var contents = result.contents;
+					var responses = contents.responsesInfos;
 					var responsesNode = this.getElementByAnonId('responses');
 					for (var i = 0; i < responses.length; i++)
 					{
@@ -425,10 +428,14 @@
 						section.setAttribute('collapsed', 'true');
 						i++;
 					}
-					this.updateNavigation(result.contents);
+					
+					this.mStartIndex = contents.startIndex;
+					this.mDocumentTotal = contents.count;
+					this.mRowCount = contents.responsesInfos.length;
+					this.getElementByAnonId('paginator').updateNavigation(this);
 				]]></body>
 			</method>
-			
+						
 			<method name="setupResponse">
 				<parameter name="section" />
 				<parameter name="response" />
@@ -449,9 +456,9 @@
 						}
 					}
 					
-					while (this.firstChild)
+					while (section.firstChild)
 					{
-						section.removeChild(this.firstChild);
+						section.removeChild(section.firstChild);
 					}
 
 					var contentSection = document.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'section');
@@ -472,104 +479,40 @@
 			
 			<method name="refresh">
 				<body><![CDATA[
-					this.onInitialize();
+					this.loadData();
 				]]></body>
 			</method>
 			
 			<field name="mPageSize">5</field>
-			<field name="mDocumentTotal">0</field>
 			<field name="mStartIndex">0</field>
-			<field name="mEndIndex">0</field>
+			<field name="mDocumentTotal">0</field>
+			<field name="mRowCount">0</field>
 			
-			<method name="updateNavigation">
-				<parameter name="contents" />
+			<method name="navigate">
+				<parameter name="startIndex" />
 				<body><![CDATA[
-					this.mDocumentTotal = parseInt(contents.total);
-					this.mStartIndex = parseInt(contents.startIndex);
-					
-					var viewDoc = contents.responsesInfos.length;
-					this.mEndIndex = this.mStartIndex + viewDoc;
-	
-					this.getElementByAnonId('navigationtotal').value = this.mDocumentTotal;
-					var disableBack = (this.mStartIndex == 0);
-					this.getElementByAnonId('navigationbegin').disabled = disableBack;
-					this.getElementByAnonId('navigationback2').disabled = disableBack;
-					this.getElementByAnonId('navigationback').disabled = disableBack;
-					var disableNext = (this.mEndIndex >= this.mDocumentTotal);
-					this.getElementByAnonId('navigationnext').disabled = disableNext;
-					this.getElementByAnonId('navigationnext2').disabled = disableNext;
-					this.getElementByAnonId('navigationend').disabled = disableNext;
-					
-					var navigationindex = this.getElementByAnonId('navigationindex');
-					navigationindex.value = (this.mStartIndex + 1) + ' - ' + (this.mStartIndex + viewDoc);
-				]]></body>
-			</method>
-
-			<method name="navigateBegin">
-				<body><![CDATA[
-					this.mStartIndex = 0;
-					this.refresh();
-				]]></body>
-			</method>
-
-			<method name="navigateBack">
-				<parameter name="quick" />
-				<body><![CDATA[
-					this.mStartIndex -= this.mPageSize;
-					if (quick && (this.mStartIndex - (5 * this.mPageSize) >= 0))
-					{
-						this.mStartIndex -= (5 * this.mPageSize);
-					}
-					this.refresh();
-				]]></body>
-			</method>
-
-			<method name="navigateNext">
-				<parameter name="quick" />
-				<body><![CDATA[
-					this.mStartIndex += this.mPageSize;
-					if (quick && (this.mStartIndex + (5 * this.mPageSize) < this.mDocumentTotal))
-					{
-						this.mStartIndex += (5 * this.mPageSize);
-					}
-					this.refresh();
-				]]></body>
-			</method>
-
-			<method name="navigateEnd">
-				<body><![CDATA[
-					this.mStartIndex = this.mDocumentTotal - (this.mDocumentTotal % this.mPageSize);
-					if (this.mStartIndex == this.mDocumentTotal)
-					{
-						this.mStartIndex -= this.mPageSize;
-					}
-					this.refresh();
+					this.mStartIndex = startIndex;
+					this.loadData();
 				]]></body>
 			</method>
 		</implementation>
 		<content>
 			<xul:vbox flex="1">
-				<xul:hbox class="dialog-header">
-					<xul:label value="&amp;modules.form.bo.dialog.Form-responses;" class="dialog-title" />
-					<xul:spacer flex="1" />
-					<xul:toolbarbutton anonid="navigationbegin" disabled="true" oncommand="navigateBegin()" image="{IconsBase}/small/control-begin.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-begin;" />
-					<xul:toolbarbutton anonid="navigationback2" disabled="true" oncommand="navigateBack(true)" image="{IconsBase}/small/control-double-backward.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-back-quick;" />
-					<xul:toolbarbutton anonid="navigationback" disabled="true" oncommand="navigateBack()" image="{IconsBase}/small/control-backward.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-back;" />
-					<xul:hbox align="center">
-						<xul:label anonid="navigationpagelabel" value="&amp;modules.uixul.bo.general.Documents;" />
-						<xul:label anonid="navigationindex" value="0" />
-						<xul:label anonid="navigationpageseparator" value="&amp;modules.uixul.bo.general.out-of;" />
-						<xul:label anonid="navigationtotal" value="0" />
+				<xul:vbox class="dialog-header-container">
+					<xul:hbox class="dialog-header">
+						<xul:label value="&amp;modules.form.bo.dialog.Form-responses;" class="dialog-title" />
+						<xul:spacer flex="1" />
+						<xul:vbox pack="center">
+							<xul:toolbarbutton height="24" width="24" image="{IconsBase}/small/delete.png" oncommand="onCancel();" tooltiptexts="&amp;modules.uixul.bo.dialog.Cancel;" />
+						</xul:vbox>
 					</xul:hbox>
-					<xul:toolbarbutton anonid="navigationnext" disabled="true" oncommand="navigateNext()" image="{IconsBase}/small/control-forward.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-next;" />
-					<xul:toolbarbutton anonid="navigationnext2" disabled="true" oncommand="navigateNext(true)" image="{IconsBase}/small/control-double-forward.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-next-quick;" />
-					<xul:toolbarbutton anonid="navigationend" disabled="true" oncommand="navigateEnd()" image="{IconsBase}/small/control-end.png" tooltiptext="&amp;modules.uixul.bo.general.Navigate-end;" />
-					<xul:spacer flex="1" />
-					<xul:vbox pack="center">
-						<xul:toolbarbutton height="16" width="16" image="{IconsBase}/small/delete.png" oncommand="onCancel();" tooltiptexts="&amp;modules.uixul.bo.dialog.Cancel;" />
-					</xul:vbox>
-				</xul:hbox>
+				</xul:vbox>
 				<xul:scrollbox flex="1" orient="vertical">
+					<xul:hbox class="change-toolbox">
+						<xul:spacer flex="1" />
+						<xul:cpaginator anonid="paginator" hideseparator="true" />
+						<xul:spacer flex="1" />
+					</xul:hbox>
 					<xul:vbox flex="1" anonid="responses" />
 				</xul:scrollbox>
 			</xul:vbox>
@@ -646,7 +589,7 @@
 							section.className = 'field';
 							if (row.mailValue)
 							{
-								section.appendChild(document.createTextNode(row.mailValue.replace(/<br \/>/g, '')));
+								section.appendChild(document.createTextNode(row.mailValue.replace(/<br \/>/g, '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>')));
 							}
 							else
 							{

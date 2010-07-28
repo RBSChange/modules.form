@@ -1,5 +1,8 @@
+.dialog-header-container{
+	padding: 2px 2px 0 2px;
+}
 .dialog-header{
-	background: url(/changeicons/small/view-responses.png) transparent center  left no-repeat!important;
+	background: url(/changeicons/small/view-responses.png) transparent 4px center no-repeat!important;
 }
 scrollbox{
 	overflow: auto;

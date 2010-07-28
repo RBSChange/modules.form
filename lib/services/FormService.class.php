@@ -503,8 +503,7 @@ class form_FormService extends form_BaseformService
 		$query = form_ResponseService::getInstance()->createQuery()->add(Restrictions::eq('parentForm', $form))
 			->setProjection(Projections::rowCount('count'));
 		$row = $query->findUnique();
-		$total = $row['count'];
-		$data = array('total' => $total, 'startIndex' => $offset);
+		$data = array('count' => $row['count'], 'startIndex' => $offset);
 		
 		$query = form_ResponseService::getInstance()->createQuery()->add(Restrictions::eq('parentForm', $form))
 			->addOrder(Order::desc('document_creationdate'));

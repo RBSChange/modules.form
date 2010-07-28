@@ -64,3 +64,7 @@ treechildren::-moz-tree-image(modules_form_recipientGroupFolder){
 treechildren::-moz-tree-image(modules_form_baseform){
 	list-style-image: url(/changeicons/small/form.png);
 }
+
+wdialog[template="viewFormResponses"]{
+	padding: 0 0 2px 0;
+}
