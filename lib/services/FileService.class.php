@@ -44,26 +44,34 @@ class form_FileService extends form_FieldService
 	 */
 	public function validate($field, $request, &$errors)
 	{
-		$fileInfo = $request->getUploadedFileInformation($field->getFieldName());
 		$errCount = $errors->count();
-
-		if ($field->getRequired() || !empty($fileInfo['name']))
+		$fileName = null;
+		$fieldName = $field->getFieldName();
+		if ($request instanceof block_BlockRequest)
 		{
-			if ($field->getRequired())
+			$fileInfo = $request->getUploadedFileInformation($fieldName);
+			if (isset($fileInfo['name']))
 			{
-				validation_ValidatorHelper::validate(new validation_Property($field->getLabel(), $fileInfo['name']), 'blank:false', $errors);
+				$fileName = $fileInfo['name'];
 			}
-			if ($errors->count() == $errCount)
+		}
+		else if ($request instanceof website_BlockActionRequest && $request->hasFile($fieldName))
+		{
+			$fileName = $request->getFile($fieldName)->getFilename();
+		}
+
+		if ($field->getRequired())
+		{
+			validation_ValidatorHelper::validate(new validation_Property($field->getLabel(), $fileName), 'blank:false', $errors);
+		}
+		
+		if ($errors->count() == $errCount && f_util_StringUtils::isNotEmpty($fileName) && $field->getAllowedExtensions())
+		{
+			$ext = strtolower(f_util_FileUtils::getFileExtension($fileName));
+			$allowedExt = explode(",", $field->getAllowedExtensions());
+			if ( !empty($allowedExt) && ! in_array($ext, $allowedExt) )
 			{
-				$ext = strtolower(f_util_FileUtils::getFileExtension($fileInfo['name']));
-				if ($field->getAllowedExtensions())
-				{
-					$allowedExt = explode(",", $field->getAllowedExtensions());
-					if ( !empty($allowedExt) && ! in_array($ext, $allowedExt) )
-					{
-						$errors->append(f_Locale::translate('&modules.form.frontoffice.File-must-have-one-of-these-extensions;', array('file' => $field->getLabel(), 'extensions' => join(", ", $allowedExt))));
-					}
-				}
+				$errors->append(f_Locale::translate('&modules.form.frontoffice.File-must-have-one-of-these-extensions;', array('file' => $field->getLabel(), 'extensions' => join(", ", $allowedExt))));
 			}
 		}
 	}
@@ -76,6 +84,13 @@ class form_FileService extends form_FieldService
      */
     public function buildXmlElementResponse($field, $fieldElm, $rawValue)
     {
+    	if ($rawValue instanceof media_persistentdocument_file)
+    	{
+    		$rawValue->save(($field->getMediaFolder() !== null) ? $field->getMediaFolder()->getId() : null);
+    		$media = media_MediaService::getInstance()->importFromTempFile($rawValue);
+    		$media->save();
+    		return $media->getId();
+    	}
 		if (f_util_ArrayUtils::isNotEmpty($rawValue) && $rawValue['error'] == 0 )
 		{
 			$media = MediaHelper::addUploadedFile($rawValue['name'], $rawValue['tmp_name'], $field->getMediaFolder());

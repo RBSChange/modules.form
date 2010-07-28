@@ -251,9 +251,9 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$acknowledgmentNotification = $document->getAcknowledgmentNotification();
 		if ($acknowledgmentNotification !== null)
 		{
-			$backUri = join(',', array('form', 'openDocument', 'modules_form_form', $document->getId(), 'resume'));
-			$openAcknowledgmentNotificationUri = join(',' , array('notification', 'openDocument', 'modules_notification_notification', $acknowledgmentNotification->getId(), 'properties'));
-			$resume["properties"]["acknowledgmentNotification"] = array("uri" => $openAcknowledgmentNotificationUri, "label" => f_Locale::translateUI("&modules.uixul.bo.doceditor.open;"), "backuri" => $backUri);
+			$backUri = join(',', array('form', 'openDocument', $document->getPersistentModel()->getBackofficeName(), $document->getId(), 'resume'));
+			$openAcknowledgmentNotificationUri = join(',' , array('notification', 'openDocument', $acknowledgmentNotification->getPersistentModel()->getBackofficeName(), $acknowledgmentNotification->getId(), 'properties'));
+			$resume['properties']['acknowledgmentNotification'] = array('uri' => $openAcknowledgmentNotificationUri, 'label' => f_Locale::translateUI('&modules.uixul.bo.doceditor.open;'), 'backuri' => $backUri);
 		}
 		
 		return $resume;
@@ -624,7 +624,18 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			$fieldName = $node->getFieldName();
 			if ($node instanceof form_persistentdocument_file)
 			{
-				$rawValue = $request->getUploadedFileInformation($fieldName);
+				if ($request instanceof block_BlockRequest)
+				{
+					$rawValue = $request->getUploadedFileInformation($fieldName);
+				}
+				else if ($request instanceof website_BlockActionRequest && $request->hasFile($fieldName))
+				{
+					$rawValue = $request->getFile($fieldName);
+				}
+				else
+				{
+					$rawValue = isset($data[$fieldName]) ? $data[$fieldName] : null;
+				}
 			}
 			else
 			{
@@ -639,7 +650,12 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			if ($groupName !== null)
 			{
 				$fieldElm->setAttribute('groupName', $groupName);
-			}			
+			}
+			
+			if ($node instanceof form_persistentdocument_file)
+			{
+				$fieldElm->setAttribute('isFile', 'true');
+			}
 			$rootElm->appendChild($fieldElm);
 
 			// Special raw data for uploaded file.

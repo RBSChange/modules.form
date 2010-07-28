@@ -26,9 +26,23 @@ wdialog[template="viewFormResponses"]{
 wdialog[template="viewFormResponses"] section.response{
 	-moz-binding: url(binding:modules.form.cFormEditor#cFormResponse);
 }
-wdialog[template="viewFormResponses"] section.response section.field{
+cdocumenteditor#edt_form_response cresumesection[sectionname="responsedata"]{
+	-moz-binding: url(binding:modules.form.cFormEditor#cResponseDataResumeSection);
+}
+
+wdialog[template="viewFormResponses"] section.responseContent, 
+cdocumenteditor#edt_form_response cresumesection[sectionname="responsedata"] section.responseContent{
+	-moz-binding: url(binding:modules.form.cFormEditor#cFormResponseContent);
+}
+wdialog[template="viewFormResponses"] section.responseContent section.field, 
+cdocumenteditor#edt_form_response cresumesection[sectionname="responsedata"] section.field{
 	-moz-binding: url(binding:modules.form.cFormEditor#cFormResponseFieldRow);
 }
-wdialog[template="viewFormResponses"] section.response section.group{
+wdialog[template="viewFormResponses"] section.responseContent section.file-field,
+cdocumenteditor#edt_form_response cresumesection[sectionname="responsedata"] section.file-field{
+	-moz-binding: url(binding:modules.form.cFormEditor#cFormResponseFileFieldRow);
+}
+wdialog[template="viewFormResponses"] section.responseContent section.group,
+cdocumenteditor#edt_form_response cresumesection[sectionname="responsedata"] section.group{
 	-moz-binding: url(binding:modules.form.cFormEditor#cFormResponseGroupRow);
 }

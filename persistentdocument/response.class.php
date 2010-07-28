@@ -1,5 +1,5 @@
 <?php
-class form_persistentdocument_response extends form_persistentdocument_responsebase
+class form_persistentdocument_response extends form_persistentdocument_responsebase implements form_Response
 {
 	/**
 	 * Returns an associative array fieldname => value.
@@ -44,11 +44,28 @@ class form_persistentdocument_response extends form_persistentdocument_responseb
 		for ($i = 0; $i < $fieldList->length; $i++)
 		{
 			$item = $fieldList->item($i);
-			$data[$item->getAttribute('name')] = array('label' => $item->getAttribute('label'), 'type' => $item->getAttribute('type'), 'value' => $item->nodeValue);
+			$fieladData = array(
+				'label' => $item->getAttribute('label'),
+				'type' => $item->getAttribute('type'),
+				'value' => $item->nodeValue
+			);
+			if ($item->hasAttribute('level'))
+			{
+				$fieladData['level'] = $item->getAttribute('level');
+			}
+			if ($item->hasAttribute('groupName'))
+			{
+				$fieladData['groupName'] = $item->getAttribute('groupName');
+			}
+			if ($item->hasAttribute('isFile'))
+			{
+				$fieladData['isFile'] = $item->getAttribute('isFile');
+			}
 			if ($item->hasAttribute('mailValue'))
 			{
-				$data[$item->getAttribute('name')]['mailValue'] = $item->getAttribute('mailValue');
+				$fieladData['mailValue'] = $item->getAttribute('mailValue');
 			}
+			$data[$item->getAttribute('name')] = $fieladData;
 		}
 		return $data;
 	}
@@ -59,5 +76,27 @@ class form_persistentdocument_response extends form_persistentdocument_responseb
 	public function getResponseInfos()
 	{
 		return $this->getDocumentService()->getResponseInfos($this);
+	}
+	
+	/**
+	 * @param string $key
+	 * @return string | null
+	 */
+	public function getResponseFieldValue($key)
+	{
+		$data = $this->getAllData();
+		if (isset($data[$key]) && isset($data[$key]['value']))
+		{
+			return $data[$key]['value'];
+		}
+		return null;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getBoEditorModule()
+	{
+		return 'form';
 	}
 }

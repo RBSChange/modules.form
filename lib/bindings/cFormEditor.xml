@@ -405,7 +405,6 @@
 					var responsesNode = this.getElementByAnonId('responses');
 					for (var i = 0; i < responses.length; i++)
 					{
-						var response = responses[i];
 						var section = responsesNode.childNodes[i];
 						if (section == null)
 						{
@@ -417,31 +416,9 @@
 						else
 						{
 							section.removeAttribute('collapsed');
-							while (section.firstChild)
-							{
-								section.removeChild(section.firstChild);
-							}
 						}
 						
-						for (var name in response)
-						{
-							if (name == 'contents')
-							{
-								this.setupContents(section, response[name]);
-							}
-							else
-							{
-								section.setAttribute(name, response[name]);
-								if (response[name] && response[name] != '')
-								{
-									section.removeAttribute(name+'hidden');
-								}
-								else
-								{
-									section.setAttribute(name+'hidden', true);
-								}
-							}
-						}
+						this.setupResponse(section, responses[i]);
 					}
 					while (section = responsesNode.childNodes[i])
 					{
@@ -452,35 +429,37 @@
 				]]></body>
 			</method>
 			
-			<method name="setupContents">
-				<parameter name="parentSection" />
-				<parameter name="contents" />
+			<method name="setupResponse">
+				<parameter name="section" />
+				<parameter name="response" />
 				<body><![CDATA[
-					for (var i = 0; i < contents.length ; i++)
+					for (var name in response)
 					{
-						var row = contents[i];
-						var section = document.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'section');
-						if (row.isGroup)
+						if (name != 'contents')
 						{
-							section.className = 'group';
-							section.setAttribute('label', row.label);
-							this.setupContents(section, row.contents);
-						}
-						else
-						{
-							section.className = 'field';
-							section.setAttribute('label', row.label);
-							if (row.value)
+							section.setAttribute(name, response[name]);
+							if (response[name] && response[name] != '')
 							{
-								section.appendChild(document.createTextNode(row.value.replace(/<br \/>/g, '')));
+								section.removeAttribute(name+'hidden');
 							}
 							else
 							{
-								section.appendChild(document.createTextNode('-'));
+								section.setAttribute(name+'hidden', true);
 							}
 						}
-						parentSection.appendChild(section);
 					}
+					
+					while (this.firstChild)
+					{
+						section.removeChild(this.firstChild);
+					}
+
+					var contentSection = document.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'section');
+					contentSection.className = 'responseContent';
+					section.appendChild(contentSection);
+					
+					var contents = response.contents;
+					wCore.executeOnMethodExists(contentSection, 'setupContents', function (section) { contentSection.setupContents(section, contents); });
 				]]></body>
 			</method>
 			
@@ -602,11 +581,6 @@
 			<stylesheet src="modules.uixul.cFieldsGroup" />
 			<stylesheet src="modules.form.cFormResponsesDialog" />
 		</resources>
-		<implementation>
-			<constructor><![CDATA[
-				wCore.debug('cFormResponse.constructor');
-			]]></constructor>
-		</implementation>
 		<content>
 			<xul:groupbox flex="1">
 				<xul:caption flex="1">
@@ -617,16 +591,110 @@
 		</content>
 	</binding>
 	
+	<binding id="cResponseDataResumeSection" extends="layout.cDocumentEditor#cResumeSection">
+		<implementation>
+			<method name="setValues">
+				<parameter name="values" />
+				<body><![CDATA[
+					var section = document.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'section');
+					section.className = 'responseContent';
+					this.appendChild(section);
+				
+					var me = this;
+					var contents = values[this.name].contents;
+					wCore.executeOnMethodExists(section, 'setupContents', function (section) { section.setupContents(me, contents); });
+				]]></body>
+			</method>
+			
+			<method name="clearValues">
+				<body><![CDATA[
+					while (this.firstChild)
+					{
+						this.removeChild(this.firstChild);
+					}
+				]]></body>
+			</method>
+		</implementation>
+	</binding>
+	
+	<binding id="cFormResponseContent">
+		<resources>
+			<stylesheet src="modules.form.cFormResponsesDialog" />
+		</resources>
+		<implementation>			
+			<method name="setupContents">
+				<parameter name="parentSection" />
+				<parameter name="contents" />
+				<body><![CDATA[
+					for (var i = 0; i < contents.length ; i++)
+					{
+						var row = contents[i];
+						var section = document.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'section');
+						if (row.isGroup)
+						{
+							section.className = 'group';
+							this.setupContents(section, row.contents);
+						}
+						else if('isFile' in row && row.isFile)
+						{
+							section.className = 'file-field';
+							section.setAttribute('href', row.href);
+							section.setAttribute('linklabel', row.linklabel);
+						}
+						else
+						{
+							section.className = 'field';
+							if (row.mailValue)
+							{
+								section.appendChild(document.createTextNode(row.mailValue.replace(/<br \/>/g, '')));
+							}
+							else
+							{
+								section.appendChild(document.createTextNode('-'));
+							}
+						}
+						section.setAttribute('label', row.label);
+						parentSection.appendChild(section);
+					}
+				]]></body>
+			</method>
+		</implementation>
+		<content>
+			<xul:vbox flex="1"><xbl:children /></xul:vbox>
+		</content>
+	</binding>
+	
 	<binding id="cFormResponseFieldRow">
 		<resources>
 			<stylesheet src="modules.form.cFormResponsesDialog" />
 		</resources>
 		<content>
-			<xul:vbox flex="1">
+			<xul:hbox flex="1">
 				<xul:label xbl:inherits="value=label" />
+				<xul:label value=":" />
 				<xul:description style="-moz-user-select: text; -moz-user-focus: normal; white-space: pre"><xbl:children /></xul:description>
-			</xul:vbox>
+			</xul:hbox>
 		</content>
+	</binding>
+	
+	<binding id="cFormResponseFileFieldRow">
+		<resources>
+			<stylesheet src="modules.form.cFormResponsesDialog" />
+		</resources>
+		<content>
+			<xul:hbox flex="1">
+				<xul:label xbl:inherits="value=label" />
+				<xul:label value=":" />
+				<xul:label class="text-link" xbl:inherits="value=linklabel" onclick="document.getBindingParent(this).click();" />
+			</xul:hbox>
+		</content>
+		<implementation>
+			<method name="click">
+				<body><![CDATA[
+					wToolkit.downloadurl(this.getAttribute('href'));
+				]]></body>
+			</method>
+		</implementation>
 	</binding>
 	
 	<binding id="cFormResponseGroupRow">

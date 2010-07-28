@@ -13,22 +13,18 @@ groupbox caption{
 	padding: 0 !important;
 	margin: 0 !important;
 }
-section.field description{
-	margin-left: 10px;
-	padding-left: 12px;
-}
 section.field label{
-	font-weight: normal;
-	font-style: italic;
+	font-weight: bold;
 }
 section.group section.field label{
-	font-weight: normal;
+	font-style: normal;
 }
 section.group{
 	padding-top: 10px;
 }
 section.group label{
 	font-weight: bold;
+	font-style: italic;
 }
 section.group .group-content{
 	margin-left: 10px;	

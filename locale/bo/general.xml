@@ -315,4 +315,7 @@
 		<locale lang="fr">nombre de réponses actives</locale>
 		<locale lang="fr">number of active submissions</locale>
 	</entity>
+	<entity id="unexisting-file">
+		<locale lang="fr">le fichier n'existe plus ({id})</locale>
+	</entity>
 </localization>

@@ -150,20 +150,45 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 	 */
 	private function getFieldInfos($node)
 	{
-		$value = $node->nodeValue;
-		if ($node->hasAttribute('mailValue'))
-		{
-		    $value = $node->getAttribute('mailValue');
-		}
-		else
-		{
-			$value = htmlspecialchars($value);
-		}
-		return array(
+		$value = htmlspecialchars($node->nodeValue);
+		$infos = array(
 			'isGroup' => false,
 			'label' => $node->getAttribute('label'),
 			'mailValue' => ($node->hasAttribute('mailValue')) ? $node->getAttribute('mailValue') : $value,
 			'value' => $value
 		);
+		if ($value && $node->hasAttribute('isFile') && $node->getAttribute('isFile') == 'true')
+		{
+			try 
+			{
+				$file = DocumentHelper::getDocumentInstance($value);
+				$infos['isFile'] = true;
+				$infos['href'] = LinkHelper::getUIActionLink('media', 'BoDisplay')->setQueryParameter('cmpref', $value)
+					->setQueryParameter('lang', $file->getI18nInfo()->getVo())->setQueryParameter('forceDownload', 'true')->getUrl();
+				$infos['linklabel'] = $file->getLabel();
+			}
+			catch (Exception $e)
+			{
+				$e; // Avoid Eclipse warning...
+				$infos['mailValue'] = f_Locale::translateUI('&modules.form.bo.general.Unexisting-file;', array('id' => $value));
+			}
+		}
+		return $infos;
 	}
+	
+	/**
+	 * @param f_persistentdocument_PersistentDocument $document
+	 * @param string $forModuleName
+	 * @param array $allowedSections
+	 * @return array
+	 */
+	public function getResume($document, $forModuleName, $allowedSections)
+	{
+		$resume = parent::getResume($document, $forModuleName, $allowedSections);
+		
+		$resume['responsedata'] = $document->getResponseInfos();
+		
+		return $resume;
+	}
+
 }

@@ -66,10 +66,9 @@ class form_BlockFormAction extends block_BlockAction
 		}
 		else if ($this->isFormPosted($request))
 		{
-			$fs = form_FormService::getInstance();
 			try
 			{
-				$fs->saveFormData($form, $request);
+				$form->getDocumentService()->saveFormData($form, $request);
 				$user = $context->getGlobalContext()->getUser();
 				$user->setAttribute('form_success_parameters_'.$form->getId(), $request->getParameters());
 				$view = block_BlockView::SUCCESS;

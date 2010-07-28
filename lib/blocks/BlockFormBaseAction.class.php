@@ -23,6 +23,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 		{
 			return website_BlockView::NONE;
 		}
+		
 		$request->setAttribute('form', $form);
 		$request->setAttribute('moduleName', $this->getModuleName());
 		

@@ -170,6 +170,10 @@ class form_FormService extends form_BaseformService
 		}
 		$result = array();
 		$result['success'] = $this->sendEmail($form, $response, $request, $copyMail, $replyTo);
+		if ($form->getSaveResponse())
+		{
+			$result['response'] = $response;
+		}
 		return $result;
 	}
 	
@@ -480,9 +484,11 @@ class form_FormService extends form_BaseformService
 	{
 		$resume = parent::getResume($document, $forModuleName, $allowedSections);
 		
-		$resume['properties']['responseCount'] = strval($document->getResponseCount());		
-		$openNotificationUri = join(',' , array('notification', 'openDocument', 'modules_notification_notification', $document->getNotification()->getId(), 'properties'));
-		$backUri = join(',', array('form', 'openDocument', 'modules_form_form', $document->getId(), 'resume'));
+		$resume['properties']['responseCount'] = strval($document->getResponseCount());
+		
+		$notification = $document->getNotification();
+		$openNotificationUri = join(',' , array('notification', 'openDocument', $notification->getPersistentModel()->getBackofficeName(), $notification->getId(), 'properties'));
+		$backUri = join(',', array('form', 'openDocument', $document->getPersistentModel()->getBackofficeName(), $document->getId(), 'resume'));
 		$resume['properties']['notification'] = array('uri' => $openNotificationUri, 'label' => f_Locale::translateUI('&modules.uixul.bo.doceditor.open;'), 'backuri' => $backUri);
 		
 		return $resume;
