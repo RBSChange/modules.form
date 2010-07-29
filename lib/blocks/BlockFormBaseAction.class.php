@@ -24,6 +24,11 @@ class form_BlockFormBaseAction extends website_BlockAction
 			return website_BlockView::NONE;
 		}
 		
+		if (!$this->checkAccess($form, $request))
+		{
+			return 'Forbidden';
+		}
+		
 		$request->setAttribute('form', $form);
 		$request->setAttribute('moduleName', $this->getModuleName());
 		
@@ -84,7 +89,17 @@ class form_BlockFormBaseAction extends website_BlockAction
 	/**
 	 * @param form_persistentdocument_form $form
 	 * @param f_mvc_Request $request
-	 * @return String
+	 * @return string
+	 */
+	protected function checkAccess($form, $request)
+	{
+		return true;
+	}
+	
+	/**
+	 * @param form_persistentdocument_form $form
+	 * @param f_mvc_Request $request
+	 * @return string
 	 */
 	protected function getSuccessView($form, $request)
 	{
