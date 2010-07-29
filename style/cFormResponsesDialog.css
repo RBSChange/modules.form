@@ -16,13 +16,16 @@ groupbox caption{
 	padding: 0 !important;
 	margin: 0 !important;
 }
-section.field label{
+section.field label, section.file-field label{
 	font-weight: bold;
 }
-section.group section.field label{
+section.group section.field label, section.group section.file-field label{
 	font-style: normal;
 }
 section.group{
+	padding-top: 10px;
+}
+section.group + section.field, section.group + section.file-field{
 	padding-top: 10px;
 }
 section.group label{
