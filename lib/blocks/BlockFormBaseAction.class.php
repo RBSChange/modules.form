@@ -193,13 +193,14 @@ class form_BlockFormBaseAction extends website_BlockAction
 			if ($document instanceof form_persistentdocument_group)
 			{
 				$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->setDirectory('templates/markup/'.$markup)->load('Form-Group');
-				$elements = $this->getContentsFromRequest($node->getChildren(), $contents, $request, $markup);
+				$elements = $this->getContentsFromRequest($node->getChildren(), $request, $form);
 				$attributes = array(
 		    		'id' => $document->getId(),
 		    		'label' => $document->getLabel(),
 		    		'description' => $document->getDescription(),
 		    		'elements' => $elements
 				);
+				$templateObject->setAttribute('group', $attributes);
 			}
 			else
 			{

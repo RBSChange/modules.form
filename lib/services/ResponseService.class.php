@@ -177,7 +177,7 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * @param f_persistentdocument_PersistentDocument $document
+	 * @param form_persistentdocument_response $document
 	 * @param string $forModuleName
 	 * @param array $allowedSections
 	 * @return array
