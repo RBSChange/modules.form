@@ -34,18 +34,4 @@ class form_RecipientGroupService extends f_persistentdocument_DocumentService
 	{
 		return $this->pp->createQuery('modules_form/recipientGroup');
 	}
-
-	/**
-	 * @param form_persistentdocument_recipientGroup $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document.
-	 * @return void
-	 */
-	protected function postInsert($document, $parentNodeId = null)
-	{
-		$folderId = form_RecipientGroupFolderService::getInstance()->getFolder()->getId();
-		if ($parentNodeId !== $folderId)
-		{
-			$this->moveTo($document, $folderId);
-		}
-	}
 }

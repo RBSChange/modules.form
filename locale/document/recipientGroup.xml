@@ -5,6 +5,9 @@
 		<locale lang="en">recipient group</locale>
 		<locale lang="de">Versandgruppe</locale>
 	</entity>
+	<entity id="parentref">
+		<locale lang="fr">dossier parent</locale>
+	</entity>
 	<entity id="label">
 		<locale lang="fr">libellé</locale>
 		<locale lang="en">label</locale>

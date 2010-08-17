@@ -2,40 +2,41 @@
 <perspective>
 	<models>
 		<model name="modules_generic/rootfolder">
-			<contextactions>
-				<contextaction name="edit" />
-				<contextaction name="openTreeNodeOrder" />
-				<contextaction name="delete" />
-				<groupactions name="createfolder_">
-					<contextaction name="createFolder" />
-					<contextaction name="createForm" />
-				</groupactions>
-				<contextaction name="openFolder" />
-			</contextactions>
-			<columns>
-				<column name="responseCount" label="Responsecount" flex="1"/>
-				<column name="activeResponse" label="Activeresponse" flex="1"/>
-			</columns>
 			<children>
 				<child model="modules_generic/folder" />
 				<child model="modules_generic/systemfolder" />
 				<child model="modules_form/recipientGroupFolder" />
 				<child model="modules_form/form" />
 			</children>
+			<columns>
+				<column name="responseCount" label="Responsecount" flex="1" />
+				<column name="activeResponse" label="Activeresponse" flex="1" />
+			</columns>
 			<drops>
 				<drop model="modules_generic/folder" action="move" />
-				<drop model="modules_form/recipientGroupFolder" action="move" />
 				<drop model="modules_form/form" action="move" />
 			</drops>
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="openTreeNodeOrder" />
+				<contextaction name="delete" />
+				<groupactions name="createfolder_">
+					<contextaction name="createFolder" />
+					<contextaction name="createForm" />
+					<contextaction name="addRecipientGroupFolder" />
+				</groupactions>
+				<contextaction name="openFolder" />
+			</contextactions>
 		</model>
 		<model name="modules_generic/folder">
 			<children>
 				<child model="modules_generic/folder" />
+				<child model="modules_form/recipientGroupFolder" />
 				<child model="modules_form/form" />
 			</children>
 			<columns>
-				<column name="responseCount" label="Responsecount" flex="1"/>
-				<column name="activeResponse" label="Activeresponse" flex="1"/>
+				<column name="responseCount" label="Responsecount" flex="1" />
+				<column name="activeResponse" label="Activeresponse" flex="1" />
 			</columns>
 			<drops>
 				<drop model="modules_generic/folder" action="move" />
@@ -48,6 +49,7 @@
 				<groupactions name="createfolder_">
 					<contextaction name="createFolder" />
 					<contextaction name="createForm" />
+					<contextaction name="addRecipientGroupFolder" />
 				</groupactions>
 				<contextaction name="openFolder" />
 			</contextactions>
@@ -57,8 +59,8 @@
 				<child model="modules_form/form" />
 			</children>
 			<columns>
-				<column name="responseCount" label="Responsecount" flex="1"/>
-				<column name="activeResponse" label="Activeresponse" flex="1"/>
+				<column name="responseCount" label="Responsecount" flex="1" />
+				<column name="activeResponse" label="Activeresponse" flex="1" />
 			</columns>
 			<contextactions>
 				<contextaction name="edit" />
@@ -122,7 +124,7 @@
 					<contextaction name="createRecipientGroupList" />
 				</groupactions>
 				<contextaction name="openFolder" />
-				<contextaction name="refresh"/>
+				<contextaction name="refresh" />
 			</contextactions>
 		</model>
 		<model name="modules_form/group">
@@ -175,7 +177,7 @@
 					<contextaction name="createRecipientGroupList" />
 				</groupactions>
 				<contextaction name="openFolder" />
-				<contextaction name="refresh"/>
+				<contextaction name="refresh" />
 			</contextactions>
 		</model>
 		<model name="modules_form/text">
@@ -246,9 +248,10 @@
 				<child model="modules_form/recipientGroup" />
 			</children>
 			<contextactions>
-				<contextaction name="openFolder" />
-				<contextaction name="createRecipientGroup" />
+				<contextaction name="edit" />
 				<contextaction name="openTreeNodeOrder" />
+				<contextaction name="createRecipientGroup" />
+				<contextaction name="openFolder" />
 			</contextactions>
 		</model>
 		<model name="modules_form/recipientGroup">
@@ -266,32 +269,33 @@
 		<toolbarbutton name="viewResponses" />
 	</toolbar>
 	<actions>
-		<action name="refresh" single="true" icon="refresh" label="&amp;modules.uixul.bo.actions.Refresh;"/>
+		<action name="refresh" single="true" icon="refresh" label="&amp;modules.uixul.bo.actions.Refresh;" />
 		<action name="edit" single="true" permission="Load" icon="edit" label="&amp;modules.uixul.bo.actions.Edit;" />
 		<action name="delete" permission="Delete" icon="delete" label="&amp;modules.uixul.bo.actions.Delete;" />
 		<action name="duplicate" icon="duplicate" label="&amp;modules.uixul.bo.actions.Duplicate;" />
-		<action name="previewForm" single="true" permission="PreviewForm" icon="preview" label="&amp;modules.form.bo.actions.PreviewForm;" />
+		<action name="previewForm" single="true" permission="PreviewForm" icon="preview" />
 		<action name="viewResponses" single="true" permission="Export" icon="view-responses" label="&amp;modules.form.bo.actions.View-responses;" />
 		<action name="exportCsv" single="true" permission="Export" icon="csv-export" label="&amp;modules.uixul.bo.actions.Export-Csv;" />
 		<action name="exportAllCsv" single="true" permission="Export" icon="csv-export" label="&amp;modules.form.bo.actions.Export-csv-all;" />
-		<action name="archiveResponse" single="true" permission="ArchiveResponse" icon="archive" label="&amp;modules.form.bo.actions.ArchiveResponse;" />
+		<action name="archiveResponse" single="true" permission="ArchiveResponse" icon="archive" />
 		<action name="move" permission="Move" icon="up_down" label="&amp;modules.uixul.bo.actions.Move;" />
 		<action name="openTreeNodeOrder" single="true" permission="Order" icon="sort" label="&amp;modules.uixul.bo.actions.Set-children-order;" />
 		<action name="openFolder" icon="open-folder" label="&amp;modules.uixul.bo.actions.OpenFolder;" />
-		<action name="createfolder_" single="true" icon="add" actions="createFolder,createForm,createRecipientGroup" />
-		<action name="createFolder" single="true" icon="create-folder" permission="Insert_folder" group="createfolder_" label="&amp;modules.uixul.bo.actions.Create-folder;" />
-		<action name="createForm" single="true" icon="add" permission="Insert_form" group="createfolder_" label="&amp;modules.form.bo.actions.Create-Form;" />
-		<action name="createRecipientGroup" single="true" icon="add" permission="Insert_recipientGroup" group="createfolder_" label="&amp;modules.form.bo.actions.Create-RecipientGroup;" />
-		<action name="create_" single="true" icon="add" actions="createGroup,createText,createMail,createBoolean,createList,createDate,createFile,createHidden,createFreecontent,createRecipientGroupList" />
-		<action name="createGroup" single="true" icon="add" permission="Insert_group" group="create_" label="&amp;modules.form.bo.actions.Create-Group;" />
-		<action name="createText" single="true" icon="add" permission="Insert_text" group="create_" label="&amp;modules.form.bo.actions.Create-Text;" />
-		<action name="createMail" single="true" icon="add" permission="Insert_mail" group="create_" label="&amp;modules.form.bo.actions.Create-Mail;" />
-		<action name="createBoolean" single="true" icon="add" permission="Insert_boolean" group="create_" label="&amp;modules.form.bo.actions.Create-Boolean;" />
-		<action name="createList" single="true" icon="add" permission="Insert_list" group="create_" label="&amp;modules.form.bo.actions.Create-List;" />
-		<action name="createDate" single="true" icon="add" permission="Insert_date" group="create_" label="&amp;modules.form.bo.actions.Create-Date;" />
-		<action name="createFile" single="true" icon="add" permission="Insert_file" group="create_" label="&amp;modules.form.bo.actions.Create-File;" />
-		<action name="createHidden" single="true" icon="add" permission="Insert_hidden" group="create_" label="&amp;modules.form.bo.actions.Create-Hidden;" />
-		<action name="createFreecontent" single="true" icon="add" permission="Insert_freecontent" group="create_" label="&amp;modules.form.bo.actions.Create-Freecontent;" />
-		<action name="createRecipientGroupList" single="true" icon="add" permission="Insert_recipientGroupList" group="create_" label="&amp;modules.form.bo.actions.Create-RecipientGroupList;" />
+		<action name="createfolder_" single="true" icon="add" />
+		<action name="createFolder" single="true" icon="create-folder" permission="Insert_folder" label="&amp;modules.uixul.bo.actions.Create-folder;" />
+		<action name="createForm" single="true" icon="add" permission="Insert_form" label="&amp;modules.form.bo.actions.Create-Form;" />
+		<action name="createRecipientGroup" single="true" icon="add" permission="Insert_recipientGroup" label="&amp;modules.form.bo.actions.Create-RecipientGroup;" />
+		<action name="create_" single="true" icon="add" />
+		<action name="createGroup" single="true" icon="add" permission="Insert_group" label="&amp;modules.form.bo.actions.Create-Group;" />
+		<action name="createText" single="true" icon="add" permission="Insert_text" label="&amp;modules.form.bo.actions.Create-Text;" />
+		<action name="createMail" single="true" icon="add" permission="Insert_mail" label="&amp;modules.form.bo.actions.Create-Mail;" />
+		<action name="createBoolean" single="true" icon="add" permission="Insert_boolean" label="&amp;modules.form.bo.actions.Create-Boolean;" />
+		<action name="createList" single="true" icon="add" permission="Insert_list" label="&amp;modules.form.bo.actions.Create-List;" />
+		<action name="createDate" single="true" icon="add" permission="Insert_date" label="&amp;modules.form.bo.actions.Create-Date;" />
+		<action name="createFile" single="true" icon="add" permission="Insert_file" label="&amp;modules.form.bo.actions.Create-File;" />
+		<action name="createHidden" single="true" icon="add" permission="Insert_hidden" label="&amp;modules.form.bo.actions.Create-Hidden;" />
+		<action name="createFreecontent" single="true" icon="add" permission="Insert_freecontent" label="&amp;modules.form.bo.actions.Create-Freecontent;" />
+		<action name="createRecipientGroupList" single="true" icon="add" permission="Insert_recipientGroupList"	label="&amp;modules.form.bo.actions.Create-RecipientGroupList;" />
+		<action name="addRecipientGroupFolder" single="true" icon="add" permission="AddRecipientGroupFolder" />
 	</actions>
 </perspective>

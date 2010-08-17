@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <localization>
-  <entity id="modules-form-getpreferencesdocument">
-    <locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Ouvrir les préférences"</locale>
-    <locale lang="en">you don't have the appropriate permission to perform this operation : "Open preferences window"</locale>
-    <locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Präferenzen öffnen"</locale>
-  </entity>
-  <entity id="modules-form-archiveresponse">
-    <locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Archiver une réponse"</locale>
-    <locale lang="en">you don't have the appropriate permission to perform this operation : "Archive the answer"</locale>
-    <locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Antwort archivieren"</locale>
-  </entity>
-  <entity id="modules-form-export">
-    <locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Exporter"</locale>
-    <locale lang="en">you don't have the appropriate permission to perform this operation : "Export"</locale>
-    <locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Exportieren"</locale>
-  </entity>
-  <entity id="modules-form-editlocale">
-    <locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Editer une locale"</locale>
-    <locale lang="en">you don't have the appropriate permission to perform this operation : "Edit a locale"</locale>
-    <locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Lokale bearbeiten"</locale>
-  </entity>
-  <entity id="modules-form-order">
-    <locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Modifier l'ordre des éléments"</locale>
-    <locale lang="en">you don't have the appropriate permission to perform this operation : "Sort out the elements"</locale>
-    <locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Elementenreihenfolge ändern"</locale>
-  </entity>
-  <entity id="modules-form-previewform">
-    <locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Prévisualiser un formulaire"</locale>
-    <locale lang="en">you don't have the appropriate permission to perform this operation : "Preview a form"</locale>
-    <locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Formularvorschau"</locale>
-  </entity>
-  <entity id="modules-form-editlocale">
-    <locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Editer une locale"</locale>
-    <locale lang="en">you don't have the appropriate permission to perform this operation : "Edit a locale"</locale>
-  </entity>
-  <entity id="modules-form-enabled">
-    <locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Accès au module"</locale>
-    <locale lang="en">you don't have the appropriate permission to perform this operation : "Access to the module"</locale>
-    <locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Zugang zum Modul"</locale>
-  </entity>
+	<entity id="modules-form-getpreferencesdocument">
+		<locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Ouvrir les préférences"</locale>
+		<locale lang="en">you don't have the appropriate permission to perform this operation : "Open preferences window"</locale>
+		<locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Präferenzen öffnen"</locale>
+	</entity>
+	<entity id="modules-form-archiveresponse">
+		<locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Archiver une réponse"</locale>
+		<locale lang="en">you don't have the appropriate permission to perform this operation : "Archive the answer"</locale>
+		<locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Antwort archivieren"</locale>
+	</entity>
+	<entity id="modules-form-export">
+		<locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Exporter"</locale>
+		<locale lang="en">you don't have the appropriate permission to perform this operation : "Export"</locale>
+		<locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Exportieren"</locale>
+	</entity>
+	<entity id="modules-form-editlocale">
+		<locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Editer une locale"</locale>
+		<locale lang="en">you don't have the appropriate permission to perform this operation : "Edit a locale"</locale>
+		<locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Lokale bearbeiten"</locale>
+	</entity>
+	<entity id="modules-form-order">
+		<locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Modifier l'ordre des éléments"
+		</locale>
+		<locale lang="en">you don't have the appropriate permission to perform this operation : "Sort out the elements"</locale>
+		<locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Elementenreihenfolge ändern"</locale>
+	</entity>
+	<entity id="modules-form-previewform">
+		<locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Prévisualiser un formulaire"
+		</locale>
+		<locale lang="en">you don't have the appropriate permission to perform this operation : "Preview a form"</locale>
+		<locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Formularvorschau"</locale>
+	</entity>
+	<entity id="modules-form-editlocale">
+		<locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Editer une locale"</locale>
+		<locale lang="en">you don't have the appropriate permission to perform this operation : "Edit a locale"</locale>
+	</entity>
+	<entity id="modules-form-enabled">
+		<locale lang="fr">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : "Accès au module"</locale>
+		<locale lang="en">you don't have the appropriate permission to perform this operation : "Access to the module"</locale>
+		<locale lang="de">Sie besitzen nicht die Rechte folgende Aktion auszuführen: "Zugang zum Modul"</locale>
+	</entity>
+	<entity id="modules-form-insert-recipientgroup">
+		<locale lang="fr">vous n'avez pas les permissions suffisantes pour ajouter un groupe d'envoi dans ce dossier</locale>
+		<locale lang="en">you don't have the appropriate permission add a recipient group in this folder</locale>
+	</entity>
 </localization>

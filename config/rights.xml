@@ -1,8 +1,12 @@
 <?xml version="1.0"?>
 <rights>
 	<actions>
-		<document name="rootfolder" />
-		<document name="folder" />
+		<document name="rootfolder">
+			<action name="AddRecipientGroupFolder" />
+		</document>
+		<document name="folder">
+			<action name="AddRecipientGroupFolder" />
+		</document>
 		<document name="baseform" />
 		<document name="form">
 			<action name="ArchiveResponse" />
@@ -35,6 +39,7 @@
 			<permission name="ArchiveResponse.*" />
 			<permission name="Export.*" />
 			<permission name="EditLocale" />
+			<permission name="AddRecipientGroupFolder.*" />
 		</role>
 		<role name="Writer" extend="Guest">
 			<permission name="Order" />

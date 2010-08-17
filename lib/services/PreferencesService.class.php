@@ -47,4 +47,16 @@ class form_PreferencesService extends f_persistentdocument_DocumentService
 	{
 		$document->setLabel('&modules.form.bo.general.Module-name;');
 	}
+	
+	/**
+	 * @param form_persistentdocument_preferences $document
+	 * @param Integer $parentNodeId
+	 */
+	protected function postSave($document, $parentNodeId)
+	{
+		if ($document->isPropertyModified('enableRecipientGroupFolderCreation'))
+		{
+			CacheService::getInstance()->boShouldBeReloaded();
+		}
+	}
 }

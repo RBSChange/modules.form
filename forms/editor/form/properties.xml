@@ -19,4 +19,21 @@
 		<field name="recipientGroup" type="recipientGroupArrayField" />
 		<field name="messageSendingType" />
 	</section>
+	<xul>
+		<javascript>
+			<constructor><![CDATA[
+				this.extendMethod('fireInitializeComplete', fireInitializeCompleteExtend);
+			]]></constructor>
+			
+			<method name="fireInitializeCompleteExtend">
+				<parameter name="result" />
+				<body><![CDATA[
+					if (result.status == 'OK' && 'recipientGroupFolderId' in result.contents)
+					{
+						this.fields.recipientGroup.setAttribute('recipientGroupFolderId', result.contents.recipientGroupFolderId);
+					}
+				]]></body>
+			</method>
+		</javascript>
+	</xul>
 </panel>

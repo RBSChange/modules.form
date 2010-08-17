@@ -9,9 +9,11 @@
 		<locale lang="fr">expéditeur des emails</locale>
 		<locale lang="de">Sender der E-mails</locale>
 	</entity>
-	<entity id="sender-help">
-		<locale lang="fr">expéditeur des emails</locale>
-		<locale lang="de">Sender der E-mails</locale>
+	<entity id="enableRecipientGroupFolderCreation">
+		<locale lang="fr">création des dossiers de groupes d'envoi</locale>
+	</entity>
+	<entity id="enableRecipientGroupFolderCreation-help">
+		<locale lang="fr">cochez 'oui' pour activer la création de dossiers de groupes d'envoi par l'administrateur. Ceci est utile si l'on veut cloisonner certains dossiers du module Formulaires.</locale>
 	</entity>
 	<entity id="previewpage">
 		<locale lang="fr">page de prévisulalisation</locale>
@@ -65,5 +67,8 @@
 	<entity id="captcha.maxLength-help">
 		<locale lang="fr">nombre de caractères maximal composant le code du CAPTCHA</locale>
 		<locale lang="de">maximale Anzahl an Zeichen, die den CAPTCHA zusammenstellen</locale>
+	</entity>
+	<entity id="general-preferences">
+		<locale lang="fr">préférences générales</locale>
 	</entity>
 </localization>

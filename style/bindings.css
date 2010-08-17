@@ -1,4 +1,4 @@
-cdocumenteditor[module="form"] cfieldsgroup.captcha {
+cdocumenteditor#edt_form_preferences cfieldsgroup.captcha {
 	-moz-binding: url(binding:modules.form.cFormEditor#cCaptchaPreferencesSection);
 }
 cdocumenteditor[module="form"] cfieldsgroup.activation-conditions {

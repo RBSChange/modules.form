@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <panel>
-	<section labeli18n="modules.form.document.preferences.Edition-form-title">
-		<field name="sender" />
+	<section labeli18n="modules.form.document.preferences.General-preferences">
+		<field name="sender" hidehelp="true" />
 		<field name="previewpage" />
+		<field name="enableRecipientGroupFolderCreation" />
 	</section>
 	<section labeli18n="modules.form.bo.general.CaptchaSpaced" class="captcha">
 		<field name="iw" type="integer" required="true" increment="5"

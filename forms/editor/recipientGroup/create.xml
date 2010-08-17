@@ -1,2 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<panel use="properties" />
+<panel>
+	<section labeli18n="modules.uixul.bo.doceditor.fieldsgroup.Title">
+		<field name="parentref" type="document" required="true" allow="[modules_form_recipientGroupFolder]"
+			moduleselector="form" labeli18n="modules.form.document.recipientgroup.Parentref"
+			shorthelp="&amp;modules.form.document.preferences.recipientgroup.Parentref-help;" />
+		<field name="label" hidehelp="true" />
+		<field name="to" hidehelp="true" />
+		<field name="cc" />
+		<field name="bcc" />
+		<field name="description" hidehelp="true" />
+	</section>
+	<xul>
+		<javascript>
+			<constructor><![CDATA[
+				this.extendMethod('fireInitializeComplete', fireInitializeCompleteExtend);
+			]]></constructor>
+			
+			<method name="fireInitializeCompleteExtend">
+				<parameter name="result" />
+				<body><![CDATA[
+					if (result.status == 'OK')
+					{
+						if (this.documentEditor.module.parentid)
+						{
+							this.getElementByAnonId('row_parentref').setAttribute('hidden', 'true');
+							this.fields.parentref.removeAttribute('required');
+						}
+						else
+						{
+							this.getElementByAnonId('row_parentref').removeAttribute('hidden');
+							this.fields.parentref.setAttribute('required', 'true');
+						}
+					}
+				]]></body>
+			</method>
+		</javascript>
+	</xul>
+</panel>

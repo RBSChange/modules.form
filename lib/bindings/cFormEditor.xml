@@ -24,7 +24,7 @@
 						<xul:spacer flex="2" />
 						<xul:image anonid="captcha-preview" />
 						<xul:spacer flex="1" />
-						<xul:button anonid="refresh-captcha-button" label="&amp;modules.form.document.preferences.captcha.ReloadSpaced;" image="{IconsBase}/small/shadow/refresh.png" />
+						<xul:button anonid="refresh-captcha-button" label="&amp;modules.form.document.preferences.captcha.ReloadSpaced;" image="{IconsBase}/small/refresh.png" />
 						<xul:spacer flex="2" />
 					</xul:vbox>
 				</xul:hbox>
@@ -32,9 +32,9 @@
 		</content>
 		<implementation>
 			<constructor><![CDATA[
-					var _this = this;					
-					var node = document.getAnonymousElementByAttribute(this, 'anonid', 'refresh-captcha-button');
-					node.addEventListener('command', function () { _this.updateCaptchaPreview(); }, true);
+				var _this = this;					
+				var node = document.getAnonymousElementByAttribute(this, 'anonid', 'refresh-captcha-button');
+				node.addEventListener('command', function () { _this.updateCaptchaPreview(); }, true);
 			]]></constructor>
 		
 			<method name="updateCaptchaPreview">
@@ -358,7 +358,7 @@
 	<binding id="cRecipientGroupArrayField" extends="form.cField#cDocumentArrayField">
 		<implementation>
 			<constructor><![CDATA[
-				wCore.debug('cRecipientGroupArrayField.constructor');
+				//wCore.debug('cRecipientGroupArrayField.constructor');
 				var helpButton = this.getElementByAnonId('helpbutton');
 				var me = this;
 				var button = document.createElement('toolbarbutton');
@@ -372,7 +372,7 @@
 			<method name="openCreationForm">
 				<parameter name="listWidget" />
 				<body><![CDATA[
-		    		var uri = ['form', 'createRecipientGroup'].join(',');
+		    		var uri = ['form', 'createRecipientGroupForForm'].join(',');
 					openActionUri(uri);
 				]]></body>
 			</method>

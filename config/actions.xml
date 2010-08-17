@@ -1,5 +1,20 @@
 <?xml version="1.0"?>
 <actions extends="generic">
+	<action name="onModuleInit">
+		<body><![CDATA[
+			this.executeJSON("CheckModuleInit", {cmpref: this.mRootFolderId, lang:this.getContextLang()});
+		]]></body>
+	</action>
+	<action name="onCheckModuleInitSuccess">
+		<parameter name="result" />
+		<body><![CDATA[
+			this.setAttribute('enableRecipientGroupFolderCreation', result.contents.enableRecipientGroupFolderCreation);
+			if ('RecipientGroupFolderId' in result.contents)
+			{
+				this.setAttribute('recipientGroupFolderId', result.contents.recipientGroupFolderId);
+			}
+		]]></body>
+	</action>
 	<action name="createForm">
 		<parameter name="listWidget" />
 		<body><![CDATA[
@@ -60,10 +75,41 @@
 			this.createDocumentEditor('modules_form_freecontent', listWidget.getSelectedItems()[0].id);
 		]]></body>
 	</action>
+	<action name="addRecipientGroupFolder">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			attributes = {
+				parentref: listWidget.getSelectedItems()[0].id
+			};
+			var result = wCore.executeJSON('form', 'AddRecipientGroupFolder', attributes, null, true);
+			if (result.status == 'OK')
+			{
+				var uri = ['form', 'openDocument', 'modules_form_recipientGroupFolder', result.contents.id].join(',');
+				openActionUri(uri);
+				this.refreshMainViewDeck();
+			}
+		]]></body>
+	</action>
+	<action name="addRecipientGroupFolderIsActive">
+		<parameter name="itemData" />
+		<body><![CDATA[
+	    	return this.getAttribute('enableRecipientGroupFolderCreation') == 'true';
+		]]></body>
+	</action>
 	<action name="createRecipientGroup">
 		<parameter name="listWidget" />
 		<body><![CDATA[
-			this.createDocumentEditor('modules_form_recipientGroup', null);
+			this.createDocumentEditor('modules_form_recipientGroup', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createRecipientGroupForForm">
+		<body><![CDATA[
+			var parentId = null;
+			if (this.hasAttribute('recipientGroupFolderId'))
+			{
+				parentId = this.getAttribute('recipientGroupFolderId');
+			}
+			this.createDocumentEditor('modules_form_recipientGroup', parentId);
 		]]></body>
 	</action>
 	<action name="createRecipientGroupList">

@@ -55,13 +55,17 @@ class form_RecipientGroupFolderService extends generic_FolderService
 	/**
 	 * @return form_persistentdocument_recipientGroupFolder
 	 */
-	public function getFolder()
+	public function getFolder($parentId = null)
 	{
-		$folder = $this->createQuery()->findUnique();
+		if ($parentId === null)
+		{
+			$parentId = ModuleService::getInstance()->getRootFolderId('form');
+		}
+		$folder = $this->createQuery()->add(Restrictions::childOf($parentId))->findUnique();
 		if ($folder === null)
 		{
 			$folder = $this->getNewDocumentInstance();
-			$folder->save();
+			$folder->save($parentId);
 		}
 		return $folder;
 	}

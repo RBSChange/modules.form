@@ -7,6 +7,7 @@
 		<add name="sender" type="modules_contactcard/contact" />
 		<add name="captchaParametersSerialized" type="LongString" min-occurs="1" default-value="iw=130;ih=40;fs=20;fd=3;ml=5" />
 		<add name="previewpage" type="modules_website/page" />
+		<add name="enableRecipientGroupFolderCreation" type="Boolean" />
 	</properties>
 	<statuses default="PUBLICATED" />
 </document>
