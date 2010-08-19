@@ -611,12 +611,6 @@ abstract class FormHelper
 	 */
 	public static function addScriptsAndStyles($page)
 	{
-		$page->addStyle('modules.form.frontoffice');
-		$page->addScript('modules.form.lib.js.date-picker.date');
-		$page->addScript('modules.form.lib.js.date-picker.date_'.RequestContext::getInstance()->getLang());
-		$page->addScript('modules.form.lib.js.date-picker.jquery-bgiframe');
-		$page->addScript('modules.form.lib.js.date-picker.jquery-dimensions');
-		$page->addScript('modules.form.lib.js.date-picker.jquery-datePicker');
 		$page->addScript('modules.form.lib.js.form');
 	}
 }

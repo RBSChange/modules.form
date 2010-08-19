@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scripts>
+ 	<script name="modules.form.lib.js.form">
+		<dependencies>
+			<dependency name="modules.website.lib.js.jquery" />
+			<dependency name="modules.form.lib.js.date-picker.date" />
+		</dependencies>
+	</script>
+	<script name="modules.form.lib.js.date-picker.date">
+		<dependencies>
+			<dependency name="modules.form.lib.js.date-picker.jquery-bgiframe" />
+			<dependency name="modules.form.lib.js.date-picker.jquery-datePicker" />
+		</dependencies>
+	</script>
+	<script name="modules.form.lib.js.date-picker.jquery-bgiframe">
+		<dependencies>
+			<dependency name="modules.website.lib.js.jquery" />
+		</dependencies>
+	</script>
+	<script name="modules.form.lib.js.date-picker.jquery-datePicker">
+		<dependencies>
+			<dependency name="modules.website.lib.js.jquery" />
+		</dependencies>
+	</script>
+</scripts>
