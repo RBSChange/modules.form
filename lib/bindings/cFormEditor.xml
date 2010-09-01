@@ -401,7 +401,7 @@
 						this.onCancel();
 						retrun;
 					}
-					this.resizeTo(window.innerWidth-100, window.innerHeight-100);
+					this.autoResize(window.innerWidth-100, window.innerHeight-100);
 					
 					var contents = result.contents;
 					var responses = contents.responsesInfos;
