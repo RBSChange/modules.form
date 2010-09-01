@@ -521,16 +521,18 @@ abstract class FormHelper
 
 	/**
 	 * @param String $code
+	 * @param String $key
 	 * @return boolean
 	 */
-	public static function checkCaptcha($code)
+	public static function checkCaptchaForKey($code, $key)
 	{
 		if (f_util_StringUtils::isNotEmpty($code))
 		{
-			$sessionCode = Controller::getInstance()->getContext()->getUser()->getAttribute(CAPTCHA_SESSION_KEY);
-			if ($sessionCode === $code)
+			$generator = form_CaptchaGenerator::getInstance();
+			$generator->setKey($key);
+			if ($code === $generator->getCurrentCode())
 			{
-				Controller::getInstance()->getContext()->getUser()->setAttribute(CAPTCHA_SESSION_KEY, null);
+				$generator->clearCode();
 				return true;
 			}
 		}
@@ -612,5 +614,15 @@ abstract class FormHelper
 	public static function addScriptsAndStyles($page)
 	{
 		$page->addScript('modules.form.lib.js.form');
+	}
+	
+	// DEPRECATED
+	
+	/**
+	 * @deprecated
+	 */
+	public static function checkCaptcha($code)
+	{
+		return self::checkCaptchaForKey($code, 'default');
 	}
 }

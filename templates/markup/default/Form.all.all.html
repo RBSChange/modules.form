@@ -26,8 +26,8 @@ jQuery(document).ready(function()
 	<ol>
 		<li tal:repeat="elm elements" tal:replace="elm" />
 		<li tal:condition="useCaptcha" class="captcha">
-			<img change:captcha="" style="vertical-align: bottom" />
-			<input change:captcha="" />
+			<img change:captcha="key php: 'form' . form.getId()" style="vertical-align: bottom" />
+			<input change:captcha="key php: 'form' . form.getId()" />
 		</li>
 	</ol>
 	<p class="buttons">

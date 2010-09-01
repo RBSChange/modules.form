@@ -1,7 +1,6 @@
 <?php
 class form_CaptchaAction extends f_action_BaseAction
 {
-
 	/**
 	 * @param Context $context
 	 * @param Request $request
@@ -11,8 +10,9 @@ class form_CaptchaAction extends f_action_BaseAction
 		controller_ChangeController::setNoCache();
 		
 		$generator = form_CaptchaGenerator::getInstance();
+		$generator->setKey($request->getParameter('key'));
 		$renew = $request->hasParameter('renew');
-
+		
 		// Set optionnal parameters.
 		if ($request->hasParameter('ml'))
 		{
@@ -38,12 +38,13 @@ class form_CaptchaAction extends f_action_BaseAction
 		{
 			$generator->setFontDepth(intval($request->getParameter('fd')));
 		}
+		
 		// Renders the image.
 		if ($renew)
 		{
 			$generator->generateCode();
 		}
-		$generator->render($context->getUser()->getAttribute(CAPTCHA_SESSION_KEY));
+		$generator->render();
 		return View::NONE;
 	}
 

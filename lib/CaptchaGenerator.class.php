@@ -5,7 +5,7 @@ class form_CaptchaGenerator extends BaseService
 	 * @var form_CaptchaGenerator
 	 */
 	private static $instance;
-
+	
 	/**
 	 * @return form_CaptchaGenerator
 	 */
@@ -17,39 +17,44 @@ class form_CaptchaGenerator extends BaseService
 		}
 		return self::$instance;
 	}
-
+	
 	/**
-	 * @var Integer
+	 * @var integer
 	 */
 	protected $fontSize = 12;
-
+	
 	/**
-	 * @var Integer
+	 * @var integer
 	 */
 	protected $fontDepth = 3;
-
+	
 	/**
-	 * @var Integer
+	 * @var integer
 	 */
 	protected $width = 120;
-
+	
 	/**
-	 * @var Integer
+	 * @var integer
 	 */
 	protected $height = 40;
-
+	
 	/**
-	 * @var Integer
+	 * @var integer
 	 */
 	protected $codeMaxLength = 5;
-
+	
 	/**
-	 * @var Integer
+	 * @var integer
 	 */
 	protected $codeMinLength = 3;
-
+	
 	/**
-	 * @param Integer $value
+	 * @var string
+	 */
+	protected $key = 'default';
+	
+	/**
+	 * @param integer $value
 	 * @return form_CaptchaGenerator
 	 */
 	public function setFontSize($value)
@@ -57,9 +62,9 @@ class form_CaptchaGenerator extends BaseService
 		$this->fontSize = $value;
 		return $this;
 	}
-
+	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 * @return form_CaptchaGenerator
 	 */
 	public function setFontDepth($value)
@@ -67,9 +72,9 @@ class form_CaptchaGenerator extends BaseService
 		$this->fontDepth = $value;
 		return $this;
 	}
-
+	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 * @return form_CaptchaGenerator
 	 */
 	public function setWidth($value)
@@ -77,9 +82,9 @@ class form_CaptchaGenerator extends BaseService
 		$this->width = $value;
 		return $this;
 	}
-
+	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 * @return form_CaptchaGenerator
 	 */
 	public function setHeight($value)
@@ -87,9 +92,9 @@ class form_CaptchaGenerator extends BaseService
 		$this->height = $value;
 		return $this;
 	}
-
+	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 * @return form_CaptchaGenerator
 	 */
 	public function setCodeMaxLength($value)
@@ -97,9 +102,9 @@ class form_CaptchaGenerator extends BaseService
 		$this->codeMaxLength = $value;
 		return $this;
 	}
-
+	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 * @return form_CaptchaGenerator
 	 */
 	public function setCodeMinLength($value)
@@ -107,15 +112,25 @@ class form_CaptchaGenerator extends BaseService
 		$this->codeMinLength = $value;
 		return $this;
 	}
-
+	
 	/**
-	 * @param String $code
+	 * @param string $value
+	 * @return form_CaptchaGenerator
+	 */
+	public function setKey($value)
+	{
+		$this->key = $value;
+		return $this;
+	}
+	
+	/**
+	 * @param string $code
 	 * @return gotcha_GotchaPng
 	 */
 	protected function generate($code)
 	{
 		$img = new gotcha_GotchaPng($this->width, $this->height);
-
+		
 		if ($img->create())
 		{
 			//fill the background color.
@@ -124,7 +139,7 @@ class form_CaptchaGenerator extends BaseService
 			$img->apply(new gotcha_GridEffect(2));
 			$img->apply(new gotcha_LineEffect());
 			//Add the text.
-			$t  = new gotcha_TextEffect($code, $this->fontSize, $this->fontDepth);
+			$t = new gotcha_TextEffect($code, $this->fontSize, $this->fontDepth);
 			$t->addFont(f_util_FileUtils::buildAbsolutePath(FRAMEWORK_HOME, 'libs', 'gotcha', 'SFTransRoboticsExtended.ttf'));
 			$t->addFont(f_util_FileUtils::buildAbsolutePath(FRAMEWORK_HOME, 'libs', 'gotcha', 'arialbd.ttf'));
 			$t->addFont(f_util_FileUtils::buildAbsolutePath(FRAMEWORK_HOME, 'libs', 'gotcha', 'comic.ttf'));
@@ -136,39 +151,74 @@ class form_CaptchaGenerator extends BaseService
 			$img->apply(new gotcha_DotEffect());
 			return $img;
 		}
-
+		
 		throw new Exception("Could not generate CAPTCHA image.");
 	}
-
+	
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public function generateCode()
 	{
 		$text = '';
+		$characters = '123479ACDEFGHIJKLNPQRTXYZ';
 		$nb = mt_rand($this->codeMinLength, $this->codeMaxLength);
-		for ($i=0 ; $i<$nb ; $i++)
+		for ($i = 0; $i < $nb; $i++)
 		{
-			$text .= chr(mt_rand(ord('0'), ord('9')));
+			$text .= $characters[mt_rand(0, strlen($characters)-1)];
 		}
 		$this->registerCode($text);
 		return $text;
 	}
-
+	
 	/**
-	 * @param String $code
+	 * @param string $code
 	 */
 	protected final function registerCode($code)
 	{
-		Controller::getInstance()->getContext()->getUser()->setAttribute(CAPTCHA_SESSION_KEY, $code);
+		$codes = $this->getCurrentCodes();
+		$codes[$this->key] = $code;
+		Controller::getInstance()->getContext()->getUser()->setAttribute(CAPTCHA_SESSION_KEY, $codes);
 	}
-
+	
 	/**
 	 * Renders the generated image to the browser.
-	 * @param String $code
+	 * @param string $code
 	 */
-	public final function render($code)
+	public final function render($code = null)
 	{
+		if ($code === null)
+		{
+			$code = $this->getCurrentCode();
+		}
 		$this->generate($code)->render();
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getCurrentCode()
+	{
+		$codes = $this->getCurrentCodes();
+		return (isset($codes[$this->key])) ? $codes[$this->key] : null;
+	}
+	
+	/**
+	 * @return string
+	 */
+	protected function getCurrentCodes()
+	{
+		$codes = Controller::getInstance()->getContext()->getUser()->getAttribute(CAPTCHA_SESSION_KEY);
+		return (is_array($codes)) ? $codes : array();
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function clearCode()
+	{
+		$codes = $this->getCurrentCodes();
+		unset($codes[$this->key]);
+		Controller::getInstance()->getContext()->getUser()->setAttribute(CAPTCHA_SESSION_KEY, $codes);
 	}
 }
