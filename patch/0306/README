@@ -1,0 +1,4 @@
+Version: 3.0.4
+
+Mise  à jour de la structure des tables m_form_doc_baseform, m_form_doc_baseform_i18n 
+suite à l'application du patch 0301
