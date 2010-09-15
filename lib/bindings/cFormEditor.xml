@@ -615,7 +615,7 @@
 			<xul:hbox flex="1">
 				<xul:label xbl:inherits="value=label" />
 				<xul:label value=":" />
-				<xul:description style="-moz-user-select: text; -moz-user-focus: normal; white-space: pre"><xbl:children /></xul:description>
+				<xul:description class="allow-text-selection"><xbl:children /></xul:description>
 			</xul:hbox>
 		</content>
 	</binding>
