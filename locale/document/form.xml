@@ -38,4 +38,8 @@
 		<locale lang="fr">nombre de réponses</locale>
 		<locale lang="en">response count</locale>
 	</entity>
+	<entity id="contact">
+		<locale lang="fr">Contacter</locale>
+		<locale lang="en">Contact</locale>
+	</entity>
 </localization>

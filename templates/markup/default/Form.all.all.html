@@ -1,7 +1,7 @@
 <tal:block tal:condition="not: moduleName" tal:define="global moduleName 'form'" />
 <a name="form_${form/getId}_anchor"></a>
 <tal:block tal:condition="php: count(receiverLabels) GT 0">
-	<p><strong i18n:translate="&modules.form.document.form.ContactLabel;">Contact :</strong> <tal:block tal:condition="php: count(receiverLabels) == 1">${receiverLabels/0}</tal:block></p>
+	<p><strong change:translate="modules.form.document.form.ContactLabel"></strong> <tal:block tal:condition="php: count(receiverLabels) == 1">${receiverLabels/0}</tal:block></p>
 	<ul class="normal" tal:condition="php: count(receiverLabels) GT 1">
  		<li tal:repeat="receiverLabel receiverLabels">${receiverLabel}</li>
 	</ul>
