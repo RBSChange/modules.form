@@ -22,4 +22,25 @@ class form_persistentdocument_baseform extends form_persistentdocument_baseformb
 	{
 		return str_replace('/', '_', $this->getFormid());
 	}
+	
+	/**
+	 * @var boolean
+	 */
+	private $isDuplicating;
+
+	/**
+	 * @param boolean $value
+	 */
+	public function setIsDuplicating($value)
+	{
+		$this->isDuplicating = $value;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getIsDuplicating()
+	{
+		return $this->isDuplicating;
+	}
 }

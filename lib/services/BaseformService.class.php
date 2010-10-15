@@ -203,6 +203,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		$newDocument->setFormid(null);
 		$newDocument->setAcknowledgmentNotification(null);
+		$newDocument->setIsDuplicating(true);
 	}
 
 	/**
@@ -224,18 +225,19 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			$newNotification = $newDocument->getAcknowledgmentNotification();
 			$this->duplicateNotificationInfo($oldNotification, $newNotification);
 			$newNotification->save();
-		}		
+		}
 
 		$items = $this->getChildrenOf($originalDocument);
 		foreach ($items as $item)
 		{
 			if ($item instanceof form_persistentdocument_group ||
-			$item instanceof form_persistentdocument_field ||
-			$item instanceof form_persistentdocument_freecontent)
+				$item instanceof form_persistentdocument_field ||
+				$item instanceof form_persistentdocument_freecontent)
 			{
 				$this->duplicate($item->getId(), $newDocument->getId());
 			}
 		}
+		$newDocument->setIsDuplicating(false);
 	}
 		
 	/**
