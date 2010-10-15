@@ -70,8 +70,16 @@ class form_BlockFormAction extends block_BlockAction
 			{
 				$form->getDocumentService()->saveFormData($form, $request);
 				$user = $context->getGlobalContext()->getUser();
-				$user->setAttribute('form_success_parameters_'.$form->getId(), $request->getParameters());
-				$view = block_BlockView::SUCCESS;
+				$confirmpage = $form->getConfirmpage();
+				if($confirmpage instanceof website_persistentdocument_page && $confirmpage->isPublished())
+				{
+					$user->setAttribute('form_success_parameters_confirmpage_'.$form->getId(), $request->getParameters());
+					HttpController::getInstance()->redirectToUrl(LinkHelper::getDocumentUrl($confirmpage, $this->getLang(), array('formParam[id]'=>$form->getId())));
+					return block_BlockView::NONE;
+				}
+				$user->setAttribute('form_success_parameters_noconfirmpage_'.$form->getId(), $request->getParameters());
+				HttpController::getInstance()->redirectToUrl(LinkHelper::getCurrentUrl());
+				return block_BlockView::NONE;
 			}
 			catch (form_FormValidationException $e)
 			{
@@ -124,7 +132,6 @@ class form_BlockFormAction extends block_BlockAction
 	protected final function isSuccess($context, $request)
 	{
 		$user = $context->getGlobalContext()->getUser();
-		$id = $this->getFormId();
-		return $user->hasAttribute('form_success_parameters_'.$id);
+		return $user->hasAttribute('form_success_parameters_noconfirmpage_'.$this->getFormId());
 	}
 }

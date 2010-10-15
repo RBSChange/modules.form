@@ -9,16 +9,10 @@ class form_BlockFormSuccessView extends block_BlockView
 	{
 		$form = $this->getParameter('form');
 
-		$confirmpage = $form->getConfirmpage();
-		if($confirmpage instanceof website_persistentdocument_page && $confirmpage->isPublished())
-		{
-			HttpController::getInstance()->redirectToUrl(LinkHelper::getUrl($confirmpage, $context->getLang(), array('formParam[id]'=>$form->getId())));
-		}
-
 		$this->setTemplateName('Form-Success');
 
 		$user = $context->getGlobalContext()->getUser();
-		$attr = 'form_success_parameters_'.$form->getId();
+		$attr = 'form_success_parameters_noconfirmpage_'.$form->getId();
 		$parameters = $user->getAttribute($attr);
 		$user->removeAttribute($attr);
 

@@ -60,7 +60,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 		}
 		
 		$agaviUser = $this->getContext()->getGlobalContext()->getUser();
-		if ($agaviUser->hasAttribute('form_success_parameters_' . $form->getId()))
+		if ($agaviUser->hasAttribute('form_success_parameters_noconfirmpage_' . $form->getId()))
 		{
 			$view = $this->getSuccessView($form, $request);
 		}
@@ -69,8 +69,16 @@ class form_BlockFormBaseAction extends website_BlockAction
 			try
 			{
 				$form->getDocumentService()->saveFormData($form, $request);
-				$agaviUser->setAttribute('form_success_parameters_' . $form->getId(), $request->getParameters());
-				$view = $this->getSuccessView($form, $request);
+				$confirmpage = $form->getConfirmpage();
+				if ($confirmpage instanceof website_persistentdocument_page && $confirmpage->isPublished())
+				{
+					$agaviUser->setAttribute('form_success_parameters_confirmpage_' . $form->getId(), $request->getParameters());
+					$this->redirectToUrl(LinkHelper::getDocumentUrl($confirmpage, $this->getLang(), array('formParam[id]' => $form->getId())));
+					return website_BlockView::NONE;
+				}
+				$agaviUser->setAttribute('form_success_parameters_noconfirmpage_' . $form->getId(), $request->getParameters());
+				HttpController::getInstance()->redirectToUrl(LinkHelper::getCurrentUrl());
+				return website_BlockView::NONE;
 			}
 			catch (form_FormValidationException $e)
 			{
@@ -87,6 +95,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 	}
 	
 	/**
+	 * Overload this method to handle specific restricted access.
 	 * @param form_persistentdocument_form $form
 	 * @param f_mvc_Request $request
 	 * @return string
@@ -103,15 +112,8 @@ class form_BlockFormBaseAction extends website_BlockAction
 	 */
 	protected function getSuccessView($form, $request)
 	{
-		$confirmpage = $form->getConfirmpage();
-		if ($confirmpage instanceof website_persistentdocument_page && $confirmpage->isPublished())
-		{
-			HttpController::getInstance()->redirectToUrl(LinkHelper::getDocumentUrl($confirmpage, $this->getLang(), array('formParam[id]' => $form->getId())));
-			return website_BlockView::NONE;
-		}
-		
 		$user = $this->getContext()->getGlobalContext()->getUser();
-		$attr = 'form_success_parameters_' . $form->getId();
+		$attr = 'form_success_parameters_noconfirmpage_' . $form->getId();
 		$parameters = $user->getAttribute($attr);
 		$user->removeAttribute($attr);
 		
