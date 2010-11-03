@@ -95,7 +95,7 @@ class PHPTAL_Php_Attribute_CHANGE_captcha extends PHPTAL_Php_Attribute
 		}
 		self::generateCaptchaCode($parameters, $key);
 		$parameters['key'] = $key;
-		$url = htmlentities(LinkHelper::getUrl('form', 'Captcha', $parameters), ENT_COMPAT, "utf-8");
+		$url = htmlentities(LinkHelper::getActionUrl('form', 'Captcha', $parameters), ENT_COMPAT, "utf-8");
 		$code = '<span class="captcha"><input type="image" src="' . $url . '"';
 		if (!isset($attributes['title']))
 		{

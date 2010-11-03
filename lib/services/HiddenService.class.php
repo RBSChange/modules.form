@@ -69,7 +69,7 @@ class form_HiddenService extends form_FieldService
             case 'page':
                 try
                 {
-                    return LinkHelper::getUrl(DocumentHelper::getDocumentInstance($rawValue));
+                    return LinkHelper::getDocumentUrl(DocumentHelper::getDocumentInstance($rawValue));
                 } 
                 catch (Exception $e) // if no link for the given id, send at least the site URL...
                 {

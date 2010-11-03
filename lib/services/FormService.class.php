@@ -666,7 +666,7 @@ class form_FormService extends form_BaseformService
 				website_WebsiteModuleService::getInstance()->getCurrentWebsite()
 			);
 			$parameters = array('formParam[recommandFeature]' => website_WebsiteModuleService::getInstance()->getCurrentPageId());
-			return LinkHelper::getUrl($page, null, $parameters);
+			return LinkHelper::getDocumentUrl($page, null, $parameters);
 		}
 		catch (Exception $e)
 		{
