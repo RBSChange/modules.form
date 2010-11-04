@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<script>
-	<binding fileName="modules/list/persistentdocument/import/list_binding.xml" />
-
-	<systemfolder module="list" relatedmodule="form">
-		<dynamiclist listid="modules_form/activationfields" label="Champs d'activation"
-			description="Liste des champs pouvant servir de condition d'activation en fonction d'un formulaire donné." />
-	</systemfolder>
-</script>
