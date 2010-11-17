@@ -24,8 +24,6 @@ class form_BlockFormAction extends block_BlockAction
 		{
 			return block_BlockView::NONE;
 		}
-		
-		$form->getDocumentNode()->getDescendents();
 		$this->setParameter('form', $form);
 		
 		if ($context->inBackofficeMode())

@@ -267,7 +267,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 			$destForm = $fbs->getAncestorFormByDocument($destDocument);
 		}
 		
-		if (!DocumentHelper::isEquals($destForm, $fieldForm))
+		if (!DocumentHelper::equals($destForm, $fieldForm))
 		{
 			throw new form_FormException(f_Locale::translate('&modules.form.bo.errors.Cannot-move-a-field-from-a-form-to-another-form;'));
 		}

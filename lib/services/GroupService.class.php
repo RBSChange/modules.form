@@ -44,16 +44,6 @@ class form_GroupService extends f_persistentdocument_DocumentService
 	{
 		return true;
 	}
-
-
-	/**
-	 * @param form_persistentdocument_group $document
-	 * @return boolean true
-	 */
-	public function isPublicated($document)
-	{
-		return true;
-	}
 	
 	/**
 	 * @param form_persistentdocument_group $group
