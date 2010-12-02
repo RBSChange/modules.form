@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.list" lcid="de_DE">
+  <include id="m.form.document.field"/>
+  <key id="document-name">Listenfeld</key>
+  <key id="display">Anzeige</key>
+  <key id="display-help">Anzeige</key>
+  <key id="datasource">Optionenliste</key>
+  <key id="datasource-help">Liste für die Auswahl der Optionen.</key>
+  <key id="multiple">mehrfache Selektion</key>
+  <key id="multiple-help">Bestimmt, ob der Benutzer mehrere Elemente der Liste wählen darf.</key>
+  <key id="hasblankoption">Kopfzeile hinzufügen</key>
+  <key id="hasblankoption-help">Ermöglicht eine Kopfzeile am Listenanfang anzuzeigen. Ist die Liste obligatorisch, wird der Benutzer einen Wert aus der Liste wählen müssen, statt ihn aleatorisch anzeigen zu lassen (was nicht immer relevant ist).</key>
+</i18n>

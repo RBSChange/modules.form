@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.baseform" lcid="fr_FR">
+  <key id="document-name">baseform</key>
+  <key id="label">titre</key>
+  <key id="label-help">Titre du formulaire, utilisé pour l'affichage sur le site</key>
+  <key id="description">description</key>
+  <key id="description-help">Description du formulaire, peut servir de texte d'aide. Affiché en en-tête du formulaire sur le site.</key>
+  <key id="submitbutton">libellé du bouton d'envoi</key>
+  <key id="submitbutton-help">libellé du bouton d'envoi (texte qui sera affiché sur le bouton en bas du formulaire. Idéalement, on y affiche ″envoyer″ ou ″soumettre″)</key>
+  <key id="markup">modèle de mise en page</key>
+  <key id="markup-help">sélectionnez le modèle de mise en page que vous souhaitez appliquer au formulaire. Le modèle basé sur des listes à puces est recommandé pour des questions d'accessibilité.</key>
+  <key id="usebacklink">utiliser un lien de retour</key>
+  <key id="usebacklink-help">Ceci ajoute un lien de retour à la page visitée avant d'arriver sur le formulaire. Cela peut s'avérer très utile lors de l'utilisation d'un formulaire depuis un autre module.</key>
+  <key id="usecaptcha">utiliser un CAPTCHA</key>
+  <key id="usecaptcha-help">Un CAPTCHA (Completely Automated Public Turing test to Tell Computers and Humans Apart) est un système qui permet de s'assurer que le formulaire sera posté par un humain (et non un robot) afin d'éviter le spam. Les CAPTCHA générés par RBS-Change ne contiennent que des chiffres. Attention : utiliser un CAPTCHA (graphique) est contraire aux règles d'accessibilité.</key>
+  <key id="usecaptcha-warning">Attention : utiliser un CAPTCHA (graphique) est contraire aux règles d'accessibilité.</key>
+  <key id="footer">texte de pied de page</key>
+  <key id="footer-help">Texte de pied de page du formulaire, généralement utilisé pour afficher des informations quant à la loi Informatique et liberté.</key>
+  <key id="confirmmessage">message de confirmation</key>
+  <key id="confirmmessage-help">message de confirmation qui s'affiche en lieu et place du formulaire après une soumission réussie. Il est possible d'utiliser des valeurs saisies par l'internaute dans le formulaire en utilisant la syntaxe suivante : {nomDuChamp}.</key>
+  <key id="confirmpage">page de confirmation</key>
+  <key id="confirmpage-help">page de confirmation</key>
+  <key id="acknowledgment">accusé de réception</key>
+  <key id="acknowledgment-help">cochez ″oui″ pour envoyer un accusé de réception lors de la soumission du formulaire. Pour que cet e-mail soit envoyé, le formulaire doit contenir un champ de type e-mail avec l'option ″destinataire de l'accusé de réception″ cochée.</key>
+  <key id="acknowledgmentnotification">notification d'accusé de réception</key>
+  <key id="saveresponse">enregistrer les réponses</key>
+  <key id="saveresponse-help">cochez ″oui″ pour enregistrer les réponse au niveau du formulaire.</key>
+  <key id="acknowledgment-notification-label-prefix">[Accusé de réception]</key>
+</i18n>

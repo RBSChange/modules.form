@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.form" lcid="de_DE">
+  <include id="m.form.document.baseform"/>
+  <key id="document-name">Formular</key>
+  <key id="notification">Benachrichtigung</key>
+  <key id="notification-help">Benachrichtigung</key>
+  <key id="messagesendingtype">Nachrichtenversand</key>
+  <key id="messagesendingtype-help">Ermöglicht zu spezifizieren, ob das Folmular bei jeder Antwort des Benutzers eine Nachricht senden soll.</key>
+  <key id="recipientgroup">Empfänger</key>
+  <key id="recipientgroup-help">Empfängergruppen</key>
+</i18n>

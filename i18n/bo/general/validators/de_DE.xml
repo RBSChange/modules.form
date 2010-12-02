@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.bo.general.validators" lcid="de_DE">
+  <key id="email">E-mailadresse</key>
+  <key id="emails">E-mailadressen getrennt durch Kommata</key>
+  <key id="url">URL</key>
+  <key id="integer">ganze Zahl</key>
+  <key id="float">Dezimalzahl</key>
+  <key id="none">keiner</key>
+</i18n>

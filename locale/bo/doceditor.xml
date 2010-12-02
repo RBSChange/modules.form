@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<localization>
-	<entity id="section.responsedata">
-		<locale lang="fr">données saisies par l'utilisateur</locale>
-	</entity>
-</localization>

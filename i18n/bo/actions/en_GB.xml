@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.bo.actions" lcid="en_GB">
+  <key id="create_">create</key>
+  <key id="createroot_">create</key>
+  <key id="createfolder_">create</key>
+  <key id="create-list">create a list field</key>
+  <key id="create-text">create a text field</key>
+  <key id="create-password">create a password field</key>
+  <key id="create-boolean">create a true/false field</key>
+  <key id="create-date">create a date field</key>
+  <key id="create-group">create a fields group</key>
+  <key id="create-form">create a form</key>
+  <key id="create-file">create an upload file field</key>
+  <key id="create-hidden">create a hidden field</key>
+  <key id="view-responses">view responses</key>
+  <key id="export-csv">export responses as CSV file</key>
+  <key id="export-csv-all">export all responses as CSV file</key>
+  <key id="create-freecontent">create free content zone</key>
+  <key id="create-recipientgroup">create recipient group</key>
+  <key id="create-recipientgrouplist">create recipients selection field</key>
+  <key id="create-mail">create a mail field</key>
+</i18n>

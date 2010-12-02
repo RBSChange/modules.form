@@ -1,5 +1,5 @@
 <?php
-class form_ArchiveResponseAction extends f_action_BaseAction
+class form_ArchiveResponseAction extends f_action_BaseJSONAction
 {
 	/**
 	 * @param Context $context
@@ -8,16 +8,13 @@ class form_ArchiveResponseAction extends f_action_BaseAction
 	public function _execute($context, $request)
 	{
 		$forms = $this->getDocumentInstanceArrayFromRequest($request);
-		$responseArchivedCount = 0;
+		$archivedCount = 0;
 		foreach ($forms as $form) 
 		{
-			$responseArchivedCount += form_FormService::getInstance()->fileResponses($form);
+			$archivedCount += form_FormService::getInstance()->fileResponses($form);
 		}
-		if (Framework::isInfoEnabled())
-		{
-		    Framework::info('form/ArchiveResponse -> Filed responses : ' . $responseArchivedCount);
-		}
-        $request->setAttribute('message', $responseArchivedCount);
-        return self::getSuccessView();
+        return $this->sendJSON(array('message' => 
+        	LocaleService::getInstance()->transBO('m.form.bo.actions.archiveresponse-success', 
+        		array(), array('ArchivedCount' => $archivedCount))));
 	}
 }

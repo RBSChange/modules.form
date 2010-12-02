@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.date.validator" lcid="de_DE">
+  <include id="m.form.document.field"/>
+  <key id="format">d/m/Y</key>
+</i18n>

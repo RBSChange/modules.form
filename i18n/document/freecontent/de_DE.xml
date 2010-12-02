@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.freecontent" lcid="de_DE">
+  <key id="document-name">freier Inhalt</key>
+  <key id="label">Name</key>
+  <key id="label-help">Name (wird nicht auf der Webseite angezeigt).</key>
+  <key id="text">Inhalt</key>
+  <key id="text-help">Inhalt der Textzone (einfaches Seitenlayout möglich).</key>
+</i18n>

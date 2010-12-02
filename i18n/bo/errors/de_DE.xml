@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.bo.errors" lcid="de_DE">
+  <key id="cannot-move-a-field-from-a-form-to-another-form">ein Feld kann nur innerhalb des Originalformulars verschoben werden</key>
+  <key id="field-name-alreay-used">das Feld ″{fieldName}″ wird bereits von einem anderen Feld in diesem Formular genutzt</key>
+  <key id="mail-field-for-replyto-exists">ein E-mailfeld ist bereits in diesem Formular als Anwortfeld konfiguriert</key>
+  <key id="invalidfieldname">Der Feldname respektiert nicht eines der folgenden Kriterien. Er muss aus Buchstaben und Zahlen bestehen, und muss mit einem Buchstaben beginnen.</key>
+</i18n>

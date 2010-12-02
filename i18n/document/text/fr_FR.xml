@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.text" lcid="fr_FR">
+  <include id="m.form.document.field"/>
+  <key id="document-name">champ texte</key>
+  <key id="multiline">texte multi-ligne</key>
+  <key id="cols">colonnes</key>
+  <key id="cols-help">colonnes dans la zone de texte multi-ligne.</key>
+  <key id="rows">lignes</key>
+  <key id="rows-help">lignes dans la zone de texte multi-ligne.</key>
+  <key id="maxlength">longueur maximale</key>
+  <key id="maxlength-help">nombre de caractères maximal que l'utilisateur pourra saisir dans le champ.</key>
+  <key id="minlength">longueur minimale</key>
+  <key id="minlength-help">nombre de caractères minimal que l'utilisateur devra saisir dans le champ.</key>
+  <key id="isreceiver">champ destinataire du mail</key>
+  <key id="isreceiver-help">Détermine si ce champ texte devra comprendre l'email du destinataire.</key>
+  <key id="disableautocorrect">désactiver l'autocorrection</key>
+  <key id="disableautocorrect-help">permet de désactiver la correction automatique.</key>
+  <key id="disableautocapitalize">désactiver l'autocapitalisation</key>
+  <key id="disableautocapitalize-help">permet de désactiver la mise en majuscule automatique de la première lettre saisie dans le champ.</key>
+  <key id="disableautocomplete">désactiver l'autocompletion</key>
+  <key id="disableautocomplete-help">permet de désactiver la complétion automatique.</key>
+  <key id="initializewithcurrentuserlastname">pré-remplir avec le nom si connecté</key>
+  <key id="initializewithcurrentuserlastname-help">cocher ″oui″ pour que, si l'utilisateur est connecté, ce champ soit pré-rempli son nom.</key>
+  <key id="initializewithcurrentuserfirstname">pré-remplir avec le prénom si connecté</key>
+  <key id="initializewithcurrentuserfirstname-help">cocher ″oui″ pour que, si l'utilisateur est connecté, ce champ soit pré-rempli son prénom.</key>
+  <key id="size">taille du champ</key>
+</i18n>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.hidden" lcid="de_DE">
+  <include id="m.form.document.field"/>
+  <key id="document-name">verstecktes Feld</key>
+  <key id="label-help">Name verstecktes Feld (wird nicht auf der Webseite angezeigt).</key>
+  <key id="isreceiver">Feld Empfänger der E-mail</key>
+  <key id="isreceiver-help">Bestimmt ob dieses versteckte Feld den Empfängerkontakt beinhalten muss.</key>
+  <key id="isrecommand">Feld einem Freund empfehlen</key>
+  <key id="isrecommand-help">Feld für die Funktion einem Freund empfehlen.</key>
+</i18n>

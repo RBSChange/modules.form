@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.baseform" lcid="de_DE">
+  <key id="label">Titel</key>
+  <key id="label-help">Formulartitel, auf der Webseite angezeigt</key>
+  <key id="description">Beschreibung</key>
+  <key id="description-help">Formularbeschreibung, kann auch als Hilfetext genutzt werden. Als Kopftext auf dem Formular der Webseite angezeigt.</key>
+  <key id="submitbutton">Name des Versandknopfes</key>
+  <key id="submitbutton-help">Name des Versandknopfes (auf dem Knopf unterhalb des Formulars angezeigter Text. Idealerweise nennt er sich ″senden″ oder ″absenden″)</key>
+  <key id="markup">Seitenlayoutmodell</key>
+  <key id="markup-help">wählen Sie das Seitenlayoutmodell welches Sie dem Formular anbringen möchten. Die Aufzählungsliste ist das empfohlene Modell aus Zugangsgründen.</key>
+  <key id="usebacklink">einen Zurück-Link benutzen</key>
+  <key id="usebacklink-help">Dies fügt einen Zurück-Link zur besuchten Seite ein, bevor Sie zum Formular gelangen. Dies kann sehr nützlich sein, wenn Sie einen Formular von einem anderen Modul aus nutzen.</key>
+  <key id="usecaptcha">einen CAPTCHA benutzen</key>
+  <key id="usecaptcha-help">ein CAPTCHA (Completely Automated Public Turing test to Tell Computers and Humans Apart) ist ein System, welches ermöglicht sich zu versichern, dass das Formular von einem Lebenden Wesen (und nicht von einer Maschine) versendet wurde, um SPAM zu vermeiden. Die von RBS-Change generierten CAPTCHA beinhalten ausschliesslich Zahlen.</key>
+  <key id="footer">Fusszeilentext</key>
+  <key id="footer-help">Fusszeilentext, generell genutzt um Informationen über das Informatikgesetz oder die Freiheit der Nutzung anzuzeigen.</key>
+  <key id="confirmmessage">Bestätigungsnachricht</key>
+  <key id="confirmmessage-help">angezeigte Bestätigungsnachricht an Stelle des Formulars nach erfolgreichem Versand. Es ist möglich die vom Benutzer im Formular eingegebenen Werte zu nutzen indem man folgende Syntax nutzt: {NameDesFeldes}</key>
+</i18n>

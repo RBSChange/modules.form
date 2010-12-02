@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.text" lcid="de_DE">
+  <include id="m.form.document.field"/>
+  <key id="document-name">Textfeld</key>
+  <key id="multiline">mehrzeiliger Text</key>
+  <key id="cols">Spalten</key>
+  <key id="cols-help">Spalten in der mehrzeiligen Textzone.</key>
+  <key id="rows">Zeilen</key>
+  <key id="rows-help">Zeilen in der mehrzeiligen Textzone.</key>
+  <key id="maxlength">maximale Länge</key>
+  <key id="maxlength-help">maximale Anzahl an Zeichen, die der Benutzer in das Feld setzen darf.</key>
+  <key id="minlength">minimale Länge</key>
+  <key id="minlength-help">minimale Anzahl an Zeichen, die der Benutzer in das Feld setzen darf.</key>
+  <key id="isreceiver">Empfängerfeld der E-mail</key>
+  <key id="isreceiver-help">Bestimmt ob dieses Textfeld die E-mail des Empfängers beinhalten muss.</key>
+  <key id="size">Grösse des Feldes</key>
+</i18n>

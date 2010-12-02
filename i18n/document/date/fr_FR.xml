@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.date" lcid="fr_FR">
+  <include id="m.form.document.field"/>
+  <key id="document-name">champ date</key>
+  <key id="startdate">date minimale</key>
+  <key id="startdate-help">Date minimale que l'utilisateur pourra sélectionner.</key>
+  <key id="enddate">date maximale</key>
+  <key id="enddate-help">Date maximale que l'utilisateur pourra sélectionner.</key>
+</i18n>

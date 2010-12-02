@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.preferences" lcid="de_DE">
+  <key id="document-name">Präferenzen des Moduls Formular</key>
+  <key id="sender">Sender der E-mails</key>
+  <key id="previewpage">Vorschauseite</key>
+  <key id="previewpage-help">für die Vorschau der Formulare genutzte Seite</key>
+</i18n>

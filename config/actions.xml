@@ -181,7 +181,7 @@
 	    	var label = "&amp;modules.form.bo.actions.ConfirmArchiveResponseItem; : " + item.label;
 			if (confirm(label))
 			{
-				this.execute("%label%", "ArchiveResponse", { cmpref: item.id, lang: lang});
+				this.executeJSON("ArchiveResponse", { cmpref: item.id, lang: lang});
 			}	    
 	    ]]></body>
 	</action>
@@ -191,6 +191,13 @@
 	    	return itemData.activeResponse > 0;
 		]]></body>
 	</action>
+	<action name="onArchiveResponseSuccess">
+		<parameter name="result" />
+		<body><![CDATA[
+	    	getController().alert(result.contents.message);
+	    ]]></body>
+	</action>
+	
 	<action name="previewForm">
 		<parameter name="listWidget" />
 		<body><![CDATA[

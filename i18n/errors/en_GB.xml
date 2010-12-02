@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.errors" lcid="en_GB">
+  <key id="modules-form-getpreferencesdocument">you don't have the appropriate permission to perform this operation : ″Open preferences window″</key>
+  <key id="modules-form-archiveresponse">you don't have the appropriate permission to perform this operation : ″Archive the answer″</key>
+  <key id="modules-form-export">you don't have the appropriate permission to perform this operation : ″Export″</key>
+  <key id="modules-form-editlocale">you don't have the appropriate permission to perform this operation : ″Edit a locale″</key>
+  <key id="modules-form-order">you don't have the appropriate permission to perform this operation : ″Sort out the elements″</key>
+  <key id="modules-form-previewform">you don't have the appropriate permission to perform this operation : ″Preview a form″</key>
+  <key id="modules-form-enabled">you don't have the appropriate permission to perform this operation : ″Access to the module″</key>
+  <key id="modules-form-insert-recipientgroup">you don't have the appropriate permission add a recipient group in this folder</key>
+</i18n>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.file" lcid="en_GB">
+  <include id="m.form.document.field"/>
+  <key id="document-name">file field</key>
+  <key id="mediafolder">destination folder</key>
+  <key id="mediafolder-help">destination folder, in the Media module.</key>
+</i18n>

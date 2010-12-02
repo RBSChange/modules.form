@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.bo.general.field" lcid="en_GB">
+  <key id="password">password</key>
+  <key id="text">text</key>
+  <key id="multiline-text">multiline text</key>
+  <key id="mail">mail</key>
+  <key id="boolean">true/false</key>
+  <key id="date">date</key>
+  <key id="single-selection-list">single selection list</key>
+  <key id="multiple-selection-list">multiple selection list</key>
+  <key id="file">upload file</key>
+  <key id="hidden">hidden field</key>
+  <key id="group">fields group</key>
+  <key id="recipient-single-selection-list">single recipient selection list</key>
+  <key id="recipient-multiple-selection-list">multiple recipients selection list</key>
+</i18n>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.preferences.captcha" lcid="de_DE">
+  <key id="reload">neu laden</key>
+  <key id="width">Breite</key>
+  <key id="width-help">Bildbreite des CAPTCHA (in Pixel)</key>
+  <key id="height">Höhe</key>
+  <key id="height-help">Bildhöhe des CAPTCHA (in Pixel)</key>
+  <key id="fontsize">Grösse der Schriftart</key>
+  <key id="fontsize-help">Grösse der genutzten Schriftart für den Kode des CAPTCHA (in Pixel)</key>
+  <key id="fontdepth">Tiefe des Schattens</key>
+  <key id="fontdepth-help">Tiefe des Schattens unterhalb des Textes (in Pixel)</key>
+  <key id="maxlength">Anzahl Zeichen</key>
+  <key id="maxlength-help">maximale Anzahl an Zeichen, die den CAPTCHA zusammenstellen</key>
+</i18n>

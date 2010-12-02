@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.list" lcid="fr_FR">
+  <include id="m.form.document.field"/>
+  <key id="document-name">champ liste</key>
+  <key id="display">affichage</key>
+  <key id="display-help">affichage</key>
+  <key id="datasource">liste des options</key>
+  <key id="datasource-help">liste permettant de composer les options à choisir.</key>
+  <key id="multiple">sélection multiple</key>
+  <key id="multiple-help">détermine si l'internaute pourra sélectionner plusieurs éléments de la liste.</key>
+  <key id="hasblankoption">Ajouter une en-tête</key>
+  <key id="hasblankoption-help">Permet d'avoir une en-tête en début de liste. Si la liste est obligatoire, l'utilisateur devra alors choisir une valeur dans la liste plutôt que la première (et pas forcément pertinente) soit sélectionnée par défaut.</key>
+</i18n>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.bo.general.column" lcid="en_GB">
+  <key id="fieldtype">field type</key>
+  <key id="fieldrequired">required</key>
+  <key id="fieldconditioned">conditioned</key>
+</i18n>

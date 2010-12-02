@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.mail" lcid="en_GB">
+  <include id="m.form.document.field"/>
+  <key id="document-name">e-mail field</key>
+  <key id="multiline">allow several addresses</key>
+  <key id="multiline-help">allow to set several e-mail addresses separated by commas.</key>
+  <key id="cols">columns number</key>
+  <key id="cols-help">columns number which defines field's size.</key>
+  <key id="size">field size</key>
+  <key id="rows">rows number</key>
+  <key id="rows-help">rows in the multiline text field.</key>
+  <key id="useasreply">use this field for 'reply-to'</key>
+  <key id="useasreply-help">this field's value will be added as 'reply-to' in the e-mail.</key>
+  <key id="isreceiver">use the field to send a copy</key>
+  <key id="isreceiver-help">Define if the e-mail address in this field will be used as the recipient of the message sent following the form submission.</key>
+</i18n>

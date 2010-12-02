@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.group" lcid="fr_FR">
+  <key id="document-name">groupe de champs</key>
+  <key id="label">libellé</key>
+  <key id="label-help">Libellé de la zone (visible sur le site).</key>
+  <key id="description">description</key>
+  <key id="description-help">Texte à afficher dans la zone.</key>
+  <key id="activationquestion">champ</key>
+  <key id="activationquestion-help">champ qui conditionnera l'activation de ce groupe de champs.</key>
+  <key id="activationvalue">valeur</key>
+  <key id="activationvalue-help">valeur que devra avoir le champ pour activer ce groupe de champs.</key>
+</i18n>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.preferences" lcid="fr_FR">
+  <key id="document-name">préférences</key>
+  <key id="sender">expéditeur des emails</key>
+  <key id="enablerecipientgroupfoldercreation">création des dossiers de groupes d'envoi</key>
+  <key id="enablerecipientgroupfoldercreation-help">cochez 'oui' pour activer la création de dossiers de groupes d'envoi par l'administrateur. Ceci est utile si l'on veut cloisonner certains dossiers du module Formulaires.</key>
+  <key id="previewpage">page de prévisulalisation</key>
+  <key id="previewpage-help">page qui sera utilisée pour la previsualisation des formulaires</key>
+  <key id="general-preferences">préférences générales</key>
+</i18n>

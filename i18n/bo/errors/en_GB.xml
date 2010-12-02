@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.bo.errors" lcid="en_GB">
+  <key id="cannot-move-a-field-from-a-form-to-another-form">cannot move a field from a form to another form</key>
+  <key id="field-name-alreay-used">the name ″{fieldName}″ is already used by another field in this form</key>
+  <key id="mail-field-for-replyto-exists">a mail field is already set to reply-to in this form</key>
+</i18n>

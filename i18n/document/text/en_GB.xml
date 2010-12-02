@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.text" lcid="en_GB">
+  <include id="m.form.document.field"/>
+  <key id="document-name">text field</key>
+  <key id="multiline">multiline text</key>
+  <key id="cols">columns</key>
+  <key id="cols-help">columns in the multiline text field.</key>
+  <key id="rows">rows</key>
+  <key id="rows-help">rows in the multiline text field.</key>
+  <key id="maxlength">max length</key>
+  <key id="maxlength-help">maximum number of characters the user will be able to type in.</key>
+  <key id="minlength">min length</key>
+  <key id="minlength-help">minimum number of characters the user will be have to type in.</key>
+  <key id="isreceiver">field of mail receiver</key>
+  <key id="isreceiver-help">Define if this text field must contain receiver email's.</key>
+  <key id="size">field size</key>
+</i18n>

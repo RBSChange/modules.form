@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.list" lcid="en_GB">
+  <include id="m.form.document.field"/>
+  <key id="document-name">list field</key>
+  <key id="display">display</key>
+  <key id="display-help">display</key>
+  <key id="datasource">list for options</key>
+  <key id="datasource-help">list that composes the options to choose.</key>
+  <key id="multiple">multiple selection</key>
+  <key id="multiple-help">determins if the internaut will be able to select more than one element in the list.</key>
+  <key id="hasblankoption-help">Displays a header above the list. If the list is obligatory, the user will thus have to chose a value in the list, rather than the first one.</key>
+</i18n>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.errors" lcid="fr_FR">
+  <key id="modules-form-getpreferencesdocument">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Ouvrir les préférences″</key>
+  <key id="modules-form-archiveresponse">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Archiver une réponse″</key>
+  <key id="modules-form-export">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Exporter″</key>
+  <key id="modules-form-editlocale">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Editer une locale″</key>
+  <key id="modules-form-order">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Modifier l'ordre des éléments″
+		</key>
+  <key id="modules-form-previewform">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Prévisualiser un formulaire″
+		</key>
+  <key id="modules-form-enabled">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Accès au module″</key>
+  <key id="modules-form-insert-recipientgroup">vous n'avez pas les permissions suffisantes pour ajouter un groupe d'envoi dans ce dossier</key>
+</i18n>

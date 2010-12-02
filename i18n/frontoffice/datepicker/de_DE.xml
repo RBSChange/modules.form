@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.frontoffice.datepicker" lcid="de_DE">
+  <key id="previous-year">vorheriges Jahr</key>
+  <key id="next-year">nächstes Jahr</key>
+  <key id="next-month">nächster Monat</key>
+  <key id="previous-month">vorheriger Monat</key>
+  <key id="close">schliessen</key>
+  <key id="choose-date">ein Datum aus dem Kalender wählen</key>
+  <key id="format">TT.MM.JJJJ</key>
+</i18n>

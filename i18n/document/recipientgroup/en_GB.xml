@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.recipientgroup" lcid="en_GB">
+  <key id="document-name">recipient group</key>
+  <key id="label">label</key>
+  <key id="description">description</key>
+  <key id="to">main recipients</key>
+  <key id="cc">secondary recipients</key>
+  <key id="cc-help">secondary recipients (CC).</key>
+  <key id="bcc">hidden recipients (BCC)</key>
+  <key id="bcc-help">secondary recipients.</key>
+</i18n>

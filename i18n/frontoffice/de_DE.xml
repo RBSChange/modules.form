@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.frontoffice" lcid="de_DE">
+  <key id="reset-button">abbrechen</key>
+  <key id="back">Zurück</key>
+  <key id="submit-button">senden</key>
+  <key id="file-must-have-one-of-these-extensions">Die Datei ″{file}″ muss eine der folgenden Erweiterungen besitzen: {extensions}</key>
+  <key id="select-multiple-help">um ein Element zu wählen/abwählen, benutzen Sie die Taste CTRL/CMD Ihrer Tastatur. </key>
+</i18n>

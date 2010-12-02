@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.boolean" lcid="de_DE">
+  <include id="m.form.document.field"/>
+  <key id="document-name">Wahr/Falsch Feld</key>
+  <key id="truelabel">Name wenn Wahr</key>
+  <key id="falselabel">Name wenn Falsch</key>
+  <key id="display">Anzeige</key>
+  <key id="display-help">Wählen Sie die gewünschte Anzeigeart an.</key>
+</i18n>

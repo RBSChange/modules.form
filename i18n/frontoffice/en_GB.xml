@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.frontoffice" lcid="en_GB">
+  <key id="reset-button">reset</key>
+  <key id="back">Back</key>
+  <key id="submit-button">submit</key>
+  <key id="file-must-have-one-of-these-extensions">The file ″{file}″ must have an extension among the following: {extensions}.</key>
+</i18n>

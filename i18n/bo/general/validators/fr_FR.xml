@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.bo.general.validators" lcid="fr_FR">
+  <key id="email">adresse e-mail</key>
+  <key id="emails">adresses e-mail séparées par des virgules</key>
+  <key id="url">URL</key>
+  <key id="integer">nombre entier</key>
+  <key id="float">nombre décimal</key>
+  <key id="none">aucun</key>
+</i18n>

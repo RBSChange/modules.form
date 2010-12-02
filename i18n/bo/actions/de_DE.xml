@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.bo.actions" lcid="de_DE">
+  <key id="create_">Neu</key>
+  <key id="createroot_">Neu</key>
+  <key id="createfolder_">Neu</key>
+  <key id="create-list">Listenfeld erstellen</key>
+  <key id="create-text">Textfeld erstellen</key>
+  <key id="create-password">Passwortfeld erstellen</key>
+  <key id="create-boolean">Wahr/Falsch Feld erstellen</key>
+  <key id="create-date">Datumfeld erstellen</key>
+  <key id="create-group">Gruppenfeld erstellen</key>
+  <key id="create-form">Formular erstellen</key>
+  <key id="create-file">Datei zum herunterladen Feld erstellen</key>
+  <key id="create-hidden">verstecktes Feld erstellen</key>
+  <key id="view-responses">Anworten anzeigen</key>
+  <key id="export-csv">aktive Antworten im CSV Format exportieren</key>
+  <key id="export-csv-all">alle Antworten im CSV Format exportieren</key>
+  <key id="create-freecontent">freie Textzone erstellen</key>
+  <key id="create-recipientgroup">Versandgruppe erstellen</key>
+  <key id="create-recipientgrouplist">Empfängerselektionsfeld erstellen</key>
+  <key id="create-mail">E-mailfeld erstellen</key>
+  <key id="archiveresponse">Antworten archivieren</key>
+  <key id="confirmarchiveresponse">Sind Sie sicher die Antworten der selektierten Formulare archivieren zu wollen </key>
+  <key id="confirmarchiveresponselist">Sind Sie sicher die Antworten folgender Formulare archivieren zu wollen </key>
+  <key id="confirmarchiveresponseitem">Sind Sie sicher die Antworten des Formulars archivieren zu wollen </key>
+  <key id="senddate">Versendet am</key>
+  <key id="previewform">Formularvorschau</key>
+</i18n>

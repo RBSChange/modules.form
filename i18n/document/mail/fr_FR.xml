@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.mail" lcid="fr_FR">
+  <include id="m.form.document.field"/>
+  <key id="document-name">champ e-mail</key>
+  <key id="multiline">permettre plusieurs adresses</key>
+  <key id="multiline-help">permettre la saisie de plusieurs adresses e-mail séparées par des virgules.</key>
+  <key id="cols">nombre de colonnes</key>
+  <key id="cols-help">nombre de colonnes qui définit la taille du champ.</key>
+  <key id="size">taille du champ</key>
+  <key id="rows">nombre de lignes</key>
+  <key id="rows-help">lignes dans la zone de texte multi-ligne.</key>
+  <key id="useasreply">utiliser ce champ pour 'répondre à'</key>
+  <key id="useasreply-help">la valeur de ce champ sera ajoutée en tant que 'répondre à' de l'e-mail.</key>
+  <key id="isreceiver">envoyer une copie à cette adresse</key>
+  <key id="isreceiver-help">Détermine si l'adresse e-mail saisie dans ce champ sera utilisée comme destinataire du message envoyé suite à la soumission du formulaire.</key>
+  <key id="acknowledgmentreceiver">destinataire de l'accusé de réception</key>
+  <key id="acknowledgmentreceiver-help">si l'option ″accusé de réception″ est activée sur le formulaire, cochez ″oui″ pour que l'accusé de réception soit envoyé à cette adresse.</key>
+  <key id="initializewithcurrentuseremail">pré-remplir si connecté</key>
+  <key id="initializewithcurrentuseremail-help">cocher ″oui″ pour que, si l'utilisateur est connecté, ce champ soit pré-rempli son adresse e-mail.</key>
+</i18n>

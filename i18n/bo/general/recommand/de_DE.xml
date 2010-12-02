@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.bo.general.recommand" lcid="de_DE">
+  <key id="page">Seite empfehlen</key>
+  <key id="site">Webseite empfehlen</key>
+  <key id="choice">Auswahl zur Empfehlung an einen Freund</key>
+</i18n>
