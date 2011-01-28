@@ -35,27 +35,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 		if ($request->hasParameter('receiverIds'))
 		{
 			$receiverIds = explode(',', $request->getParameter('receiverIds'));
-			$receiverLabels = array();
-			foreach ($receiverIds as $receiverId)
-			{
-				if (is_numeric($receiverId))
-				{
-					try
-					{
-						$receiver = DocumentHelper::getDocumentInstance($receiverId);
-						$receiverLabels[] = $receiver->getLabel();
-					}
-					catch (Exception $e)
-					{
-						Framework::exception($e);
-						$receiverLabels[] = $receiverId;
-					}
-				}
-				else if (f_util_StringUtils::isNotEmpty($receiverId))
-				{
-					$receiverLabels[] = $receiverId;
-				}
-			}
+			$receiverLabels = $this->getReceiverLabels($receiverIds);
 			$request->setAttribute('receiverLabels', $receiverLabels);
 		}
 		
@@ -92,6 +72,36 @@ class form_BlockFormBaseAction extends website_BlockAction
 		}
 		
 		return $view;
+	}
+	
+	/**
+	 * @param integer[] $receiverIds
+	 * @return string[]
+	 */
+	protected function getReceiverLabels($receiverIds)
+	{
+		$receiverLabels = array();
+		foreach ($receiverIds as $receiverId)
+		{
+			if (is_numeric($receiverId))
+			{
+				try
+				{
+					$receiver = DocumentHelper::getDocumentInstance($receiverId);
+					$receiverLabels[] = $receiver->getLabel();
+				}
+				catch (Exception $e)
+				{
+					Framework::exception($e);
+					$receiverLabels[] = $receiverId;
+				}
+			}
+			else if (f_util_StringUtils::isNotEmpty($receiverId))
+			{
+				$receiverLabels[] = $receiverId;
+			}
+		}
+		return $receiverLabels;
 	}
 	
 	/**
