@@ -56,7 +56,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 					$receiverLabels[] = $receiverId;
 				}
 			}
-			$request->setAttributes('receiverLabels', $receiverLabels);
+			$request->setAttribute('receiverLabels', $receiverLabels);
 		}
 		
 		$agaviUser = $this->getContext()->getGlobalContext()->getUser();
