@@ -43,18 +43,6 @@ class form_persistentdocument_form extends form_persistentdocument_formbase impl
 		return $address;
 	}
 	
-	/**
-	 * @param string $moduleName
-	 * @param string $treeType
-	 * @param array<string, string> $nodeAttributes
-	 */
-	protected function addTreeAttributes($moduleName, $treeType, &$nodeAttributes)
-	{
-		// Used by action activation check.
-		$nodeAttributes['responseCount'] = $this->getResponseCount();
-		$nodeAttributes['activeResponse'] = $this->getActiveResponseCount();
-	}
-	
 	// Deprecated methods.
 
 	/**

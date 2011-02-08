@@ -521,6 +521,19 @@ class form_FormService extends form_BaseformService
 		return $data;
 	}
 	
+	/**
+	 * @param form_persistentdocument_form $form
+	 * @param string $moduleName
+	 * @param string $treeType
+	 * @param array<string, string> $nodeAttributes
+	 */
+	protected function addTreeAttributes($form, $moduleName, $treeType, &$nodeAttributes)
+	{
+		// Used by action activation check.
+		$nodeAttributes['responseCount'] = $form->getResponseCount();
+		$nodeAttributes['activeResponse'] = $form->getActiveResponseCount();
+	}
+	
 	// Deprecated.
 	
 	/**

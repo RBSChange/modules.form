@@ -51,39 +51,6 @@ class form_persistentdocument_field extends form_persistentdocument_fieldbase
 	}
 	
 	/**
-	 * @param string $moduleName
-	 * @param string $treeType
-	 * @param array<string, string> $nodeAttributes
-	 */	
-	protected function addTreeAttributes($moduleName, $treeType, &$nodeAttributes)
-	{
-	    if ($this->getIsLocked())
-        {
-            $nodeAttributes['isLocked'] = 'isLocked';
-        }	
-        
-        if ($treeType == 'wlist')
-        {
-	        $modelName = $this->getDocumentModelName();
-		    $nodeAttributes['fieldType'] = f_Locale::translate('&modules.form.bo.general.field.'.ucfirst(substr($modelName, strpos($modelName, '/')+1)).';');
-		    
-	        if ($this->getRequired())
-	        {
-	            $nodeAttributes['required'] = 'required';
-	            $nodeAttributes['fieldRequired'] = f_Locale::translate('&modules.uixul.bo.general.Yes;');
-	        }
-	        if ($this->hasCondition())
-	        {
-	        	$nodeAttributes['conditioned'] = 'conditioned';
-	        	
-	        	$activationLabel = FormHelper::getActivationLabel($this->getId());
-	        	$activationQuestionLabel = $this->getActivationquestion()->getLabel();
-	        	$nodeAttributes['fieldConditioned'] = f_Locale::translate('&modules.form.bo.general.Activation;', array('value' => $activationLabel, 'question' => $activationQuestionLabel));
-	        }
-        }
-	}
-	
-	/**
 	 * @var form_persistentdocument_baseform
 	 */
 	private $form;

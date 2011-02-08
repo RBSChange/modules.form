@@ -13,21 +13,4 @@ class form_persistentdocument_recipientGroupFolder extends form_persistentdocume
 	{
 		return f_Locale::translateUI('&modules.form.document.recipientgroupfolder.Document-name;');
 	}
-	
-	/**
-	 * @param string $moduleName
-	 * @param string $treeType
-	 * @param array<string, string> $nodeAttributes
-	 */
-//	protected function addTreeAttributes($moduleName, $treeType, &$nodeAttributes)
-//	{
-//	}
-	
-	/**
-	 * @param string $actionType
-	 * @param array $formProperties
-	 */
-//	public function addFormProperties($propertiesNames, &$formProperties)
-//	{	
-//	}
 }
