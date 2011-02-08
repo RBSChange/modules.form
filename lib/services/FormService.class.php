@@ -527,7 +527,7 @@ class form_FormService extends form_BaseformService
 	 * @param string $treeType
 	 * @param array<string, string> $nodeAttributes
 	 */
-	protected function addTreeAttributes($form, $moduleName, $treeType, &$nodeAttributes)
+	public function addTreeAttributes($form, $moduleName, $treeType, &$nodeAttributes)
 	{
 		// Used by action activation check.
 		$nodeAttributes['responseCount'] = $form->getResponseCount();
