@@ -440,7 +440,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	 */	
 	public function addTreeAttributes($document, $moduleName, $treeType, &$nodeAttributes)
 	{
-	    if ($this->getIsLocked())
+	    if ($document->getIsLocked())
         {
             $nodeAttributes['isLocked'] = 'isLocked';
         }	
@@ -450,12 +450,12 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	        $modelName = $document->getDocumentModelName();
 		    $nodeAttributes['fieldType'] = f_Locale::translate('&modules.form.bo.general.field.'.ucfirst(substr($modelName, strpos($modelName, '/')+1)).';');
 		    
-	        if ($this->getRequired())
+	        if ($document->getRequired())
 	        {
 	            $nodeAttributes['required'] = 'required';
 	            $nodeAttributes['fieldRequired'] = f_Locale::translate('&modules.uixul.bo.general.Yes;');
 	        }
-	        if ($this->hasCondition())
+	        if ($document->hasCondition())
 	        {
 	        	$nodeAttributes['conditioned'] = 'conditioned';
 	        	
