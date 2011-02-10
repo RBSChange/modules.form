@@ -2,7 +2,7 @@
 <panel>
 	<section labeli18n="modules.form.bo.general.General">
 		<field name="label" />
-		<field name="dataSource" allow="modules_list_staticlist,modules_list_editablelist,modules_list_dynamiclist" />
+		<field name="dataSource" allow="[modules_list_list]" />
 		<field name="required" />
 		<field name="helpText" />
 	</section>

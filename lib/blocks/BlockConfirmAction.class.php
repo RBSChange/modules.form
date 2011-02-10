@@ -1,63 +1,45 @@
 <?php
-class form_BlockConfirmAction extends block_BlockAction
+class form_BlockConfirmAction extends website_BlockAction
 {
 	/**
-	 * @param block_BlockContext $context
-	 * @param block_BlockRequest $request
-	 * @return String the view name
+	 * @param f_mvc_Request $request
+	 * @param f_mvc_Response $response
+	 * @return String
 	 */
-	public function execute($context, $request)
+	public function execute($request, $response)
 	{
-		if (!$request->hasNonEmptyParameter('id'))
+		if ($this->isInBackoffice() || !$request->hasNonEmptyParameter('id'))
 		{
-			return block_BlockView::NONE;
+			return website_BlockView::NONE;
 		}
-		$id = $request->getParameter('id');
+
+		$form = form_persistentdocument_form::getInstanceById($request->getParameter('id'));
+		$request->setAttribute('form', $form);
 		
-		$form = DocumentHelper::getDocumentInstance($id);
-		
-		$user = $context->getGlobalContext()->getUser();
+		$user = Controller::getInstance()->getContext()->getUser();
 		$attr = 'form_success_parameters_confirmpage_' . $form->getId();
-		$parameters = $user->getAttribute($attr);
-		
+		$parameters = $user->getAttribute($attr);		
 		if ($parameters === null)
 		{
-			return block_BlockView::NONE;
-		}
-		
+			return website_BlockView::NONE;
+		}		
 		$user->removeAttribute($attr);
 		
-		$message = $form->getConfirmMessage();
+		$message = $form->getConfirmMessageAsHtml();
 		foreach ($parameters as $k => $v)
 		{
 			$message = str_replace('{' . $k . '}', htmlspecialchars($v), $message);
 		}
+		$request->setAttribute('message', $message);
 		
-		$this->setParameter('message', $message);
 		if ($form->getUseBackLink())
 		{
-			$this->setParameter('back', array(
-				'url' => $parameters[form_FormConstants::BACK_URL_PARAMETER],
-				'label' => f_Locale::translate('&modules.form.frontoffice.Back;')
+			$request->setAttribute('back', array(
+				'url' => $parameters['backUrl'],
+				'label' => LocaleService::getInstance()->transFO('m.form.frontoffice.back', array('ucf'))
 			));
 		}
-		else
-		{
-			$this->setParameter('back', false);
-		}
 		
-		$this->setParameter('form', $form);
-		
-		return block_BlockView::SUCCESS;
-	}
-	
-	/**
-	 * @param block_BlockContext $context
-	 * @param block_BlockRequest $request
-	 * @return String the view name
-	 */
-	public function executeBackoffice($context, $request)
-	{
-		return block_BlockView::NONE;
+		return website_BlockView::SUCCESS;
 	}
 }

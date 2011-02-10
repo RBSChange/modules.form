@@ -6,9 +6,8 @@ class form_ListMarkupService extends BaseService implements list_ListItemsServic
 	 */
 	private static $instance;
 
-
 	/**
-	 * @return website_ListTemplatesService
+	 * @return form_ListMarkupService
 	 */
 	public static function getInstance()
 	{
@@ -19,9 +18,8 @@ class form_ListMarkupService extends BaseService implements list_ListItemsServic
 		return self::$instance;
 	}
 
-
 	/**
-	 * @return array
+	 * @return list_Item[]
 	 */
 	public function getItems()
 	{
@@ -35,19 +33,25 @@ class form_ListMarkupService extends BaseService implements list_ListItemsServic
 		foreach ($pathWhereToFindMarkupsArray as $pathWhereToFindMarkups)
 		{
 			$dir = dir($pathWhereToFindMarkups);
-			while (($entry = $dir->read()))
+			while ($entry = $dir->read())
 			{
 				if ($entry{0} != '.' && is_dir($pathWhereToFindMarkups.DIRECTORY_SEPARATOR.$entry))
 				{
-					$items[] = new list_Item(
-						f_Locale::translateUI('&modules.form.bo.markup.'.$entry.';'),
-						$entry
-						);
+					$items[] = $this->getItemByValue($entry);
 				}
 			}
 		}
 
 		return $items;
 	}
-
+	
+	/**
+	 * @see list_persistentdocument_dynamiclist::getItemByValue()
+	 * @param string $value;
+	 * @return list_Item
+	 */
+	public function getItemByValue($value)
+	{
+		return new list_Item(LocaleService::getInstance()->transBO('m.form.bo.markup.'.strtolower($value)), $value);
+	}
 }

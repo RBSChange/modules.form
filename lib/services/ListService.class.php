@@ -105,9 +105,7 @@ class form_ListService extends form_FieldService
 	// Deprecated.
 	
 	/**
-	 * @param form_persistentdocument_list
-	 * @return array<string,string>
-	 * @deprecated with no replacement
+	 * @deprecated (will be removed in 4.0) with no replacement
 	 */
 	public function getPreviewAttributes($document)
 	{

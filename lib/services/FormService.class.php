@@ -136,7 +136,7 @@ class form_FormService extends form_BaseformService
 			}
 		}
 		
-		f_event_EventManager::dispatchEvent(self::FORM_SUBMITTED_EVENT_NAME, $form, array('response' => $response, 'request' => $request, 'referer' => $request->getParameter(form_FormConstants::BACK_URL_PARAMETER)));
+		f_event_EventManager::dispatchEvent(self::FORM_SUBMITTED_EVENT_NAME, $form, array('response' => $response, 'request' => $request, 'referer' => $request->getParameter('backUrl')));
 				
 		$sendingType = $form->getMessageSendingType();
 		if ($sendingType !== self::SEND_EMAIL_AND_APPEND_TO_MAILBOX && $sendingType !== self::SEND_EMAIL_ONLY)
@@ -537,7 +537,7 @@ class form_FormService extends form_BaseformService
 	// Deprecated.
 	
 	/**
-	 * @deprecated use form_FieldService::fixRequiredConstraint()
+	 * @deprecated (will be removed in 4.0) use form_FieldService::fixRequiredConstraint()
 	 */
 	public function fixRequiredConstraint($document)
 	{
@@ -545,7 +545,7 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @deprecated with no replacement
+	 * @deprecated (will be removed in 4.0) with no replacement
 	 */
 	public function getPreviewAttributes($document)
 	{
@@ -559,7 +559,7 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @deprecated Use buildContentsFromRequest instead (since 2.0.2).
+	 * @deprecated (will be removed in 4.0) Use buildContentsFromRequest instead (since 2.0.2).
 	 */
 	public function buildContents($nodes, &$contents, &$parameters, $form)
 	{
@@ -605,7 +605,7 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @deprecated
+	 * @deprecated (will be removed in 4.0)
 	 */
 	public function buildContentsFromRequest($nodes, &$contents, $request, $form)
 	{
@@ -668,7 +668,7 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @deprecated use sharethis module instead.
+	 * @deprecated (will be removed in 4.0) use sharethis module instead.
 	 */
 	public function getRecommandFormUrl()
 	{
@@ -689,7 +689,7 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @deprecated use getByFormId()
+	 * @deprecated (will be removed in 4.0) use getByFormId()
 	 */
 	public function getFormByFormId($formId)
 	{
@@ -697,7 +697,7 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @deprecated
+	 * @deprecated (will be removed in 4.0)
 	 */
 	public function isPostedFormId($formId, $formRequest)
 	{
@@ -705,7 +705,7 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @deprecated
+	 * @deprecated (will be removed in 4.0)
 	 */
 	public function renderForm($form, $formRequest, $errors, &$scriptArray)
 	{
@@ -730,9 +730,9 @@ class form_FormService extends form_BaseformService
 			$template->setAttribute('form', $form);
 
 			$template->setAttribute('selfUrl', $_SERVER['REQUEST_URI']);
-			if ($formRequest->hasParameter(form_FormConstants::BACK_URL_PARAMETER))
+			if ($formRequest->hasParameter('backUrl'))
 			{
-				$template->setAttribute('backUrl', $formRequest->getParameter(form_FormConstants::BACK_URL_PARAMETER));
+				$template->setAttribute('backUrl', $formRequest->getParameter('backUrl'));
 			}
 			else
 			{
