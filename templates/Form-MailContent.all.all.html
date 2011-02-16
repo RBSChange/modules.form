@@ -7,7 +7,8 @@
 		</tal:block>
 		<tal:block tal:condition="not:node/isGroup">
 			<dt><em>${node/label}</em></dt>
-			<dd>${node/value}</dd>
+			<dd tal:condition="node/mailValue">${node/mailValue}</dd>
+			<dd tal:condition="not: node/mailValue">${node/value}</dd>
 		</tal:block>
 	</tal:block>
 </tal:block>
