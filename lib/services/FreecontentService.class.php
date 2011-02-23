@@ -71,4 +71,22 @@ class form_FreecontentService extends f_persistentdocument_DocumentService
 			}
 		}
 	}
+	
+	/**
+	 * @param form_persistentdocument_freecontent $document
+	 * @param string $moduleName
+	 * @param string $treeType
+	 * @param array<string, string> $nodeAttributes
+	 */
+	public function addTreeAttributes($document, $moduleName, $treeType, &$nodeAttributes)
+	{
+		if ($document->hasCondition())
+		{
+			$nodeAttributes['conditioned'] = 'conditioned';
+			
+			$activationLabel = FormHelper::getActivationLabel($document->getId());
+			$activationQuestionLabel = $document->getActivationquestion()->getLabel();
+			$nodeAttributes['fieldConditioned'] = LocaleService::getInstance()->transBO('m.form.bo.general.activation', array('ucf'), array('value' => $activationLabel, 'question' => $activationQuestionLabel));
+		}
+	}
 }

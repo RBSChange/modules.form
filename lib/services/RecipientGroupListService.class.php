@@ -69,5 +69,25 @@ class form_RecipientGroupListService extends form_ListService
 		    }
 		}
 		return $rawValue;
-    }	
+    }
+    
+    /**
+     * @param form_persistentdocument_recipientGroupList $document
+     * @param string $moduleName
+     * @param string $treeType
+     * @param array<string, string> $nodeAttributes
+     */
+    public function addTreeAttributes ($document, $moduleName, $treeType, &$nodeAttributes)
+    {
+        parent::addTreeAttributes($document, $moduleName, $treeType, $nodeAttributes);
+        $ls = LocaleService::getInstance();
+        if ($document->getMultiple())
+        {
+            $nodeAttributes['fieldType'] = $ls->transBO('m.form.bo.general.field.recipient-multiple-selection-list', array('ucf'));
+        }
+        else
+        {
+            $nodeAttributes['fieldType'] = $ls->transBO('m.form.bo.general.field.recipient-single-selection-list', array('ucf'));
+        }
+    }
 }

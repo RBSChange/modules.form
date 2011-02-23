@@ -6,23 +6,6 @@
 class form_persistentdocument_text extends form_persistentdocument_textbase
 {
     /**
-     * @param string $moduleName
-     * @param string $treeType
-     * @param array<string, string> $nodeAttributes
-     */
-    protected function addTreeAttributes ($moduleName, $treeType, &$nodeAttributes)
-    {
-        parent::addTreeAttributes($moduleName, $treeType, $nodeAttributes);
-        if ($this->getMultiline())
-        {
-            $nodeAttributes['fieldType'] = f_Locale::translate('&modules.form.bo.general.field.Multiline-text;');
-        } else
-        {
-            $nodeAttributes['fieldType'] = f_Locale::translate('&modules.form.bo.general.field.Text;');
-        }
-    }
-    
-    /**
      * @return String
      */
     public function getBoValidator()

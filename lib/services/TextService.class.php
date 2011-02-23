@@ -120,4 +120,23 @@ class form_TextService extends form_FieldService
 		}
 		return $txtValue;
     }
+    
+    /**
+     * @param form_persistentdocument_text $document
+     * @param string $moduleName
+     * @param string $treeType
+     * @param array<string, string> $nodeAttributes
+     */
+    public function addTreeAttributes ($document, $moduleName, $treeType, &$nodeAttributes)
+    {
+        parent::addTreeAttributes($document, $moduleName, $treeType, $nodeAttributes);
+        $ls = LocaleService::getInstance();
+        if ($document->getMultiline())
+        {
+            $nodeAttributes['fieldType'] = $ls->transBO('m.form.bo.general.field.multiline-text', array('ucf'));
+        } else
+        {
+            $nodeAttributes['fieldType'] = $ls->transBO('m.form.bo.general.field.text', array('ucf'));
+        }
+    }
 }

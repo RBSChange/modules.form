@@ -101,6 +101,27 @@ class form_ListService extends form_FieldService
 		
 		return parent::buildXmlElementResponse($fieldElm, $fieldElm, $rawValue);
 	}
+
+    /**
+     * @param form_persistentdocument_list $document
+     * @param string $moduleName
+     * @param string $treeType
+     * @param array<string, string> $nodeAttributes
+     */
+    public function addTreeAttributes ($document, $moduleName, $treeType, &$nodeAttributes)
+    {
+        parent::addTreeAttributes($document, $moduleName, $treeType, $nodeAttributes);
+        $ls = LocaleService::getInstance();
+        if ($document->getMultiple())
+        {
+            $nodeAttributes['fieldType'] = $ls->transBO('m.form.bo.general.field.multiple-selection-list', array('ucf'));
+        }
+        else
+        {
+            $nodeAttributes['fieldType'] = $ls->transBO('m.form.bo.general.field.single-selection-list', array('ucf'));
+        }
+        $nodeAttributes['fieldName'] = $document->getFieldName();
+    }
 	
 	// Deprecated.
 	
