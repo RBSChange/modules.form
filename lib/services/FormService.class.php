@@ -279,9 +279,10 @@ class form_FormService extends form_BaseformService
 			}
 			$ns = notification_NotificationService::getInstance();
 			$ns->setMessageService($messageService);
+			$notification = $ns->getByCodeName($form->getNotification()->getCodename());
 			if ($copyMail === null)
 			{
-				return $ns->send($form->getNotification(), $recipients,	$parameters, 'form', $replyTo,
+				return $ns->send($notification, $recipients,	$parameters, 'form', $replyTo,
 					$this->getOverrideNotificationSender($form)
 				);
 			}
@@ -289,7 +290,6 @@ class form_FormService extends form_BaseformService
 			{
 				$copyRecipient = new mail_MessageRecipients();
 				$copyRecipient->setTo(array($copyMail));
-				$notification = $form->getNotification();
 				$sender = $this->getOverrideNotificationSender($form);
 				return $ns->send($notification, $recipients, $parameters, 'form', $replyTo, $sender)
 					&& $ns->send($notification, $copyRecipient, $parameters, 'form', $replyTo, $sender);
