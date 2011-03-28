@@ -3,6 +3,7 @@
 	<section labeli18n="modules.form.bo.general.General">
 		<field name="label" />
 		<field name="confirmMessage" />
+		<field name="submitButton" />
 	</section>
 	<section labeli18n="modules.form.bo.general.Advanced">
 		<field name="description" />
