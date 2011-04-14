@@ -121,7 +121,7 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 		while ($i < $fieldList->length)
 		{
 			$node = $fieldList->item($i);
-			$nodeLevel = ($node->hasAttribute('level')) ? $node->getAttribute('level') : null;
+			$nodeLevel = ($node->hasAttribute('level')) ? $node->getAttribute('level') : 0;
 			$nodeGroupName = ($node->hasAttribute('groupName')) ? $node->getAttribute('groupName') : null;
 			if ($nodeLevel > $level)
 			{
@@ -131,15 +131,15 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 					'contents' => $this->getResponseContents($i, $fieldList, $nodeLevel, $nodeGroupName)
 				);
 			}
-			else if ($level < $nodeLevel || $groupName != $nodeGroupName)
+			else if ($groupName != $nodeGroupName)
 			{
 				return $contents;
 			}
 			else 
 			{
+				$i++;
 				$contents[] = $this->getFieldInfos($node);
 			}
-			$i++;
 		}
 		return $contents;
 	}
