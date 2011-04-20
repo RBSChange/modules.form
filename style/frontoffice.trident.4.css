@@ -1,4 +1,5 @@
-form.cmxform input.button,input.button{
+form.cmxform input.button,
+form input.cmxform.button{
 	height: 1.6em;
 	padding: 0;
 }

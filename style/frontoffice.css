@@ -1,39 +1,47 @@
-textarea,input,select{
-	font-family: inherit;
-	font-size: 100%;
+form.cmxform .jTagEditor{
+	padding: 0;	
 }
-form label{
-	cursor: pointer;
-}
-fieldset{
-	border: none;
-}
-form.cmxform ul.errors li{
+form.cmxform ul.errors li, 
+form ul.errors.cmxform li{
 	list-style-position: inside;
 }
-form.cmxform ol{
+form.cmxform ol,
+form ol.cmxform{
 	margin: 0;
 	padding: 0;
 }
-form.cmxform ol li{
+form.cmxform ol li,
+form ol.cmxform li{
 	float: none;
 	clear: both;
 	list-style: none;
 	margin: 4px 0px;
 }
-form.cmxform legend,legend{
+form.cmxform legend,
+form legend.cmxform{
 	white-space: normal;
 }
-form.cmxform label{
+form.cmxform fieldset,
+form fieldset.cmxform{
+	border: none;
+}
+
+form.cmxform label,
+form label.cmxform {
+	cursor: pointer;
 	vertical-align: top;
 	display: block;
 	float: left;
 }
-form.cmxform textarea,textarea{
+
+form.cmxform textarea,
+form textarea.cmxform{
 	margin: 0;
 	padding: 0;
 }
-form.cmxform input.button,input.button{
+form.cmxform input.button,
+form input.button.cmxform
+{
 	font-size: 1em;
 	cursor: pointer;
 	padding: 0 4px;
@@ -41,57 +49,74 @@ form.cmxform input.button,input.button{
 	border-width: 1px;
 	border-style: solid;
 }
-form.cmxform .buttons input.button , .buttons input.button{
-	vertical-align: baseline;
-}
-form.cmxform fieldset.radio{
-	border: none;
-	margin: 3px 0 0;
-}
-form.cmxform fieldset.radio label{
-	display: block;
-	width: auto;
-}
-input[type="radio"]{
+form.cmxform input[type="radio"]{
 	margin-right: 4px;
 	float: left;
 }
-li.captcha{
+
+form.cmxform fieldset.radio,
+form fieldset.radio.cmxform{
+	border: none;
+	margin: 3px 0 0;
+}
+form.cmxform fieldset.radio label,
+form fieldset.radio.cmxform label{
+	display: block;
+	width: auto;
+}
+
+form.cmxform li.captcha,
+form.cmxform li span.captcha,
+form li.captcha.cmxform,
+form li span.cmxform.captcha{
 	text-align: center;
 }
-p.buttons{
+
+form.cmxform .buttons input.button,
+form .buttons.cmxform input.button{
+	vertical-align: baseline;
+}
+form.cmxform p.buttons,
+form p.buttons.cmxform{
 	clear: both;
 	text-align: center;
 }
-a.button{
+form.cmxform a.button,
+form a.button.cmxform{
 	cursor: pointer;
 }
-form.cmxform label.option-label{
+form.cmxform label.option-label,
+form label.cmxform.option-label{
 	width: auto;
 	margin-left: 0px;
 }
-form.cmxform ul.uploads{
+form.cmxform ul.uploads,
+form ul.uploads.cmxform{
 	margin: 5px 0 5px 33%;
 }
-form.cmxform ul.uploads li{
+form.cmxform ul.uploads li,
+form ul.uploads.cmxform li{
 	list-style-type: disc;
 	list-style-position: inside;
 	line-height: 2;
 	margin-left: 16px;
-}
-form.cmxform ul.documentpicker-elements{
-	margin: 5px 0 5px 33%;
-}
-form.cmxform ul.documentpicker-elements li{
-	list-style-type: disc;
-	list-style-position: inside;
-	line-height: 2;
-	margin-left: 16px;
-}
-form.cmxform a.picker-choose{
-	line-height: 2;
 }
 
+form.cmxform ul.documentpicker-elements,
+form ul.cmxform.documentpicker-elements{
+	margin: 5px 0 5px 33%;
+}
+form.cmxform ul.documentpicker-elements li,
+form ul.cmxform.documentpicker-elements li{
+	list-style-type: disc;
+	list-style-position: inside;
+	line-height: 2;
+	margin-left: 16px;
+}
+form.cmxform a.picker-choose,
+form a.cmxform.picker-choose{
+	line-height: 2;
+}
 @import url(/modules/form/style/frontoffice.trident.4.css);
 @import url(/modules/form/style/frontoffice.trident.5.css);
 @import url(/modules/form/style/datepicker.css);
