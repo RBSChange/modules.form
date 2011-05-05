@@ -8,12 +8,12 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	const FORM_SUBMITTED_EVENT_NAME = 'formSubmitted';
 	const FORM_VALIDATE_EVENT_NAME = 'formValidate';
 	const FORM_INIT_DATA_EVENT_NAME = 'formInitData';
-	
+
 	// These values also appear in the 'modules_form/field' Document Model, in
 	// the 'notEqual' validator.
 	const CONTENT_REPLACEMENT_NAME    = 'FIELDS';
 	const FORM_LABEL_REPLACEMENT_NAME = 'FORM_LABEL';
-	
+
 	/**
 	 * @var form_BaseformService
 	 */
@@ -49,7 +49,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		return $this->pp->createQuery('modules_form/baseform');
 	}
-	
+
 	/**
 	 * Create a query based on 'modules_form/baseform' model.
 	 * Only documents that are strictly instance of modules_form/baseform
@@ -60,7 +60,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		return $this->pp->createQuery('modules_form/baseform', false);
 	}
-	
+
 	/**
 	 * @param String $formId
 	 * @return form_persistentdocument_baseform
@@ -70,7 +70,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$query = $this->createQuery()->add(Restrictions::eq('formid', $formId));
 		return $query->findUnique();
 	}
-	
+
 	/**
 	 * Return mail field which is used for reply-to feature
 	 * @param form_persistentdocument_baseform $document
@@ -83,7 +83,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$query->add(Restrictions::eq('useAsReply', true));
 		return $query->findUnique();
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
@@ -95,7 +95,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		{
 			$document->setFormid(uniqid('formid_'));
 		}
-		
+
 		if ($document->getAcknowledgment())
 		{
 			$notification = $document->getAcknowledgmentNotification();
@@ -105,7 +105,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			}
 		}
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
@@ -115,7 +115,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		$this->updateNotifications($document);
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $document
 	 * @return void
@@ -125,7 +125,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		TreeService::getInstance()->setTreeNodeCache(false);
 		$this->deleteFieldsAndGroups($document);
 	}
-	
+
 	/**
 	 * @param f_persistentdocument_PersistentDocument $document form_persistentdocument_baseform | form_persistentdocument_group
 	 */
@@ -142,7 +142,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			$this->deleteAllLangs($field);
 		}
 	}
-	
+
 	/**
 	 * @param f_persistentdocument_PersistentDocument $document
 	 */
@@ -151,7 +151,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$rqc = RequestContext::getInstance();
 		foreach ($document->getI18nInfo()->getLangs() as $lang)
 		{
-			try 
+			try
 			{
 				$rqc->beginI18nWork($lang);
 				$document->delete();
@@ -187,7 +187,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		}
 		return parent::isPublishable($document);
 	}
-	
+
 	/**
 	 * this method is called before save the duplicate document.
 	 * If this method not override in the document service, the document isn't duplicable.
@@ -231,15 +231,15 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		foreach ($items as $item)
 		{
 			if ($item instanceof form_persistentdocument_group ||
-				$item instanceof form_persistentdocument_field ||
-				$item instanceof form_persistentdocument_freecontent)
+			$item instanceof form_persistentdocument_field ||
+			$item instanceof form_persistentdocument_freecontent)
 			{
 				$this->duplicate($item->getId(), $newDocument->getId());
 			}
 		}
 		$newDocument->setIsDuplicating(false);
 	}
-		
+
 	/**
 	 * @param form_persistentdocument_baseform $document
 	 * @param string $forModuleName
@@ -249,7 +249,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	public function getResume($document, $forModuleName, $allowedSections = null)
 	{
 		$resume = parent::getResume($document, $forModuleName, $allowedSections);
-		
+
 		$acknowledgmentNotification = $document->getAcknowledgmentNotification();
 		if ($acknowledgmentNotification !== null)
 		{
@@ -257,10 +257,10 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			$openAcknowledgmentNotificationUri = join(',' , array('notification', 'openDocument', $acknowledgmentNotification->getPersistentModel()->getBackofficeName(), $acknowledgmentNotification->getId(), 'properties'));
 			$resume['properties']['acknowledgmentNotification'] = array('uri' => $openAcknowledgmentNotificationUri, 'label' => f_Locale::translateUI('&modules.uixul.bo.doceditor.open;'), 'backuri' => $backUri);
 		}
-		
+
 		return $resume;
 	}
-		
+
 	/**
 	 * Called by the FieldService whenever a field is removed from the given $form.
 	 * @param form_persistentdocument_baseform $form
@@ -307,8 +307,8 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		$notifications = $this->getNotificationsToUpdate($form);
 		if (count($notifications) > 0)
-		{		
-			$fieldArray = $this->getFieldRemplacementsForNotification($form);			
+		{
+			$fieldArray = $this->getFieldRemplacementsForNotification($form);
 			foreach ($notifications as $notification)
 			{
 				if ($notification->isContextLangAvailable())
@@ -319,7 +319,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			}
 		}
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @return string[]
@@ -335,7 +335,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$fieldArray[] = '{'. self::FORM_LABEL_REPLACEMENT_NAME. '}';
 		return $fieldArray;
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 */
@@ -349,7 +349,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		}
 		return $notifications;
 	}
-	
+
 	/**
 	 * Creates the acknowledgment notification for a form.
 	 * @param form_persistentdocument_baseform $form
@@ -359,10 +359,13 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$ns = notification_NotificationService::getInstance();
 		$codeName = $form->getFormid().'_acknowledgmentNotification';
 		$notification = $ns->getByCodeName($codeName);
+
+		$notifications = $ns->createQuery()->add(Restrictions::published())->addOrder(Order::desc('codename'))->findUnique();
 		if ($notification === null)
 		{
+			$ls = LocaleService::getInstance();
 			$notification = $ns->getNewDocumentInstance();
-			$notification->setLabel(f_Locale::translateUI('&modules.form.document.form.Acknowledgment-notification-label-prefix;') . ' ' . $form->getLabel());
+			$notification->setLabel($ls->transBO('m.form.document.form.acknowledgment-notification-label-prefix', array('ucf')) . ' ' . $form->getLabel());
 			$notification->setCodename($codeName);
 			$notification->setTemplate('default');
 			$notification->setSubject($form->getLabel());
@@ -370,12 +373,12 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			if ($form->getId() > 0)
 			{
 				$notification->setAvailableparameters(implode("\n", $this->getFieldRemplacementsForNotification($form)));
-			}		
+			}
 			$notification->save(ModuleService::getInstance()->getSystemFolderId('notification', 'form'));
 		}
-		$form->setacknowledgmentNotification($notification);
+		$form->setAcknowledgmentNotification($notification);
 	}
-	
+
 	/**
 	 * @return string
 	 */
@@ -383,7 +386,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		return '{'.self::CONTENT_REPLACEMENT_NAME.'}';
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @param block_BlockRequest $request
@@ -405,7 +408,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$eventParam = array('form' => $form, 'request' => $request, 'errors' => $errors);
 		f_event_EventManager::dispatchEvent(self::FORM_VALIDATE_EVENT_NAME, $this, $eventParam);
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @return Array
@@ -500,7 +503,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 
 		return $result;
 	}
-	
+
 	/**
 	 * @param Integer $elementId
 	 * @return Boolean
@@ -527,7 +530,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 
 		return $fieldName;
 	}
-	
+
 	/**
 	 * @param Integer $elementId
 	 * @return String
@@ -566,7 +569,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 
 		return $question->getDisplay();
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @param block_BlockRequest $request
@@ -598,7 +601,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 
 		// Handle specific treatments.
 		$result = $this->handleData($form, $fields, $response, $request, $replyTo);
-		
+
 		// Acknowledgment.
 		if ($result['success'] && $form->getAcknowledgment() && $acknowledgmentReceiver !== null)
 		{
@@ -609,7 +612,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		}
 		return $result;
 	}
-	
+
 	/**
 	 * @param f_persistentdocument_PersistentDocument $parent
 	 */
@@ -622,7 +625,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			{
 				return;
 			}
-			
+				
 			$fieldName = $node->getFieldName();
 			if ($node instanceof form_persistentdocument_file)
 			{
@@ -643,7 +646,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			{
 				$rawValue = isset($data[$fieldName]) ? $data[$fieldName] : null;
 			}
-			
+				
 			$fieldElm = $domDoc->createElement('field');
 			$fieldElm->setAttribute('name', $fieldName);
 			$fieldElm->setAttribute('label', $node->getLabel());
@@ -653,7 +656,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			{
 				$fieldElm->setAttribute('groupName', $groupName);
 			}
-			
+				
 			if ($node instanceof form_persistentdocument_file)
 			{
 				$fieldElm->setAttribute('isFile', 'true');
@@ -697,7 +700,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			}
 		}
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @param form_persistentdocument_field[] $fields
@@ -710,7 +713,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		return array('success' => true);
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @param form_persistentdocument_response $response
@@ -722,48 +725,55 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 */
 	protected function sendAcknowledgement($form, $response, $request, $result, $acknowledgmentReceiver, $replyTo)
 	{
+		$notification = $form->getAcknowledgmentNotification();
+		if (!($notification instanceof notification_persistentdocument_notification))
+		{
+			return true;
+		}
+
+		$website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
+		$ns = notification_NotificationService::getInstance();
+		$configuredNotif = $ns->getConfiguredByCodeName($notification->getCodeName(), $website->getId(), $website->getLang());
+		if (!($configuredNotif instanceof notification_persistentdocument_notification))
+		{
+			return true;
+		}
+		$configuredNotif->setSendingModuleName('form');
+		$configuredNotif->setSendingReplyTo($replyTo);
+		$configuredNotif->setSendingSenderEmail($this->getOverrideNotificationSender($form));
+
+		$callback = array($this, 'getAcknowledgmentNotifParameters');
+		$params = array(
+			'form' => $form, 
+			'response' => $response, 
+			'result' => $result,
+			'replyTo' => $replyTo
+		);
+		
 		$recipients = new mail_MessageRecipients();
 		$recipients->setTo(array($acknowledgmentReceiver));
-		
-		$parameters = $this->getAcknowledgementNotificationParameters($form, $response, $request, $result, $acknowledgmentReceiver, $replyTo);
-		
-		if (Framework::isDebugEnabled())
-		{
-			Framework::debug(__METHOD__ . " Form \"" . $form->getLabel() . "\" (id=" . $form->getId() . ")");
-			Framework::debug(__METHOD__ . " Parameters: " . var_export($parameters, true));
-			Framework::debug(__METHOD__ . " To      : " . join(", ", $recipients->getTo()));
-			Framework::debug(__METHOD__ . " ReplyTo : " . $replyTo);
-		}
-		
-		$ns = notification_NotificationService::getInstance();
-		$ns->setMessageService(MailService::getInstance());
-		$notification = $form->getAcknowledgmentNotification();
-		$senderEmail = $this->getOverrideNotificationSender($form);
-		return $ns->send($notification, $recipients, $parameters, 'form', $replyTo, $senderEmail);
+		return $configuredNotif->getDocumentService()->sendNotificationCallback($configuredNotif, $recipients, $callback, $params);
 	}
-	
+
 	/**
-	 * @param form_persistentdocument_baseform $form
-	 * @param form_persistentdocument_response $response
-	 * @param block_BlockRequest $request
-	 * @param array $result
-	 * @param String $acknowledgmentReceiver
-	 * @param String $replyTo
+	 * @param array $params
 	 * @return array
 	 */
-	protected function getAcknowledgementNotificationParameters($form, $response, $request, $result, $acknowledgmentReceiver, $replyTo)
+	public function getAcknowledgmentNotifParameters($params)
 	{
+		$response = $params['response'];
+		$form = $params['form'];
+		
 		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType(K::HTML)->load('Form-MailContent');
 		$contentTemplate->setAttribute('items', $response->getAllData());
 		$contentTemplate->setAttribute('response', $response->getResponseInfos());
-		
+			
 		$parameters = $response->getData();
 		$parameters[self::CONTENT_REPLACEMENT_NAME] = $contentTemplate->execute();
 		$parameters[self::FORM_LABEL_REPLACEMENT_NAME] = $form->getLabel();
-		
 		return $parameters;
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 */
@@ -776,7 +786,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @return array<form_persistentdocument_field>
@@ -799,7 +809,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		return $this->doGetSortedFields($form);
 	}
-	
+
 	/**
 	 * @param f_persistentdocument_PersistentDocument $parent
 	 */
@@ -819,7 +829,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		}
 		return $sortedFields;
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @param string $fieldName
@@ -864,7 +874,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			throw new form_FieldAlreadyExistsException(f_Locale::translate('&modules.form.bo.errors.Field-name-alreay-used;', array('fieldName' => $fieldName)));
 		}
 	}
-	
+
 	/**
 	 * @param f_persistentdocument_PersistentDocument $document
 	 * @return form_persistentdocument_baseform
@@ -882,7 +892,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @param notification_persistentdocument_notification $oldNotification
 	 * @param notification_persistentdocument_notification $newNotification
@@ -916,7 +926,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			}
 		}
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @return boolean
@@ -930,17 +940,17 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		}
 		return $form->getUseCaptcha();
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @return boolean
 	 */
-	protected function checkCaptcha($form) 
+	protected function checkCaptcha($form)
 	{
 		$code = Controller::getInstance()->getContext()->getRequest()->getModuleParameter('form', CAPTCHA_SESSION_KEY);
 		return !$this->hasToUseCaptcha($form) || FormHelper::checkCaptchaForKey($code, strval('form' . $form->getId()));
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_baseform $form
 	 * @param integer[] $excludeIds
@@ -962,5 +972,23 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			}
 		}
 		return $validFields;
+	}
+	
+	// Deprecated.
+	
+	/**
+	 * @deprecated (will be removed in 4.0) use getAcknowledgmentNotifParameters
+	 */
+	protected function getAcknowledgementNotificationParameters($form, $response, $request, $result, $acknowledgmentReceiver, $replyTo)
+	{
+		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType(K::HTML)->load('Form-MailContent');
+		$contentTemplate->setAttribute('items', $response->getAllData());
+		$contentTemplate->setAttribute('response', $response->getResponseInfos());
+
+		$parameters = $response->getData();
+		$parameters[self::CONTENT_REPLACEMENT_NAME] = $contentTemplate->execute();
+		$parameters[self::FORM_LABEL_REPLACEMENT_NAME] = $form->getLabel();
+
+		return $parameters;
 	}
 }

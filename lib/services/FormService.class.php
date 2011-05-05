@@ -225,8 +225,13 @@ class form_FormService extends form_BaseformService
 	 */
 	private function sendEmail($form, $response, $request, $copyMail, $replyTo)
 	{
+		$notification = $form->getNotification();
+		if (!($notification instanceof notification_persistentdocument_notification))
+		{
+			return true;
+		}
+		
 		$recipients = new mail_MessageRecipients();
-
 		if ($request->hasParameter('receiverIds'))
 		{
 			$this->handleReceveirIds($request->getParameter('receiverIds'), $recipients);
@@ -238,64 +243,69 @@ class form_FormService extends form_BaseformService
 		// example.
 		$this->buildMessageRecipients($form, $recipients, $request);
 
-		if (!$recipients->isEmpty())
+		if ($recipients->isEmpty())
 		{
+			return true;	
+		}
+		
+		$website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
+		$ns = notification_NotificationService::getInstance();
+		$configuredNotif = $ns->getConfiguredByCodeName($notification->getCodeName(), $website->getId(), $website->getLang());
+		if ($configuredNotif instanceof notification_persistentdocument_notification)
+		{
+		 	$configuredNotif->setSendingModuleName('form');
+			$configuredNotif->setSendingReplyTo($replyTo);
+			$configuredNotif->setSendingSenderEmail($this->getOverrideNotificationSender($form));
 			if ($form->getMessageSendingType() == self::SEND_EMAIL_AND_APPEND_TO_MAILBOX)
 			{
-				$messageService = mailbox_MessageService::getInstance();
+				$configuredNotif->setSendingMailService(mailbox_MessageService::getInstance());
 				Framework::debug(__METHOD__." Getting mailbox_MessageService instance.");
 			}
 			else
 			{
-				$messageService = MailService::getInstance();
+				$configuredNotif->setSendingMailService(MailService::getInstance());
 				Framework::debug(__METHOD__." Getting MailService instance.");
 			}
-
-			$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType(K::HTML)->load('Form-MailContent');
-			$contentTemplate->setAttribute('items', $response->getAllData());
-			$contentTemplate->setAttribute('response', $response->getResponseInfos());
-
-			$parameters = $response->getData();
-			$parameters[self::CONTENT_REPLACEMENT_NAME] = $contentTemplate->execute();
-			$parameters[self::FORM_LABEL_REPLACEMENT_NAME] = $form->getLabel();
-
-			if (Framework::isDebugEnabled())
+			
+			
+			$callback = array($this, 'getResponseNotifParameters');
+			$params = array(
+				'form' => $form, 
+				'response' => $response, 
+				'replyTo' => $replyTo
+			);		
+			if (!$configuredNotif->getDocumentService()->sendNotificationCallback($configuredNotif, $recipients, $callback, $params))
 			{
-				Framework::debug(__METHOD__." Form \"".$form->getLabel()."\" (id=".$form->getId().")");
-				Framework::debug(__METHOD__." Parameters: ".var_export($parameters, true));
-				if ($recipients->hasTo())
-				{
-					Framework::debug(__METHOD__." To      : ".join(", ", $recipients->getTo()));
-				}
-				if ($recipients->hasBCC())
-				{
-					Framework::debug(__METHOD__." CC      : ".join(", ", $recipients->getCC()));
-				}
-				if ($recipients->hasBCC())
-				{
-					Framework::debug(__METHOD__." BCC     : ".join(", ", $recipients->getBcc()));
-				}
-				Framework::debug(__METHOD__." ReplyTo : ".$replyTo);
+				return false;
 			}
-			$ns = notification_NotificationService::getInstance();
-			$ns->setMessageService($messageService);
+			
 			if ($copyMail === null)
-			{
-				return $ns->send($form->getNotification(), $recipients,	$parameters, 'form', $replyTo,
-					$this->getOverrideNotificationSender($form)
-				);
-			}
-			else
 			{
 				$copyRecipient = new mail_MessageRecipients();
 				$copyRecipient->setTo(array($copyMail));
-				$notification = $form->getNotification();
-				$sender = $this->getOverrideNotificationSender($form);
-				return $ns->send($notification, $recipients, $parameters, 'form', $replyTo, $sender)
-					&& $ns->send($notification, $copyRecipient, $parameters, 'form', $replyTo, $sender);
+				return $configuredNotif->getDocumentService()->sendNotificationCallback($configuredNotif, $copyRecipient, $callback, $params);
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * @param array $params
+	 * @return array
+	 */
+	public function getResponseNotifParameters($params)
+	{
+		$response = $params['response'];
+		$form = $params['form'];
+		
+		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType(K::HTML)->load('Form-MailContent');
+		$contentTemplate->setAttribute('items', $response->getAllData());
+		$contentTemplate->setAttribute('response', $response->getResponseInfos());
+
+		$parameters = $response->getData();
+		$parameters[self::CONTENT_REPLACEMENT_NAME] = $contentTemplate->execute();
+		$parameters[self::FORM_LABEL_REPLACEMENT_NAME] = $form->getLabel();
+		return $parameters;
 	}
 
 	/**
@@ -610,7 +620,6 @@ class form_FormService extends form_BaseformService
 	public function buildContentsFromRequest($nodes, &$contents, $request, $form)
 	{
 		$parameters = $request->getParameters();
-		$parameters; // Avoid Eclipse warning...
 		$eventParam = array('form' => $form, 'parameters' => &$parameters, 'isPosted' => $this->isPostedFormId($form->getId(), $request));
 		f_event_EventManager::dispatchEvent(self::FORM_INIT_DATA_EVENT_NAME, $this, $eventParam);
 		$request->setParametersByRef($parameters);
