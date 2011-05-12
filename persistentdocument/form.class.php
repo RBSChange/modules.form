@@ -43,6 +43,25 @@ class form_persistentdocument_form extends form_persistentdocument_formbase impl
 		return $address;
 	}
 	
+	public function getValidationRules()
+	{
+		$rules = array();
+		foreach ($this->getDocumentService()->getFields($this) as $field)
+		{
+			$constraints = $field->getConstraintArray();
+			if (f_util_ArrayUtils::isNotEmpty($constraints))
+			{
+				$rules[FormHelper::getModuleName()."Param[".$field->getFieldName()."]"] = $constraints;	
+			}
+		}
+		return $rules;
+	}
+	
+	public function getValidationRulesJSON()
+	{
+		return JsonService::getInstance()->encode($this->getValidationRules());
+	}
+	
 	// Deprecated methods.
 
 	/**

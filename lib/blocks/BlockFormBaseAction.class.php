@@ -29,6 +29,8 @@ class form_BlockFormBaseAction extends website_BlockAction
 			return 'Forbidden';
 		}
 		
+		$this->getPage()->addScript('modules.website.lib.js.form-validation');
+		
 		$request->setAttribute('form', $form);
 		$request->setAttribute('moduleName', $this->getModuleName());
 		
