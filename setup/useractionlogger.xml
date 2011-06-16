@@ -5,4 +5,5 @@
   <actiondef modulename="form" actionname="insert.recipientgroup" label="modules.form.bo.useractionlogger.insert-recipientgroup"/>
   <actiondef modulename="form" actionname="update.recipientgroup" label="modules.form.bo.useractionlogger.update-recipientgroup"/>
   <actiondef modulename="form" actionname="update.form" label="modules.form.bo.useractionlogger.update-form"/>
+  <actiondef modulename="form" actionname="update.text" label="m.form.bo.useractionlogger.update-text"/>
 </script>
