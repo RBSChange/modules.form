@@ -8,7 +8,7 @@ class form_BlockConfirmAction extends website_BlockAction
 	 */
 	public function execute($request, $response)
 	{
-		if ($this->isInBackoffice() || !$request->hasNonEmptyParameter('id'))
+		if ($this->isInBackofficeEdition() || !$request->hasNonEmptyParameter('id'))
 		{
 			return website_BlockView::NONE;
 		}
