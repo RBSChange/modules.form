@@ -358,14 +358,12 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	{
 		$ns = notification_NotificationService::getInstance();
 		$codeName = $form->getFormid().'_acknowledgmentNotification';
-		$notification = $ns->getByCodeName($codeName);
-
-		$notifications = $ns->createQuery()->add(Restrictions::published())->addOrder(Order::desc('codename'))->findUnique();
+		$notification = $ns->createQuery()->add(Restrictions::eq('codename', $codeName))->findUnique();
 		if ($notification === null)
 		{
 			$ls = LocaleService::getInstance();
 			$notification = $ns->getNewDocumentInstance();
-			$notification->setLabel($ls->transBO('m.form.document.form.acknowledgment-notification-label-prefix', array('ucf')) . ' ' . $form->getLabel());
+			$notification->setLabel($ls->transFO('m.form.document.form.acknowledgment-notification-label-prefix', array('ucf')) . ' ' . $form->getLabel());
 			$notification->setCodename($codeName);
 			$notification->setTemplate('default');
 			$notification->setSubject($form->getLabel());
