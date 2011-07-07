@@ -4,12 +4,12 @@
 	<tal:block tal:define="global toHide string: toHide" />
 </tal:block>
 
-<li id="field${field/id}" tal:attributes="class toHide">
+<li id="field${field/id}" class="radio-container ${toHide}">
 	<fieldset id="fieldset_${field/id}" class="radio">	
-		<legend>${field/label}<span tal:condition="hasCondition" class="nojs" change:translate="&modules.form.frontoffice.accessibility.activationSpaced;; value activationlabel">(Si "${activationlabel}")</span><em tal:condition="field/required">*</em></legend>		
+		<legend>${field/label}<span tal:condition="hasCondition" class="nojs"> ${trans:m.form.frontoffice.accessibility.activation,value=activationlabel"}</span> <em tal:condition="field/required">*</em></legend>		
 		<ol>
 			<li tal:replace="field/html" />
 		</ol>
-		<p tal:condition="field/description" tal:content="field/description" class="help-text"></p>
+		<p tal:condition="field/description" class="help-text">${field/description}</p>
 	</fieldset>
-</li>
+</li>	
