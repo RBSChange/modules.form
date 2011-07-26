@@ -475,9 +475,9 @@ abstract class FormHelper
 	private static function fromDateFieldDocument($field, $value)
 	{
 		$attributes = array(
-			'startDate' => date_DateFormat::format(date_Calendar::getInstance($field->getUiStartDatePicker()), 'd/m/Y'),
-			'endDate'   => date_DateFormat::format(date_Calendar::getInstance($field->getUiEndDatePicker()), 'd/m/Y')
-			);
+			'startDate' => date_Formatter::format(date_Calendar::getInstance($field->getUiStartDatePicker()), 'd/m/Y'),
+			'endDate'   => date_Formatter::format(date_Calendar::getInstance($field->getUiEndDatePicker()), 'd/m/Y')
+		);
 		return self::dateBox($field->getFieldName(), $field->getId(), $value, $attributes);
 	}
 
