@@ -68,7 +68,7 @@ class PHPTAL_Php_Attribute_CHANGE_Captcha extends ChangeTalAttribute
 	 */
 	private static function renderImage($allParameters, $ctx)
 	{
-		$parameterNames = $this->getEvaluatedParameters();
+		$parameterNames = array('width', 'height', 'fontsize', 'fontdepth', 'maxlength', 'key');
 		$parameters = array();
 		$attributes = array();
 		foreach ($allParameters as $name => $value) 
