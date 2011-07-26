@@ -26,11 +26,11 @@ class PHPTAL_Php_Attribute_CHANGE_Captcha extends ChangeTalAttribute
 	{
 		if ($parameters['tagname'] === 'img')
 		{
-			self::renderImage($parameters, $ctx);
+			return self::renderImage($parameters, $ctx);
 		}
 		elseif ($parameters['tagname'] === 'input')
 		{
-			self::renderInput($parameters, $ctx);
+			return self::renderInput($parameters, $ctx);
 		}
 	}
 	
