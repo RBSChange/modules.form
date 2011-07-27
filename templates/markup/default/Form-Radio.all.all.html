@@ -6,10 +6,10 @@
 
 <li id="field${field/id}" class="radio-container ${toHide}">
 	<fieldset id="fieldset_${field/id}" class="radio">	
-		<legend>${field/label}<span tal:condition="hasCondition" class="nojs"> ${trans:m.form.frontoffice.accessibility.activation,value=activationlabel"}</span> <em tal:condition="field/required">*</em></legend>		
+		<legend>${field/label}<span tal:condition="hasCondition" class="nojs"> ${trans:m.form.frontoffice.accessibility.activation,space,value=activationlabel}</span> <em tal:condition="field/required">*</em></legend>		
 		<ol>
-			<li tal:replace="field/html" />
+			<li tal:replace="structure field/html" />
 		</ol>
-		<p tal:condition="field/description" class="help-text">${field/description}</p>
+		<p tal:condition="field/description" class="help-text">${structure field/description}</p>
 	</fieldset>
 </li>	

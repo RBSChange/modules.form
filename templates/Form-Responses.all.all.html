@@ -29,7 +29,7 @@
 		<h1>Formulaire "${form/getLabel}", ${responsesCount} réponses</h1>
 		<tal:block tal:repeat="response responses">
 			<hr />
-			<h2><span change:datetime="value response/date; format 'd/m/Y H:i:s'" /></h2>
+			<h2><span tal:replace="datetime:response/date,from=gmt,'d/m/Y H:i:s'" /></h2>
 			<dl metal:define-macro="groupContent">
 				<tal:block tal:repeat="node contents">
 					<dt>${node/label}</dt>

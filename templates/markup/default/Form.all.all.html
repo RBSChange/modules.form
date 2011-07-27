@@ -1,7 +1,7 @@
 <tal:block tal:condition="not: moduleName" tal:define="global moduleName 'form'" />
 <a name="form_${form/getId}_anchor"></a>
 <tal:block tal:condition="php: count(receiverLabels) GT 0">
-	<p><strong change:translate="modules.form.document.form.ContactLabel"></strong> <tal:block tal:condition="php: count(receiverLabels) == 1">${receiverLabels/0}</tal:block></p>
+	<p><strong tal:content="trans:m.form.document.form.contact,ucf,lab"></strong> <tal:block tal:condition="php: count(receiverLabels) == 1">${receiverLabels/0}</tal:block></p>
 	<ul class="normal" tal:condition="php: count(receiverLabels) GT 1">
  		<li tal:repeat="receiverLabel receiverLabels">${receiverLabel}</li>
 	</ul>
@@ -23,19 +23,19 @@ if (form_Validation instanceof Array) {
 		<input type="hidden" name="${moduleName}Param[selfUrl]" tal:attributes="value selfUrl" />
 		<input type="hidden" name="${moduleName}Param[backUrl]" tal:attributes="value backUrl" />
 	</div>
-	<div class="description" tal:condition="form/getDescription" tal:content="form/getDescriptionAsHtml"></div>
+	<div class="description" tal:condition="form/getDescription" tal:content="structure form/getDescriptionAsHtml"></div>
 	<ul tal:condition="errors" class="errors">
 		<li tal:repeat="error errors" tal:content="error" />
 	</ul>
 	<ol>
-		<li tal:repeat="elm elements" tal:replace="elm" />
+		<li tal:repeat="elm elements" tal:replace="structure elm" />
 		<li tal:condition="useCaptcha" class="captcha">
 			<img change:captcha="key php: 'form' . form.getId()" style="vertical-align: bottom" />
 			<input change:captcha="key php: 'form' . form.getId()" />
 		</li>
 	</ol>
 	<p class="buttons">
-		<input type="reset" class="button reset" i18n:attributes="value &amp;modules.form.frontoffice.Reset-button;" />
+		<input type="reset" class="button reset" value="${trans:m.form.frontoffice.reset-button,ucf,attr}" />
 		<input type="submit" class="button submit" name="${moduleName}Param[submit_${form/getId}]" id="submit_${form/getId}" tal:attributes="value form/getSubmitButton" />
 	</p>
 	<div tal:condition="form/getFooter">

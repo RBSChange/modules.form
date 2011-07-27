@@ -4,4 +4,4 @@
 	<option tal:condition="not: item/selected" tal:attributes="value item/value">${item/label}</option>
 </tal:block>
 </select>
-<p class="help-text fieldtype-help" change:translate="&modules.form.frontoffice.Select-multiple-help;"></p>
+<p class="help-text fieldtype-help" tal:content="trans:m.form.frontoffice.select-multiple-help,ucf"></p>

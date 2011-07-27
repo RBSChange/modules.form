@@ -5,6 +5,6 @@
 </tal:block>
 
 <li id="freecontent${field/id}" tal:attributes="class toHide">
-	<span tal:condition="hasCondition" class="nojs" change:translate="&modules.form.frontoffice.accessibility.activationSpaced;; value activationlabel">(Si "${activationlabel}")</span>
-	<div class="free-text" tal:content="field/description"></div>
+	<span tal:condition="hasCondition" class="nojs" tal:content="trans:m.form.frontoffice.accessibility.activation,space,value=activationlabel">(Si "${activationlabel}")</span>
+	<div class="free-text" tal:content="structure field/description"></div>
 </li>

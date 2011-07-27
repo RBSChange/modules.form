@@ -6,7 +6,7 @@
 </tal:block>
 
 <li tal:attributes="class styleClass" id="field${field/id}">
-	<label for="field_${field/id}">${field/label}<span tal:condition="hasCondition" class="nojs" change:translate="&modules.form.frontoffice.accessibility.activationSpaced;; value activationlabel">(Si "${activationlabel}")</span>	<em tal:condition="field/required">*</em></label>	
-	<input tal:replace="field/html" />
-	<p tal:condition="field/description" tal:content="field/description" class="help-text"></p>
+	<label for="field_${field/id}">${field/label}<span tal:condition="hasCondition" class="nojs" tal:content="trans:m.form.frontoffice.accessibility.activation,space,value=activationlabel">(Si "${activationlabel}")</span>	<em tal:condition="field/required">*</em></label>	
+	<input tal:replace="structure field/html" />
+	<p tal:condition="field/description" tal:content="structure field/description" class="help-text"></p>
 </li>

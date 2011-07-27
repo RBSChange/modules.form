@@ -6,10 +6,10 @@
 
 <li id="groupe${group/id}" tal:attributes="class toHide">
 	<fieldset id="fieldset_${group/id}">	
-		<legend>${group/label}<span tal:condition="hasCondition" class="nojs" change:translate="&modules.form.frontoffice.accessibility.activationSpaced;; value activationlabel">(Si "${activationlabel}")</span></legend>		
-		<div tal:condition="group/description" tal:content="group/description"></div>
+		<legend>${group/label}<span tal:condition="hasCondition" class="nojs" tal:content="trans:m.form.frontoffice.accessibility.activation,space,value=activationlabel">(Si "${activationlabel}")</span></legend>		
+		<div tal:condition="group/description" tal:content="structure group/description"></div>
 		<ol>
-			<li tal:repeat="elm group/elements" tal:replace="elm" />
+			<li tal:repeat="elm group/elements" tal:replace="structure elm" />
 		</ol>
 	</fieldset>
 </li>
