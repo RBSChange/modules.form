@@ -7,6 +7,6 @@ class form_FormLoadHandler extends website_ViewLoadHandlerImpl
 	 */
 	public function execute($request, $response)
 	{
-		FormHelper::addScriptsAndStyles($this->getPage());
+		FormHelper::addScriptsAndStyles($this->getContext());
 	}
 }
