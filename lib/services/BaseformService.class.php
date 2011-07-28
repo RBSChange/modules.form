@@ -971,22 +971,4 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		}
 		return $validFields;
 	}
-	
-	// Deprecated.
-	
-	/**
-	 * @deprecated (will be removed in 4.0) use getAcknowledgmentNotifParameters
-	 */
-	protected function getAcknowledgementNotificationParameters($form, $response, $request, $result, $acknowledgmentReceiver, $replyTo)
-	{
-		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType(K::HTML)->load('Form-MailContent');
-		$contentTemplate->setAttribute('items', $response->getAllData());
-		$contentTemplate->setAttribute('response', $response->getResponseInfos());
-
-		$parameters = $response->getData();
-		$parameters[self::CONTENT_REPLACEMENT_NAME] = $contentTemplate->execute();
-		$parameters[self::FORM_LABEL_REPLACEMENT_NAME] = $form->getLabel();
-
-		return $parameters;
-	}
 }

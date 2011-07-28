@@ -615,14 +615,4 @@ abstract class FormHelper
 	{
 		$page->addScript('modules.form.lib.js.form');
 	}
-	
-	// DEPRECATED
-	
-	/**
-	 * @deprecated
-	 */
-	public static function checkCaptcha($code)
-	{
-		return self::checkCaptchaForKey($code, 'default');
-	}
 }

@@ -122,18 +122,4 @@ class form_ListService extends form_FieldService
         }
         $nodeAttributes['fieldName'] = $document->getFieldName();
     }
-	
-	// Deprecated.
-	
-	/**
-	 * @deprecated (will be removed in 4.0) with no replacement
-	 */
-	public function getPreviewAttributes($document)
-	{
-		$attributes = array();
-		$dataSource = $document->getDataSource();
-		$attributes['listId'] = $dataSource->getListid();
-		$attributes['items'] = $dataSource->getItems();
-		return $attributes;
-	}
 }

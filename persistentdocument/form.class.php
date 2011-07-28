@@ -43,6 +43,9 @@ class form_persistentdocument_form extends form_persistentdocument_formbase impl
 		return $address;
 	}
 	
+	/**
+	 * @return array
+	 */
 	public function getValidationRules()
 	{
 		$rules = array();
@@ -57,97 +60,11 @@ class form_persistentdocument_form extends form_persistentdocument_formbase impl
 		return $rules;
 	}
 	
+	/**
+	 * @return string
+	 */
 	public function getValidationRulesJSON()
 	{
 		return JsonService::getInstance()->encode($this->getValidationRules());
-	}
-	
-	// Deprecated methods.
-
-	/**
-	 * @param string $label
-	 * @deprecated Use setSubmitButton() instead, as the name of the field has changed.
-	 */
-	public function setSubmitLabel($label)
-	{
-		$this->setSubmitButton($label);
-	}
-
-	/**
-	 * @return string
-	 * @deprecated Use getBccAddressArray() instead.
-	 */
-	public function getBccAddresses()
-	{
-		return implode(',', $this->getBccAddressArray());
-	}
-	
-	/**
-	 * @return array
-	 * @deprecated
-	 */
-	public function getBccAddressArray()
-	{
-		$addresses = array();
-		foreach ($this->getRecipientGroupArray() as $recipientGroup)
-		{
-			foreach ($recipientGroup->getBccArray() as $contact)
-			{
-				$addresses = array_merge($addresses, $contact->getEmailAddresses());
-			}
-		}
-		return array_unique($addresses);
-	}
-
-	/**
-	 * @return string
-	 * @deprecated Use getEmailAddressArray() instead.
-	 */
-	public function getEmailAddresses()
-	{
-		return implode(',', $this->getEmailAddressArray());
-	}
-
-	/**
-	 * @return array
-	 * @deprecated Sorry, there is no
-	 */
-	public function getEmailAddressArray()
-	{
-		$addresses = array();
-		foreach ($this->getRecipientGroupArray() as $recipientGroup)
-		{
-			foreach ($recipientGroup->getToArray() as $contact)
-			{
-				$addresses = array_merge($addresses, $contact->getEmailAddresses());
-			}
-		}
-		return array_unique($addresses);
-	}
-
-	/**
-	 * @return string
-	 * @deprecated Use getCcAddressArray() instead.
-	 */
-	public function getCcAddresses()
-	{
-		return implode(',', $this->getCcAddressArray());
-	}
-
-	/**
-	 * @return array
-	 * @deprecated
-	 */
-	public function getCcAddressArray()
-	{
-		$addresses = array();
-		foreach ($this->getRecipientGroupArray() as $recipientGroup)
-		{
-			foreach ($recipientGroup->getCcArray() as $contact)
-			{
-				$addresses = array_merge($addresses, $contact->getEmailAddresses());
-			}
-		}
-		return array_unique($addresses);
 	}
 }
