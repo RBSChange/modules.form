@@ -3,7 +3,7 @@
  * form_persistentdocument_form
  * @package modules.form
  */
-class form_persistentdocument_form extends form_persistentdocument_formbase implements form_FormReceiver
+class form_persistentdocument_form extends form_persistentdocument_formbase
 {
 	/**
 	 * @return Integer
