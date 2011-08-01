@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <panel>
-	<section labeli18n="modules.form.bo.general.General">
+	<section labeli18n="m.form.bo.general.general">
 		<field name="label" />
 		<field name="dataSource" allow="[modules_list_list]" />
 		<field name="required" />
 		<field name="helpText" />
 	</section>
-	<section labeli18n="modules.form.bo.general.Display-settings" class="blank-option-chooser">
+	<section labeli18n="m.form.bo.general.display-settings" class="blank-option-chooser">
 		<field name="display" />
 		<field name="multiple" />
 		<field name="hasBlankOption" />
 	</section>
-	<section labeli18n="modules.form.bo.general.Activation-conditions" class="activation-conditions">
+	<section labeli18n="m.form.bo.general.activation-conditions" class="activation-conditions">
 		<field name="activationQuestion" type="dropdownlist" emptylabel="" nocache="true" />
 		<field name="activationValue" />
 	</section>

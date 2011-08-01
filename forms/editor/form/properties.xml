@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <panel>
-	<section labeli18n="modules.form.bo.general.General">
+	<section labeli18n="m.form.bo.general.general">
 		<field name="label" />
 		<field name="useBackLink" />
 		<field name="confirmMessage" />
@@ -8,13 +8,13 @@
 		<field name="markup" />
 		<field name="saveResponse" />
 	</section>
-	<section labeli18n="modules.form.bo.general.Advanced">
+	<section labeli18n="m.form.bo.general.advanced">
 		<field name="submitButton" />
 		<field name="description" />
 		<field name="footer" />
 		<field name="confirmpage" />
 	</section>
-	<section labeli18n="modules.form.bo.general.Sent-email">
+	<section labeli18n="m.form.bo.general.sent-email">
 		<field name="acknowledgment" />
 		<field name="recipientGroup" type="recipientGroupArrayField" />
 		<field name="messageSendingType" />

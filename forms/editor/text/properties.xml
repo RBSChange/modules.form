@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <panel>
-	<section labeli18n="modules.form.bo.general.General">
+	<section labeli18n="m.form.bo.general.general">
 		<field name="label" />
 		<field name="required" />
 		<field name="helpText" />
 		<field name="initializeWithCurrentUserLastname" />
 		<field name="initializeWithCurrentUserFirstname" />
 	</section>
-	<section labeli18n="modules.form.bo.general.Display-settings" class="text-field-configurator">
+	<section labeli18n="m.form.bo.general.display-settings" class="text-field-configurator">
 		<field name="multiline" hidehelp="true" />
 		<field name="cols" />
 		<field name="rows" />
 	</section>
-	<section labeli18n="modules.form.bo.general.Constraints">
+	<section labeli18n="m.form.bo.general.constraints">
 		<field name="maxlength" />
 		<field name="minlength" />
-		<field name="boValidator" type="radiolist" listid="modules_form/textvalidators" labeli18n="modules.form.document.text.Validators" />
+		<field name="boValidator" type="radiolist" listid="modules_form/textvalidators" labeli18n="m.form.document.text.validators" />
 	</section>
-	<section labeli18n="modules.form.bo.general.Activation-conditions" class="activation-conditions">
+	<section labeli18n="m.form.bo.general.activation-conditions" class="activation-conditions">
 		<field name="activationQuestion" type="dropdownlist" emptylabel="" nocache="true" />
 		<field name="activationValue" />
 	</section>
-	<section labeli18n="modules.form.bo.general.Iphone-specific-configurations" class="toggle" hidden="true">
+	<section labeli18n="m.form.bo.general.iphone-specific-configurations" class="toggle" hidden="true">
 		<field name="disableAutocorrect" />
 		<field name="disableAutocapitalize" />
 		<field name="disableAutocomplete" />
