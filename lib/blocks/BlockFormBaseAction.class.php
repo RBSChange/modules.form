@@ -41,7 +41,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 			$request->setAttribute('receiverLabels', $receiverLabels);
 		}
 		
-		$agaviUser = $this->getContext()->getGlobalContext()->getUser();
+		$agaviUser = change_Controller::getInstance()->getContext()->getUser();
 		if ($agaviUser->hasAttribute('form_success_parameters_noconfirmpage_' . $form->getId()))
 		{
 			$view = $this->getSuccessView($form, $request);
@@ -124,7 +124,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 	 */
 	protected function getSuccessView($form, $request)
 	{
-		$user = $this->getContext()->getGlobalContext()->getUser();
+		$user = change_Controller::getInstance()->getContext()->getUser();
 		$attr = 'form_success_parameters_noconfirmpage_' . $form->getId();
 		$parameters = $user->getAttribute($attr);
 		$user->removeAttribute($attr);
