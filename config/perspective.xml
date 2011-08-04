@@ -9,8 +9,8 @@
 				<child model="modules_form/form" />
 			</children>
 			<columns>
-				<column name="responseCount" label="Responsecount" flex="1" />
-				<column name="activeResponse" label="Activeresponse" flex="1" />
+				<column name="responseCount" flex="1" />
+				<column name="activeResponse" flex="1" />
 			</columns>
 			<drops>
 				<drop model="modules_generic/folder" action="move" />
@@ -35,8 +35,8 @@
 				<child model="modules_form/form" />
 			</children>
 			<columns>
-				<column name="responseCount" label="Responsecount" flex="1" />
-				<column name="activeResponse" label="Activeresponse" flex="1" />
+				<column name="responseCount" flex="1" />
+				<column name="activeResponse" flex="1" />
 			</columns>
 			<drops>
 				<drop model="modules_generic/folder" action="move" />
@@ -59,8 +59,8 @@
 				<child model="modules_form/form" />
 			</children>
 			<columns>
-				<column name="responseCount" label="Responsecount" flex="1" />
-				<column name="activeResponse" label="Activeresponse" flex="1" />
+				<column name="responseCount" flex="1" />
+				<column name="activeResponse" flex="1" />
 			</columns>
 			<contextactions>
 				<contextaction name="edit" />
@@ -97,9 +97,9 @@
 			</drops>
 			<styles properties="fieldType required isLocked conditioned" />
 			<columns>
-				<column name="fieldType" label="FieldType" flex="2" />
-				<column name="fieldRequired" label="FieldRequired" flex="1" />
-				<column name="fieldConditioned" label="FieldConditioned" flex="1" />
+				<column name="fieldType" flex="2" />
+				<column name="fieldRequired" flex="1" />
+				<column name="fieldConditioned" flex="1" />
 			</columns>
 			<contextactions>
 				<contextaction name="edit" />
@@ -156,9 +156,9 @@
 			</drops>
 			<styles properties="fieldType required isLocked conditioned block actualtype" />
 			<columns>
-				<column name="fieldType" label="FieldType" flex="2" />
-				<column name="fieldRequired" label="FieldRequired" flex="1" />
-				<column name="fieldConditioned" label="FieldConditioned" flex="1" />
+				<column name="fieldType" flex="2" />
+				<column name="fieldRequired" flex="1" />
+				<column name="fieldConditioned" flex="1" />
 			</columns>
 			<contextactions>
 				<contextaction name="edit" />
