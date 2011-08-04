@@ -16,7 +16,7 @@ class form_BlockConfirmAction extends website_BlockAction
 		$form = form_persistentdocument_form::getInstanceById($request->getParameter('id'));
 		$request->setAttribute('form', $form);
 		
-		$user = Controller::getInstance()->getContext()->getUser();
+		$user = change_Controller::getInstance()->getContext()->getUser();
 		$attr = 'form_success_parameters_confirmpage_' . $form->getId();
 		$parameters = $user->getAttribute($attr);		
 		if ($parameters === null)

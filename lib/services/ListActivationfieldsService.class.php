@@ -23,7 +23,7 @@ class form_ListActivationfieldsService extends BaseService
 	 */
 	public final function getItems()
 	{
-		$request = Controller::getInstance()->getContext()->getRequest();
+		$request = change_Controller::getInstance()->getContext()->getRequest();
 		$form = null;
 		$conditionOn = null;
 		try

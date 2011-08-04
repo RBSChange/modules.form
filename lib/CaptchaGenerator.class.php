@@ -140,10 +140,10 @@ class form_CaptchaGenerator extends BaseService
 			$img->apply(new gotcha_LineEffect());
 			//Add the text.
 			$t = new gotcha_TextEffect($code, $this->fontSize, $this->fontDepth);
-			$t->addFont(f_util_FileUtils::buildAbsolutePath(FRAMEWORK_HOME, 'libs', 'gotcha', 'SFTransRoboticsExtended.ttf'));
-			$t->addFont(f_util_FileUtils::buildAbsolutePath(FRAMEWORK_HOME, 'libs', 'gotcha', 'arialbd.ttf'));
-			$t->addFont(f_util_FileUtils::buildAbsolutePath(FRAMEWORK_HOME, 'libs', 'gotcha', 'comic.ttf'));
-			$t->addFont(f_util_FileUtils::buildAbsolutePath(FRAMEWORK_HOME, 'libs', 'gotcha', 'britanic.ttf'));
+			$t->addFont(f_util_FileUtils::buildFrameworkPath('libs', 'gotcha', 'SFTransRoboticsExtended.ttf'));
+			$t->addFont(f_util_FileUtils::buildFrameworkPath('libs', 'gotcha', 'arialbd.ttf'));
+			$t->addFont(f_util_FileUtils::buildFrameworkPath('libs', 'gotcha', 'comic.ttf'));
+			$t->addFont(f_util_FileUtils::buildFrameworkPath('libs', 'gotcha', 'britanic.ttf'));
 			// repeat the process for as much fonts as you want. Actually, the more the better.
 			// A font type will be randomly selected for each character in the text code.
 			$img->apply($t);
@@ -178,7 +178,7 @@ class form_CaptchaGenerator extends BaseService
 	{
 		$codes = $this->getCurrentCodes();
 		$codes[$this->key] = $code;
-		Controller::getInstance()->getContext()->getUser()->setAttribute(CAPTCHA_SESSION_KEY, $codes);
+		change_Controller::getInstance()->getContext()->getUser()->setAttribute('CHANGE_CAPTCHA', $codes);
 	}
 	
 	/**
@@ -208,7 +208,7 @@ class form_CaptchaGenerator extends BaseService
 	 */
 	protected function getCurrentCodes()
 	{
-		$codes = Controller::getInstance()->getContext()->getUser()->getAttribute(CAPTCHA_SESSION_KEY);
+		$codes = change_Controller::getInstance()->getContext()->getUser()->getAttribute('CHANGE_CAPTCHA');
 		return (is_array($codes)) ? $codes : array();
 	}
 	
@@ -219,6 +219,6 @@ class form_CaptchaGenerator extends BaseService
 	{
 		$codes = $this->getCurrentCodes();
 		unset($codes[$this->key]);
-		Controller::getInstance()->getContext()->getUser()->setAttribute(CAPTCHA_SESSION_KEY, $codes);
+		change_Controller::getInstance()->getContext()->getUser()->setAttribute('CHANGE_CAPTCHA', $codes);
 	}
 }

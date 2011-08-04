@@ -59,7 +59,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 					return website_BlockView::NONE;
 				}
 				$agaviUser->setAttribute('form_success_parameters_noconfirmpage_' . $form->getId(), $request->getParameters());
-				HttpController::getInstance()->redirectToUrl(LinkHelper::getCurrentUrl());
+				change_Controller::getInstance()->redirectToUrl(LinkHelper::getCurrentUrl());
 				return website_BlockView::NONE;
 			}
 			catch (form_FormValidationException $e)

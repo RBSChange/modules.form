@@ -122,7 +122,7 @@ class PHPTAL_Php_Attribute_CHANGE_Captcha extends ChangeTalAttribute
 	 */
 	private static function renderInput($allParameters, $ctx)
 	{
-		$code = '<input type="text" class="textfield" name="formParam[' . CAPTCHA_SESSION_KEY . ']"';
+		$code = '<input type="text" class="textfield" name="formParam[CHANGE_CAPTCHA]"';
 		$parameterNames = array('width', 'height', 'fontsize', 'fontdepth', 'key');
 		$attributes = array();
 		foreach ($allParameters as $name => $value) 

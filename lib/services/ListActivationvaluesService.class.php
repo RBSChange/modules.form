@@ -25,7 +25,7 @@ class form_ListActivationvaluesService extends BaseService
 	{
 		try
 		{
-			$request = Controller::getInstance()->getContext()->getRequest();
+			$request = change_Controller::getInstance()->getContext()->getRequest();
 			$questionId = intval($request->getParameter('questionId', 0));
 			$question = DocumentHelper::getDocumentInstance($questionId);
 		}

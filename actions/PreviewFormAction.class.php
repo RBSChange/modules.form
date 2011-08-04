@@ -1,9 +1,9 @@
 <?php
-class form_PreviewFormAction extends f_action_BaseAction
+class form_PreviewFormAction extends change_Action
 {
 	/**
-	 * @param Context $context
-	 * @param Request $request
+	 * @param change_Context $context
+	 * @param change_Request $request
 	 */
 	public function _execute($context, $request)
 	{
@@ -21,9 +21,9 @@ class form_PreviewFormAction extends f_action_BaseAction
 			$request->setParameter('DisablePublicationWorkflow', 'true');
 			$context->getController()->forward('website', 'Display');
 			
-    	    return View::NONE;
+    	    return change_View::NONE;
 		}
-		return View::ERROR;
+		return change_View::ERROR;
 	}
 	
 	/**

@@ -1,5 +1,5 @@
 <?php
-class form_ExportCsvView extends f_view_BaseView
+class form_ExportCsvView extends change_View
 {
 
 	public function _execute($context, $request)

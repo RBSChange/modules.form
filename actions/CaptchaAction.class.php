@@ -1,13 +1,13 @@
 <?php
-class form_CaptchaAction extends f_action_BaseAction
+class form_CaptchaAction extends change_Action
 {
 	/**
-	 * @param Context $context
-	 * @param Request $request
+	 * @param change_Context $context
+	 * @param change_Request $request
 	 */
 	public function _execute($context, $request)
 	{
-		controller_ChangeController::setNoCache();
+		change_Controller::setNoCache();
 		
 		$generator = form_CaptchaGenerator::getInstance();
 		$generator->setKey($request->getParameter('key'));
@@ -45,7 +45,7 @@ class form_CaptchaAction extends f_action_BaseAction
 			$generator->generateCode();
 		}
 		$generator->render();
-		return View::NONE;
+		return change_View::NONE;
 	}
 
 	/**

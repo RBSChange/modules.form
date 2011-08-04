@@ -945,7 +945,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 */
 	protected function checkCaptcha($form)
 	{
-		$code = Controller::getInstance()->getContext()->getRequest()->getModuleParameter('form', CAPTCHA_SESSION_KEY);
+		$code = change_Controller::getInstance()->getContext()->getRequest()->getModuleParameter('form', 'CHANGE_CAPTCHA');
 		return !$this->hasToUseCaptcha($form) || FormHelper::checkCaptchaForKey($code, strval('form' . $form->getId()));
 	}
 

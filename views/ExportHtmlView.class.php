@@ -1,5 +1,5 @@
 <?php
-class form_ExportHtmlView extends f_view_BaseView
+class form_ExportHtmlView extends change_View
 {
 	public function _execute($context, $request)
 	{
