@@ -4,16 +4,16 @@
 		<link rel="stylesheet" tal:replace="structure email/stylesheetUrl" />
 	</head>
 	<body>
-		<h1 tal:content="email/subject"></h1>
+		<h1>${email/subject}</h1>
 		<em tal:condition="email/header">${structure email/header}</em>
 	
 		<dl>
 		<tal:block tal:repeat="item email/items">
-			<dt tal:content="item/label" />
-			<dd tal:content="item/value" />
+			<dt>${item/label}</dt>
+			<dd>${structure item/value}
 		</tal:block>
 		</dl>
-	
+			
 		<em tal:condition="email/footer">${structure email/footer}</em>
 	</body>
 </html>
