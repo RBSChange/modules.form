@@ -40,3 +40,6 @@ section.group .group-content{
 scrollbox{
 	border-top: 1px solid #DDD;
 }
+description{
+	white-space: pre-wrap;
+}
