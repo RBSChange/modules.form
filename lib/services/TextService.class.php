@@ -116,7 +116,7 @@ class form_TextService extends form_FieldService
         $txtValue = parent::buildXmlElementResponse($field, $fieldElm, $rawValue); 
 		if ($field->getMultiline())
 		{
-			$fieldElm->setAttribute('mailValue', nl2br($txtValue));
+			$fieldElm->setAttribute('mailValue', f_util_HtmlUtils::textToHtml($txtValue));
 		}
 		return $txtValue;
     }
