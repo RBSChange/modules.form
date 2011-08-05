@@ -6,7 +6,7 @@
 
 <li id="field${field/id}" class="radio-container ${toHide}">
 	<fieldset id="fieldset_${field/id}" class="radio">	
-		<legend>${field/label}<span tal:condition="hasCondition" class="nojs"> ${trans:m.form.frontoffice.accessibility.activation,value=activationlabel"}</span> <em tal:condition="field/required">*</em></legend>		
+		<legend>${field/label}<span tal:condition="hasCondition" class="nojs"> ${trans:m.form.frontoffice.accessibility.activation,value=activationlabel}</span> <em tal:condition="field/required">*</em></legend>		
 		<ol>
 			<li tal:replace="field/html" />
 		</ol>
