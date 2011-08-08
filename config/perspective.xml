@@ -64,6 +64,7 @@
 			</columns>
 			<contextactions>
 				<contextaction name="edit" />
+				<contextaction name="delete" />
 				<contextaction name="openTreeNodeOrder" />
 				<contextaction name="openFolder" />
 			</contextactions>
