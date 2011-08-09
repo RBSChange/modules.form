@@ -38,7 +38,6 @@
 			<permission name="GetPreferencesDocument" />
 			<permission name="ArchiveResponse.*" />
 			<permission name="Export.*" />
-			<permission name="EditLocale" />
 			<permission name="AddRecipientGroupFolder.*" />
 		</role>
 		<role name="Writer" extend="Guest">
