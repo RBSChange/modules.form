@@ -3,7 +3,7 @@ class form_ExportHtmlView extends change_View
 {
 	public function _execute($context, $request)
 	{
-		$this->setTemplateName('Form-Responses', K::HTML);
+		$this->setTemplateName('Form-Responses', 'html');
 
 		$form = $request->getAttribute('form');
 		$this->setAttribute('form', $form);

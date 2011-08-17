@@ -12,7 +12,7 @@ class form_PreviewFormAction extends change_Action
 		if ($preference !== null && $preference->getPreviewpage() !== null)
 		{
 			$pageId = $preference->getPreviewpage()->getId();
-			$request->setParameter(K::PAGE_REF_ACCESSOR, $pageId);
+			$request->setParameter('pageref', $pageId);
 			
 			$formParam = $request->getParameter('formParam', array());
 			$formParam['cmpref'] = $form->getId();

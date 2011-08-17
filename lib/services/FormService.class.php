@@ -298,7 +298,7 @@ class form_FormService extends form_BaseformService
 		$response = $params['response'];
 		$form = $params['form'];
 		
-		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType(K::HTML)->load('Form-MailContent');
+		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType('html')->load('Form-MailContent');
 		$contentTemplate->setAttribute('items', $response->getAllData());
 		$contentTemplate->setAttribute('response', $response->getResponseInfos());
 

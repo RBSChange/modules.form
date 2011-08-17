@@ -8,6 +8,6 @@ class form_PreviewFormErrorView extends change_View
 	public function _execute($context, $request)
 	{
 		$this->setMimeContentType('html');
-		$this->setTemplateName('PreviewForm-Error', K::HTML);
+		$this->setTemplateName('PreviewForm-Error', 'html');
 	}
 }

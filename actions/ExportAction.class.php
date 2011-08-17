@@ -17,7 +17,7 @@ class form_ExportAction extends change_Action
 		}
 		if ( empty($output) )
 		{
-			$output = ucfirst(K::HTML);
+			$output = ucfirst('html');
 		}
 		
 		if ( $request->getParameter('all') == 'all')
