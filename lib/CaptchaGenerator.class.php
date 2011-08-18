@@ -178,7 +178,7 @@ class form_CaptchaGenerator extends BaseService
 	{
 		$codes = $this->getCurrentCodes();
 		$codes[$this->key] = $code;
-		change_Controller::getInstance()->getContext()->getUser()->setAttribute('CHANGE_CAPTCHA', $codes);
+		change_Controller::getInstance()->getStorage()->writeForUser('form_CHANGE_CAPTCHA', $codes);
 	}
 	
 	/**
@@ -208,7 +208,7 @@ class form_CaptchaGenerator extends BaseService
 	 */
 	protected function getCurrentCodes()
 	{
-		$codes = change_Controller::getInstance()->getContext()->getUser()->getAttribute('CHANGE_CAPTCHA');
+		$codes = change_Controller::getInstance()->getStorage()->readForUser('form_CHANGE_CAPTCHA');
 		return (is_array($codes)) ? $codes : array();
 	}
 	
@@ -219,6 +219,6 @@ class form_CaptchaGenerator extends BaseService
 	{
 		$codes = $this->getCurrentCodes();
 		unset($codes[$this->key]);
-		change_Controller::getInstance()->getContext()->getUser()->setAttribute('CHANGE_CAPTCHA', $codes);
+		change_Controller::getInstance()->getStorage()->writeForUser('form_CHANGE_CAPTCHA', $codes);
 	}
 }

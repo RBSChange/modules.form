@@ -16,14 +16,13 @@ class form_BlockConfirmAction extends website_BlockAction
 		$form = form_persistentdocument_form::getInstanceById($request->getParameter('id'));
 		$request->setAttribute('form', $form);
 		
-		$user = change_Controller::getInstance()->getContext()->getUser();
 		$attr = 'form_success_parameters_confirmpage_' . $form->getId();
-		$parameters = $user->getAttribute($attr);		
+		$parameters = change_Controller::getInstance()->getStorage()->readForUser($attr);
 		if ($parameters === null)
 		{
 			return website_BlockView::NONE;
-		}		
-		$user->removeAttribute($attr);
+		}	
+		change_Controller::getInstance()->getStorage()->removeForUser($attr);
 		
 		$message = $form->getConfirmMessageAsHtml();
 		foreach ($parameters as $k => $v)

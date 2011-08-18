@@ -41,8 +41,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 			$request->setAttribute('receiverLabels', $receiverLabels);
 		}
 		
-		$agaviUser = change_Controller::getInstance()->getContext()->getUser();
-		if ($agaviUser->hasAttribute('form_success_parameters_noconfirmpage_' . $form->getId()))
+		if (change_Controller::getInstance()->getStorage()->readForUser('form_success_parameters_noconfirmpage_' . $form->getId()))
 		{
 			$view = $this->getSuccessView($form, $request);
 		}
@@ -54,11 +53,11 @@ class form_BlockFormBaseAction extends website_BlockAction
 				$confirmpage = $form->getConfirmpage();
 				if ($confirmpage instanceof website_persistentdocument_page && $confirmpage->isPublished())
 				{
-					$agaviUser->setAttribute('form_success_parameters_confirmpage_' . $form->getId(), $request->getParameters());
+					change_Controller::getInstance()->getStorage()->writeForUser('form_success_parameters_confirmpage_' . $form->getId(), $request->getParameters());
 					$this->redirectToUrl(LinkHelper::getDocumentUrl($confirmpage, $this->getLang(), array('formParam[id]' => $form->getId())));
 					return website_BlockView::NONE;
 				}
-				$agaviUser->setAttribute('form_success_parameters_noconfirmpage_' . $form->getId(), $request->getParameters());
+				change_Controller::getInstance()->getStorage()->writeForUser('form_success_parameters_noconfirmpage_' . $form->getId(), $request->getParameters());
 				change_Controller::getInstance()->redirectToUrl(LinkHelper::getCurrentUrl());
 				return website_BlockView::NONE;
 			}
