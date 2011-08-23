@@ -13,7 +13,7 @@ class form_RecipientGroupListService extends form_ListService
 	{
 		if (self::$instance === null)
 		{
-			self::$instance = self::getServiceClassInstance(get_class());
+			self::$instance = new self();
 		}
 		return self::$instance;
 	}

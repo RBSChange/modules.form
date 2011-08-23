@@ -18,7 +18,7 @@ class form_ListRecipientgrouplistService extends BaseService implements list_Lis
 	{
 		if (self::$instance === null)
 		{
-			self::$instance = self::getServiceClassInstance(get_class());
+			self::$instance = new self();
 		}
 		return self::$instance;
 	}

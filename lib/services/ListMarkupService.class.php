@@ -13,7 +13,7 @@ class form_ListMarkupService extends BaseService implements list_ListItemsServic
 	{
 		if (self::$instance === null)
 		{
-			self::$instance = self::getServiceClassInstance(get_class());
+			self::$instance = new self();
 		}
 		return self::$instance;
 	}
