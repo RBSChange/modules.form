@@ -134,37 +134,15 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		foreach ($document->getChildrenGroups() as $group)
 		{
 			$this->deleteFieldsAndGroups($group);
-			$this->deleteAllLangs($group);
+			$group->getDocumentService()->purgeDocument($group);
 		}
 		foreach ($document->getChildrenFields() as $field)
 		{
 			$field->setIsLocked(false);
-			$this->deleteAllLangs($field);
+			$field->getDocumentService()->purgeDocument($field);
 		}
 	}
-
-	/**
-	 * @param f_persistentdocument_PersistentDocument $document
-	 */
-	private function deleteAllLangs($document)
-	{
-		$rqc = RequestContext::getInstance();
-		foreach ($document->getI18nInfo()->getLangs() as $lang)
-		{
-			try
-			{
-				$rqc->beginI18nWork($lang);
-				$document->delete();
-				$rqc->endI18nWork();
-			}
-			catch (Exception $e)
-			{
-				$rqc->endI18nWork($e);
-				throw $e;
-			}
-		}
-	}
-
+	
 	/**
 	 * @param form_persistentdocument_baseform $document
 	 * @return boolean true
