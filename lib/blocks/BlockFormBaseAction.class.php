@@ -117,13 +117,13 @@ class form_BlockFormBaseAction extends website_BlockAction
 		$parameters = $user->getAttribute($attr);
 		$user->removeAttribute($attr);
 		
-		$message = $form->getConfirmMessage();
+		$message = $form->getConfirmMessageAsHtml();
 		foreach ($parameters as $key => $value)
 		{
 			$message = str_replace('{' . $key . '}', htmlspecialchars($value), $message);
-		}
-		
+		}		
 		$request->setAttribute('message', $message);
+		
 		if ($form->getUseBackLink())
 		{
 			$request->setAttribute('back', array('url' => $parameters['backUrl'], 'label' => f_Locale::translate('&modules.form.frontoffice.Back;')));

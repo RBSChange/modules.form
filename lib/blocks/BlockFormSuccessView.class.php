@@ -16,15 +16,15 @@ class form_BlockFormSuccessView extends block_BlockView
 		$parameters = $user->getAttribute($attr);
 		$user->removeAttribute($attr);
 
-		$message = $form->getConfirmMessage();
+		$message = $form->getConfirmMessageAsHtml();
 		foreach ($parameters as $k => $v)
 		{
 			$message = str_replace('{'.$k.'}', htmlspecialchars($v), $message);
 		}
-
+		$this->setAttribute('message', $message);
+		
 		$this->setAttribute("receiverLabels", $this->getParameter("receiverLabels"));
 
-		$this->setAttribute('message', $message);
 		if ($form->getUseBackLink())
 		{
 			$this->setAttribute(
