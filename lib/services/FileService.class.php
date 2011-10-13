@@ -89,6 +89,8 @@ class form_FileService extends form_FieldService
     		$rawValue->save(($field->getMediaFolder() !== null) ? $field->getMediaFolder()->getId() : null);
     		$media = media_MediaService::getInstance()->importFromTempFile($rawValue);
     		$media->save();
+			$mailValue = "<a href=\"".MediaHelper::getUrl($media)."\">".$media->getLabel()."</a>";
+			$fieldElm->setAttribute('mailValue', $mailValue);
     		return $media->getId();
     	}
 		if (f_util_ArrayUtils::isNotEmpty($rawValue) && $rawValue['error'] == 0 )
