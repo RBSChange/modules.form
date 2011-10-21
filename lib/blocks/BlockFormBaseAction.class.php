@@ -185,7 +185,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 		}
 		else
 		{
-			$backUrl = website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getUrl();
+			$backUrl = website_WebsiteService::getInstance()->getCurrentWebsite()->getUrl();
 		}
 		$request->setAttribute('requestParameters', $request->getParameters());
 		$request->setAttribute('backUrl', $backUrl);

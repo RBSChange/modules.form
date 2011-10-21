@@ -64,7 +64,7 @@ class form_HiddenService extends form_FieldService
         switch ($field->getIsRecommand())
         {
             case 'site':
-                return website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getUrl();
+                return website_WebsiteService::getInstance()->getCurrentWebsite()->getUrl();
                 break;
             case 'page':
                 try
@@ -75,7 +75,7 @@ class form_HiddenService extends form_FieldService
                 {
                     Framework::exception($e);    
                 }
-                return website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getUrl();
+                return website_WebsiteService::getInstance()->getCurrentWebsite()->getUrl();
         }
         return parent::buildXmlElementResponse($field, $fieldElm, $rawValue); 
     }

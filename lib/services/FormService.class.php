@@ -248,7 +248,7 @@ class form_FormService extends form_BaseformService
 			return true;	
 		}
 		
-		$website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
+		$website = website_WebsiteService::getInstance()->getCurrentWebsite();
 		$ns = notification_NotificationService::getInstance();
 		$configuredNotif = $ns->getConfiguredByCodeName($notification->getCodeName(), $website->getId(), $website->getLang());
 		if ($configuredNotif instanceof notification_persistentdocument_notification)
