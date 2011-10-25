@@ -6,4 +6,6 @@
   <actiondef modulename="form" actionname="update.recipientgroup" label="modules.form.bo.useractionlogger.update-recipientgroup"/>
   <actiondef modulename="form" actionname="update.form" label="modules.form.bo.useractionlogger.update-form"/>
   <actiondef modulename="form" actionname="update.text" label="m.form.bo.useractionlogger.update-text"/>
+  <actiondef modulename="form" actionname="insert.file" label="m.form.bo.useractionlogger.insert-file"/>
+  <actiondef modulename="form" actionname="move.file" label="m.form.bo.useractionlogger.move-file"/>
 </script>

@@ -10,4 +10,8 @@
   <key id="log-update-form">log-update-form</key>
   <key id="update-text">update.text {lang} {documentlabel}</key>
   <key id="log-update-text">log update text</key>
+  <key id="insert-file">insert.file {lang} {documentlabel}</key>
+  <key id="log-insert-file">log insert file</key>
+  <key id="move-file">move.file {destinationlabel} {lang} {documentlabel}</key>
+  <key id="log-move-file">log move file</key>
 </i18n>
