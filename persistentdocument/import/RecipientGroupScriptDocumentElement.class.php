@@ -8,4 +8,12 @@ class form_RecipientGroupScriptDocumentElement extends import_ScriptDocumentElem
     {
     	return form_RecipientGroupService::getInstance()->getNewDocumentInstance();
     }
+    
+	/**
+	 * @return f_persistentdocument_PersistentDocumentModel
+	 */
+	protected function getDocumentModel()
+	{
+		return f_persistentdocument_PersistentDocumentModel::getInstanceFromDocumentModelName('modules_form/recipientGroup');
+	}
 }
