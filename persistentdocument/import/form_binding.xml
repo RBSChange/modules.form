@@ -17,6 +17,7 @@
   <binding name="recipientgroup" className="form_RecipientGroupScriptDocumentElement"/>
   <binding name="recipientgrouplist" className="form_RecipientGroupListScriptDocumentElement"/>
   <binding name="response" className="form_ResponseScriptDocumentElement"/>
+  <binding name="recipientgroupfolder" className="form_RecipientGroupFolderScriptDocumentElement"/>
   <binding name="recipientGroupFolder" className="form_RecipientGroupFolderScriptDocumentElement"/>
   <binding name="baseform" className="form_BaseformScriptDocumentElement"/>
   <binding name="baseform" className="form_BaseformScriptDocumentElement"/>
