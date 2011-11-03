@@ -13,7 +13,7 @@ class form_AddRecipientGroupFolderAction extends f_action_BaseJSONAction
 	{
 		$result = array();
 
-		$parentFolder = DocumentHelper::getDocumentInstance($request->getParameter('parentref'), 'modules_generic/form');
+		$parentFolder = DocumentHelper::getDocumentInstance($request->getParameter('parentref'), 'modules_generic/folder');
 		switch (get_class($parentFolder))
 		{
 			case 'generic_persistentdocument_folder':
