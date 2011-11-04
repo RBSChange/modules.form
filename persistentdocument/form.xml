@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
-	model-version="1.0" extend="modules_form/baseform">
-	<properties>
-		<add name="recipientGroup" type="modules_form/recipientGroup" max-occurs="-1" />
-		<add name="messageSendingType" type="Integer" min-occurs="1" default-value="2" from-list="modules_form/messagesendingtype" />
-		<add name="notification" type="modules_notification/notification" min-occurs="1" cascade-delete="true" />
-		<add name="responseCount" type="Integer" default-value="0" />
-		<add name="archivedResponseCount" type="Integer" default-value="0" />
-		<add name="saveResponse" type="Boolean" default-value="true" />
-	</properties>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="1.0" extend="modules_form/baseform">
+  <properties>
+    <property name="recipientGroup" type="modules_form/recipientGroup" max-occurs="-1"/>
+    <property name="messageSendingType" type="Integer" min-occurs="1" default-value="2" from-list="modules_form/messagesendingtype"/>
+    <property name="notification" type="modules_notification/notification" min-occurs="1" cascade-delete="true"/>
+    <property name="responseCount" type="Integer" default-value="0"/>
+    <property name="archivedResponseCount" type="Integer" default-value="0"/>
+    <property name="saveResponse" type="Boolean" default-value="true"/>
+  </properties>
 </document>

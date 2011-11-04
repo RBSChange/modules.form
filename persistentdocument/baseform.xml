@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd" model-version="1.0"
-	linked-to-root-module="true" icon="form" publish-on-day-change="false" has-url="false">
-	<properties>
-		<add name="formid" type="String" min-occurs="1">
-			<constraints>unique:true</constraints>
-		</add>
-		<add name="description" type="XHTMLFragment" localized="true" />
-		<add name="submitButton" type="String" min-occurs="1" localized="true" default-value="Envoyer" />
-		<add name="markup" type="String" min-occurs="1" from-list="modules_form/markup" default-value="default" />
-		<add name="useBackLink" type="Boolean" default-value="true" />
-		<add name="useCaptcha" type="Boolean" default-value="true" />
-		<add name="footer" type="XHTMLFragment" localized="true" />
-		<add name="confirmMessage" type="XHTMLFragment" min-occurs="1" localized="true" />
-		<add name="confirmpage" type="modules_website/page" />
-		<add name="acknowledgment" type="Boolean" default-value="false" />
-		<add name="acknowledgmentNotification" type="modules_notification/notification" />
-	</properties>
-	<statuses default="ACTIVE" />
-	<children>
-		<child name="groups" type="modules_form/group" />
-		<child name="fields" type="modules_form/field" />
-	</children>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="1.0" linked-to-root-module="true" icon="form" publish-on-day-change="false" has-url="false">
+  <properties>
+    <property name="formid" type="String" min-occurs="1">
+      <constraint name="unique" propertyName="formid" modelName="modules_form/baseform"/>
+    </property>
+    <property name="description" type="XHTMLFragment" localized="true"/>
+    <property name="submitButton" type="String" min-occurs="1" localized="true" default-value="Envoyer"/>
+    <property name="markup" type="String" min-occurs="1" from-list="modules_form/markup" default-value="default"/>
+    <property name="useBackLink" type="Boolean" default-value="true"/>
+    <property name="useCaptcha" type="Boolean" default-value="true"/>
+    <property name="footer" type="XHTMLFragment" localized="true"/>
+    <property name="confirmMessage" type="XHTMLFragment" min-occurs="1" localized="true"/>
+    <property name="confirmpage" type="modules_website/page"/>
+    <property name="acknowledgment" type="Boolean" default-value="false"/>
+    <property name="acknowledgmentNotification" type="modules_notification/notification"/>
+  </properties>
+  <statuses default="ACTIVE"/>
+  <children>
+    <child name="groups" type="modules_form/group"/>
+    <child name="fields" type="modules_form/field"/>
+  </children>
 </document>

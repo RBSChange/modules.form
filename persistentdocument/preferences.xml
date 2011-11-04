@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
-	model-version="1.0" icon="form" publish-on-day-change="false" backoffice-indexable="false" has-url="false">
-	<properties>
-		<add name="label" default-value="preferences" />
-		<add name="sender" type="modules_contactcard/contact" />
-		<add name="captchaParametersSerialized" type="LongString" min-occurs="1" default-value="iw=130;ih=40;fs=20;fd=3;ml=5" />
-		<add name="previewpage" type="modules_website/page" />
-		<add name="enableRecipientGroupFolderCreation" type="Boolean" />
-	</properties>
-	<statuses default="PUBLICATED" />
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="1.0" icon="form" publish-on-day-change="false" backoffice-indexable="false" has-url="false">
+  <properties>
+    <property name="label" default-value="preferences"/>
+    <property name="sender" type="modules_contactcard/contact"/>
+    <property name="captchaParametersSerialized" type="LongString" min-occurs="1" default-value="iw=130;ih=40;fs=20;fd=3;ml=5"/>
+    <property name="previewpage" type="modules_website/page"/>
+    <property name="enableRecipientGroupFolderCreation" type="Boolean"/>
+  </properties>
+  <statuses default="PUBLICATED"/>
 </document>
