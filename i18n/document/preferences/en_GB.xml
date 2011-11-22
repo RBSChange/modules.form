@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.form.document.preferences" lcid="en_GB">
   <key id="document-name">preferences</key>
+  <key id="enablerecipientgroupfoldercreation">recipient group folder creation</key>
+  <key id="enablerecipientgroupfoldercreation-help">Check "yes" to enable the creation of the recipient group folders by the administrator. This is useful if you want to enclose some folders from the "Forms" module.</key>
+  <key id="general-preferences">general preferences</key>
+  <key id="previewpage">preview page</key>
+  <key id="previewpage-help">Page that will be used for previewing forms.</key>
+  <key id="sender">email sender</key>
 </i18n>

@@ -270,33 +270,33 @@
 		<toolbarbutton name="viewResponses" />
 	</toolbar>
 	<actions>
-		<action name="refresh" single="true" icon="refresh" label="&amp;modules.uixul.bo.actions.Refresh;" />
-		<action name="edit" single="true" permission="Load" icon="edit" label="&amp;modules.uixul.bo.actions.Edit;" />
-		<action name="delete" permission="Delete" icon="delete" label="&amp;modules.uixul.bo.actions.Delete;" />
-		<action name="duplicate" icon="duplicate" label="&amp;modules.uixul.bo.actions.Duplicate;" />
+		<action name="refresh" single="true" icon="refresh" labeli18n="m.uixul.bo.actions.Refresh" />
+		<action name="edit" single="true" permission="Load" icon="edit" labeli18n="m.uixul.bo.actions.Edit" />
+		<action name="delete" permission="Delete" icon="delete" labeli18n="m.uixul.bo.actions.Delete" />
+		<action name="duplicate" icon="duplicate" labeli18n="m.uixul.bo.actions.Duplicate" />
 		<action name="previewForm" single="true" permission="PreviewForm" icon="preview" />
-		<action name="viewResponses" single="true" permission="Export" icon="view-responses" label="&amp;modules.form.bo.actions.View-responses;" />
-		<action name="exportCsv" single="true" permission="Export" icon="csv-export" label="&amp;modules.uixul.bo.actions.Export-Csv;" />
-		<action name="exportAllCsv" single="true" permission="Export" icon="csv-export" label="&amp;modules.form.bo.actions.Export-csv-all;" />
+		<action name="viewResponses" single="true" permission="Export" icon="view-responses" labeli18n="m.form.bo.actions.View-responses" />
+		<action name="exportCsv" single="true" permission="Export" icon="csv-export" labeli18n="m.uixul.bo.actions.Export-Csv" />
+		<action name="exportAllCsv" single="true" permission="Export" icon="csv-export" labeli18n="m.form.bo.actions.Export-csv-all" />
 		<action name="archiveResponse" single="true" permission="ArchiveResponse" icon="archive" />
-		<action name="move" permission="Move" icon="up_down" label="&amp;modules.uixul.bo.actions.Move;" />
-		<action name="openTreeNodeOrder" single="true" permission="Order" icon="sort" label="&amp;modules.uixul.bo.actions.Set-children-order;" />
-		<action name="openFolder" icon="open-folder" label="&amp;modules.uixul.bo.actions.OpenFolder;" />
+		<action name="move" permission="Move" icon="up_down" labeli18n="m.uixul.bo.actions.Move" />
+		<action name="openTreeNodeOrder" single="true" permission="Order" icon="sort" labeli18n="m.uixul.bo.actions.Set-children-order" />
+		<action name="openFolder" icon="open-folder" labeli18n="m.uixul.bo.actions.OpenFolder" />
 		<action name="createfolder_" single="true" icon="add" />
-		<action name="createFolder" single="true" icon="create-folder" permission="Insert_folder" label="&amp;modules.uixul.bo.actions.Create-folder;" />
-		<action name="createForm" single="true" icon="add" permission="Insert_form" label="&amp;modules.form.bo.actions.Create-Form;" />
-		<action name="createRecipientGroup" single="true" icon="add" permission="Insert_recipientGroup" label="&amp;modules.form.bo.actions.Create-RecipientGroup;" />
+		<action name="createFolder" single="true" icon="create-folder" permission="Insert_folder" labeli18n="m.uixul.bo.actions.Create-folder" />
+		<action name="createForm" single="true" icon="add" permission="Insert_form" labeli18n="m.form.bo.actions.Create-Form" />
+		<action name="createRecipientGroup" single="true" icon="add" permission="Insert_recipientGroup" labeli18n="m.form.bo.actions.Create-RecipientGroup" />
 		<action name="create_" single="true" icon="add" />
-		<action name="createGroup" single="true" icon="add" permission="Insert_group" label="&amp;modules.form.bo.actions.Create-Group;" />
-		<action name="createText" single="true" icon="add" permission="Insert_text" label="&amp;modules.form.bo.actions.Create-Text;" />
-		<action name="createMail" single="true" icon="add" permission="Insert_mail" label="&amp;modules.form.bo.actions.Create-Mail;" />
-		<action name="createBoolean" single="true" icon="add" permission="Insert_boolean" label="&amp;modules.form.bo.actions.Create-Boolean;" />
-		<action name="createList" single="true" icon="add" permission="Insert_list" label="&amp;modules.form.bo.actions.Create-List;" />
-		<action name="createDate" single="true" icon="add" permission="Insert_date" label="&amp;modules.form.bo.actions.Create-Date;" />
-		<action name="createFile" single="true" icon="add" permission="Insert_file" label="&amp;modules.form.bo.actions.Create-File;" />
-		<action name="createHidden" single="true" icon="add" permission="Insert_hidden" label="&amp;modules.form.bo.actions.Create-Hidden;" />
-		<action name="createFreecontent" single="true" icon="add" permission="Insert_freecontent" label="&amp;modules.form.bo.actions.Create-Freecontent;" />
-		<action name="createRecipientGroupList" single="true" icon="add" permission="Insert_recipientGroupList"	label="&amp;modules.form.bo.actions.Create-RecipientGroupList;" />
+		<action name="createGroup" single="true" icon="add" permission="Insert_group" labeli18n="m.form.bo.actions.Create-Group" />
+		<action name="createText" single="true" icon="add" permission="Insert_text" labeli18n="m.form.bo.actions.Create-Text" />
+		<action name="createMail" single="true" icon="add" permission="Insert_mail" labeli18n="m.form.bo.actions.Create-Mail" />
+		<action name="createBoolean" single="true" icon="add" permission="Insert_boolean" labeli18n="m.form.bo.actions.Create-Boolean" />
+		<action name="createList" single="true" icon="add" permission="Insert_list" labeli18n="m.form.bo.actions.Create-List" />
+		<action name="createDate" single="true" icon="add" permission="Insert_date" labeli18n="m.form.bo.actions.Create-Date" />
+		<action name="createFile" single="true" icon="add" permission="Insert_file" labeli18n="m.form.bo.actions.Create-File" />
+		<action name="createHidden" single="true" icon="add" permission="Insert_hidden" labeli18n="m.form.bo.actions.Create-Hidden" />
+		<action name="createFreecontent" single="true" icon="add" permission="Insert_freecontent" labeli18n="m.form.bo.actions.Create-Freecontent" />
+		<action name="createRecipientGroupList" single="true" icon="add" permission="Insert_recipientGroupList"	labeli18n="m.form.bo.actions.Create-RecipientGroupList" />
 		<action name="addRecipientGroupFolder" single="true" icon="add" permission="AddRecipientGroupFolder" />
 	</actions>
 </perspective>

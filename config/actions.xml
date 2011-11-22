@@ -178,7 +178,7 @@
 		<body><![CDATA[
 	      	var item = listWidget.getSelectedItems()[0];
 	      	var lang = this.getContextLang();
-	    	var label = "&amp;modules.form.bo.actions.ConfirmArchiveResponseItem; : " + item.label;
+	    	var label = "${transui:m.form.bo.actions.ConfirmArchiveResponseItem,ucf,js} : " + item.label;
 			if (confirm(label))
 			{
 				this.executeJSON("ArchiveResponse", { cmpref: item.id, lang: lang});

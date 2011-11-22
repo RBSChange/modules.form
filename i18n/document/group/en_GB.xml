@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.form.document.group" lcid="en_GB">
-  <key id="document-name">fields group</key>
+  <key id="document-name">group of fields</key>
   <key id="label">label</key>
   <key id="description">description</key>
+  <key id="activationquestion">field</key>
+  <key id="activationquestion-help">Field that can activate this field group.</key>
+  <key id="activationvalue">value</key>
+  <key id="activationvalue-help">Value that this field must have to activate this field group.</key>
+  <key id="description-help">Text to display in the area.</key>
+  <key id="label-help">Area's label (displayed on the website)</key>
 </i18n>

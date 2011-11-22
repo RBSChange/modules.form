@@ -3,4 +3,6 @@
   <key id="fieldtype">field type</key>
   <key id="fieldrequired">required</key>
   <key id="fieldconditioned">conditioned</key>
+  <key id="activeresponse">number of active responses</key>
+  <key id="responsecount">Number of responses</key>
 </i18n>

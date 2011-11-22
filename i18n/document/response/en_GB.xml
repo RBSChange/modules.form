@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.form.document.response" lcid="en_GB">
-  <key id="document-name">response</key>
+  <key id="document-name">answer</key>
   <key id="label">label</key>
   <key id="parentform">form</key>
-  <key id="contents">contents</key>
+  <key id="contents">content</key>
 </i18n>

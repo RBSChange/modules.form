@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.form.document.mail" lcid="en_GB">
   <include id="m.form.document.field"/>
-  <key id="document-name">e-mail field</key>
+  <key id="document-name">email field</key>
   <key id="multiline">allow several addresses</key>
-  <key id="multiline-help">allow to set several e-mail addresses separated by commas.</key>
-  <key id="cols">columns number</key>
-  <key id="cols-help">columns number which defines field's size.</key>
+  <key id="multiline-help">Allows setting several email addresses separated by commas.</key>
+  <key id="cols">number of columns</key>
+  <key id="cols-help">Number of columns which defines the size of the field.</key>
   <key id="size">field size</key>
-  <key id="rows">rows number</key>
-  <key id="rows-help">rows in the multiline text field.</key>
-  <key id="useasreply">use this field for 'reply-to'</key>
-  <key id="useasreply-help">this field's value will be added as 'reply-to' in the e-mail.</key>
-  <key id="isreceiver">use the field to send a copy</key>
-  <key id="isreceiver-help">Define if the e-mail address in this field will be used as the recipient of the message sent following the form submission.</key>
+  <key id="rows">row count</key>
+  <key id="rows-help">Rows in the multi-line text field.</key>
+  <key id="useasreply">use this field for "reply-to"</key>
+  <key id="useasreply-help">The value in this field will be added as "reply-to" in the email.</key>
+  <key id="isreceiver">send a copy to this address</key>
+  <key id="isreceiver-help">Determines if the email address in this field will be used as the recipient of the message sent after the form submission.</key>
+  <key id="acknowledgmentreceiver">return receipt recipient</key>
+  <key id="acknowledgmentreceiver-help">If the "return receipt" option is enabled on the form, check "yes" for the return receipt to be sent to this address.</key>
+  <key id="initializewithcurrentuseremail">pre-fill if logged in</key>
+  <key id="initializewithcurrentuseremail-help">Check "yes" for the field to be pre-filled with the email address if the user is logged in.</key>
 </i18n>

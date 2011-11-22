@@ -2,7 +2,9 @@
 <i18n baseKey="m.form.document.hidden" lcid="en_GB">
   <include id="m.form.document.field"/>
   <key id="document-name">hidden field</key>
-  <key id="label-help">hidden field's label.</key>
-  <key id="isreceiver">field of mail receiver</key>
-  <key id="isreceiver-help">Define if this hidden field must contain receiver contact of email.</key>
+  <key id="label-help">hidden field label (will not be displayed on the website).</key>
+  <key id="isreceiver">email recipient field</key>
+  <key id="isreceiver-help">Determines if this hidden field must contain the email recipient.</key>
+  <key id="isrecommand">recommend to a friend field</key>
+  <key id="isrecommand-help">Field used by the recommend to a friend function.</key>
 </i18n>

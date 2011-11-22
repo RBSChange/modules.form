@@ -2,16 +2,26 @@
 <i18n baseKey="m.form.document.text" lcid="en_GB">
   <include id="m.form.document.field"/>
   <key id="document-name">text field</key>
-  <key id="multiline">multiline text</key>
+  <key id="multiline">multi-line text</key>
   <key id="cols">columns</key>
-  <key id="cols-help">columns in the multiline text field.</key>
+  <key id="cols-help">Columns in the multi-line text field.</key>
   <key id="rows">rows</key>
-  <key id="rows-help">rows in the multiline text field.</key>
-  <key id="maxlength">max length</key>
-  <key id="maxlength-help">maximum number of characters the user will be able to type in.</key>
-  <key id="minlength">min length</key>
-  <key id="minlength-help">minimum number of characters the user will be have to type in.</key>
-  <key id="isreceiver">field of mail receiver</key>
-  <key id="isreceiver-help">Define if this text field must contain receiver email's.</key>
+  <key id="rows-help">Rows in the multi-line text field.</key>
+  <key id="maxlength">maximum length</key>
+  <key id="maxlength-help">Maximum number of characters the user will be able to type in to the field.</key>
+  <key id="minlength">minimum length</key>
+  <key id="minlength-help">Minimum number of characters the user will be able to type in to the field.</key>
+  <key id="isreceiver">email recipient field</key>
+  <key id="isreceiver-help">Determines if this text field must contain the recipient's email address.</key>
   <key id="size">field size</key>
+  <key id="disableautocapitalize">disable auto-capitalisation</key>
+  <key id="disableautocapitalize-help">Allows disabling the automatic change to capital of the first letter entered in the field.</key>
+  <key id="disableautocomplete">disable auto-completion</key>
+  <key id="disableautocomplete-help">Allows disabling auto-completion.</key>
+  <key id="disableautocorrect">disable auto-correction</key>
+  <key id="disableautocorrect-help">Allows disabling auto-correction.</key>
+  <key id="initializewithcurrentuserfirstname">pre-fill with the first name if logged in</key>
+  <key id="initializewithcurrentuserfirstname-help">Check "yes" for the field to be pre-filled in with the first name if the user is logged in.</key>
+  <key id="initializewithcurrentuserlastname">pre-fill with the last name if logged in</key>
+  <key id="initializewithcurrentuserlastname-help">Check "yes" for the field to be pre-filled in with the last name if the user is logged in.</key>
 </i18n>

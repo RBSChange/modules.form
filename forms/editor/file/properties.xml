@@ -8,9 +8,9 @@
 		<row>
 			<rowlabel value=" " />
 			<hbox>
-				<toolbarbutton image="{IconsBase}/small/photo_scenery.png" label="&amp;modules.form.bo.general.Images;" oncommand="var panel = document.getBindingParent(this); panel.documentEditor.setAllowedTypes(panel, 'allowedExtensions', 'image');"/>
-				<toolbarbutton image="{IconsBase}/small/document.png" label="&amp;modules.form.bo.general.Documents;" oncommand="var panel = document.getBindingParent(this); panel.documentEditor.setAllowedTypes(panel, 'allowedExtensions', 'document');"/>
-				<toolbarbutton image="{IconsBase}/small/application.png" label="&amp;modules.form.bo.general.All;" oncommand="var panel = document.getBindingParent(this); panel.documentEditor.setAllowedTypes(panel, 'allowedExtensions', 'all');"/>
+				<toolbarbutton image="{IconsBase}/small/photo_scenery.png" label="${transui:m.form.bo.general.Images,ucf,attr}" oncommand="var panel = document.getBindingParent(this); panel.documentEditor.setAllowedTypes(panel, 'allowedExtensions', 'image');"/>
+				<toolbarbutton image="{IconsBase}/small/document.png" label="${transui:m.form.bo.general.Documents,ucf,attr}" oncommand="var panel = document.getBindingParent(this); panel.documentEditor.setAllowedTypes(panel, 'allowedExtensions', 'document');"/>
+				<toolbarbutton image="{IconsBase}/small/application.png" label="${transui:m.form.bo.general.All,ucf,attr}" oncommand="var panel = document.getBindingParent(this); panel.documentEditor.setAllowedTypes(panel, 'allowedExtensions', 'all');"/>
 			</hbox>
 		</row>
 		<field name="mediaFolder" />
