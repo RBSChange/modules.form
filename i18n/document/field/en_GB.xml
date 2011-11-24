@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.form.document.field" lcid="en_GB">
   <key id="label">label</key>
-  <key id="label-help">field label (displayed on the website).</key>
+  <key id="label-help">The label of the field (displayed on the website).</key>
   <key id="fieldname">field name</key>
-  <key id="fieldname-help">The field name must be composed of letters and digits and must begin with a letter.</key>
+  <key id="fieldname-help">The field name must be composed of letters and numbers only and must begin with a letter.</key>
   <key id="validators">validators</key>
-  <key id="validators-help">validators list for the field, separated by semicolons.</key>
+  <key id="validators-help">Validators list for the field, separated by semicolons.</key>
   <key id="required">required field</key>
-  <key id="required-help">determines if the field will be a required field.</key>
-  <key id="helptext">help text</key>
+  <key id="required-help">Determines if the field is required.</key>
+  <key id="helptext">field help text</key>
   <key id="helptext-help">The help text tells the users how to fill this field in.</key>
+  <key id="activationquestion">field</key>
+  <key id="activationquestion-help">Field that the activation of this field depends on.</key>
+  <key id="activationvalue">value</key>
+  <key id="activationvalue-help">value that the field must have to activate this field.</key>
 </i18n>

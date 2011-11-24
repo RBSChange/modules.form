@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.form.document.recipientgrouplist" lcid="en_GB">
   <include id="m.form.document.field"/>
-  <key id="document-name">recipients selection field</key>
+  <key id="document-name">recipient selection field</key>
   <key id="multiple">multiple selection</key>
   <key id="display">display</key>
-  <key id="display-help">display type.</key>
+  <key id="display-help">Display type.</key>
   <key id="hasblankoption">add header</key>
-  <key id="hasblankoption-help">add header.</key>
+  <key id="hasblankoption-help">Allows having a header above the list. If the list is required, the user must choose a value from the list, otherwise the first (and not necessarily relevant) one will be selected by default.</key>
 </i18n>

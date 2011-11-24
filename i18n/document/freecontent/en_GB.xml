@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.form.document.freecontent" lcid="en_GB">
-  <key id="document-name">free content</key>
+  <key id="document-name">unrestricted content</key>
   <key id="label">label</key>
-  <key id="label-help">label (won't be displayed on the website).</key>
+  <key id="label-help">Label (won't be displayed on the website).</key>
   <key id="text">content</key>
-  <key id="text-help">free zone contents (markup is possible).</key>
+  <key id="text-help">Text area content (simple markup is possible).</key>
+  <key id="activationquestion">field</key>
+  <key id="activationquestion-help">Field that the activation of this field depends on.</key>
+  <key id="activationvalue">value</key>
+  <key id="activationvalue-help">value that the field must have to activate this field.</key>
 </i18n>

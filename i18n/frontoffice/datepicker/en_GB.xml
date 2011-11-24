@@ -5,6 +5,6 @@
   <key id="next-month">next month</key>
   <key id="previous-month">previous month</key>
   <key id="close">close</key>
-  <key id="choose-date">choose date from calendar</key>
+  <key id="choose-date">choose a date from calendar</key>
   <key id="format">yyyy-mm-dd</key>
 </i18n>

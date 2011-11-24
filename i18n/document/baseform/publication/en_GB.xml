@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.document.baseform.publication" lcid="en_GB">
+  <key id="no-field">a form must contain fields before it can be published</key>
+  <key id="not-translated-field">a form must have all its fields translated before it can be published in a given language</key>
+</i18n>

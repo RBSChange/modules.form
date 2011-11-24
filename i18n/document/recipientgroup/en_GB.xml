@@ -5,7 +5,8 @@
   <key id="description">description</key>
   <key id="to">main recipients</key>
   <key id="cc">secondary recipients</key>
-  <key id="cc-help">secondary recipients (CC).</key>
+  <key id="cc-help">The secondary recipients are placed as carbon copies (CC) of the sent email.</key>
   <key id="bcc">hidden recipients (BCC)</key>
-  <key id="bcc-help">secondary recipients.</key>
+  <key id="bcc-help">The hidden recipients will be placed as blind carbon copies (BCC) of the sent email.</key>
+  <key id="parentref">parent folder</key>
 </i18n>

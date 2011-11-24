@@ -24,7 +24,7 @@
 						<xul:spacer flex="2" />
 						<xul:image anonid="captcha-preview" />
 						<xul:spacer flex="1" />
-						<xul:button anonid="refresh-captcha-button" label="&amp;modules.form.document.preferences.captcha.ReloadSpaced;" image="{IconsBase}/small/refresh.png" />
+						<xul:button anonid="refresh-captcha-button" label="${trans:m.form.document.preferences.captcha.Reload,space,ucf,attr}" image="{IconsBase}/small/refresh.png" />
 						<xul:spacer flex="2" />
 					</xul:vbox>
 				</xul:hbox>
@@ -328,13 +328,13 @@
 							{
 								rows.value = '2';
 							}
-							colsLabel.setAttribute('value', '&amp;modules.form.document.text.Cols;');
+							colsLabel.setAttribute('value', "${trans:m.form.document.text.Cols,ucf,js}");
 						}
 						else
 						{
 							rows.disabled = true;
 							rows.value = '1';
-							colsLabel.setAttribute('value', '&amp;modules.form.document.text.Size;');
+							colsLabel.setAttribute('value', "${trans:m.form.document.text.Size,ucf,js}");
 						}
 					}
 					catch (e)
@@ -364,7 +364,7 @@
 				var button = document.createElement('toolbarbutton');
 				button.setAttribute('image', '{IconsBase}/small/add.png');
 				button.setAttribute('height', '16');
-				button.setAttribute('tooltiptext', "&amp;modules.form.bo.actions.Create-RecipientGroupList;");
+				button.setAttribute('tooltiptext', "${trans:m.form.bo.actions.Create-RecipientGroupList,ucf,js}");
 				button.addEventListener('command', function () { me.openCreationForm(); }, true);
 				helpButton.parentNode.appendChild(button);
 			]]></constructor>
@@ -500,10 +500,10 @@
 			<xul:vbox flex="1">
 				<xul:vbox class="dialog-header-container">
 					<xul:hbox class="dialog-header">
-						<xul:label value="&amp;modules.form.bo.dialog.Form-responses;" class="dialog-title" />
+						<xul:label value="${trans:m.form.bo.dialog.Form-responses,ucf,attr}" class="dialog-title" />
 						<xul:spacer flex="1" />
 						<xul:vbox pack="center">
-							<xul:toolbarbutton height="24" width="24" image="{IconsBase}/small/delete.png" oncommand="onCancel();" tooltiptexts="&amp;modules.uixul.bo.dialog.Cancel;" />
+							<xul:toolbarbutton height="24" width="24" image="{IconsBase}/small/delete.png" oncommand="onCancel();" tooltiptexts="${trans:m.uixul.bo.dialog.Cancel,ucf,attr}" />
 						</xul:vbox>
 					</xul:hbox>
 				</xul:vbox>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.form.bo.markup" lcid="en_GB">
-  <key id="default">bullet list based (accessible) - recommended</key>
-  <key id="table">table based</key>
+  <key id="default">based on bullet lists (accessible) - recommended</key>
+  <key id="table">based on tables</key>
 </i18n>
