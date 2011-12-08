@@ -1,20 +1,19 @@
 <?php
 /**
- * form_persistentdocument_preferences
  * @package modules.form
  */
 class form_persistentdocument_preferences extends form_persistentdocument_preferencesbase
 {
 	
 	/**
-	 * @see f_persistentdocument_PersistentDocumentImpl::getLabel()
-	 *
-	 * @return String
+	 * Define the label of the tree node of the document.
+	 * By default, this method returns the label property value.
+	 * @return string
 	 */
-	public function getLabel()
+	public function getTreeNodeLabel()
 	{
-		return f_Locale::translateUI(parent::getLabel());
-	}	
+		return LocaleService::getInstance()->trans('m.form.bo.general.module-name', array('ucf'));
+	}
 	
 	/**
 	 * Returns an associative array of CAPTCHA parameters.

@@ -35,7 +35,7 @@ class form_PreferencesService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/preferences');
+		return $this->getPersistentProvider()->createQuery('modules_form/preferences');
 	}
 	
 	/**
@@ -45,7 +45,7 @@ class form_PreferencesService extends f_persistentdocument_DocumentService
 	 */
 	protected function preSave($document, $parentNodeId)
 	{
-		$document->setLabel('&modules.form.bo.general.Module-name;');
+		$document->setLabel('form');
 	}
 	
 	/**
