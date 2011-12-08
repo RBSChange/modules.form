@@ -79,16 +79,4 @@ class form_MailService extends form_TextService
 		}
 		parent::preSave($document, $parentNodeId);
 	}
-	
-	/**
-	 * @param form_persistentdocument_mail $document
-     * @param string $moduleName
-     * @param string $treeType
-     * @param array<string, string> $nodeAttributes
-     */
-    public function addTreeAttributes ($document, $moduleName, $treeType, &$nodeAttributes)
-    {
-        parent::addTreeAttributes($document, $moduleName, $treeType, $nodeAttributes);
-        $nodeAttributes['fieldType'] = LocaleService::getInstance()->transBO('m.form.bo.general.field.mail', array('ucf'));
-    }
 }

@@ -8,4 +8,9 @@
   <actiondef modulename="form" actionname="update.text" label="m.form.bo.useractionlogger.update-text"/>
   <actiondef modulename="form" actionname="insert.file" label="m.form.bo.useractionlogger.insert-file"/>
   <actiondef modulename="form" actionname="move.file" label="m.form.bo.useractionlogger.move-file"/>
+  <actiondef modulename="form" actionname="insert.freecontent" label="m.form.bo.useractionlogger.insert-freecontent"/>
+  <actiondef modulename="form" actionname="insert.boolean" label="m.form.bo.useractionlogger.insert-boolean"/>
+  <actiondef modulename="form" actionname="update.group" label="m.form.bo.useractionlogger.update-group"/>
+  <actiondef modulename="form" actionname="insert.recipientgrouplist" label="m.form.bo.useractionlogger.insert-recipientgrouplist"/>
+  <actiondef modulename="form" actionname="update.recipientgrouplist" label="m.form.bo.useractionlogger.update-recipientgrouplist"/>
 </script>

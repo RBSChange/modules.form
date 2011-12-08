@@ -532,15 +532,15 @@ class form_FormService extends form_BaseformService
 	}
 	
 	/**
-	 * @param form_persistentdocument_form $form
+	 * @param form_persistentdocument_form $document
+	 * @param array<string, string> $attributes
+	 * @param integer $mode
 	 * @param string $moduleName
-	 * @param string $treeType
-	 * @param array<string, string> $nodeAttributes
 	 */
-	public function addTreeAttributes($form, $moduleName, $treeType, &$nodeAttributes)
+	public function completeBOAttributes($document, &$attributes, $mode, $moduleName)
 	{
 		// Used by action activation check.
-		$nodeAttributes['responseCount'] = $form->getResponseCount();
-		$nodeAttributes['activeResponse'] = $form->getActiveResponseCount();
+		$attributes['responseCount'] = $document->getResponseCount();
+		$attributes['activeResponse'] = $document->getActiveResponseCount();
 	}
 }

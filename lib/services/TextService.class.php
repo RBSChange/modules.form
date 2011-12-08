@@ -44,17 +44,17 @@ class form_TextService extends form_FieldService
 	{
 		parent::preSave($document, $parentNodeId);
 		$this->fixLengthConstraints($document);
-		
+
 		if ($document->getMultiline())
 		{
-		    if ($document->getRows() < 2)
-		    {
-		        $document->setRows(2);
-		    }
+			if ($document->getRows() < 2)
+			{
+				$document->setRows(2);
+			}
 		}
 		else
 		{
-		    $document->setRows(1);
+			$document->setRows(1);
 		}
 	}
 
@@ -66,20 +66,20 @@ class form_TextService extends form_FieldService
 	{
 		$constraintArray = $document->getConstraintArray();
 		$modified = false;
-				
+
 		// maxlength
 		$maxLength = $document->getMaxlength();
 		if ($maxLength)
 		{
 			if (!isset($constraintArray['maxSize']) || $constraintArray['maxSize'] != $maxLength )
 			{
-			    $modified = true;
+				$modified = true;
 				$constraintArray['maxSize'] = strval($maxLength);
 			}
 		}
 		else if (isset($constraintArray['maxSize']))
 		{
-		    $modified = true;
+			$modified = true;
 			unset($constraintArray['maxSize']);
 		}
 
@@ -89,54 +89,61 @@ class form_TextService extends form_FieldService
 		{
 			if (!isset($constraintArray['minSize']) || $constraintArray['minSize'] != $minLength )
 			{
-			    $modified = true;
+				$modified = true;
 				$constraintArray['minSize'] = strval($minLength);
 			}
 		}
 		else if (isset($constraintArray['minSize']))
 		{
-		    $modified = true;
+			$modified = true;
 			unset($constraintArray['minSize']);
 		}
-		
-        if ($modified)
-        {
-            $document->setConstraintArray($constraintArray);
-        }
+
+		if ($modified)
+		{
+			$document->setConstraintArray($constraintArray);
+		}
 	}
-	
-    /**
-     * @param form_persistentdocument_text $field
-     * @param DOMElement $fieldElm
-     * @param mixed $rawValue
-     * @return string
-     */
-    public function buildXmlElementResponse($field, $fieldElm, $rawValue)
-    {
-        $txtValue = parent::buildXmlElementResponse($field, $fieldElm, $rawValue); 
+
+	/**
+	 * @param form_persistentdocument_text $field
+	 * @param DOMElement $fieldElm
+	 * @param mixed $rawValue
+	 * @return string
+	 */
+	public function buildXmlElementResponse($field, $fieldElm, $rawValue)
+	{
+		$txtValue = parent::buildXmlElementResponse($field, $fieldElm, $rawValue);
 		if ($field->getMultiline())
 		{
 			$fieldElm->setAttribute('mailValue', f_util_HtmlUtils::textToHtml($txtValue));
 		}
 		return $txtValue;
-    }
-    
-    /**
-     * @param form_persistentdocument_text $document
-     * @param string $moduleName
-     * @param string $treeType
-     * @param array<string, string> $nodeAttributes
-     */
-    public function addTreeAttributes ($document, $moduleName, $treeType, &$nodeAttributes)
-    {
-        parent::addTreeAttributes($document, $moduleName, $treeType, $nodeAttributes);
-        $ls = LocaleService::getInstance();
-        if ($document->getMultiline())
-        {
-            $nodeAttributes['fieldType'] = $ls->transBO('m.form.bo.general.field.multiline-text', array('ucf'));
-        } else
-        {
-            $nodeAttributes['fieldType'] = $ls->transBO('m.form.bo.general.field.text', array('ucf'));
-        }
-    }
+	}
+
+	/**
+	 * @param form_persistentdocument_text $document
+	 * @param array<string, string> $attributes
+	 * @param integer $mode
+	 * @param string $moduleName
+	 */
+	public function completeBOAttributes($document, &$attributes, $mode, $moduleName)
+	{
+		parent::completeBOAttributes($document, $attributes, $mode, $moduleName);
+		if ($mode & DocumentHelper::MODE_CUSTOM)
+		{
+			$ls = LocaleService::getInstance();
+			if ($document->getMultiline())
+			{
+				$attributes['fieldType'] = $ls->trans('m.form.bo.general.field.multiline-text', array('ucf'));
+			} else
+			{
+				$attributes['fieldType'] = $ls->trans('m.form.bo.general.field.text', array('ucf'));
+			}
+			if ($document->getIsLocked())
+			{
+				$attributes['fieldType'] .= ' (' . $ls->trans('m.form.bo.general.locked') . ')';
+			}
+		}
+	}
 }

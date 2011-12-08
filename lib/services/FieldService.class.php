@@ -4,7 +4,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	const FIELD_NAME_REGEXP = '^[a-zA-Z][a-z_\-A-Z0-9]+$';
 
 	private $deletedFieldsForms = array();
-	
+
 	/**
 	 * @var form_FieldService
 	 */
@@ -48,18 +48,18 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	public function validate($field, $request, &$errors)
 	{
 		$value = $request->getParameter($field->getFieldName());
-		
+
 		if(is_array($value))
-		{			
+		{
 			$isEmpty = f_util_ArrayUtils::isEmpty($value);
 		}
 		else
 		{
 			$isEmpty = f_util_StringUtils::isEmpty($value);
 		}
-		
+
 		$data = $request->getParameters();
-				
+
 		if($field->getRequired() &&  $isEmpty)
 		{
 			if($this->isConditionValid($field, $data))
@@ -70,9 +70,9 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		else if ( $field->getRequired() || ! $isEmpty )
 		{
 			validation_ValidatorHelper::validate(
-				new validation_Property($field->getLabel(), f_util_Convert::fixDataType($value)),
-				$field->getValidators(), $errors
-				);
+			new validation_Property($field->getLabel(), f_util_Convert::fixDataType($value)),
+			$field->getValidators(), $errors
+			);
 		}
 	}
 
@@ -85,7 +85,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		$field = DocumentHelper::getDocumentInstance($fieldId);
 		return $field->getActivationQuestion() !== null;
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
@@ -98,10 +98,10 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		{
 			form_BaseformService::getInstance()->checkFieldNameAvailable($document, $parentDoc->getId());
 		}
-		
+
 		$this->fixRequiredConstraint($document);
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
@@ -115,14 +115,14 @@ class form_FieldService extends f_persistentdocument_DocumentService
 			try
 			{
 				$this->tm->beginTransaction();
-				
+
 				$fieldName = 'f' . $document->getId();
 				if (Framework::isDebugEnabled())
 				{
 					Framework::debug(__METHOD__ . ' Generate FieldName: ' . $fieldName . ' for document ' . $document->__toString());
 				}
 				$document->setFieldName($fieldName);
-				
+
 				$this->pp->updateDocument($document);
 				$this->tm->commit();
 			}
@@ -133,7 +133,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 			}
 		}
 	}
-		
+
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
@@ -157,9 +157,9 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		{
 			throw new form_FieldLockedException("Cannot delete a locked field: ".$document->__toString());
 		}
-		
+
 		parent::preDelete($document);
-		
+
 		$this->addFormToList($document);
 	}
 
@@ -170,10 +170,10 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	protected function preDeleteLocalized($document)
 	{
 		parent::preDeleteLocalized($document);
-		
+
 		$this->addFormToList($document);
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @return void
@@ -181,7 +181,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	protected function postDelete($document)
 	{
 		parent::postDelete($document);
-		
+
 		$this->applyOnFieldDeleted($document);
 	}
 
@@ -192,10 +192,10 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	protected function postDeleteLocalized($document)
 	{
 		parent::postDeleteLocalized($document);
-		
+
 		$this->applyOnFieldDeleted($document);
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @return void
@@ -222,7 +222,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 			unset($this->deletedFieldsForms[$document->getId()]);
 		}
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_field $document
 	 * @return void
@@ -266,7 +266,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		{
 			$destForm = $fbs->getAncestorFormByDocument($destDocument);
 		}
-		
+
 		if (!DocumentHelper::equals($destForm, $fieldForm))
 		{
 			throw new form_FormException(f_Locale::translate('&modules.form.bo.errors.Cannot-move-a-field-from-a-form-to-another-form;'));
@@ -307,7 +307,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		}
 		return $ancestors[count($ancestors)-1];
 	}
-	
+
 	/**
 	 * Locks a field so that the user won't be able to delete or edit it into
 	 * the backoffice. The $field has to be saved for the changes to be saved.
@@ -317,7 +317,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	{
 		$field->setIsLocked(true);
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_field $field
 	 * @param Array $data
@@ -326,39 +326,39 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	public function isConditionValid($field, $data)
 	{
 		if($field->hasCondition())
-		{				
+		{
 			$activationQuestion = $field->getActivationQuestion();
 			$activationQuestionFieldName = $activationQuestion->getFieldName();
 			$activationValue = $field->getActivationValue();
 
 			if(is_array($data[$activationQuestionFieldName]))
-			{		
+			{
 				return in_array($activationValue, $data[$activationQuestionFieldName]);
 			}
 			else
 			{
 				return $data[$activationQuestionFieldName] == $activationValue;
 			}
-		}		
-		
+		}
+
 		try
 		{
-			$group = $this->getGroupOf($field);	
+			$group = $this->getGroupOf($field);
 		}
 		catch (Exception $e)
 		{
 			$e; // Avoid Eclipse warning...
 			$group = null;
-		}			
-		
+		}
+
 		if($group !== null)
 		{
 			return $this->isConditionValid($group, $data);
-		}			
-		
+		}
+
 		return true;
-	}	
-	
+	}
+
 	/**
 	 * @param form_persistentdocument_field $newDocument
 	 * @param form_persistentdocument_field $originalDocument
@@ -381,7 +381,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 			}
 		}
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_field $field
 	 * @param DOMElement $fieldElm
@@ -389,13 +389,13 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	 * @return string
 	 */
 	public function buildXmlElementResponse($field, $fieldElm, $rawValue)
-	{ 
-	    if (empty($rawValue))
-	    {
-	        return '';
-	    }
-	    
-	    $retValue = '';
+	{
+		if (empty($rawValue))
+		{
+			return '';
+		}
+	  
+		$retValue = '';
 		if (is_array($rawValue))
 		{
 			foreach ($rawValue as $v)
@@ -408,9 +408,9 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		{
 			$retValue = f_util_Convert::toString($rawValue);
 		}
-		return $retValue;    
+		return $retValue;
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_field $document
 	 */
@@ -431,39 +431,37 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		}
 		$document->setValidators(join(";", $strArray));
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_field $document
+	 * @param array<string, string> $attributes
+	 * @param integer $mode
 	 * @param string $moduleName
-	 * @param string $treeType
-	 * @param array<string, string> $nodeAttributes
-	 */	
-	public function addTreeAttributes($document, $moduleName, $treeType, &$nodeAttributes)
+	 */
+	public function completeBOAttributes($document, &$attributes, $mode, $moduleName)
 	{
-	    if ($document->getIsLocked())
-        {
-            $nodeAttributes['isLocked'] = 'isLocked';
-        }	
-        
-        if ($treeType == 'wlist')
-        {
-	        $modelName = $document->getDocumentModelName();
-		    $nodeAttributes['fieldType'] = f_Locale::translate('&modules.form.bo.general.field.'.ucfirst(substr($modelName, strpos($modelName, '/')+1)).';');
-		    
-	        if ($document->getRequired())
-	        {
-	            $nodeAttributes['required'] = 'required';
-	            $nodeAttributes['fieldRequired'] = f_Locale::translate('&modules.uixul.bo.general.Yes;');
-	        }
-	        if ($document->hasCondition())
-	        {
-	        	$nodeAttributes['conditioned'] = 'conditioned';
-	        	
-	        	$activationLabel = FormHelper::getActivationLabel($document->getId());
-	        	$activationQuestionLabel = $document->getActivationquestion()->getLabel();
-	        	$nodeAttributes['fieldConditioned'] = f_Locale::translate('&modules.form.bo.general.Activation;', array('value' => $activationLabel, 'question' => $activationQuestionLabel));
-	        }
-        }
+		if ($mode & DocumentHelper::MODE_CUSTOM)
+		{
+			$ls = LocaleService::getInstance();
+			$documentName = $document->getPersistentModel()->getDocumentName();
+			$attributes['fieldType'] = $ls->trans('m.form.bo.general.field.'.$documentName, array('ucf'));
+
+			if ($document->getIsLocked())
+			{
+				$attributes['isLocked'] = 'isLocked';
+				$attributes['fieldType'] .= ' (' . $ls->trans('m.form.bo.general.locked') . ')';
+			}
+			if ($document->getRequired())
+			{
+				$attributes['fieldRequired'] = f_Locale::translate('&modules.uixul.bo.general.Yes;');
+			}
+			if ($document->hasCondition())
+			{
+				$activationLabel = FormHelper::getActivationLabel($document->getId());
+				$activationQuestionLabel = $document->getActivationquestion()->getLabel();
+				$attributes['fieldConditioned'] = $ls->trans('m.form.bo.general.activation', array('ucf'), array('value' => $activationLabel, 'question' => $activationQuestionLabel));
+			}
+		}
 	}
-	
+
 }

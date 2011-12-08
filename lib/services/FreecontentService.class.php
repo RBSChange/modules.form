@@ -74,19 +74,17 @@ class form_FreecontentService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param form_persistentdocument_freecontent $document
+	 * @param array<string, string> $attributes
+	 * @param integer $mode
 	 * @param string $moduleName
-	 * @param string $treeType
-	 * @param array<string, string> $nodeAttributes
 	 */
-	public function addTreeAttributes($document, $moduleName, $treeType, &$nodeAttributes)
+	public function completeBOAttributes($document, &$attributes, $mode, $moduleName)
 	{
-		if ($document->hasCondition())
+		if (($mode & DocumentHelper::MODE_CUSTOM) && $document->hasCondition())
 		{
-			$nodeAttributes['conditioned'] = 'conditioned';
-			
 			$activationLabel = FormHelper::getActivationLabel($document->getId());
 			$activationQuestionLabel = $document->getActivationquestion()->getLabel();
-			$nodeAttributes['fieldConditioned'] = LocaleService::getInstance()->transBO('m.form.bo.general.activation', array('ucf'), array('value' => $activationLabel, 'question' => $activationQuestionLabel));
+			$attributes['fieldConditioned'] = LocaleService::getInstance()->trans('m.form.bo.general.activation', array('ucf'), array('value' => $activationLabel, 'question' => $activationQuestionLabel));
 		}
 	}
 }

@@ -1,14 +1,3 @@
-treechildren::-moz-tree-cell-text(required){
-	font-weight: bold;
-}
-treechildren::-moz-tree-cell-text(conditioned){
-	font-weight: bold;
-}
-treechildren::-moz-tree-cell(isLocked){
-	background-image: url(/changeicons/small/lock_warning.png) ;
-	background-repeat: no-repeat;
-	background-position: right;
-}
 wdialog[template="viewFormResponses"]{
 	padding: 0 0 2px 0;
 }

@@ -14,4 +14,14 @@
   <key id="log-insert-file">log insert file</key>
   <key id="move-file">move.file {destinationlabel} {lang} {documentlabel}</key>
   <key id="log-move-file">log move file</key>
+  <key id="insert-freecontent">insert.freecontent {lang} {documentlabel}</key>
+  <key id="log-insert-freecontent">log insert freecontent</key>
+  <key id="insert-boolean">insert.boolean {lang} {documentlabel}</key>
+  <key id="log-insert-boolean">log insert boolean</key>
+  <key id="update-group">update.group {lang} {documentlabel}</key>
+  <key id="log-update-group">log update group</key>
+  <key id="insert-recipientgrouplist">insert.recipientgrouplist {lang} {documentlabel}</key>
+  <key id="log-insert-recipientgrouplist">log insert recipientgrouplist</key>
+  <key id="update-recipientgrouplist">update.recipientgrouplist {lang} {documentlabel}</key>
+  <key id="log-update-recipientgrouplist">log update recipientgrouplist</key>
 </i18n>
