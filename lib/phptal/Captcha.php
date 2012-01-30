@@ -96,7 +96,7 @@ class PHPTAL_Php_Attribute_CHANGE_captcha extends PHPTAL_Php_Attribute
 		self::generateCaptchaCode($parameters, $key);
 		$parameters['key'] = $key;
 		$url = htmlentities(LinkHelper::getActionUrl('form', 'Captcha', $parameters), ENT_COMPAT, "utf-8");
-		$code = '<span class="captcha"><input type="image" src="' . $url . '"';
+		$code = '<span class="captcha"><img src="' . $url . '"';
 		if (!isset($attributes['title']))
 		{
 			$attributes['title'] = f_Locale::translate("&modules.form.bo.general.Captcha-click-to-have-another-one;");
