@@ -6,7 +6,15 @@
 </tal:block>
 
 <li tal:attributes="class styleClass" id="field${field/id}">
-	<label for="field_${field/id}">${field/label}<span tal:condition="hasCondition" class="nojs" change:translate="&modules.form.frontoffice.accessibility.activationSpaced;; value activationlabel">(Si "${activationlabel}")</span>	<em tal:condition="field/required">*</em></label>	
-	<input tal:replace="field/html" />
-	<p tal:condition="field/description" tal:content="field/description" class="help-text"></p>
+	<label tal:condition="not:field/required" for="field_${field/id}">
+		${field/label}
+		<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
+	</label>	
+	<label tal:condition="field/required" for="field_${field/id}" class="required">
+		<em class="requiredsymbol" title="(${trans:m.website.frontoffice.this-field-is-mandatory})">*</em>
+		${field/label}
+		<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
+	</label>	
+	${field/html}
+	<p tal:condition="field/description" class="help-text">${field/description}</p>
 </li>
