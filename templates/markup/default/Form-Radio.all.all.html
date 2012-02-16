@@ -4,8 +4,8 @@
 	<tal:block tal:define="global toHide string: toHide" />
 </tal:block>
 
-<li id="field${field/id}" class="radio-container ${toHide}">
-	<fieldset id="fieldset_${field/id}" class="radio">	
+<li id="field${field/id}" class="inline-set-container ${toHide}">
+	<fieldset id="fieldset_${field/id}" class="inline-set">	
 		<legend class="group-label">
 			${field/label}
 			<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
