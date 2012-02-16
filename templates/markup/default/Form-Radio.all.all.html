@@ -6,11 +6,11 @@
 
 <li id="field${field/id}" class="inline-set-container ${toHide}">
 	<fieldset id="fieldset_${field/id}" class="inline-set">	
-		<legend class="group-label">
+		<legend tal:condition="not:field/required" class="group-label">
 			${field/label}
 			<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
 		</legend>		
-		<legend class="group-label required">
+		<legend tal:condition="field/required" class="group-label required">
 			<em class="requiredsymbol" title="(${trans:m.website.frontoffice.this-field-is-mandatory})">*</em>
 			${field/label}
 			<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
@@ -18,6 +18,6 @@
 		<ol>
 			<li tal:replace="field/html" />
 		</ol>
-		<p tal:condition="field/description" class="help-text">${field/description}</p>
 	</fieldset>
+	<p tal:condition="field/description" class="help-text">${field/description}</p>
 </li>	
