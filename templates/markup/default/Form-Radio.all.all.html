@@ -16,7 +16,7 @@
 			<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
 		</legend>		
 		<ol>
-			<li tal:replace="field/html" />
+			<tal:block>${field/html}</tal:block>
 		</ol>
 	</fieldset>
 	<p tal:condition="field/description" class="help-text">${field/description}</p>

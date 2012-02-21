@@ -331,7 +331,7 @@ abstract class FormHelper
 		$attributes = array();
 		$attributes['maxlength'] = $field->getMaxlength();
 		$attributes['value'] = $value;
-		$attributes['title'] = $field->getHelpText();
+		$attributes['title'] = $field->getHelpTextAsHtml();
 		if ($field->getMultiline())
 		{
 			$attributes['cols'] = $field->getCols();
@@ -358,8 +358,8 @@ abstract class FormHelper
 		// build required attributes
 		$attributes = array();
 		$attributes['value'] = $value;
-		$attributes['title'] = $field->getHelpText();
-
+		$attributes['title'] = $field->getHelpTextAsHtml();
+Framework::fatal(__METHOD__ . ' ' . $attributes['title']);
 		// build items
 		$listObject = $field->getDataSource();
 		$items = array();
@@ -442,7 +442,7 @@ abstract class FormHelper
 	{
 		// build required attributes
 		$attributes = array();
-		$attributes['title'] = $field->getHelpText();
+		$attributes['title'] = $field->getHelpTextAsHtml();
 		return self::passwordBox($field->getFieldName(), $field->getId(), $attributes);
 	}
 
@@ -454,7 +454,7 @@ abstract class FormHelper
 	{
 		// build required attributes
 		$attributes = array();
-		$attributes['title'] = $field->getHelpText();
+		$attributes['title'] = $field->getHelpTextAsHtml();
 		return self::uploadFileBox($field->getFieldName(), $field->getId(), $attributes);
 	}
 
@@ -490,7 +490,7 @@ abstract class FormHelper
 	{
 		// build required attributes
 		$attributes = array();
-		$attributes['title'] = $field->getHelpText();
+		$attributes['title'] = $field->getHelpTextAsHtml();
 		$html = '';
 		switch ($field->getDisplay())
 		{

@@ -1,4 +1,4 @@
-<div id="#form_${form/getId}_anchor">
+<div id="form_${form/getId}_anchor">
 	<tal:block tal:condition="not: moduleName" tal:define="global moduleName 'form'" />
 	<tal:block tal:condition="php: count(receiverLabels) GT 0">
 		<p><strong>${trans:m.form.document.form.contact,ucf,lab}</strong> <tal:block tal:condition="php: count(receiverLabels) == 1">${receiverLabels/0}</tal:block></p>
@@ -35,12 +35,12 @@
 			<p class="buttons">
 				<input type="hidden" name="${moduleName}Param[selfUrl]" tal:attributes="value selfUrl" />
 				<input type="hidden" name="${moduleName}Param[backUrl]" tal:attributes="value backUrl" />
-				<input type="reset" class="button reset" i18n:attributes="value &amp;modules.form.frontoffice.Reset-button;" />
-				<input type="submit" class="button submit" name="${moduleName}Param[submit_${form/getId}]" id="submit_${form/getId}" tal:attributes="value form/getSubmitButton" />
+				<input type="reset" class="button reset" value="${trans:m.form.frontoffice.reset-button,ucf}" />
+				<input type="submit" class="button submit" name="${moduleName}Param[submit_${form/getId}]" id="submit_${form/getId}" value="form/getSubmitButtonAsHtml" />
 			</p>
 			<div tal:condition="form/getFooter" class="normal">
 				<div class="cleaner"></div>
-				<div class="bottom-description" tal:content="form/getFooter"></div>
+				<div class="bottom-description">${form/getFooterAsHtml}</div>
 			</div>
 		</fieldset>
 	</form>
