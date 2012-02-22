@@ -498,8 +498,8 @@ Framework::fatal(__METHOD__ . ' ' . $attributes['title']);
 				$html = self::checkBox(
 					$field->getFieldName(),
 					$field->getId(),
-					$field->getTruelabel(),
-					($field->getTruelabel() == $value),
+					'true',
+					('true' == $value),
 					$attributes
 					);
 				break;
@@ -510,7 +510,7 @@ Framework::fatal(__METHOD__ . ' ' . $attributes['title']);
 					$field->getFieldName(),
 					$field->getId(),
 					$value,
-					array($field->getTruelabel() => $field->getTruelabel(), $field->getFalselabel() => $field->getFalselabel()),
+					array('true' => $field->getTruelabel(), 'false' => $field->getFalselabel()),
 					self::SELECTION_SINGLE_RADIO,
 					$attributes
 					);
@@ -591,7 +591,12 @@ Framework::fatal(__METHOD__ . ' ' . $attributes['title']);
 	{
 		if ($list instanceof form_persistentdocument_boolean)
 		{
-			return $value;
+			switch ($value)
+			{
+				case 'true': return $list->getTrueLabel();
+				case 'false': return $list->getFalseLabel();
+				default: return 'UNKNOWN_VALUE: '.$value;
+			}
 		}
 		else
 		{
@@ -602,8 +607,7 @@ Framework::fatal(__METHOD__ . ' ' . $attributes['title']);
 					return $item->getLabel();
 				}
 			}
-		}
-		
+		}		
 		return null;
 	}
 		
