@@ -498,8 +498,8 @@ abstract class FormHelper
 				$html = self::checkBox(
 					$field->getFieldName(),
 					$field->getId(),
-					$field->getTruelabel(),
-					($field->getTruelabel() == $value),
+					'true',
+					('true' == $value),
 					$attributes
 					);
 				break;
@@ -510,7 +510,7 @@ abstract class FormHelper
 					$field->getFieldName(),
 					$field->getId(),
 					$value,
-					array($field->getTruelabel() => $field->getTruelabel(), $field->getFalselabel() => $field->getFalselabel()),
+					array('true' => $field->getTruelabel(), 'false' => $field->getFalselabel()),
 					self::SELECTION_SINGLE_RADIO,
 					$attributes
 					);
@@ -591,7 +591,12 @@ abstract class FormHelper
 	{
 		if ($list instanceof form_persistentdocument_boolean)
 		{
-			return $value;
+			switch ($value)
+			{
+				case 'true': return $list->getTrueLabel();
+				case 'false': return $list->getFalseLabel();
+				default: return 'UNKNOWN_VALUE: '.$value;
+			}
 		}
 		else
 		{
@@ -602,8 +607,7 @@ abstract class FormHelper
 					return $item->getLabel();
 				}
 			}
-		}
-		
+		}		
 		return null;
 	}
 		

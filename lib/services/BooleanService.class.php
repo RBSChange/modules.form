@@ -35,4 +35,25 @@ class form_BooleanService extends form_FieldService
 	{
 		return $this->pp->createQuery('modules_form/boolean');
 	}
+	
+	/**
+	 * @see form_FieldService::buildXmlElementResponse()
+	 *
+	 * @param form_persistentdocument_List $field
+	 * @param DOMElement $fieldElm
+	 * @param mixed $rawValue
+	 * @return string
+	 */
+	public function buildXmlElementResponse($field, $fieldElm, $rawValue)
+	{
+		if ($rawValue == 'true')
+		{
+			return $field->getTrueLabel();
+		}
+		elseif ($rawValue == 'false')
+		{
+			return $field->getFalseLabel();
+		}
+		return parent::buildXmlElementResponse($fieldElm, $fieldElm, $rawValue);
+	}
 }

@@ -38,15 +38,11 @@ class form_ListActivationvaluesService extends BaseService
 			return array();
 		}
 		
-		// Here we must use instanceof and not getDocumentModelName to work with injection.
 		$results = array();
 		if ($question instanceof form_persistentdocument_boolean)
 		{
-			$trueLabel = $question->getTruelabel();
-			$falseLabel = $question->getFalselabel();
-			
-			$results[$trueLabel] = new list_Item($trueLabel, $trueLabel);
-			$results[$falseLabel] = new list_Item($falseLabel, $falseLabel);
+			$results['true'] = new list_Item($question->getTruelabel(), 'true');
+			$results['false'] = new list_Item($question->getFalselabel(), 'false');
 		}
 		else if ($question instanceof form_persistentdocument_list)
 		{
