@@ -134,6 +134,8 @@ class form_BlockFormBaseAction extends website_BlockAction
 		{
 			$message = str_replace('{' . $key . '}', htmlspecialchars($value), $message);
 		}		
+		$this->addMessage($message);
+		// @deprecated (will be removed in 4.0) use change:messages in the template instead of message attribute.
 		$request->setAttribute('message', $message);
 		
 		if ($form->getUseBackLink())

@@ -36,7 +36,7 @@
 				<input type="hidden" name="${moduleName}Param[selfUrl]" tal:attributes="value selfUrl" />
 				<input type="hidden" name="${moduleName}Param[backUrl]" tal:attributes="value backUrl" />
 				<input type="reset" class="button reset" value="${trans:m.form.frontoffice.reset-button,ucf}" />
-				<input type="submit" class="button submit" name="${moduleName}Param[submit_${form/getId}]" id="submit_${form/getId}" value="form/getSubmitButtonAsHtml" />
+				<input type="submit" class="button submit" name="${moduleName}Param[submit_${form/getId}]" id="submit_${form/getId}" value="${form/getSubmitButtonAsHtml}" />
 			</p>
 			<div tal:condition="form/getFooter" class="normal">
 				<div class="cleaner"></div>
