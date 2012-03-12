@@ -42,8 +42,16 @@ class form_ListActivationvaluesService extends BaseService
 		$results = array();
 		if ($question instanceof form_persistentdocument_boolean)
 		{
-			$trueLabel = $question->getTruelabel();
-			$falseLabel = $question->getFalselabel();
+			if ($question->isContextLangAvailable())
+			{
+				$trueLabel = $question->getTruelabel();
+				$falseLabel = $question->getFalselabel();
+			}
+			else
+			{
+				$trueLabel = $question->getVoTruelabel() . ' [' . f_Locale::translateUI('&modules.uixul.bo.languages.' . ucfirst($question->getLang()) . ';') . ']';
+				$falseLabel = $question->getVoFalselabel() . ' [' . f_Locale::translateUI('&modules.uixul.bo.languages.' . ucfirst($question->getLang()) . ';') . ']';
+			}
 			
 			$results[$trueLabel] = new list_Item($trueLabel, $trueLabel);
 			$results[$falseLabel] = new list_Item($falseLabel, $falseLabel);

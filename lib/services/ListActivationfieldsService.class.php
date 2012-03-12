@@ -60,7 +60,14 @@ class form_ListActivationfieldsService extends BaseService
 		$excludeIds = $this->getExcludeIds($conditionOn);
 		foreach ($form->getDocumentService()->getValidActivationFields($form, $excludeIds) as $field)
 		{
-			$results[] = new list_Item($field->getLabel(), $field->getId());
+			if ($field->isContextLangAvailable())
+			{
+				$results[] = new list_Item($field->getLabel(), $field->getId());
+			}
+			else 
+			{
+				$results[] = new list_Item($field->getVoLabel() . ' [' . f_Locale::translateUI('&modules.uixul.bo.languages.' . ucfirst($field->getLang()) . ';') . ']', $field->getId());
+			}
 		}		
 		return $results;
 	}
