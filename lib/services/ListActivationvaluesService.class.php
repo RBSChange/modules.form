@@ -38,11 +38,23 @@ class form_ListActivationvaluesService extends BaseService
 			return array();
 		}
 		
+		$ls = LocaleService::getInstance();
 		$results = array();
 		if ($question instanceof form_persistentdocument_boolean)
 		{
-			$results['true'] = new list_Item($question->getTruelabel(), 'true');
-			$results['false'] = new list_Item($question->getFalselabel(), 'false');
+			if ($question->isContextLangAvailable())
+			{
+				$trueLabel = $question->getTruelabel();
+				$falseLabel = $question->getFalselabel();
+			}
+			else
+			{
+				$trueLabel = $question->getVoTruelabel() . ' [' . $ls->transBO('m.uixul.bo.languages.' . $question->getLang(), array('ucf')) . ']';
+				$falseLabel = $question->getVoFalselabel() . ' [' . $ls->transBO('m.uixul.bo.languages.' . $question->getLang(), array('ucf')) . ']';
+			}
+			
+			$results['true'] = new list_Item($trueLabel, 'true');
+			$results['false'] = new list_Item($falseLabel, 'false');
 		}
 		else if ($question instanceof form_persistentdocument_list)
 		{
