@@ -279,7 +279,7 @@ class form_FormService extends form_BaseformService
 				return false;
 			}
 			
-			if ($copyMail === null)
+			if (f_util_StringUtils::isNotEmpty($copyMail))
 			{
 				$copyRecipient = new mail_MessageRecipients();
 				$copyRecipient->setTo(array($copyMail));
