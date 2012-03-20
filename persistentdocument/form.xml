@@ -4,7 +4,6 @@
 	model-version="1.0" extend="modules_form/baseform">
 	<properties>
 		<add name="recipientGroup" type="modules_form/recipientGroup" max-occurs="-1" />
-		<add name="messageSendingType" type="Integer" min-occurs="1" default-value="2" from-list="modules_form/messagesendingtype" />
 		<add name="notification" type="modules_notification/notification" min-occurs="1" cascade-delete="true" />
 		<add name="responseCount" type="Integer" default-value="0" />
 		<add name="archivedResponseCount" type="Integer" default-value="0" />

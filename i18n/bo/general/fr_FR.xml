@@ -25,9 +25,6 @@
   <key id="documents">documents</key>
   <key id="allowed-file-types">types de fichiers autorisés</key>
   <key id="sent-email">envoi de message</key>
-  <key id="send-email-and-mailbox">un email + boîte de réception</key>
-  <key id="send-email-only">email uniquement</key>
-  <key id="do-not-send-message">aucun</key>
   <key id="message">message</key>
   <key id="recipients">destinataires</key>
   <key id="notification-help">Le contenu du message est défini dans le module Notification.</key>

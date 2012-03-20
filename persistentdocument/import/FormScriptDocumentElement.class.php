@@ -17,4 +17,22 @@ class form_FormScriptDocumentElement extends import_ScriptDocumentElement
             $form->getDocumentService()->activate($form->getId());
         }
     }
+    
+    
+    //
+
+	/**
+	 * @return array
+	 */
+	protected function getDocumentProperties()
+	{
+		//For compatibility (removed in 4.0)
+		$attrs = parent::getDocumentProperties();
+		if (isset($attrs['messageSendingType']))
+		{
+			unset($attrs['messageSendingType']);
+		}
+		
+		return $attrs;
+	}
 }

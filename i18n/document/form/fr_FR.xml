@@ -4,8 +4,6 @@
   <key id="document-name">formulaire</key>
   <key id="notification">notification</key>
   <key id="notification-help">notification</key>
-  <key id="messagesendingtype">Envoi de message</key>
-  <key id="messagesendingtype-help">Permet de spécifier si le formulaire doit envoyer un message lors de chaque réponse par un internaute.</key>
   <key id="recipientgroup">destinataires</key>
   <key id="recipientgroup-help">groupes de destinataires</key>
   <key id="responsecount">nombre de réponses</key>

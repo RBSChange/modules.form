@@ -2,8 +2,6 @@
 <i18n baseKey="m.form.document.form" lcid="en_GB">
   <include id="m.form.document.baseform"/>
   <key id="document-name">form</key>
-  <key id="messagesendingtype">Send message</key>
-  <key id="messagesendingtype-help">Specifies whether the form should send a message each time a response is submitted by a visitor.</key>
   <key id="recipientgroup">recipients</key>
   <key id="recipientgroup-help">recipient groups</key>
   <key id="responsecount">response count</key>

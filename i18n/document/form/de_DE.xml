@@ -4,8 +4,6 @@
   <key id="document-name">Formular</key>
   <key id="notification">Benachrichtigung</key>
   <key id="notification-help">Benachrichtigung</key>
-  <key id="messagesendingtype">Nachrichtenversand</key>
-  <key id="messagesendingtype-help">Ermöglicht zu spezifizieren, ob das Folmular bei jeder Antwort des Benutzers eine Nachricht senden soll.</key>
   <key id="recipientgroup">Empfänger</key>
   <key id="recipientgroup-help">Empfängergruppen</key>
 </i18n>
