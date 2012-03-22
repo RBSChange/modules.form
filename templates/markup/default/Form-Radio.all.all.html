@@ -4,7 +4,7 @@
 	<tal:block tal:define="global toHide string: toHide" />
 </tal:block>
 
-<li id="field${field/id}" class="inline-set-container ${toHide}">
+<li id="field${field/id}" class="${toHide}">
 	<fieldset id="fieldset_${field/id}" class="inline-set">	
 		<legend tal:condition="not:field/required" class="group-label">
 			${field/label}
