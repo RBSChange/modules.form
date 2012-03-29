@@ -14,6 +14,8 @@
 			</columns>
 			<drops>
 				<drop model="modules_generic/folder" action="move" />
+				<drop model="modules_generic/systemfolder" action="move" />
+				<drop model="modules_form/recipientGroupFolder" action="move" />
 				<drop model="modules_form/form" action="move" />
 			</drops>
 			<contextactions>
