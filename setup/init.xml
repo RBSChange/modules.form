@@ -9,7 +9,7 @@
 	</rootfolder>
 	
 	<rootfolder module="form">
-		<recipientGroupFolder />
+		<recipientGroupFolder byLabel="m.form.document.recipientgroupfolder.Document-name"/>
 	</rootfolder>
 	
 	<systemfolder module="list" relatedmodule="form">

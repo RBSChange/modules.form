@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
 	model-version="1.0" icon="users-folder" extend="modules_generic/folder" publish-on-day-change="false" backoffice-indexable="false" has-url="false">
 	<properties>
-		<add name="label" default-value="recipient-group-folder" />
+		<add name="label" default-value="m.form.document.recipientgroupfolder.document-name" />
 	</properties>
 	<statuses default="ACTIVE" />
 </document>
