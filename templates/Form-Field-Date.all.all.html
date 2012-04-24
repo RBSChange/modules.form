@@ -2,6 +2,9 @@
 	class="date-picker textfield" id="field_${field/id}" /><span class="date-format nojs" title="(${trans:m.form.frontoffice.datepicker.format-help,ucf,attr})">${trans:f.date.human-format}</span>
 <script type="text/javascript">
 	/* <![CDATA[ */
-	jQuery(document).ready(function(){jQuery('#field_${field/id}').datepicker({minDate: '${field/startDate}', maxDate: '${field/endDate}'});});
+	jQuery(document).ready(function(){jQuery('#field_${field/id}').datepicker({
+		minDate: '${field/startDate}', maxDate: '${field/endDate}', 
+		changeMonth: true, changeYear: true
+	});});
 	/* ]]> */
 </script>
