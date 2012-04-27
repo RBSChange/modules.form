@@ -86,9 +86,9 @@ class form_FileService extends form_FieldService
     {
     	if ($rawValue instanceof media_persistentdocument_file)
     	{
-    		$rawValue->save(($field->getMediaFolder() !== null) ? $field->getMediaFolder()->getId() : null);
+    		$rawValue->save();
     		$media = media_MediaService::getInstance()->importFromTempFile($rawValue);
-    		$media->save();
+    		$media->save(($field->getMediaFolder() !== null) ? $field->getMediaFolder()->getId() : null);
 			$mailValue = "<a href=\"".MediaHelper::getUrl($media)."\">".$media->getLabel()."</a>";
 			$fieldElm->setAttribute('mailValue', $mailValue);
     		return $media->getId();
