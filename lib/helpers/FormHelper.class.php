@@ -359,7 +359,7 @@ abstract class FormHelper
 		$attributes = array();
 		$attributes['value'] = $value;
 		$attributes['title'] = $field->getHelpTextAsHtml();
-Framework::fatal(__METHOD__ . ' ' . $attributes['title']);
+
 		// build items
 		$listObject = $field->getDataSource();
 		$items = array();
