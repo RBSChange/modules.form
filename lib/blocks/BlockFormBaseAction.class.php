@@ -40,13 +40,14 @@ class form_BlockFormBaseAction extends website_BlockAction
 			$receiverLabels = $this->getReceiverLabels($receiverIds);
 			$request->setAttribute('receiverLabels', $receiverLabels);
 		}
-		
+				
 		$agaviUser = $this->getContext()->getGlobalContext()->getUser();
 		if ($agaviUser->hasAttribute('form_success_parameters_noconfirmpage_' . $form->getId()))
 		{
 			$view = $this->getSuccessView($form, $request);
 		}
-		else if ($request->hasParameter('submit_' . $form->getId()))
+		// Second case is for template compatibility.
+		else if ($request->hasParameter($this->getSubmitName($form)) || $request->hasParameter('submit_' . $form->getId()))
 		{
 			try
 			{
@@ -192,8 +193,18 @@ class form_BlockFormBaseAction extends website_BlockAction
 		$request->setAttribute('backUrl', $backUrl);
 		$request->setAttribute('useCaptcha', $form->getDocumentService()->hasToUseCaptcha($form));
 		$request->setAttribute('jQueryConditionalElement', $form->getDocumentService()->getJQueryForConditionalElementsOf($form));
+		$request->setAttribute('submitName', $this->getSubmitName($form));
 		
 		return $this->getInputTemplateByFullName($form);
+	}
+	
+	/**
+	 * @param form_persistentdocument_form $form
+	 * @return string
+	 */
+	protected function getSubmitName($form)
+	{
+		return 'submit_' . $form->getId() . '_' . $this->getBlockId();
 	}
 	
 	/**

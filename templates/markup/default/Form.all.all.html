@@ -1,5 +1,5 @@
 <tal:block tal:condition="not: moduleName" tal:define="global moduleName 'form'" />
-<a name="form_${form/getId}_anchor"></a>
+<a name="form_${form/getId}_${configuration/getBlockId}_anchor"></a>
 <tal:block tal:condition="php: count(receiverLabels) GT 0">
 	<p><strong change:translate="modules.form.document.form.ContactLabel"></strong> <tal:block tal:condition="php: count(receiverLabels) == 1">${receiverLabels/0}</tal:block></p>
 	<ul class="normal" tal:condition="php: count(receiverLabels) GT 1">
@@ -14,11 +14,11 @@ jQuery(document).ready(function() {
 </script>
 <script type="text/javascript">
 if (form_Validation instanceof Array) {
-	form_Validation.push({id: "form_${form/getId}", rules: ${form/getValidationRulesJSON}});
+	form_Validation.push({id: "form_${form/getId}_${configuration/getBlockId}", rules: ${form/getValidationRulesJSON}});
 }
 </script>
 
-<form method="post" action="#form_${form/getId}_anchor" id="form_${form/getId}" class="cmxform ${form/getFormCssClassName}" enctype="multipart/form-data">
+<form method="post" action="#form_${form/getId}_${configuration/getBlockId}_anchor" id="form_${form/getId}_${configuration/getBlockId}" class="cmxform ${form/getFormCssClassName}" enctype="multipart/form-data">
 	<div>
 		<input type="hidden" name="${moduleName}Param[selfUrl]" tal:attributes="value selfUrl" />
 		<input type="hidden" name="${moduleName}Param[backUrl]" tal:attributes="value backUrl" />
@@ -36,7 +36,7 @@ if (form_Validation instanceof Array) {
 	</ol>
 	<p class="buttons">
 		<input type="reset" class="button reset" i18n:attributes="value &amp;modules.form.frontoffice.Reset-button;" />
-		<input type="submit" class="button submit" name="${moduleName}Param[submit_${form/getId}]" id="submit_${form/getId}" tal:attributes="value form/getSubmitButton" />
+		<input type="submit" class="button submit" name="${moduleName}Param[${submitName}]" id="${submitName}" tal:attributes="value form/getSubmitButton" />
 	</p>
 	<div tal:condition="form/getFooter">
 		<div class="cleaner"></div>
