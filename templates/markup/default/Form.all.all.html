@@ -1,4 +1,4 @@
-<div id="form_${form/getId}_anchor">
+<div id="form_${form/getId}_${configuration/getBlockId}_anchor">
 	<tal:block tal:condition="not: moduleName" tal:define="global moduleName 'form'" />
 	<tal:block tal:condition="php: count(receiverLabels) GT 0">
 		<p><strong>${trans:m.form.document.form.contact,ucf,lab}</strong> <tal:block tal:condition="php: count(receiverLabels) == 1">${receiverLabels/0}</tal:block></p>
@@ -14,11 +14,11 @@
 	</script>
 	<script type="text/javascript">
 	if (form_Validation instanceof Array) {
-		form_Validation.push({id: "form_${form/getId}", rules: ${form/getValidationRulesJSON}});
+		form_Validation.push({id: "form_${form/getId}_${configuration/getBlockId}", rules: ${form/getValidationRulesJSON}});
 	}
 	</script>
 	
-	<form method="post" action="#form_${form/getId}_anchor" id="form_${form/getId}" class="cmxform ${form/getFormCssClassName}" enctype="multipart/form-data">
+	<form method="post" action="#form_${form/getId}_anchor" id="form_${form/getId}_${configuration/getBlockId}" class="cmxform ${form/getFormCssClassName}" enctype="multipart/form-data">
 		<fieldset>
 			<legend class="h-1">${form/getLabelAsHtml}</legend>
 			<div class="normal description" tal:condition="form/getDescription">${form/getDescriptionAsHtml}</div>
@@ -35,7 +35,7 @@
 			<p class="buttons">
 				<input type="hidden" name="${moduleName}Param[selfUrl]" tal:attributes="value selfUrl" />
 				<input type="hidden" name="${moduleName}Param[backUrl]" tal:attributes="value backUrl" />
-				<input type="submit" class="button submit" name="${moduleName}Param[submit_${form/getId}]" id="submit_${form/getId}" value="${form/getSubmitButtonAsHtml}" />
+				<input type="submit" class="button submit" name="${moduleName}Param[${submitName}]" id="${submitName}" value="${form/getSubmitButtonAsHtml}" />
 				<input type="reset" class="button secondary reset" value="${trans:m.form.frontoffice.reset-button,ucf}" />
 			</p>
 			<div tal:condition="form/getFooter" class="normal">
