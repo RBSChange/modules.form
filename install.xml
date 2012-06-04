@@ -2,6 +2,5 @@
 <install type="modules" name="form" version="4.0.0">
   <package type="modules" name="notification"/>
   <package type="modules" name="list"/>
-  <package type="modules" name="mailbox"/>
   <package type="modules" name="preferences"/>
 </install>
