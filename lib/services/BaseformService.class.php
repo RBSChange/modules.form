@@ -152,14 +152,14 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$fields = $this->getFields($document);
 		if (count($fields) < 1)
 		{
-			$this->setActivePublicationStatusInfo($document, '&modules.form.document.baseform.publication.no-field;');
+			$this->setActivePublicationStatusInfo($document, 'm.form.document.baseform.publication.no-field');
 			return false;
 		}
 		foreach ($fields as $field)
 		{
 			if (!$field->isContextLangAvailable())
 			{
-				$this->setActivePublicationStatusInfo($document, '&modules.form.document.baseform.publication.not-translated-field;');
+				$this->setActivePublicationStatusInfo($document, 'm.form.document.baseform.publication.not-translated-field');
 				return false;
 			}
 		}
