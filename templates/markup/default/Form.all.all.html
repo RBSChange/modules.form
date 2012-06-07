@@ -20,8 +20,8 @@
 	
 	<form method="post" action="#form_${form/getId}_anchor" id="form_${form/getId}_${configuration/getBlockId}" class="cmxform ${form/getFormCssClassName}" enctype="multipart/form-data">
 		<fieldset>
-			<legend class="h-1">${form/getLabelAsHtml}</legend>
-			<div class="normal description" tal:condition="form/getDescription">${form/getDescriptionAsHtml}</div>
+			<legend class="h-1">${form/getLabel}</legend>
+			<div class="normal description" tal:condition="form/getDescription">${structure form/getDescriptionAsHtml}</div>
 			<ul tal:condition="errors" class="errors">
 				<li tal:repeat="error errors">${error}</li>
 			</ul>
@@ -35,12 +35,12 @@
 			<p class="buttons">
 				<input type="hidden" name="${moduleName}Param[selfUrl]" tal:attributes="value selfUrl" />
 				<input type="hidden" name="${moduleName}Param[backUrl]" tal:attributes="value backUrl" />
-				<input type="submit" class="button submit" name="${moduleName}Param[${submitName}]" id="${submitName}" value="${form/getSubmitButtonAsHtml}" />
+				<input type="submit" class="button submit" name="${moduleName}Param[${submitName}]" id="${submitName}" value="${form/getSubmitButton}" />
 				<input type="reset" class="button secondary reset" value="${trans:m.form.frontoffice.reset-button,ucf}" />
 			</p>
 			<div tal:condition="form/getFooter" class="normal">
 				<div class="cleaner"></div>
-				<div class="bottom-description">${form/getFooterAsHtml}</div>
+				<div class="bottom-description">${structure form/getFooterAsHtml}</div>
 			</div>
 		</fieldset>
 	</form>
