@@ -19,7 +19,7 @@
 	<rootfolder module="form">
 		<form label="Formulaire de contact" description="Exemple de formulaire"
 			submitButton="Envoyer" confirmMessage="Votre message nous a bien été transmis. Il sera traité sous 48 heures. Merci"
-			markup="default" useBackLink="true" messageSendingType="2" useCaptcha="false">	
+			markup="default" useBackLink="true" useCaptcha="false">	
 			
 			<fieldlist fieldName="civilite" label="Civilité" display="list" 
 				dataSource-refid="civilite"	multiple="false"/>

@@ -31,22 +31,26 @@ class form_ListActivationvaluesService extends BaseService
 		}
 		catch (Exception $e)
 		{
-			if (Framework::isDebugEnabled())
-			{
-				Framework::debug(__METHOD__ . ' EXCEPTION: ' . $e->getMessage());
-			}
 			return array();
 		}
 		
-		// Here we must use instanceof and not getDocumentModelName to work with injection.
+		$ls = LocaleService::getInstance();
 		$results = array();
 		if ($question instanceof form_persistentdocument_boolean)
 		{
-			$trueLabel = $question->getTruelabel();
-			$falseLabel = $question->getFalselabel();
+			if ($question->isContextLangAvailable())
+			{
+				$trueLabel = $question->getTruelabel();
+				$falseLabel = $question->getFalselabel();
+			}
+			else
+			{
+				$trueLabel = $question->getVoTruelabel() . ' [' . $ls->transBO('m.uixul.bo.languages.' . $question->getLang(), array('ucf')) . ']';
+				$falseLabel = $question->getVoFalselabel() . ' [' . $ls->transBO('m.uixul.bo.languages.' . $question->getLang(), array('ucf')) . ']';
+			}
 			
-			$results[$trueLabel] = new list_Item($trueLabel, $trueLabel);
-			$results[$falseLabel] = new list_Item($falseLabel, $falseLabel);
+			$results['true'] = new list_Item($trueLabel, 'true');
+			$results['false'] = new list_Item($falseLabel, 'false');
 		}
 		else if ($question instanceof form_persistentdocument_list)
 		{

@@ -331,7 +331,7 @@ abstract class FormHelper
 		$attributes = array();
 		$attributes['maxlength'] = $field->getMaxlength();
 		$attributes['value'] = $value;
-		$attributes['title'] = $field->getHelpText();
+		$attributes['title'] = $field->getHelpTextAsHtml();
 		if ($field->getMultiline())
 		{
 			$attributes['cols'] = $field->getCols();
@@ -358,8 +358,8 @@ abstract class FormHelper
 		// build required attributes
 		$attributes = array();
 		$attributes['value'] = $value;
-		$attributes['title'] = $field->getHelpText();
-
+		$attributes['title'] = $field->getHelpTextAsHtml();
+		
 		// build items
 		$listObject = $field->getDataSource();
 		$items = array();
@@ -442,7 +442,7 @@ abstract class FormHelper
 	{
 		// build required attributes
 		$attributes = array();
-		$attributes['title'] = $field->getHelpText();
+		$attributes['title'] = $field->getHelpTextAsHtml();
 		return self::passwordBox($field->getFieldName(), $field->getId(), $attributes);
 	}
 
@@ -454,7 +454,7 @@ abstract class FormHelper
 	{
 		// build required attributes
 		$attributes = array();
-		$attributes['title'] = $field->getHelpText();
+		$attributes['title'] = $field->getHelpTextAsHtml();
 		return self::uploadFileBox($field->getFieldName(), $field->getId(), $attributes);
 	}
 
@@ -490,7 +490,7 @@ abstract class FormHelper
 	{
 		// build required attributes
 		$attributes = array();
-		$attributes['title'] = $field->getHelpText();
+		$attributes['title'] = $field->getHelpTextAsHtml();
 		$html = '';
 		switch ($field->getDisplay())
 		{
@@ -499,7 +499,8 @@ abstract class FormHelper
 					$field->getFieldName(),
 					$field->getId(),
 					$field->getTruelabel(),
-					($field->getTruelabel() == $value),
+					'true',
+					('true' == $value),
 					$attributes
 					);
 				break;
@@ -510,7 +511,7 @@ abstract class FormHelper
 					$field->getFieldName(),
 					$field->getId(),
 					$value,
-					array($field->getTruelabel() => $field->getTruelabel(), $field->getFalselabel() => $field->getFalselabel()),
+					array('true' => $field->getTruelabel(), 'false' => $field->getFalselabel()),
 					self::SELECTION_SINGLE_RADIO,
 					$attributes
 					);
@@ -591,7 +592,12 @@ abstract class FormHelper
 	{
 		if ($list instanceof form_persistentdocument_boolean)
 		{
-			return $value;
+			switch ($value)
+			{
+				case 'true': return $list->getTrueLabel();
+				case 'false': return $list->getFalseLabel();
+				default: return 'UNKNOWN_VALUE: '.$value;
+			}
 		}
 		else
 		{

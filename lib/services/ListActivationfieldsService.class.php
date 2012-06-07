@@ -56,11 +56,19 @@ class form_ListActivationfieldsService extends BaseService
 			return array();	
 		}
 		
+		$ls = LocaleService::getInstance();
 		$results = array();
 		$excludeIds = $this->getExcludeIds($conditionOn);
 		foreach ($form->getDocumentService()->getValidActivationFields($form, $excludeIds) as $field)
 		{
-			$results[] = new list_Item($field->getLabel(), $field->getId());
+			if ($field->isContextLangAvailable())
+			{
+				$results[] = new list_Item($field->getLabel(), $field->getId());
+			}
+			else 
+			{
+				$results[] = new list_Item($field->getVoLabel() . ' [' . $ls->transBO('m.uixul.bo.languages.' . $field->getLang(), array('ucf')) . ']', $field->getId());
+			}
 		}		
 		return $results;
 	}

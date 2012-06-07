@@ -1,9 +1,9 @@
 <title tal:replace="email/subject"/>
 
-${email/header}
+<p tal:replace="email/header"/>
 
-<tal:block tal:repeat="item email/items">
-	${item/label} : ${structure item/value}
-</tal:block>
+<span tal:repeat="item email/items" tal:omit-tag="">
+<span tal:replace="item/label" /> : <span tal:replace="item/value" />
+</span>
 
-${email/footer}
+<p tal:replace="email/footer"/>

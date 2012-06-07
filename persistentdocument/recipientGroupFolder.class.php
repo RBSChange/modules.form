@@ -5,12 +5,4 @@
  */
 class form_persistentdocument_recipientGroupFolder extends form_persistentdocument_recipientGroupFolderbase 
 {
-	/**
-	 * Return the localized value for a rootfolder
-	 * @return string
-	 */
-	public function getLabel()
-	{
-		return f_Locale::translateUI('&modules.form.document.recipientgroupfolder.Document-name;');
-	}
 }

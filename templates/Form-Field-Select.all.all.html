@@ -1,6 +1,6 @@
 <select name="${moduleName}Param[${field/name}]" id="field_${field/id}" tal:attributes="title field/title">
-<tal:block tal:repeat="item field/items">
-	<option tal:condition="item/selected" tal:attributes="value item/value" selected="selected">${item/label}</option>
-	<option tal:condition="not: item/selected" tal:attributes="value item/value">${item/label}</option>
-</tal:block>
+	<tal:block tal:repeat="item field/items">
+		<option tal:condition="item/selected" tal:attributes="value item/value" selected="selected">${item/label}</option>
+		<option tal:condition="not: item/selected" tal:attributes="value item/value">${item/label}</option>
+	</tal:block>
 </select>

@@ -1,16 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
-  <binding fileName="modules/useractionlogger/persistentdocument/import/useractionlogger_binding.xml"/>
-  <actiondef modulename="form" actionname="update.preferences" label="modules.form.bo.useractionlogger.update-preferences"/>
-  <actiondef modulename="form" actionname="insert.recipientgroup" label="modules.form.bo.useractionlogger.insert-recipientgroup"/>
-  <actiondef modulename="form" actionname="update.recipientgroup" label="modules.form.bo.useractionlogger.update-recipientgroup"/>
-  <actiondef modulename="form" actionname="update.form" label="modules.form.bo.useractionlogger.update-form"/>
-  <actiondef modulename="form" actionname="update.text" label="m.form.bo.useractionlogger.update-text"/>
-  <actiondef modulename="form" actionname="insert.file" label="m.form.bo.useractionlogger.insert-file"/>
-  <actiondef modulename="form" actionname="move.file" label="m.form.bo.useractionlogger.move-file"/>
-  <actiondef modulename="form" actionname="insert.freecontent" label="m.form.bo.useractionlogger.insert-freecontent"/>
-  <actiondef modulename="form" actionname="insert.boolean" label="m.form.bo.useractionlogger.insert-boolean"/>
-  <actiondef modulename="form" actionname="update.group" label="m.form.bo.useractionlogger.update-group"/>
-  <actiondef modulename="form" actionname="insert.recipientgrouplist" label="m.form.bo.useractionlogger.insert-recipientgrouplist"/>
-  <actiondef modulename="form" actionname="update.recipientgrouplist" label="m.form.bo.useractionlogger.update-recipientgrouplist"/>
+	<binding fileName="modules/useractionlogger/persistentdocument/import/useractionlogger_binding.xml" />
+	<actiondef modulename="form" actionname="update.preferences" label="modules.form.bo.useractionlogger.update-preferences" />
+	<actiondef modulename="form" actionname="insert.recipientgroup" label="modules.form.bo.useractionlogger.insert-recipientgroup" />
+	<actiondef modulename="form" actionname="update.recipientgroup" label="modules.form.bo.useractionlogger.update-recipientgroup" />
+	<actiondef modulename="form" actionname="update.form" label="modules.form.bo.useractionlogger.update-form" />
+	<actiondef modulename="form" actionname="update.text" label="m.form.bo.useractionlogger.update-text" />
+	<actiondef modulename="form" actionname="insert.file" label="m.form.bo.useractionlogger.insert-file" />
+	<actiondef modulename="form" actionname="move.file" label="m.form.bo.useractionlogger.move-file" />
+	<actiondef modulename="form" actionname="insert.freecontent" label="m.form.bo.useractionlogger.insert-freecontent" />
+	<actiondef modulename="form" actionname="insert.boolean" label="m.form.bo.useractionlogger.insert-boolean" />
+	<actiondef modulename="form" actionname="update.group" label="m.form.bo.useractionlogger.update-group" />
+	<actiondef modulename="form" actionname="insert.recipientgrouplist" label="m.form.bo.useractionlogger.insert-recipientgrouplist" />
+	<actiondef modulename="form" actionname="update.recipientgrouplist" label="m.form.bo.useractionlogger.update-recipientgrouplist" />
+	<actiondef modulename="form" actionname="insert.form" label="m.form.bo.useractionlogger.insert-form" />
+	<actiondef modulename="form" actionname="insert.text" label="m.form.bo.useractionlogger.insert-text" />
+	<actiondef modulename="form" actionname="insert.mail" label="m.form.bo.useractionlogger.insert-mail" />
+	<actiondef modulename="form" actionname="insert.boolean" label="m.form.bo.useractionlogger.insert-boolean" />
+	<actiondef modulename="form" actionname="update.boolean" label="m.form.bo.useractionlogger.update-boolean" />
+	<actiondef modulename="form" actionname="updatetranslation.boolean" label="m.form.bo.useractionlogger.updatetranslation-boolean" />
+	<actiondef modulename="form" actionname="move.boolean" label="m.form.bo.useractionlogger.move-boolean" />
+	<actiondef modulename="form" actionname="move.text" label="m.form.bo.useractionlogger.move-text" />
+	<actiondef modulename="form" actionname="update.mail" label="m.form.bo.useractionlogger.update-mail" />
+	<actiondef modulename="form" actionname="updatetranslation.mail" label="m.form.bo.useractionlogger.updatetranslation-mail" />
+	<actiondef modulename="form" actionname="deactivated.form" label="m.form.bo.useractionlogger.deactivated-form" />
+	<actiondef modulename="form" actionname="reactivate.form" label="m.form.bo.useractionlogger.reactivate-form" />
+	<actiondef modulename="form" actionname="updatetranslation.form" label="m.form.bo.useractionlogger.updatetranslation-form" />
+	<actiondef modulename="form" actionname="deletelocalization.form" label="m.form.bo.useractionlogger.deletelocalization-form" />
+	<actiondef modulename="form" actionname="updatetranslation.text" label="m.form.bo.useractionlogger.updatetranslation-text" />
+	<actiondef modulename="form" actionname="insert.list" label="m.form.bo.useractionlogger.insert-list" />
+	<actiondef modulename="form" actionname="update.list" label="m.form.bo.useractionlogger.update-list" />
+	<actiondef modulename="form" actionname="insert.group" label="m.form.bo.useractionlogger.insert-group" />
+	<actiondef modulename="form" actionname="update.group" label="m.form.bo.useractionlogger.update-group" />
+	<actiondef modulename="form" actionname="insert.date" label="m.form.bo.useractionlogger.insert-date" />
+	<actiondef modulename="form" actionname="update.date" label="m.form.bo.useractionlogger.update-date" />
+	<actiondef modulename="form" actionname="insert.file" label="m.form.bo.useractionlogger.insert-file" />
+	<actiondef modulename="form" actionname="update.file" label="m.form.bo.useractionlogger.update-file" />
+	<actiondef modulename="form" actionname="updatetranslation.file" label="m.form.bo.useractionlogger.updatetranslation-file" />
+	<actiondef modulename="form" actionname="updatetranslation.date" label="m.form.bo.useractionlogger.updatetranslation-date" />
+	<actiondef modulename="form" actionname="updatetranslation.group" label="m.form.bo.useractionlogger.updatetranslation-group" />
+	<actiondef modulename="form" actionname="insert.hidden" label="m.form.bo.useractionlogger.insert-hidden" />
+	<actiondef modulename="form" actionname="update.hidden" label="m.form.bo.useractionlogger.update-hidden" />
+	<actiondef modulename="form" actionname="updatetranslation.hidden" label="m.form.bo.useractionlogger.updatetranslation-hidden" />
+	<actiondef modulename="form" actionname="insert.freecontent" label="m.form.bo.useractionlogger.insert-freecontent" />
+	<actiondef modulename="form" actionname="updatetranslation.freecontent" label="m.form.bo.useractionlogger.updatetranslation-freecontent" />
+	<actiondef modulename="form" actionname="update.freecontent" label="m.form.bo.useractionlogger.update-freecontent" />
+	<actiondef modulename="form" actionname="insert.recipientgrouplist" label="m.form.bo.useractionlogger.insert-recipientgrouplist" />
+	<actiondef modulename="form" actionname="update.recipientgrouplist" label="m.form.bo.useractionlogger.update-recipientgrouplist" />
+	<actiondef modulename="form" actionname="updatetranslation.recipientgrouplist" label="m.form.bo.useractionlogger.updatetranslation-recipientgrouplist" />
+	<actiondef modulename="form" actionname="deletelocalization.hidden" label="m.form.bo.useractionlogger.deletelocalization-hidden" />
+	<actiondef modulename="form" actionname="deletelocalization.file" label="m.form.bo.useractionlogger.deletelocalization-file" />
+	<actiondef modulename="form" actionname="deletelocalization.date" label="m.form.bo.useractionlogger.deletelocalization-date" />
+	<actiondef modulename="form" actionname="deletelocalization.group" label="m.form.bo.useractionlogger.deletelocalization-group" />
+	<actiondef modulename="form" actionname="delete.list" label="m.form.bo.useractionlogger.delete-list" />
+	<actiondef modulename="form" actionname="delete.hidden" label="m.form.bo.useractionlogger.delete-hidden" />
+	<actiondef modulename="form" actionname="delete.file" label="m.form.bo.useractionlogger.delete-file" />
+	<actiondef modulename="form" actionname="delete.date" label="m.form.bo.useractionlogger.delete-date" />
+	<actiondef modulename="form" actionname="deletelocalization.recipientgrouplist" label="m.form.bo.useractionlogger.deletelocalization-recipientgrouplist" />
+	<actiondef modulename="form" actionname="deletelocalization.freecontent" label="m.form.bo.useractionlogger.deletelocalization-freecontent" />
+	<actiondef modulename="form" actionname="delete.freecontent" label="m.form.bo.useractionlogger.delete-freecontent" />
+	<actiondef modulename="form" actionname="delete.recipientgrouplist" label="m.form.bo.useractionlogger.delete-recipientgrouplist" />
+	<actiondef modulename="form" actionname="delete.group" label="m.form.bo.useractionlogger.delete-group" />
+	<actiondef modulename="form" actionname="deletelocalization.mail" label="m.form.bo.useractionlogger.deletelocalization-mail" />
+	<actiondef modulename="form" actionname="deletelocalization.text" label="m.form.bo.useractionlogger.deletelocalization-text" />
+	<actiondef modulename="form" actionname="deletelocalization.boolean" label="m.form.bo.useractionlogger.deletelocalization-boolean" />
 </script>
