@@ -3,9 +3,9 @@
 	<panel name="resume" />
 	<panel name="properties" />
 	<panel name="localization" />
+	<panel name="publication" />
 	<panel name="history" />
 	<panel name="create" />
-	
 	<xul>
 		<javascript>
 			<field name="fileTypes">null</field>

@@ -45,7 +45,8 @@ class form_BlockFormBaseAction extends website_BlockAction
 		{
 			$view = $this->getSuccessView($form, $request);
 		}
-		else if ($request->hasParameter('submit_' . $form->getId()))
+		// Second case is for template compatibility.
+		else if ($request->hasParameter($this->getSubmitName($form)) || $request->hasParameter('submit_' . $form->getId()))
 		{
 			try
 			{
@@ -133,7 +134,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 		{
 			$message = str_replace('{' . $key . '}', htmlspecialchars($value), $message);
 		}		
-		$request->setAttribute('message', $message);
+		$this->addMessage($message);
 		
 		if ($form->getUseBackLink())
 		{
@@ -169,7 +170,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 		$moduleName = $this->getModuleName();
 		FormHelper::setModuleName($moduleName);
 		
-		$contents = $this->getContentsFromRequest($form->getDocumentNode()->getChildren(), $request, $form);
+		$contents = $this->getContentsFromRequest($form->getDocumentNode()->getChildren(), $request, $form, 1);
 		
 		FormHelper::setModuleName($previousModuleName);				
 		
@@ -191,8 +192,18 @@ class form_BlockFormBaseAction extends website_BlockAction
 		$request->setAttribute('backUrl', $backUrl);
 		$request->setAttribute('useCaptcha', $form->getDocumentService()->hasToUseCaptcha($form));
 		$request->setAttribute('jQueryConditionalElement', $form->getDocumentService()->getJQueryForConditionalElementsOf($form));
+		$request->setAttribute('submitName', $this->getSubmitName($form));
 		
 		return $this->getInputTemplateByFullName($form);
+	}
+	
+	/**
+	 * @param form_persistentdocument_form $form
+	 * @return string
+	 */
+	protected function getSubmitName($form)
+	{
+		return 'submit_' . $form->getId() . '_' . $this->getBlockId();
 	}
 	
 	/**
@@ -205,12 +216,13 @@ class form_BlockFormBaseAction extends website_BlockAction
 	}
 
 	/**
-	 * @param array<TreeNode> $nodes
+	 * @param TreeNode[] $nodes
 	 * @param block_BlockRequest $request
 	 * @param form_persistentdocument_baseform $form
+	 * @param integer $level
 	 * @return array
 	 */
-	protected function getContentsFromRequest($nodes, $request, $form)
+	protected function getContentsFromRequest($nodes, $request, $form, $level = 1)
 	{
 		$contents = array();
 		$markup = $form->getMarkup();
@@ -219,13 +231,14 @@ class form_BlockFormBaseAction extends website_BlockAction
 			$document = $node->getPersistentDocument();
 			if ($document instanceof form_persistentdocument_group)
 			{
+				$level++;
 				$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->setDirectory('templates/markup/'.$markup)->load('Form-Group');
-				$elements = $this->getContentsFromRequest($node->getChildren(), $request, $form);
+				$elements = $this->getContentsFromRequest($node->getChildren(), $request, $form, $level);
 				$attributes = array(
-		    		'id' => $document->getId(),
-		    		'label' => $document->getLabel(),
-		    		'description' => $document->getDescription(),
-		    		'elements' => $elements
+		    		'label' => $document->getLabelAsHtml(),
+		    		'description' => $document->getDescriptionAsHtml(),
+		    		'elements' => $elements,
+					'level' => $level
 				);
 				$templateObject->setAttribute('group', $attributes);
 			}
@@ -233,12 +246,14 @@ class form_BlockFormBaseAction extends website_BlockAction
 			{
 				if ($document instanceof form_persistentdocument_field)
 				{
+					$ls = LocaleService::getInstance();
+					$lang = RequestContext::getInstance()->getLang();
 					$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->setDirectory('templates/markup/'.$markup)->load($document->getSurroundingTemplate());
 					$html = FormHelper::fromFieldDocument($document, $request->hasParameter($document->getFieldName()) ? $request->getParameter($document->getFieldName()) : $document->getDefaultValue());
 					$attributes = array(
 			    		'id' => $document->getId(),
-			    		'label' => $document->getLabel(),
-			    		'description' => $document->getHelpText(),
+			    		'label' => $ls->transformLab($document->getLabelAsHtml(), $lang),
+			    		'description' => $document->getHelpTextAsHtml(),
 			    		'required' => $document->getRequired(),
 			    		'display' => f_util_ClassUtils::methodExists($document, 'getDisplay') ? $document->getDisplay() : '',
 			    		'html' => $html
@@ -249,8 +264,8 @@ class form_BlockFormBaseAction extends website_BlockAction
 					$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->setDirectory('templates/markup/'.$markup)->load('Form-FreeContent');
 					$attributes = array(
 			    		'id' => $document->getId(),
-			    		'label' => $document->getLabel(),
-			    		'description' => $document->getText(),
+			    		'label' => $document->getLabelAsHtml(),
+			    		'description' => $document->getTextAsHtml(),
 			    		'required' => false,
 			    		'html' => ''
 			    	);

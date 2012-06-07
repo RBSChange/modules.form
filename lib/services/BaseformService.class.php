@@ -421,24 +421,22 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 */
 	public function getJQueryForConditionalElementsOf($form)
 	{
-		$elements = $this->getConditionalElementsOf($form);
-
 		$result = array();
-		foreach ($elements as $element)
+		foreach ($this->getConditionalElementsOf($form) as $element)
 		{
 			if ($element->hasCondition())
 			{
 				if ($element instanceof form_persistentdocument_group)
 				{
-					$zone = 'groupe'.$element->getId();
+					$zone = 'groupe' . $element->getId();
 				}
 				elseif ($element instanceof form_persistentdocument_freecontent)
 				{
-					$zone = 'freecontent'.$element->getId();
+					$zone = 'freecontent' . $element->getId();
 				}
 				else
 				{
-					$zone = 'field'.$element->getId();
+					$zone = 'field' . $element->getId();
 				}
 					
 				$elementId = $element->getId();
@@ -446,8 +444,8 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 				$question = $element->getActivationQuestion();
 				$questionId = $question->getId();
 				$activationValue = $element->getActivationValue();
-				$fieldId = $this->getFieldId($elementId);
-
+				$fieldId = $this->getFieldId($element);
+				
 				if ($question instanceof form_persistentdocument_boolean)
 				{
 					if($question->getDisplay() == FormHelper::DISPLAY_CHECKBOX)
@@ -481,68 +479,62 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @param Integer $elementId
+	 * @param form_persistentdocument_field | form_persistentdocument_freecontent $element
 	 * @return Boolean
 	 */
-	private function getFieldId($elementId)
+	private function getFieldId($element)
 	{
-		$element = DocumentHelper::getDocumentInstance($elementId);
-
-		switch ($this->getQuestionFieldType($elementId))
+		switch ($this->getQuestionFieldType($element))
 		{
 			case FormHelper::DISPLAY_LIST:
-				$fieldName = 'field_'.$element->getActivationQuestion()->getId();
+				$fieldName = 'field_' . $element->getActivationQuestion()->getId();
 				break;
 					
 			case FormHelper::DISPLAY_RADIO:
 			case FormHelper::DISPLAY_CHECKBOX:
-				$fieldName = 'field_'.$element->getActivationQuestion()->getId().'_'.FormHelper::getActivationValue($elementId);
+				$fieldName = 'field_' . $element->getActivationQuestion()->getId() . '_' . FormHelper::getActivationValue($element->getId());
 				break;
 					
 			case 'freecontent':
-				$fieldName = 'freecontent'.$element->getActivationQuestion()->getId();
+				$fieldName = 'freecontent' . $element->getActivationQuestion()->getId();
 				break;
 		}
-
 		return $fieldName;
 	}
-
+	
 	/**
-	 * @param Integer $elementId
+	 * @param form_persistentdocument_field | form_persistentdocument_freecontent $element
 	 * @return String
 	 */
-	private function getQuestionFieldType($elementId)
+	private function getQuestionFieldType($element)
 	{
-		$element = DocumentHelper::getDocumentInstance($elementId);
-
 		$question = $element->getActivationQuestion();
-
-		if ($question instanceof form_persistentdocument_boolean)
-		{
-			if($question->getDisplay() == FormHelper::DISPLAY_CHECKBOX)
-			{
-				return 'checkbox-boolean';
-			}
-		}
-		elseif ($question instanceof form_persistentdocument_freecontent)
+		if ($question instanceof form_persistentdocument_freecontent)
 		{
 			return 'freecontent';
 		}
-		else
+		elseif ($question instanceof form_persistentdocument_boolean)
 		{
-			if ($question->getDisplay() == FormHelper::DISPLAY_BUTTONS)
+			if ($question->getDisplay() == FormHelper::DISPLAY_CHECKBOX)
 			{
-				if($question->getMultiple())
-				{
-					return FormHelper::DISPLAY_CHECKBOX;
-				}
-				else
-				{
-					return FormHelper::DISPLAY_RADIO;
-				}
+				return FormHelper::DISPLAY_CHECKBOX;
+			}
+			else
+			{
+				return FormHelper::DISPLAY_RADIO;
 			}
 		}
-
+		elseif ($question->getDisplay() == FormHelper::DISPLAY_BUTTONS)
+		{
+			if ($question->getMultiple())
+			{
+				return FormHelper::DISPLAY_CHECKBOX;
+			}
+			else
+			{
+				return FormHelper::DISPLAY_RADIO;
+			}
+		}
 		return $question->getDisplay();
 	}
 

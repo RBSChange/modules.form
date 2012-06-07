@@ -137,13 +137,6 @@ class form_FormService extends form_BaseformService
 		}
 		
 		f_event_EventManager::dispatchEvent(self::FORM_SUBMITTED_EVENT_NAME, $form, array('response' => $response, 'request' => $request, 'referer' => $request->getParameter('backUrl')));
-				
-		$sendingType = $form->getMessageSendingType();
-		if ($sendingType !== self::SEND_EMAIL_AND_APPEND_TO_MAILBOX && $sendingType !== self::SEND_EMAIL_ONLY)
-		{
-			Framework::debug(__METHOD__ . " No message to send.");
-			return true;
-		}
 		
 		$copyMail = null;
 		$data = $request->getParameters();
@@ -164,10 +157,6 @@ class form_FormService extends form_BaseformService
 			}
 		}
 
-		if (Framework::isDebugEnabled())
-		{
-			Framework::debug(__METHOD__ . " A message has to be sent: ".$form->getMessageSendingType());
-		}
 		$result = array();
 		$result['success'] = $this->sendEmail($form, $response, $request, $copyMail, $replyTo);
 		if ($form->getSaveResponse())
@@ -218,7 +207,7 @@ class form_FormService extends form_BaseformService
 	/**
 	 * @param form_persistentdocument_form $form
 	 * @param form_persistentdocument_response $response
-	 * @param block_BlockRequest $request
+	 * @param f_mvc_Request $request
 	 * @param String $copyMail
 	 * @param String $replyTo
 	 * @return void
@@ -231,19 +220,25 @@ class form_FormService extends form_BaseformService
 			return true;
 		}
 		
-		$recipients = new mail_MessageRecipients();
+		$emails = array();
+		
+		if (f_util_StringUtils::isNotEmpty($copyMail))
+		{
+			$this->extractEmailsByArray(array($copyMail), $emails);
+		}
 		if ($request->hasParameter('receiverIds'))
 		{
-			$this->handleReceveirIds($request->getParameter('receiverIds'), $recipients);
+			$this->handleReceveirIds($request->getParameter('receiverIds'), $emails);
 		}
 
-		// Determine the message recipients for this form.
-		// Note that the following method may be overriden to allow the developper
-		// to build specific mail recipients, depending on the request data for
-		// example.
-		$this->buildMessageRecipients($form, $recipients, $request);
+		$this->buildMessageRecipients($form, $emails, $request);
 
-		if ($recipients->isEmpty())
+		if (Framework::isInfoEnabled())
+		{
+			Framework::info(__METHOD__ . ' to ' . implode(', ', $emails));
+		}
+		
+		if (count($emails) === 0)
 		{
 			return true;	
 		}
@@ -256,34 +251,16 @@ class form_FormService extends form_BaseformService
 		 	$configuredNotif->setSendingModuleName('form');
 			$configuredNotif->setSendingReplyTo($replyTo);
 			$configuredNotif->setSendingSenderEmail($this->getOverrideNotificationSender($form));
-			if ($form->getMessageSendingType() == self::SEND_EMAIL_AND_APPEND_TO_MAILBOX)
-			{
-				$configuredNotif->setSendingMailService(mailbox_MessageService::getInstance());
-				Framework::debug(__METHOD__." Getting mailbox_MessageService instance.");
-			}
-			else
-			{
-				$configuredNotif->setSendingMailService(MailService::getInstance());
-				Framework::debug(__METHOD__." Getting MailService instance.");
-			}
 			
-			
-			$callback = array($this, 'getResponseNotifParameters');
-			$params = array(
+			$configuredNotif->registerCallback($this, 'getResponseNotifParameters', array(
 				'form' => $form, 
 				'response' => $response, 
 				'replyTo' => $replyTo
-			);		
-			if (!$configuredNotif->getDocumentService()->sendNotificationCallback($configuredNotif, $recipients, $callback, $params))
-			{
-				return false;
-			}
+			));
 			
-			if ($copyMail === null)
+			foreach ($emails as $email)
 			{
-				$copyRecipient = new mail_MessageRecipients();
-				$copyRecipient->setTo(array($copyMail));
-				return $configuredNotif->getDocumentService()->sendNotificationCallback($configuredNotif, $copyRecipient, $callback, $params);
+				$configuredNotif->send($email);
 			}
 		}
 		return true;
@@ -310,12 +287,10 @@ class form_FormService extends form_BaseformService
 
 	/**
 	 * @param string $receiverIdStr
-	 * @param mail_MessageRecipients $recipients
+	 * @param array $recipients
 	 */
-	private function handleReceveirIds($receiverIdStr, &$recipients)
+	private function handleReceveirIds($receiverIdStr, &$emails)
 	{
-		$emailAddressArray = array();
-
 		// Let's check if $receiverIdStr contains a list of email addresses...
 		$errors = new validation_Errors();
 		$validate = new validation_EmailsValidator();
@@ -323,7 +298,7 @@ class form_FormService extends form_BaseformService
 
 		// Errors have been found: $receiverIdStr does not seem to contain
 		// email addresses, maybe it contains contacts ID.
-		if ( ! $errors->isEmpty() )
+		if (!$errors->isEmpty())
 		{
 			// try to get the component and get its emails
 			$receiverIdArray = explode(',', $receiverIdStr);
@@ -332,29 +307,15 @@ class form_FormService extends form_BaseformService
 				$receiverId = f_util_Convert::fixDataType($receiverId);
 				if (is_integer($receiverId))
 				{
-					try
-					{
-						// Merge the previously found email addresses with
-						// the one of the contact with ID $receiverId.
-						$emailAddressArray = array_merge(
-						$emailAddressArray,
-						DocumentHelper::getDocumentInstance($receiverId)->getEmailAddresses()
-						);
-					}
-					catch (Exception $e)
-					{
-						Framework::exception($e);
-					}
+					$document = DocumentHelper::getDocumentInstanceIfExists($receiverId);
+					$this->extractEmailsByDocument($document, $emails);
 				}
 			}
 		}
 		else
 		{
-			$emailAddressArray = explode(',', $receiverIdStr);
-			$emailAddressArray = array_map("trim", $emailAddressArray);
+			$this->extractEmailsByArray(explode(',', $receiverIdStr), $emails);
 		}
-
-		$recipients->setTo($emailAddressArray);
 	}
 	
 	/**
@@ -365,22 +326,17 @@ class form_FormService extends form_BaseformService
 	 * the project.
 	 *
 	 * @param form_persistentdocument_form $form
-	 * @param mail_MessageRecipients $recipients
+	 * @param array $emails
 	 * @param block_BlockRequest $request
 	 */
-	protected function buildMessageRecipients($form, &$recipients, &$request)
-	{
+	protected function buildMessageRecipients($form, &$emails, &$request)
+		{
 		// If there is no recipientGroup, we can exit this method.
 		if ($form->getRecipientGroupCount() == 0)
 		{
 			return;
 		}
-		
-		// Init arrays.
-		$toArray = ($recipients->hasTo()) ? $recipients->getTo() : array();
-		$ccArray = ($recipients->hasCC()) ? $recipients->getCC() : array();
-		$bccArray = ($recipients->hasBCC()) ? $recipients->getBCC() : array();
-		
+				
 		// The following holds the ID of the recipientGroups selected by the user.
 		$selectedGroupArray = array();
 		
@@ -397,7 +353,6 @@ class form_FormService extends form_BaseformService
 			
 			// Convert each value into an integer.
 			$selectedGroupIds = array_map('intval', $selectedGroupIds);
-			
 			foreach ($form->getRecipientGroupArray() as $recipientGroup)
 			{
 				if (in_array($recipientGroup->getId(), $selectedGroupIds))
@@ -422,28 +377,68 @@ class form_FormService extends form_BaseformService
 		// not been selected by the user.
 		foreach ($selectedGroupArray as $recipientGroup)
 		{
+			/* @var $recipientGroup form_persistentdocument_recipientGroup */
 			foreach ($recipientGroup->getToArray() as $contact)
 			{
-				$toArray = array_merge($toArray, $contact->getEmailAddresses());
+				$this->extractEmailsByDocument($contact, $emails);
 			}
+			
 			foreach ($recipientGroup->getCcArray() as $contact)
 			{
-				$ccArray = array_merge($ccArray, $contact->getEmailAddresses());
+				$this->extractEmailsByDocument($contact, $emails);
 			}
+			
 			foreach ($recipientGroup->getBccArray() as $contact)
 			{
-				$bccArray = array_merge($bccArray, $contact->getEmailAddresses());
+				$this->extractEmailsByDocument($contact, $emails);
 			}
 		}
-		
-		// Update mail_MessageRecipients object.
-		$recipients->setTo(array_unique($toArray));
-		$recipients->setCC(array_unique($ccArray));
-		$recipients->setBCC(array_unique($bccArray));
-		
-		if ($recipients->isEmpty() && Framework::isWarnEnabled())
+	}
+	
+	/**
+	 * @param f_persistentdocument_PersistentDocument|string[] $document
+	 * @param string[] $emails
+	 */
+	protected function extractEmailsByDocument($document, &$emails)
+	{
+		if ($document instanceof f_persistentdocument_PersistentDocument)
 		{
-			Framework::warn(__METHOD__ . " recipients is empty.");
+			if (f_util_ClassUtils::methodExists($document, 'getEmailAddresses'))
+			{
+				foreach ($document->getEmailAddresses() as $email)
+				{
+					if (f_util_StringUtils::isNotEmpty($email))
+					{
+						$emails[f_util_StringUtils::strtolower($email)] = $email;
+					}
+				}
+			}
+			elseif (f_util_ClassUtils::methodExists($document, 'getEmail'))
+			{
+				$email = $document->getEmail();
+				if (f_util_StringUtils::isNotEmpty($email))
+				{
+					$emails[f_util_StringUtils::strtolower($email)] = $email;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * @param string[] $array
+	 * @param string[] $emails
+	 */
+	protected function extractEmailsByArray($array, &$emails)
+	{
+		if (is_array($array) && count($array))
+		{
+			foreach ($array as $email)
+			{
+				if (is_string($email)  && f_util_StringUtils::isNotEmpty($email))
+				{
+					$emails[f_util_StringUtils::strtolower($email)] = $email;
+				}
+			}
 		}
 	}
 

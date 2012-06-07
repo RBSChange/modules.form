@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.form.frontoffice.datepicker" lcid="fr_FR">
-  <key id="previous-year">année précédente</key>
-  <key id="next-year">année suivante</key>
-  <key id="next-month">mois suivant</key>
-  <key id="previous-month">mois précédent</key>
-  <key id="close">fermer</key>
-  <key id="choose-date">choisir une date dans le calendrier</key>
-  <key id="format">jj/mm/aaaa</key>
+	<key id="previous-year">année précédente</key>
+	<key id="next-year">année suivante</key>
+	<key id="next-month">mois suivant</key>
+	<key id="previous-month">mois précédent</key>
+	<key id="close">fermer</key>
+	<key id="choose-date">choisir une date dans le calendrier</key>
+	<key id="format">jj/mm/aaaa</key>
+	<key id="format-help">format de date à respecter</key>
 </i18n>

@@ -4,12 +4,20 @@
 	<tal:block tal:define="global toHide string: toHide" />
 </tal:block>
 
-<li id="field${field/id}" class="radio-container ${toHide}">
-	<fieldset id="fieldset_${field/id}" class="radio">
-		<legend>${field/label}<span tal:condition="hasCondition" class="nojs"> ${trans:m.form.frontoffice.accessibility.activation,space,value=activationlabel}</span> <em tal:condition="field/required">*</em></legend>		
+<li id="field${field/id}" class="${toHide}">
+	<fieldset id="fieldset_${field/id}" class="inline-set">	
+		<legend tal:condition="not:field/required" class="group-label">
+			${field/label}
+			<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
+		</legend>		
+		<legend tal:condition="field/required" class="group-label required">
+			<em class="requiredsymbol" title="(${trans:m.website.frontoffice.this-field-is-mandatory})">*</em>
+			${field/label}
+			<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
+		</legend>		
 		<ol>
-			<li tal:replace="structure field/html" />
+			<tal:block>${field/html}</tal:block>
 		</ol>
-		<p tal:condition="field/description" class="help-text">${structure field/description}</p>
 	</fieldset>
-</li>
+	<p tal:condition="field/description" class="help-text">${field/description}</p>
+</li>	
