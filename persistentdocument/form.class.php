@@ -29,16 +29,10 @@ class form_persistentdocument_form extends form_persistentdocument_formbase
 				$address = $addresses[0];
 			}
 		}
-		if ($address === null)
+		
+		if (f_util_StringUtils::isEmpty($address))
 		{
-			if (defined('MOD_NOTIFICATION_SENDER'))
-			{
-				$address = MOD_NOTIFICATION_SENDER;
-			}
-			else
-			{
-				$address = MOD_NOTIFICATION_DEFAULT_SENDER;
-			}
+			$address = Framework::getDefaultNoReplySender();
 		}
 		return $address;
 	}
