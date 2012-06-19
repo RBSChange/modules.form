@@ -1,5 +1,5 @@
 <?php
-class form_ListActivationvaluesService extends BaseService
+class form_ListActivationvaluesService extends change_BaseService
 {
 	/**
 	 * @var form_ListActivationvaluesService

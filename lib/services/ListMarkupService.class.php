@@ -1,5 +1,5 @@
 <?php
-class form_ListMarkupService extends BaseService implements list_ListItemsService
+class form_ListMarkupService extends change_BaseService implements list_ListItemsService
 {
 	/**
 	 * @var form_ListMarkupService

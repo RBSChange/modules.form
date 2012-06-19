@@ -1,5 +1,5 @@
 <?php
-class form_CaptchaGenerator extends BaseService
+class form_CaptchaGenerator extends change_BaseService
 {
 	/**
 	 * @var form_CaptchaGenerator

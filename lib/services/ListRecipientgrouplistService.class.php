@@ -1,5 +1,5 @@
 <?php
-class form_ListRecipientgrouplistService extends BaseService implements list_ListItemsService
+class form_ListRecipientgrouplistService extends change_BaseService implements list_ListItemsService
 {
 	/**
 	 * @var form_ListRecipientgrouplistService
