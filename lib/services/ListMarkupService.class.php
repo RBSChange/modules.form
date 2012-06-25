@@ -33,12 +33,14 @@ class form_ListMarkupService extends change_BaseService implements list_ListItem
 		foreach ($pathWhereToFindMarkupsArray as $pathWhereToFindMarkups)
 		{
 			$dir = dir($pathWhereToFindMarkups);
-			while ($entry = $dir->read())
+			$entry = $dir->read();
+			while ($entry)
 			{
 				if ($entry{0} != '.' && is_dir($pathWhereToFindMarkups.DIRECTORY_SEPARATOR.$entry))
 				{
 					$items[] = $this->getItemByValue($entry);
 				}
+				$entry = $dir->read();
 			}
 		}
 

@@ -34,4 +34,17 @@ class form_RecipientGroupService extends f_persistentdocument_DocumentService
 	{
 		return $this->pp->createQuery('modules_form/recipientGroup');
 	}
+	
+	/**
+	 * @param form_persistentdocument_recipientGroup $document
+	 * @param Integer $parentNodeId
+	 */
+	protected function postInsert($document, $parentNodeId)
+	{
+		// Replace linked-to-root-module document model attribute.
+		if ($document->getTreeId() === null)
+		{
+			TreeService::getInstance()->newLastChild(ModuleService::getInstance()->getRootFolderId('form'), $document->getId());
+		}
+	}
 }

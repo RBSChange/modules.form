@@ -47,15 +47,7 @@ class form_FileService extends form_FieldService
 		$errCount = $errors->count();
 		$fileName = null;
 		$fieldName = $field->getFieldName();
-		if ($request instanceof block_BlockRequest)
-		{
-			$fileInfo = $request->getUploadedFileInformation($fieldName);
-			if (isset($fileInfo['name']))
-			{
-				$fileName = $fileInfo['name'];
-			}
-		}
-		else if ($request instanceof website_BlockActionRequest && $request->hasFile($fieldName))
+		if ($request instanceof website_BlockActionRequest && $request->hasFile($fieldName))
 		{
 			$fileName = $request->getFile($fieldName)->getFilename();
 		}

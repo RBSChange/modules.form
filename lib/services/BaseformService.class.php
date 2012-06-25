@@ -105,6 +105,19 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			}
 		}
 	}
+	
+	/**
+	 * @param form_persistentdocument_baseform $document
+	 * @param Integer $parentNodeId
+	 */
+	protected function postInsert($document, $parentNodeId)
+	{
+		// Replace linked-to-root-module document model attribute.
+		if ($document->getTreeId() === null)
+		{
+			TreeService::getInstance()->newLastChild(ModuleService::getInstance()->getRootFolderId('form'), $document->getId());
+		}
+	}
 
 	/**
 	 * @param form_persistentdocument_baseform $document
@@ -597,11 +610,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 			$fieldName = $node->getFieldName();
 			if ($node instanceof form_persistentdocument_file)
 			{
-				if ($request instanceof block_BlockRequest)
-				{
-					$rawValue = $request->getUploadedFileInformation($fieldName);
-				}
-				else if ($request instanceof website_BlockActionRequest && $request->hasFile($fieldName))
+				if ($request instanceof website_BlockActionRequest && $request->hasFile($fieldName))
 				{
 					$rawValue = $request->getFile($fieldName);
 				}
