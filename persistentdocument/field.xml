@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="1.0" use-publication-dates="false" has-url="false" backoffice-indexable="false">
-  <properties>
-    <property name="label" localized="true"/>
-    <property name="fieldName" type="String">
-      <constraint name="matches" parameter="^[a-zA-Z][a-z_\-A-Z\[\]0-9]+$"/>
-    </property>
-    <property name="validators" type="LongString"/>
-    <property name="required" type="Boolean" min-occurs="1" default-value="0"/>
-    <property name="helpText" type="LongString" localized="true"/>
-    <property name="isLocked" type="Boolean" min-occurs="1" default-value="false"/>
-    <property name="activationQuestion" type="modules_form/field"/>
-    <property name="activationValue" type="String" from-list="modules_form/activationvalues"/>
-  </properties>
-  <statuses default="ACTIVE"/>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/schema/persistentdocument-4.0.xsd" model-version="1.0" use-publication-dates="false" has-url="false" backoffice-indexable="false">
+	<properties>
+		<property name="label" localized="true" />
+		<property name="fieldName" type="String">
+			<constraint name="matches" parameter="^[a-zA-Z][a-z_\-A-Z\[\]0-9]+$" />
+		</property>
+		<property name="validators" type="LongString" />
+		<property name="required" type="Boolean" min-occurs="1" default-value="0" />
+		<property name="helpText" type="LongString" localized="true" />
+		<property name="isLocked" type="Boolean" min-occurs="1" default-value="false" />
+		<property name="activationQuestion" type="Document" document-type="modules_form/field" />
+		<property name="activationValue" type="String" from-list="modules_form/activationvalues" />
+	</properties>
+	<statuses default="ACTIVE" />
 </document>

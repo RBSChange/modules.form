@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="1.0" extend="modules_form/field" icon="ui-combo-box" has-url="false">
-  <properties>
-    <property name="dataSource" type="modules_list/list" min-occurs="1"/>
-    <property name="multiple" type="Boolean" min-occurs="1" default-value="false"/>
-    <property name="display" type="String" from-list="modules_form/listdisplaytypes" default-value="list"/>
-    <property name="hasBlankOption" type="Boolean" min-occurs="1" default-value="true"/>
-  </properties>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/schema/persistentdocument-4.0.xsd" model-version="1.0" extend="modules_form/field" icon="ui-combo-box" has-url="false">
+	<properties>
+		<property name="dataSource" type="Document" min-occurs="1" document-type="modules_list/list" />
+		<property name="multiple" type="Boolean" min-occurs="1" default-value="false" />
+		<property name="display" type="String" from-list="modules_form/listdisplaytypes" default-value="list" />
+		<property name="hasBlankOption" type="Boolean" min-occurs="1" default-value="true" />
+	</properties>
 </document>
