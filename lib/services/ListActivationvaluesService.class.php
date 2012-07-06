@@ -3,7 +3,7 @@
  * @package modules.form
  * @method form_ListActivationvaluesService getInstance()
  */
-class form_ListActivationvaluesService extends change_BaseService
+class form_ListActivationvaluesService extends change_BaseService implements list_ListItemsService
 {
 	/**
 	 * @return list_Item[]
