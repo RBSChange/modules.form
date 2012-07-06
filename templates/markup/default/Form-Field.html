@@ -1,0 +1,20 @@
+<tal:block tal:define="global hasCondition php: FormHelper::hasCondition(field['id'])" />
+<tal:block tal:define="global styleClass field/display" />
+<tal:block tal:condition="hasCondition">
+	<tal:block tal:define="global activationlabel php: FormHelper::getActivationLabel(field['id'])" />
+	<tal:block define="global styleClass php: styleClass . ' toHide'" />
+</tal:block>
+
+<li tal:attributes="class styleClass" id="field${field/id}">
+	<label tal:condition="not:field/required" for="field_${field/id}">
+		${field/label}
+		<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
+	</label>	
+	<label tal:condition="field/required" for="field_${field/id}" class="required">
+		<em class="requiredsymbol" title="(${trans:m.website.frontoffice.this-field-is-mandatory})">*</em>
+		${field/label}
+		<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
+	</label>	
+	${field/html}
+	<p tal:condition="field/description" class="help-text">${field/description}</p>
+</li>

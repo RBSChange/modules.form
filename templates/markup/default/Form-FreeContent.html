@@ -1,0 +1,10 @@
+<tal:block tal:define="global hasCondition php: FormHelper::hasCondition(field['id'])" />
+<tal:block tal:condition="hasCondition">
+	<tal:block tal:define="global activationlabel php: FormHelper::getActivationLabel(field['id'])" />
+	<tal:block tal:define="global toHide string: toHide" />
+</tal:block>
+
+<li id="freecontent${field/id}" tal:attributes="class toHide">
+	<tal:block tal:condition="hasCondition"><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span><br /></tal:block>
+	<div class="free-text">${field/description}</div>
+</li>
