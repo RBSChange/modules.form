@@ -5,11 +5,11 @@
  */
 class form_DateScriptDocumentElement extends form_FieldScriptDocumentElement
 {
-    /**
-     * @return form_persistentdocument_date
-     */
-    protected function initPersistentDocument()
-    {
-    	return form_DateService::getInstance()->getNewDocumentInstance();
-    }
+	/**
+	 * @return form_persistentdocument_date
+	 */
+	protected function initPersistentDocument()
+	{
+		return form_DateService::getInstance()->getNewDocumentInstance();
+	}
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.useractionlogger" lcid="fr_FR">
 	<key id="update-preferences">update.preferences {documentlabel}</key>
 	<key id="log-update-preferences">log-update-preferences</key>
@@ -10,20 +10,20 @@
 	<key id="log-update-form">log-update-form</key>
 	<key id="update-text">update.text {lang} {documentlabel}</key>
 	<key id="log-update-text">log update text</key>
-	<key id="insert-file">insert.file {lang} {documentlabel}</key>
-	<key id="log-insert-file">log insert file</key>
+	<!--<key id="insert-file">insert.file {lang} {documentlabel}</key>-->
+	<!--<key id="log-insert-file">log insert file</key>-->
 	<key id="move-file">move.file {destinationlabel} {lang} {documentlabel}</key>
 	<key id="log-move-file">log move file</key>
-	<key id="insert-freecontent">insert.freecontent {lang} {documentlabel}</key>
-	<key id="log-insert-freecontent">log insert freecontent</key>
-	<key id="insert-boolean">insert.boolean {lang} {documentlabel}</key>
-	<key id="log-insert-boolean">log insert boolean</key>
-	<key id="update-group">update.group {lang} {documentlabel}</key>
-	<key id="log-update-group">log update group</key>
-	<key id="insert-recipientgrouplist">insert.recipientgrouplist {lang} {documentlabel}</key>
-	<key id="log-insert-recipientgrouplist">log insert recipientgrouplist</key>
-	<key id="update-recipientgrouplist">update.recipientgrouplist {lang} {documentlabel}</key>
-	<key id="log-update-recipientgrouplist">log update recipientgrouplist</key>
+	<!--<key id="insert-freecontent">insert.freecontent {lang} {documentlabel}</key>-->
+	<!--<key id="log-insert-freecontent">log insert freecontent</key>-->
+	<!--<key id="insert-boolean">insert.boolean {lang} {documentlabel}</key>-->
+	<!--<key id="log-insert-boolean">log insert boolean</key>-->
+	<!--<key id="update-group">update.group {lang} {documentlabel}</key>-->
+	<!--<key id="log-update-group">log update group</key>-->
+	<!--<key id="insert-recipientgrouplist">insert.recipientgrouplist {lang} {documentlabel}</key>-->
+	<!--<key id="log-insert-recipientgrouplist">log insert recipientgrouplist</key>-->
+	<!--<key id="update-recipientgrouplist">update.recipientgrouplist {lang} {documentlabel}</key>-->
+	<!--<key id="log-update-recipientgrouplist">log update recipientgrouplist</key>-->
 	<key id="insert-form">insert.form {lang} {documentlabel}</key>
 	<key id="log-insert-form">log insert form</key>
 	<key id="insert-text">insert.text {lang} {documentlabel}</key>

@@ -93,7 +93,7 @@
 	<action name="addRecipientGroupFolderIsActive">
 		<parameter name="itemData" />
 		<body><![CDATA[
-	    	return this.getAttribute('enableRecipientGroupFolderCreation') == 'true';
+			return this.getAttribute('enableRecipientGroupFolderCreation') == 'true';
 		]]></body>
 	</action>
 	<action name="createRecipientGroup">
@@ -127,7 +127,7 @@
 	<action name="deleteIsActive">
 		<parameter name="itemData" />
 		<body><![CDATA[
-	    	return itemData.isLocked !== 'isLocked';
+			return itemData.isLocked !== 'isLocked';
 		]]></body>
 	</action>
 	<action name="viewResponses">
@@ -143,7 +143,7 @@
 				wCore.error('viewFormResponses', [], e);
 				this.refreshMainViewDeck();
 			}
-	    ]]></body>
+		]]></body>
 	</action>
 	<action name="exportCsv">
 		<parameter name="listWidget" />
@@ -151,12 +151,12 @@
 			var item = listWidget.getSelectedItems()[0];
 			var url = wCore.buildeServerUrl('form', 'Export', { cmpref: item.id, output: 'csv' });
 			wToolkit.downloadurl(url);
-	    ]]></body>
+		]]></body>
 	</action>
 	<action name="exportCsvIsActive">
 		<parameter name="itemData" />
 		<body><![CDATA[
-	    	return itemData.activeResponse > 0;
+			return itemData.activeResponse > 0;
 		]]></body>
 	</action>
 	<action name="exportAllCsv">
@@ -165,37 +165,37 @@
 			var item = listWidget.getSelectedItems()[0];
 			var url = wCore.buildeServerUrl('form', 'Export', { cmpref: item.id, output: 'csv', all: 'all' });
 			wToolkit.downloadurl(url);
-    	]]></body>
+		]]></body>
 	</action>
 	<action name="exportAllCsvIsActive">
 		<parameter name="itemData" />
 		<body><![CDATA[
-	    	return itemData.responseCount > 0;
+			return itemData.responseCount > 0;
 		]]></body>
 	</action>
 	<action name="archiveResponse">
 		<parameter name="listWidget" />
 		<body><![CDATA[
-	      	var item = listWidget.getSelectedItems()[0];
-	      	var lang = this.getContextLang();
-	    	var label = "${trans:m.form.bo.actions.ConfirmArchiveResponseItem,ucf,js} : " + item.label;
+		  	var item = listWidget.getSelectedItems()[0];
+		  	var lang = this.getContextLang();
+			var label = "${trans:m.form.bo.actions.confirmarchiveresponseitem,ucf,js} : " + item.label;
 			if (confirm(label))
 			{
 				this.executeJSON("ArchiveResponse", { cmpref: item.id, lang: lang});
-			}	    
-	    ]]></body>
+			}		
+		]]></body>
 	</action>
 	<action name="archiveResponseIsActive">
 		<parameter name="itemData" />
 		<body><![CDATA[
-	    	return itemData.activeResponse > 0;
+			return itemData.activeResponse > 0;
 		]]></body>
 	</action>
 	<action name="onArchiveResponseSuccess">
 		<parameter name="result" />
 		<body><![CDATA[
-	    	getController().alert(result.contents.message);
-	    ]]></body>
+			getController().alert(result.contents.message);
+		]]></body>
 	</action>
 	
 	<action name="previewForm">

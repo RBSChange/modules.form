@@ -9,7 +9,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 	 * @see website_BlockAction::execute()
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function execute($request, $response)
 	{
@@ -140,7 +140,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 		{
 			$request->setAttribute('back', array(
 				'url' => $parameters['backUrl'],
-				'label' => LocaleService::getInstance()->transFO('m.form.frontoffice.back', array('ucf'))
+				'label' => LocaleService::getInstance()->trans('m.form.frontoffice.back', array('ucf'))
 			));
 		}
 		
@@ -159,7 +159,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 	/**
 	 * @param form_persistentdocument_form $form
 	 * @param f_mvc_Request $request
-	 * @return String
+	 * @return string
 	 */
 	protected function getInputView($form, $request)
 	{
@@ -232,12 +232,12 @@ class form_BlockFormBaseAction extends website_BlockAction
 			if ($document instanceof form_persistentdocument_group)
 			{
 				$level++;
-				$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->setDirectory('templates/markup/'.$markup)->load('Form-Group');
+				$templateObject = change_TemplateLoader::getNewInstance()->setExtension('html')->load('modules', 'form', 'templates', 'markup', $markup, 'Form-Group');
 				$elements = $this->getContentsFromRequest($node->getChildren(), $request, $form, $level);
 				$attributes = array(
-		    		'label' => $document->getLabelAsHtml(),
-		    		'description' => $document->getDescriptionAsHtml(),
-		    		'elements' => $elements,
+					'label' => $document->getLabelAsHtml(),
+					'description' => $document->getDescriptionAsHtml(),
+					'elements' => $elements,
 					'level' => $level
 				);
 				$templateObject->setAttribute('group', $attributes);
@@ -248,27 +248,27 @@ class form_BlockFormBaseAction extends website_BlockAction
 				{
 					$ls = LocaleService::getInstance();
 					$lang = RequestContext::getInstance()->getLang();
-					$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->setDirectory('templates/markup/'.$markup)->load($document->getSurroundingTemplate());
+					$templateObject = change_TemplateLoader::getNewInstance()->setExtension('html')->load('modules', 'form', 'templates', 'markup', $markup, $document->getSurroundingTemplate());
 					$html = FormHelper::fromFieldDocument($document, $request->hasParameter($document->getFieldName()) ? $request->getParameter($document->getFieldName()) : $document->getDefaultValue());
 					$attributes = array(
-			    		'id' => $document->getId(),
-			    		'label' => $ls->transformLab($document->getLabelAsHtml(), $lang),
-			    		'description' => $document->getHelpTextAsHtml(),
-			    		'required' => $document->getRequired(),
-			    		'display' => f_util_ClassUtils::methodExists($document, 'getDisplay') ? $document->getDisplay() : '',
-			    		'html' => $html
+						'id' => $document->getId(),
+						'label' => $ls->transformLab($document->getLabelAsHtml(), $lang),
+						'description' => $document->getHelpTextAsHtml(),
+						'required' => $document->getRequired(),
+						'display' => f_util_ClassUtils::methodExists($document, 'getDisplay') ? $document->getDisplay() : '',
+						'html' => $html
 					);
 				}
 				else if ($document instanceof form_persistentdocument_freecontent)
 				{
-					$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->setDirectory('templates/markup/'.$markup)->load('Form-FreeContent');
+					$templateObject = change_TemplateLoader::getNewInstance()->setExtension('html')->load('modules', 'form', 'templates', 'markup', $markup, 'Form-FreeContent');
 					$attributes = array(
-			    		'id' => $document->getId(),
-			    		'label' => $document->getLabelAsHtml(),
-			    		'description' => $document->getTextAsHtml(),
-			    		'required' => false,
-			    		'html' => ''
-			    	);
+						'id' => $document->getId(),
+						'label' => $document->getLabelAsHtml(),
+						'description' => $document->getTextAsHtml(),
+						'required' => false,
+						'html' => ''
+					);
 				}
 				$templateObject->setAttribute('field', $attributes);
 			}

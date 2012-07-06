@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.boolean" lcid="en_GB">
-  <include id="m.form.document.field"/>
-  <key id="document-name">true/false field</key>
-  <key id="truelabel">label if true</key>
-  <key id="falselabel">label if false</key>
-  <key id="display">display</key>
-  <key id="display-help">Select the display mode you wish to use.</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">true/false field</key>
+	<key id="truelabel">label if true</key>
+	<key id="falselabel">label if false</key>
+	<key id="display">display</key>
+	<key id="display-help">Select the display mode you wish to use.</key>
 </i18n>

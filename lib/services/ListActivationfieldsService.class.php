@@ -1,25 +1,12 @@
 <?php
-class form_ListActivationfieldsService extends change_BaseService
+/**
+ * @package modules.form
+ * @method form_ListActivationfieldsService getInstance()
+ */
+class form_ListActivationfieldsService extends change_BaseService implements list_ListItemsService
 {
 	/**
-	 * @var form_ListActivationfieldsService
-	 */
-	private static $instance;
-	
-	/**
-	 * @return form_ListActivationfieldsService
-	 */
-	public static function getInstance()
-	{
-		if (is_null(self::$instance))
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-	
-	/**
-	 * @return array<list_Item>
+	 * @return list_Item[]
 	 */
 	public final function getItems()
 	{
@@ -67,14 +54,14 @@ class form_ListActivationfieldsService extends change_BaseService
 			}
 			else 
 			{
-				$results[] = new list_Item($field->getVoLabel() . ' [' . $ls->transBO('m.uixul.bo.languages.' . $field->getLang(), array('ucf')) . ']', $field->getId());
+				$results[] = new list_Item($field->getVoLabel() . ' [' . $ls->trans('m.uixul.bo.languages.' . $field->getLang(), array('ucf')) . ']', $field->getId());
 			}
 		}		
 		return $results;
 	}
 	
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public final function getDefaultId()
 	{

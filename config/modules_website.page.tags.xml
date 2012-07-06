@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
-<tags extends="generic">
+<?xml version="1.0" encoding="UTF-8"?>
+<tags>
 	<tag labeli18n="m.form.bo.general.tag.recommand-page" icon="form">contextual_website_website_modules_form_recommand-page</tag>
 </tags>

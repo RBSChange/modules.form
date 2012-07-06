@@ -1,24 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_BooleanService getInstance()
+ */
 class form_BooleanService extends form_FieldService
 {
-	/**
-	 * @var form_BooleanService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_BooleanService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
-
 	/**
 	 * @return form_persistentdocument_boolean
 	 */
@@ -33,7 +19,7 @@ class form_BooleanService extends form_FieldService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/boolean');
+		return $this->getPersistentProvider()->createQuery('modules_form/boolean');
 	}
 	
 	/**

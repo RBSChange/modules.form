@@ -103,7 +103,7 @@ class PHPTAL_Php_Attribute_CHANGE_Captcha extends ChangeTalAttribute
 		$code = '<span class="captcha"><input type="image" src="' . $url . '"';
 		if (!isset($attributes['title']))
 		{
-			$attributes['title'] = LocaleService::getInstance()->transFO("m.form.bo.general.captcha-click-to-have-another-one", array('ucf', 'attr'));
+			$attributes['title'] = LocaleService::getInstance()->trans("m.form.bo.general.captcha-click-to-have-another-one", array('ucf', 'attr'));
 		}
 		if (!isset($attributes['onclick']))
 		{
@@ -147,7 +147,7 @@ class PHPTAL_Php_Attribute_CHANGE_Captcha extends ChangeTalAttribute
 		}
 		if (!isset($attributes['title']))
 		{
-			$attributes['title'] = LocaleService::getInstance()->transFO("m.form.bo.general.captcha-help", array('ucf', 'attr'));
+			$attributes['title'] = LocaleService::getInstance()->trans("m.form.bo.general.captcha-help", array('ucf', 'attr'));
 		}
 		foreach ($attributes as $name => $value)
 		{

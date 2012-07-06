@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.recipientgrouplist" lcid="fr_FR">
-  <include id="m.form.document.field"/>
-  <key id="document-name">champ de sélection des destinataires</key>
-  <key id="multiple">sélection multiple</key>
-  <key id="display">affichage</key>
-  <key id="display-help">type d'affichage.</key>
-  <key id="hasblankoption">ajouter une en-tête</key>
-  <key id="hasblankoption-help">Permet d'avoir une en-tête en début de liste. Si la liste est obligatoire, l'utilisateur devra alors choisir une valeur dans la liste plutôt que la première (et pas forcément pertinente) soit sélectionnée par défaut.</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">champ de sélection des destinataires</key>
+	<key id="multiple">sélection multiple</key>
+	<key id="display">affichage</key>
+	<key id="display-help">type d'affichage.</key>
+	<key id="hasblankoption">ajouter une en-tête</key>
+	<key id="hasblankoption-help">Permet d'avoir une en-tête en début de liste. Si la liste est obligatoire, l'utilisateur devra alors choisir une valeur dans la liste plutôt que la première (et pas forcément pertinente) soit sélectionnée par défaut.</key>
 </i18n>

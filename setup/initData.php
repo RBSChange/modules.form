@@ -6,7 +6,7 @@ class form_Setup extends object_InitDataSetup
 		try
 		{
 			$scriptReader = import_ScriptReader::getInstance();
-       	 	$scriptReader->executeModuleScript('form', 'init.xml');
+			$scriptReader->executeModuleScript('form', 'init.xml');
 		}
 		catch (Exception $e)
 		{

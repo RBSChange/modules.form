@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_PasswordService getInstance()
+ */
 class form_PasswordService extends form_FieldService
 {
-	/**
-	 * @var form_PasswordService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_PasswordService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_password
 	 */
@@ -32,6 +19,6 @@ class form_PasswordService extends form_FieldService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/password');
+		return $this->getPersistentProvider()->createQuery('modules_form/password');
 	}
 }

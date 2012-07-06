@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_GroupService getInstance()
+ */
 class form_GroupService extends f_persistentdocument_DocumentService
 {
-	/**
-	 * @var form_GroupService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_GroupService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_group
 	 */
@@ -32,7 +19,7 @@ class form_GroupService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/group');
+		return $this->getPersistentProvider()->createQuery('modules_form/group');
 	}
 
 
@@ -48,7 +35,7 @@ class form_GroupService extends f_persistentdocument_DocumentService
 	/**
 	 * @param form_persistentdocument_group $group
 	 * @param Array $data
-	 * @return Boolean
+	 * @return boolean
 	 */
 	public function isConditionValid($group, $data)
 	{
@@ -74,7 +61,7 @@ class form_GroupService extends f_persistentdocument_DocumentService
 	/**
 	 * @param form_persistentdocument_group $newDocument
 	 * @param form_persistentdocument_group $originalDocument
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function preDuplicate($newDocument, $originalDocument, $parentNodeId)
 	{
@@ -105,21 +92,21 @@ class form_GroupService extends f_persistentdocument_DocumentService
 	 * 
 	 * @param form_persistentdocument_group $newDocument
 	 * @param form_persistentdocument_group $originalDocument
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 *
 	 * @throws IllegalOperationException
 	 */
 	protected function postDuplicate($newDocument, $originalDocument, $parentNodeId)
 	{
-	    $items = $this->getChildrenOf($originalDocument);
-        foreach ($items as $item) 
-        {
-        	if ($item instanceof form_persistentdocument_group || 
-        	    $item instanceof form_persistentdocument_field ) 
-        	{
-        		$this->duplicate($item->getId(), $newDocument->getId());
-        	}
-        }
+		$items = $this->getChildrenOf($originalDocument);
+		foreach ($items as $item) 
+		{
+			if ($item instanceof form_persistentdocument_group || 
+				$item instanceof form_persistentdocument_field ) 
+			{
+				$this->duplicate($item->getId(), $newDocument->getId());
+			}
+		}
 	}
 	
 	/**

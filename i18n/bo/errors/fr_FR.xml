@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.errors" lcid="fr_FR">
-  <key id="cannot-move-a-field-from-a-form-to-another-form">impossible de déplacer un champ dans un autre formulaire que le formulaire d'origine</key>
-  <key id="field-name-alreay-used">le nom ″{fieldName}″ est déjà utilisé par un autre champ dans ce formulaire</key>
-  <key id="mail-field-for-replyto-exists">un champ mail est déjà configuré dans ce formulaire pour être le champ ″répondre à″</key>
-  <key id="invalidfieldname">Le nom du champ ne respecte un des criteres suivant. Il doit être composé de lettres et de chiffres uniquement et doit commencer par une lettre.</key>
+	<key id="cannot-move-a-field-from-a-form-to-another-form">impossible de déplacer un champ dans un autre formulaire que le formulaire d'origine</key>
+	<key id="field-name-alreay-used">le nom ″{fieldName}″ est déjà utilisé par un autre champ dans ce formulaire</key>
+	<key id="mail-field-for-replyto-exists">un champ mail est déjà configuré dans ce formulaire pour être le champ ″répondre à″</key>
+	<key id="invalidfieldname">Le nom du champ ne respecte un des criteres suivant. Il doit être composé de lettres et de chiffres uniquement et doit commencer par une lettre.</key>
 </i18n>

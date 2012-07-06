@@ -1,8 +1,8 @@
 <?php
 abstract class FormHelper
 {
-	const DISPLAY_LIST     = 'list';
-	const DISPLAY_RADIO    = 'radio';
+	const DISPLAY_LIST	 = 'list';
+	const DISPLAY_RADIO	= 'radio';
 	const DISPLAY_CHECKBOX = 'checkbox';
 	const DISPLAY_BUTTONS  = 'buttons';
 
@@ -46,7 +46,7 @@ abstract class FormHelper
 	public static function textBox($name, $id, $value, $attributes = array())
 	{
 		$attributes['name']  = $name;
-		$attributes['id']    = $id;
+		$attributes['id']	= $id;
 		$attributes['value'] = $value;
 		if (!isset($attributes['size']))
 		{
@@ -65,7 +65,7 @@ abstract class FormHelper
 	public static function hiddenBox($name, $id, $value)
 	{
 		$attributes['name']  = $name;
-		$attributes['id']    = $id;
+		$attributes['id']	= $id;
 		$attributes['value'] = $value;
 		return self::field('Hidden', $attributes);
 	}
@@ -80,7 +80,7 @@ abstract class FormHelper
 	public static function passwordBox($name, $id, $attributes = array())
 	{
 		$attributes['name']  = $name;
-		$attributes['id']    = $id;
+		$attributes['id']	= $id;
 		if (!isset($attributes['size']))
 		{
 			$attributes['size'] = 20;
@@ -99,7 +99,7 @@ abstract class FormHelper
 	public static function multilineTextBox($name, $id, $value, $attributes = array())
 	{
 		$attributes['name']  = $name;
-		$attributes['id']    = $id;
+		$attributes['id']	= $id;
 		$attributes['value'] = $value;
 		if (!isset($attributes['cols']))
 		{
@@ -161,8 +161,8 @@ abstract class FormHelper
 	 */
 	public static function checkBox($name, $id, $value, $checked = false, $attributes = array())
 	{
-		$attributes['name']    = $name;
-		$attributes['id']      = $id;
+		$attributes['name']	= $name;
+		$attributes['id']	  = $id;
 		$attributes['value']   = $value ? $value : '1';
 		$attributes['checked'] = $checked;
 		return self::field('Checkbox', $attributes);
@@ -179,7 +179,7 @@ abstract class FormHelper
 	public static function uploadFileBox($name, $id, $value, $attributes = array())
 	{
 		$attributes['name']  = $name;
-		$attributes['id']    = $id;
+		$attributes['id']	= $id;
 		$attributes['value'] = $value;
 		if (!isset($attributes['size']))
 		{
@@ -198,7 +198,7 @@ abstract class FormHelper
 	public static function dateBox($name, $id, $value, $attributes = array())
 	{
 		$attributes['name']  = $name;
-		$attributes['id']    = $id;
+		$attributes['id']	= $id;
 		$attributes['value'] = $value;
 		$attributes['size' ] = 10;
 		$attributes['class'] = 'date-picker';
@@ -244,15 +244,15 @@ abstract class FormHelper
 	 */
 	private static function field($template, $attributes)
 	{
-		$templateObject = TemplateLoader::getInstance()->setPackageName('modules_form')->load('Form-Field-' . $template);
-    	$templateObject->setAttribute('field', $attributes);
-    	$templateObject->setAttribute('moduleName', self::getModuleName());
-    	return $templateObject->execute();
+		$templateObject = change_TemplateLoader::getNewInstance()->setExtension('html')->load('modules', 'form', 'templates', 'Form-Field-' . $template);
+		$templateObject->setAttribute('field', $attributes);
+		$templateObject->setAttribute('moduleName', self::getModuleName());
+		return $templateObject->execute();
 	}
 
-	const SELECTION_SINGLE            = 's';
-	const SELECTION_MULTIPLE          = 'm';
-	const SELECTION_SINGLE_RADIO      = 'r';
+	const SELECTION_SINGLE			= 's';
+	const SELECTION_MULTIPLE		  = 'm';
+	const SELECTION_SINGLE_RADIO	  = 'r';
 	const SELECTION_MULTIPLE_CHECKBOX = 'c';
 
 	/**
@@ -268,7 +268,7 @@ abstract class FormHelper
 	private static function listField($name, $id, $value, $items, $type = self::SELECTION_SINGLE, $attributes = array())
 	{
 		$attributes['name']  = $name;
-		$attributes['id']    = $id;
+		$attributes['id']	= $id;
 		$attributes['value'] = $value;
 		$options = array();
 		foreach ($items as $itemValue => $itemLabel)
@@ -390,7 +390,7 @@ abstract class FormHelper
 				if ($field->getHasBlankOption())
 				{
 					$items = array_reverse($items, true);
-					$items[''] = f_Locale::translate("&modules.form.frontoffice.list.BlankOption;");
+					$items[''] = LocaleService::getInstance()->trans("m.form.frontoffice.list.blankoption", array('ucf'));
 					$items = array_reverse($items, true);
 				}
 				return self::listBox($field->getFieldName(), $field->getId(), $value, $items, $attributes);
@@ -414,7 +414,7 @@ abstract class FormHelper
 				if ($field->getHasBlankOption())
 				{
 					$items = array_reverse($items, true);
-					$items[''] = f_Locale::translate("&modules.form.frontoffice.list.BlankOption;");
+					$items[''] = LocaleService::getInstance()->trans("m.form.frontoffice.list.blankoption", array('ucf'));
 					$items = array_reverse($items, true);
 				}
 				return self::comboBox($field->getFieldName(), $field->getId(), $value, $items, $attributes);
@@ -521,8 +521,8 @@ abstract class FormHelper
 	}
 
 	/**
-	 * @param String $code
-	 * @param String $key
+	 * @param string $code
+	 * @param string $key
 	 * @return boolean
 	 */
 	public static function checkCaptchaForKey($code, $key)
@@ -541,8 +541,8 @@ abstract class FormHelper
 	}
 
 	/**
-	 * @param Integer $elementId
-	 * @return Boolean
+	 * @param integer $elementId
+	 * @return boolean
 	 */
 	public static function hasCondition($elementId)
 	{
@@ -551,8 +551,8 @@ abstract class FormHelper
 	}	
 		
 	/**
-	 * @param Integer $elementId
-	 * @return Boolean
+	 * @param integer $elementId
+	 * @return boolean
 	 */
 	public static function getActivationLabel($elementId)
 	{
@@ -574,8 +574,8 @@ abstract class FormHelper
 	}
 	
 	/**
-	 * @param Integer $elementId
-	 * @return Boolean
+	 * @param integer $elementId
+	 * @return boolean
 	 */
 	public static function getActivationValue($elementId)
 	{
@@ -586,7 +586,7 @@ abstract class FormHelper
 	
 	/**
 	 * @param form_persistentdocument_field $list
-	 * @param String $value
+	 * @param string $value
 	 */
 	private function getLabelByListAndValue($list, $value)
 	{

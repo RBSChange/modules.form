@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.recipientgroup" lcid="fr_FR">
-  <key id="document-name">groupe d'envoi</key>
-  <key id="parentref">dossier parent</key>
-  <key id="label">libellé</key>
-  <key id="description">description</key>
-  <key id="to">destinataires principaux</key>
-  <key id="cc">destinataires secondaires</key>
-  <key id="cc-help">les destinataires secondaires sont placés en copie de l'email envoyé (CC).</key>
-  <key id="bcc">destinataires cachés</key>
-  <key id="bcc-help">les destinataires cachés sont placés en copie cachée de l'email envoyé (BCC).</key>
+	<key id="document-name">groupe d'envoi</key>
+	<key id="parentref">dossier parent</key>
+	<key id="label">libellé</key>
+	<key id="description">description</key>
+	<key id="to">destinataires principaux</key>
+	<key id="cc">destinataires secondaires</key>
+	<key id="cc-help">les destinataires secondaires sont placés en copie de l'email envoyé (CC).</key>
+	<key id="bcc">destinataires cachés</key>
+	<key id="bcc-help">les destinataires cachés sont placés en copie cachée de l'email envoyé (BCC).</key>
 </i18n>

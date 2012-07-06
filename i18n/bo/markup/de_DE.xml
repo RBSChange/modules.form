@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.markup" lcid="de_DE">
-  <key id="default">basierend auf Aufzählungszeichenliste (zugänglich) - empfohlen</key>
-  <key id="table">basierend auf Tabellen</key>
+	<key id="default">basierend auf Aufzählungszeichenliste (zugänglich) - empfohlen</key>
+	<key id="table">basierend auf Tabellen</key>
 </i18n>

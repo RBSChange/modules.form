@@ -6,14 +6,14 @@
 class form_persistentdocument_list extends form_persistentdocument_listbase
 {
 	/**
-	 * @return String
+	 * @return string
 	 */
-    public function getSurroundingTemplate ()
-    {
-        if ($this->getDisplay() == FormHelper::DISPLAY_BUTTONS)
-        {
-            return 'Form-Radio';
-        }
-        return parent::getSurroundingTemplate();
-    }
+	public function getSurroundingTemplate ()
+	{
+		if ($this->getDisplay() == FormHelper::DISPLAY_BUTTONS)
+		{
+			return 'Form-Radio';
+		}
+		return parent::getSurroundingTemplate();
+	}
 }

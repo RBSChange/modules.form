@@ -1,26 +1,13 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_DateService getInstance()
+ */
 class form_DateService extends form_FieldService
 {
 	const DEFAULT_VALIDATORS = 'date:d/m/Y';
 	const DEFAULT_START_DATE = '1970-01-01';
 	const DEFAULT_END_DATE   = '2050-12-31';
-
-	/**
-	 * @var form_DateService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_DateService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
 
 	/**
 	 * @return form_persistentdocument_date
@@ -36,12 +23,12 @@ class form_DateService extends form_FieldService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/date');
+		return $this->getPersistentProvider()->createQuery('modules_form/date');
 	}
 
 	/**
 	 * @param form_persistentdocument_date $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 */
 	protected function preInsert($document, $parentNodeId = null)
@@ -50,19 +37,19 @@ class form_DateService extends form_FieldService
 		$document->setValidators(self::DEFAULT_VALIDATORS);
 	}
 	
-    /**
-     * @param form_persistentdocument_date $field
-     * @param DOMElement $fieldElm
-     * @param mixed $rawValue
-     * @return string
-     */
-    public function buildXmlElementResponse($field, $fieldElm, $rawValue)
-    {
-        $txtValue = parent::buildXmlElementResponse($field, $fieldElm, $rawValue); 
+	/**
+	 * @param form_persistentdocument_date $field
+	 * @param DOMElement $fieldElm
+	 * @param mixed $rawValue
+	 * @return string
+	 */
+	public function buildXmlElementResponse($field, $fieldElm, $rawValue)
+	{
+		$txtValue = parent::buildXmlElementResponse($field, $fieldElm, $rawValue); 
 		if (!empty($txtValue))
 		{
-		    $txtValue = date_Calendar::getInstanceFromFormat($txtValue, f_Locale::translate('&framework.date.date.default-date-format;'))->toString();
+			$txtValue = date_Calendar::getInstanceFromFormat($txtValue, LocaleService::getInstance()->trans('f.date.date.default-date-format'))->toString();
 		}
 		return $txtValue;
-    }
+	}
 }

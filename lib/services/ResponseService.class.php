@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_ResponseService getInstance()
+ */
 class form_ResponseService extends f_persistentdocument_DocumentService
 {
-	/**
-	 * @var form_ResponseService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_ResponseService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_response
 	 */
@@ -32,7 +19,7 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/response');
+		return $this->getPersistentProvider()->createQuery('modules_form/response');
 	}
 
 	/**
@@ -73,22 +60,22 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param form_persistentdocument_form $form
-	 * @return Integer
+	 * @return integer
 	 */
 	public function fileForForm($form)
 	{
-	    $count = 0;
-	    $responses = $this->createQuery()
-	                    ->add(Restrictions::eq('parentForm.id', $form->getId()))
-	                    ->add(Restrictions::published())
-	                    ->find();
-	    foreach ($responses as $response) 
-	    {
-	    	$this->file($response->getId());
-	    	$count++;
-	    }
+		$count = 0;
+		$responses = $this->createQuery()
+						->add(Restrictions::eq('parentForm.id', $form->getId()))
+						->add(Restrictions::published())
+						->find();
+		foreach ($responses as $response) 
+		{
+			$this->file($response->getId());
+			$count++;
+		}
 	   
-	    return $count;
+		return $count;
 	}
 	
 	/**
@@ -169,7 +156,7 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 			catch (Exception $e)
 			{
 				$e; // Avoid Eclipse warning...
-				$infos['mailValue'] = f_Locale::translateUI('&modules.form.bo.general.Unexisting-file;', array('id' => $value));
+				$infos['mailValue'] = LocaleService::getInstance()->trans('m.form.bo.general.unexisting-file' /* @TODO CHECK */, array('ucf'), array('id' => $value));
 			}
 		}
 		return $infos;

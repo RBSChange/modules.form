@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.hidden" lcid="fr_FR">
-  <include id="m.form.document.field"/>
-  <key id="document-name">champ caché</key>
-  <key id="label-help">libellé du champ caché (ne sera pas affiché sur le site).</key>
-  <key id="isreceiver">champ destinataire du mail</key>
-  <key id="isreceiver-help">Détermine si ce champ caché devra comprendre le contact destinataire de l'email.</key>
-  <key id="isrecommand">champ recommander à un ami</key>
-  <key id="isrecommand-help">Champ utilisé pour la fonction recommander à un ami.</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">champ caché</key>
+	<key id="label-help">libellé du champ caché (ne sera pas affiché sur le site).</key>
+	<key id="isreceiver">champ destinataire du mail</key>
+	<key id="isreceiver-help">Détermine si ce champ caché devra comprendre le contact destinataire de l'email.</key>
+	<key id="isrecommand">champ recommander à un ami</key>
+	<key id="isrecommand-help">Champ utilisé pour la fonction recommander à un ami.</key>
 </i18n>

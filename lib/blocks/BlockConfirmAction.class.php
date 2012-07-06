@@ -4,7 +4,7 @@ class form_BlockConfirmAction extends website_BlockAction
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function execute($request, $response)
 	{
@@ -35,7 +35,7 @@ class form_BlockConfirmAction extends website_BlockAction
 		{
 			$request->setAttribute('back', array(
 				'url' => $parameters['backUrl'],
-				'label' => LocaleService::getInstance()->transFO('m.form.frontoffice.back', array('ucf'))
+				'label' => LocaleService::getInstance()->trans('m.form.frontoffice.back', array('ucf'))
 			));
 		}
 		

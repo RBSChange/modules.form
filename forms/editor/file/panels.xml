@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <panels>
 	<panel name="resume" />
 	<panel name="properties" />
@@ -9,11 +9,9 @@
 	<xul>
 		<javascript>
 			<field name="fileTypes">null</field>
-			
 			<constructor><![CDATA[
 				this.fileTypes = { image: ['jpg','jpeg','png','gif'], document: ['doc','pdf','html','htm','xls','sxw','pps','ppt'] }
 			]]></constructor>
-			
 			<method name="setAllowedTypes">
 				<parameter name="panel" />
 				<parameter name="fieldName" />

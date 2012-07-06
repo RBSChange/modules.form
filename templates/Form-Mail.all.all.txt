@@ -1,9 +1,0 @@
-<title tal:replace="email/subject"/>
-
-<p tal:replace="email/header"/>
-
-<span tal:repeat="item email/items" tal:omit-tag="">
-<span tal:replace="item/label" /> : <span tal:replace="item/value" />
-</span>
-
-<p tal:replace="email/footer"/>

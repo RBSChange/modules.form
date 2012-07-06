@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.preferences.captcha" lcid="en_GB">
-  <key id="fontdepth">shadow depth</key>
-  <key id="fontdepth-help">Depth of the shadow beneath the text (in pixels).</key>
-  <key id="fontsize">character size</key>
-  <key id="fontsize-help">Size of the characters used for the CAPTCHA code (in pixels).</key>
-  <key id="height">height</key>
-  <key id="height-help">Height of the CAPTCHA image (in pixels).</key>
-  <key id="maxlength">number of characters</key>
-  <key id="maxlength-help">Maximum number of characters that make up the CAPTCHA code.</key>
-  <key id="reload">reload</key>
-  <key id="width">width</key>
-  <key id="width-help">Width of the CAPTCHA image (in pixels).</key>
+	<key id="fontdepth">shadow depth</key>
+	<key id="fontdepth-help">Depth of the shadow beneath the text (in pixels).</key>
+	<key id="fontsize">character size</key>
+	<key id="fontsize-help">Size of the characters used for the CAPTCHA code (in pixels).</key>
+	<key id="height">height</key>
+	<key id="height-help">Height of the CAPTCHA image (in pixels).</key>
+	<key id="maxlength">number of characters</key>
+	<key id="maxlength-help">Maximum number of characters that make up the CAPTCHA code.</key>
+	<key id="reload">reload</key>
+	<key id="width">width</key>
+	<key id="width-help">Width of the CAPTCHA image (in pixels).</key>
 </i18n>

@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_ListMarkupService getInstance()
+ */
 class form_ListMarkupService extends change_BaseService implements list_ListItemsService
 {
-	/**
-	 * @var form_ListMarkupService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_ListMarkupService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return list_Item[]
 	 */
@@ -25,11 +12,7 @@ class form_ListMarkupService extends change_BaseService implements list_ListItem
 	{
 		$items = array();
 
-		$pathWhereToFindMarkupsArray = FileResolver::getInstance()
-			->setPackageName('modules_form')
-			->setDirectory('templates/markup')
-			->getPaths('');
-
+		$pathWhereToFindMarkupsArray = change_FileResolver::getNewInstance()->getPaths('modules', 'form', 'templates', 'markup');
 		foreach ($pathWhereToFindMarkupsArray as $pathWhereToFindMarkups)
 		{
 			$dir = dir($pathWhereToFindMarkups);
@@ -54,6 +37,6 @@ class form_ListMarkupService extends change_BaseService implements list_ListItem
 	 */
 	public function getItemByValue($value)
 	{
-		return new list_Item(LocaleService::getInstance()->transBO('m.form.bo.markup.'.strtolower($value)), $value);
+		return new list_Item(LocaleService::getInstance()->trans('m.form.bo.markup.'.strtolower($value)), $value);
 	}
 }

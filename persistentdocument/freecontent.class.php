@@ -6,8 +6,8 @@
 class form_persistentdocument_freecontent extends form_persistentdocument_freecontentbase
 {
 	/**
-	 * @param Integer $elementId
-	 * @return Boolean
+	 * @param integer $elementId
+	 * @return boolean
 	 */
 	public function hasCondition()
 	{

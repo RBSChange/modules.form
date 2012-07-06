@@ -1,7 +1,0 @@
-<select name="${moduleName}Param[${field/name}][]" id="field_${field/id}" multiple="multiple" tal:attributes="title field/title">
-<tal:block tal:repeat="item field/items">
-	<option tal:condition="item/selected" tal:attributes="value item/value" selected="selected">${item/label}</option>
-	<option tal:condition="not: item/selected" tal:attributes="value item/value">${item/label}</option>
-</tal:block>
-</select>
-<p class="help-text fieldtype-help">${trans:m.form.frontoffice.Select-multiple-help}</p>

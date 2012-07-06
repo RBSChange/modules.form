@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="1.0" extend="modules_form/field" icon="ui-text-field">
-  <properties>
-    <property name="isReceiver" type="Boolean" default-value="false"/>
-    <property name="multiline" type="Boolean" min-occurs="1" default-value="false"/>
-    <property name="cols" type="Integer" default-value="50">
-      <constraint name="min" min="1"/>
-    </property>
-    <property name="rows" type="Integer" default-value="1">
-      <constraint name="min" min="1"/>
-    </property>
-    <property name="maxlength" type="Integer" default-value="255">
-      <constraint name="min" min="1"/>
-    </property>
-    <property name="minlength" type="Integer" default-value="0">
-      <constraint name="min" min="0"/>
-    </property>
-    <property name="disableAutocorrect" type="Boolean" default-value="false"/>
-    <property name="disableAutocapitalize" type="Boolean" default-value="false"/>
-    <property name="disableAutocomplete" type="Boolean" default-value="false"/>
-    <property name="initializeWithCurrentUserFirstname" type="Boolean"/>
-    <property name="initializeWithCurrentUserLastname" type="Boolean"/>
-  </properties>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/schema/persistentdocument-4.0.xsd" model-version="1.0" extend="modules_form/field" icon="ui-text-field">
+	<properties>
+		<property name="isReceiver" type="Boolean" default-value="false" />
+		<property name="multiline" type="Boolean" default-value="false" />
+		<property name="cols" type="Integer" default-value="50">
+			<constraint name="min" min="1" />
+		</property>
+		<property name="rows" type="Integer" default-value="1">
+			<constraint name="min" min="1" />
+		</property>
+		<property name="maxlength" type="Integer" default-value="255">
+			<constraint name="min" min="1" />
+		</property>
+		<property name="minlength" type="Integer" default-value="0">
+			<constraint name="min" min="0" />
+		</property>
+		<property name="disableAutocorrect" type="Boolean" default-value="false" />
+		<property name="disableAutocapitalize" type="Boolean" default-value="false" />
+		<property name="disableAutocomplete" type="Boolean" default-value="false" />
+		<property name="initializeWithCurrentUserFirstname" type="Boolean" />
+		<property name="initializeWithCurrentUserLastname" type="Boolean" />
+	</properties>
 </document>

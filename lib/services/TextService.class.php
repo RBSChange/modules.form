@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_TextService getInstance()
+ */
 class form_TextService extends form_FieldService
 {
-	/**
-	 * @var form_TextService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_TextService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_text
 	 */
@@ -32,12 +19,12 @@ class form_TextService extends form_FieldService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/text');
+		return $this->getPersistentProvider()->createQuery('modules_form/text');
 	}
 
 	/**
 	 * @param form_persistentdocument_text $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 */
 	protected function preSave($document, $parentNodeId = null)
@@ -57,7 +44,6 @@ class form_TextService extends form_FieldService
 			$document->setRows(1);
 		}
 	}
-
 
 	/**
 	 * @param form_persistentdocument_text $document

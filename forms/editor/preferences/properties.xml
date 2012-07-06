@@ -6,33 +6,23 @@
 		<field name="enableRecipientGroupFolderCreation" />
 	</section>
 	<section labeli18n="m.form.bo.general.captcha" class="captcha">
-		<field name="iw" type="integer" required="true" increment="5"
-			labeli18n="m.form.document.preferences.captcha.width"
-			shorthelpi18n="m.form.document.preferences.captcha.width-help">
+		<field name="iw" type="integer" required="true" increment="5" labeli18n="m.form.document.preferences.captcha.width" shorthelpi18n="m.form.document.preferences.captcha.width-help">
 			<constraint name="min" parameter="80" />
 			<constraint name="max" parameter="300" />
 		</field>
-		<field name="ih" type="integer" required="true" increment="5"
-			labeli18n="m.form.document.preferences.captcha.height"
-			shorthelpi18n="m.form.document.preferences.captcha.height-help">
+		<field name="ih" type="integer" required="true" increment="5" labeli18n="m.form.document.preferences.captcha.height" shorthelpi18n="m.form.document.preferences.captcha.height-help">
 			<constraint name="min" parameter="40" />
 			<constraint name="max" parameter="200" />
 		</field>
-		<field name="fs" type="integer" required="true"
-			labeli18n="m.form.document.preferences.captcha.fontsize"
-			shorthelpi18n="m.form.document.preferences.captcha.fontsize-help">
+		<field name="fs" type="integer" required="true" labeli18n="m.form.document.preferences.captcha.fontsize" shorthelpi18n="m.form.document.preferences.captcha.fontsize-help">
 			<constraint name="min" parameter="10" />
 			<constraint name="max" parameter="50" />
 		</field>
-		<field name="fd" type="integer" required="true"
-			labeli18n="m.form.document.preferences.captcha.fontdepth"
-			shorthelpi18n="m.form.document.preferences.captcha.fontdepth-help">
+		<field name="fd" type="integer" required="true" labeli18n="m.form.document.preferences.captcha.fontdepth" shorthelpi18n="m.form.document.preferences.captcha.fontdepth-help">
 			<constraint name="min" parameter="0" />
 			<constraint name="max" parameter="10" />
 		</field>
-		<field name="ml" type="integer" required="true"
-			labeli18n="m.form.document.preferences.captcha.maxlength"
-			shorthelpi18n="m.form.document.preferences.captcha.maxlength-help">
+		<field name="ml" type="integer" required="true" labeli18n="m.form.document.preferences.captcha.maxlength" shorthelpi18n="m.form.document.preferences.captcha.maxlength-help">
 			<constraint name="min" parameter="3" />
 			<constraint name="max" parameter="10" />
 		</field>

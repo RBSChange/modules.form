@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_RecipientGroupListService getInstance()
+ */
 class form_RecipientGroupListService extends form_ListService
 {
-	/**
-	 * @var form_RecipientGroupListService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_RecipientGroupListService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_recipientGroupList
 	 */
@@ -32,12 +19,12 @@ class form_RecipientGroupListService extends form_ListService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/recipientGroupList');
+		return $this->getPersistentProvider()->createQuery('modules_form/recipientGroupList');
 	}
 
 	/**
 	 * @param form_persistentdocument_recipientGroupList $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
 	 * @return void
 	 */
 	protected function preSave($document, $parentNodeId = null)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.general.tag" lcid="de_DE">
-  <key id="recommand-page">Empfehlungsseite</key>
+	<key id="recommand-page">Empfehlungsseite</key>
 </i18n>

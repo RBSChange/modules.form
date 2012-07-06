@@ -5,11 +5,11 @@
  */
 class form_HiddenScriptDocumentElement extends form_FieldScriptDocumentElement
 {
-    /**
-     * @return form_persistentdocument_hidden
-     */
-    protected function initPersistentDocument()
-    {
-    	return form_HiddenService::getInstance()->getNewDocumentInstance();
-    }
+	/**
+	 * @return form_persistentdocument_hidden
+	 */
+	protected function initPersistentDocument()
+	{
+		return form_HiddenService::getInstance()->getNewDocumentInstance();
+	}
 }

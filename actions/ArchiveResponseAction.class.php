@@ -13,8 +13,8 @@ class form_ArchiveResponseAction extends change_JSONAction
 		{
 			$archivedCount += form_FormService::getInstance()->fileResponses($form);
 		}
-        return $this->sendJSON(array('message' => 
-        	LocaleService::getInstance()->transBO('m.form.bo.actions.archiveresponse-success', 
-        		array(), array('ArchivedCount' => $archivedCount))));
+		return $this->sendJSON(array('message' => 
+			LocaleService::getInstance()->trans('m.form.bo.actions.archiveresponse-success', 
+				array(), array('ArchivedCount' => $archivedCount))));
 	}
 }

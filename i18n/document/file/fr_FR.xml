@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.file" lcid="fr_FR">
-  <include id="m.form.document.field"/>
-  <key id="document-name">champ fichier</key>
-  <key id="allowedextensions">restreindre le champ à</key>
-  <key id="allowedextensions-help">Restreindre les fichiers à certaines extensions. Les extensions sont séparées par des virgules. Par exemple : jpg,jpeg,png,gif. Si ce champ est vide, tous les types de fichiers sont autorisés.</key>
-  <key id="mediafolder">dossier de classement</key>
-  <key id="mediafolder-help">dossier de classement, dans le module Mediathèque.</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">champ fichier</key>
+	<key id="allowedextensions">restreindre le champ à</key>
+	<key id="allowedextensions-help">Restreindre les fichiers à certaines extensions. Les extensions sont séparées par des virgules. Par exemple : jpg,jpeg,png,gif. Si ce champ est vide, tous les types de fichiers sont autorisés.</key>
+	<key id="mediafolder">dossier de classement</key>
+	<key id="mediafolder-help">dossier de classement, dans le module Mediathèque.</key>
 </i18n>

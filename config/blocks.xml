@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <blocks>
-	<block type="modules_form_form" icon="form" labeli18n="m.form.bo.blocks.previewform"/>
-	<block type="modules_form_confirm" icon="check" labeli18n="m.form.bo.blocks.confirm"/>
+	<block type="modules_form_form" icon="form" labeli18n="m.form.bo.blocks.previewform" />
+	<block type="modules_form_confirm" icon="check" labeli18n="m.form.bo.blocks.confirm" />
 </blocks>

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.general.validators" lcid="en_GB">
-  <key id="email">email address</key>
-  <key id="emails">email addresses separated with commas</key>
-  <key id="url">URL</key>
-  <key id="integer">integer</key>
-  <key id="float">floating point number</key>
-  <key id="none">none</key>
+	<key id="email">email address</key>
+	<key id="emails">email addresses separated with commas</key>
+	<key id="url">URL</key>
+	<key id="integer">integer</key>
+	<key id="float">floating point number</key>
+	<key id="none">none</key>
 </i18n>

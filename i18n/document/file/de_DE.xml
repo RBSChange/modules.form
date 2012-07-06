@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.file" lcid="de_DE">
-  <include id="m.form.document.field"/>
-  <key id="document-name">Dateifeld</key>
-  <key id="allowedextensions">Feld beschränken auf</key>
-  <key id="allowedextensions-help">Dateien auf einige Erweiterungen beschränken. Die Erweiterungen sind durch Kommata getrennt. Zum Beispiel: jpg,jpeg,png,gif. Ist diese Feld gültig, sind alle Dateitypen erlaubt.</key>
-  <key id="mediafolder">Ordnungsdatei</key>
-  <key id="mediafolder-help">Ordnungsdatei, im Modul Mediathek.</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">Dateifeld</key>
+	<key id="allowedextensions">Feld beschränken auf</key>
+	<key id="allowedextensions-help">Dateien auf einige Erweiterungen beschränken. Die Erweiterungen sind durch Kommata getrennt. Zum Beispiel: jpg,jpeg,png,gif. Ist diese Feld gültig, sind alle Dateitypen erlaubt.</key>
+	<key id="mediafolder">Ordnungsdatei</key>
+	<key id="mediafolder-help">Ordnungsdatei, im Modul Mediathek.</key>
 </i18n>

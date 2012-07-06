@@ -6,7 +6,7 @@
 class form_persistentdocument_date extends form_persistentdocument_datebase
 {
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public function getStartDatePicker()
 	{
@@ -18,7 +18,7 @@ class form_persistentdocument_date extends form_persistentdocument_datebase
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public function getEndDatePicker()
 	{
@@ -30,7 +30,7 @@ class form_persistentdocument_date extends form_persistentdocument_datebase
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public function getUiStartDatePicker()
 	{
@@ -42,7 +42,7 @@ class form_persistentdocument_date extends form_persistentdocument_datebase
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public function getUiEndDatePicker()
 	{
@@ -54,11 +54,11 @@ class form_persistentdocument_date extends form_persistentdocument_datebase
 	}
 	
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public function getValidators()
 	{
-		$format = f_Locale::translate("&modules.form.document.date.validator.format;");		
+		$format = LocaleService::getInstance()->trans("m.form.document.date.validator.format");
 		if ('format' == $format)
 		{
 			return form_DateService::DEFAULT_VALIDATORS;

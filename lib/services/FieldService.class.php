@@ -1,26 +1,13 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_FieldService getInstance()
+ */
 class form_FieldService extends f_persistentdocument_DocumentService
 {
 	const FIELD_NAME_REGEXP = '^[a-zA-Z][a-z_\-A-Z0-9]+$';
 
 	private $deletedFieldsForms = array();
-
-	/**
-	 * @var form_FieldService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_FieldService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
 
 	/**
 	 * @return form_persistentdocument_field
@@ -36,7 +23,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/field');
+		return $this->getPersistentProvider()->createQuery('modules_form/field');
 	}
 
 	/**
@@ -64,7 +51,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		{
 			if($this->isConditionValid($field, $data))
 			{
-				$errors->append(f_Locale::translate("&framework.validation.validator.Blank.message;", array('field' => $field->getLabel())));
+				$errors->append(LocaleService::getInstance()->trans("f.validation.validator.blank.message", array(), array('field' => $field->getLabel())));
 			}
 		}
 		else if ( $field->getRequired() || ! $isEmpty )
@@ -77,8 +64,8 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @param Integer $fieldId
-	 * @return Boolean
+	 * @param integer $fieldId
+	 * @return boolean
 	 */
 	public function hasCondition($fieldId)
 	{
@@ -88,7 +75,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 
 	/**
 	 * @param form_persistentdocument_field $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 */
 	protected function preSave($document, $parentNodeId = null)
@@ -104,7 +91,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 
 	/**
 	 * @param form_persistentdocument_field $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 */
 	protected function postSave($document, $parentNodeId)
@@ -114,7 +101,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 		{
 			try
 			{
-				$this->tm->beginTransaction();
+				$this->getTransactionManager()->beginTransaction();
 
 				$fieldName = 'f' . $document->getId();
 				if (Framework::isDebugEnabled())
@@ -123,12 +110,12 @@ class form_FieldService extends f_persistentdocument_DocumentService
 				}
 				$document->setFieldName($fieldName);
 
-				$this->pp->updateDocument($document);
-				$this->tm->commit();
+				$this->getPersistentProvider()->updateDocument($document);
+				$this->getTransactionManager()->commit();
 			}
 			catch (Exception $e)
 			{
-				$this->tm->rollBack($e);
+				$this->getTransactionManager()->rollBack($e);
 				throw $e;
 			}
 		}
@@ -136,7 +123,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 
 	/**
 	 * @param form_persistentdocument_field $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 * @throws Exception if no parent form is found.
 	 */
@@ -269,7 +256,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 
 		if (!DocumentHelper::equals($destForm, $fieldForm))
 		{
-			throw new form_FormException(f_Locale::translate('&modules.form.bo.errors.Cannot-move-a-field-from-a-form-to-another-form;'));
+			throw new form_FormException(LocaleService::getInstance()->trans('m.form.bo.errors.cannot-move-a-field-from-a-form-to-another-form', array('ucf')));
 		}
 
 		return parent::moveTo($field, $destId, $beforeId, $afterId);
@@ -321,7 +308,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	/**
 	 * @param form_persistentdocument_field $field
 	 * @param Array $data
-	 * @return Boolean
+	 * @return boolean
 	 */
 	public function isConditionValid($field, $data)
 	{
@@ -362,7 +349,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 	/**
 	 * @param form_persistentdocument_field $newDocument
 	 * @param form_persistentdocument_field $originalDocument
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function preDuplicate($newDocument, $originalDocument, $parentNodeId)
 	{
@@ -453,7 +440,7 @@ class form_FieldService extends f_persistentdocument_DocumentService
 			}
 			if ($document->getRequired())
 			{
-				$attributes['fieldRequired'] = f_Locale::translate('&modules.uixul.bo.general.Yes;');
+				$attributes['fieldRequired'] = LocaleService::getInstance()->trans('m.uixul.bo.general.yes', array('ucf'));
 			}
 			if ($document->hasCondition())
 			{

@@ -1,24 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_FileService getInstance()
+ */
 class form_FileService extends form_FieldService
 {
-	/**
-	 * @var form_FileService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_FileService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
-
 	/**
 	 * @return form_persistentdocument_file
 	 */
@@ -33,7 +19,7 @@ class form_FileService extends form_FieldService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/file');
+		return $this->getPersistentProvider()->createQuery('modules_form/file');
 	}
 
 	/**
@@ -63,28 +49,28 @@ class form_FileService extends form_FieldService
 			$allowedExt = explode(",", $field->getAllowedExtensions());
 			if ( !empty($allowedExt) && ! in_array($ext, $allowedExt) )
 			{
-				$errors->append(f_Locale::translate('&modules.form.frontoffice.File-must-have-one-of-these-extensions;', array('file' => $field->getLabel(), 'extensions' => join(", ", $allowedExt))));
+				$errors->append(LocaleService::getInstance()->trans('m.form.frontoffice.file-must-have-one-of-these-extensions', array('ucf'), array('file' => $field->getLabel(), 'extensions' => join(", ", $allowedExt))));
 			}
 		}
 	}
 	
-    /**
-     * @param form_persistentdocument_file $field
-     * @param DOMElement $fieldElm
-     * @param mixed $rawValue
-     * @return string
-     */
-    public function buildXmlElementResponse($field, $fieldElm, $rawValue)
-    {
-    	if ($rawValue instanceof media_persistentdocument_file)
-    	{
-    		$rawValue->save();
-    		$media = media_MediaService::getInstance()->importFromTempFile($rawValue);
-    		$media->save(($field->getMediaFolder() !== null) ? $field->getMediaFolder()->getId() : null);
+	/**
+	 * @param form_persistentdocument_file $field
+	 * @param DOMElement $fieldElm
+	 * @param mixed $rawValue
+	 * @return string
+	 */
+	public function buildXmlElementResponse($field, $fieldElm, $rawValue)
+	{
+		if ($rawValue instanceof media_persistentdocument_file)
+		{
+			$rawValue->save();
+			$media = media_MediaService::getInstance()->importFromTempFile($rawValue);
+			$media->save(($field->getMediaFolder() !== null) ? $field->getMediaFolder()->getId() : null);
 			$mailValue = "<a href=\"".MediaHelper::getUrl($media)."\">".$media->getLabel()."</a>";
 			$fieldElm->setAttribute('mailValue', $mailValue);
-    		return $media->getId();
-    	}
+			return $media->getId();
+		}
 		if (f_util_ArrayUtils::isNotEmpty($rawValue) && $rawValue['error'] == 0 )
 		{
 			$media = MediaHelper::addUploadedFile($rawValue['name'], $rawValue['tmp_name'], $field->getMediaFolder());
@@ -93,5 +79,5 @@ class form_FileService extends form_FieldService
 			return $media->getId();
 		}
 		return '';
-    }	
+	}	
 }

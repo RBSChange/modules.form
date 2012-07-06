@@ -1,27 +1,10 @@
 <?php
 /**
- * form_RecipientGroupFolderService
  * @package modules.form
+ * @method form_RecipientGroupFolderService getInstance()
  */
 class form_RecipientGroupFolderService extends generic_FolderService
 {
-	/**
-	 * @var form_RecipientGroupFolderService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_RecipientGroupFolderService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_recipientGroupFolder
 	 */
@@ -38,7 +21,7 @@ class form_RecipientGroupFolderService extends generic_FolderService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/recipientGroupFolder');
+		return $this->getPersistentProvider()->createQuery('modules_form/recipientGroupFolder');
 	}
 	
 	/**
@@ -49,7 +32,7 @@ class form_RecipientGroupFolderService extends generic_FolderService
 	 */
 	public function createStrictQuery()
 	{
-		return $this->pp->createQuery('modules_form/recipientGroupFolder', false);
+		return $this->getPersistentProvider()->createQuery('modules_form/recipientGroupFolder', false);
 	}
 	
 	/**

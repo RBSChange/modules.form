@@ -2,8 +2,8 @@
 class form_persistentdocument_group extends form_persistentdocument_groupbase
 {
 	/**
-	 * @param Integer $elementId
-	 * @return Boolean
+	 * @param integer $elementId
+	 * @return boolean
 	 */
 	public function hasCondition()
 	{

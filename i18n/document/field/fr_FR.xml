@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.field" lcid="fr_FR">
-  <key id="label">libellé</key>
-  <key id="label-help">libellé du champ (visible sur le site).</key>
-  <key id="fieldname">nom du champ</key>
-  <key id="fieldname-help">Le nom du champ doit être composé de lettres et de chiffres uniquement et doit commencer par une lettre.</key>
-  <key id="validators">validateurs</key>
-  <key id="validators-help">Liste des validateurs du champ, séparés par des points-virgules.</key>
-  <key id="required">champ obligatoire</key>
-  <key id="required-help">détermine s'il s'agit d'un champ obligatoire.</key>
-  <key id="helptext">texte d'aide du champ</key>
-  <key id="helptext-help">Le texte d'aide du champ indique aux internautes comment remplir le champ.</key>
-  <key id="activationquestion">champ</key>
-  <key id="activationquestion-help">champ qui conditionnera l'activation de ce champ.</key>
-  <key id="activationvalue">valeur</key>
-  <key id="activationvalue-help">valeur que devra avoir le champ pour activer ce champ.</key>
+	<key id="label">libellé</key>
+	<key id="label-help">libellé du champ (visible sur le site).</key>
+	<key id="fieldname">nom du champ</key>
+	<key id="fieldname-help">Le nom du champ doit être composé de lettres et de chiffres uniquement et doit commencer par une lettre.</key>
+	<key id="validators">validateurs</key>
+	<key id="validators-help">Liste des validateurs du champ, séparés par des points-virgules.</key>
+	<key id="required">champ obligatoire</key>
+	<key id="required-help">détermine s'il s'agit d'un champ obligatoire.</key>
+	<key id="helptext">texte d'aide du champ</key>
+	<key id="helptext-help">Le texte d'aide du champ indique aux internautes comment remplir le champ.</key>
+	<key id="activationquestion">champ</key>
+	<key id="activationquestion-help">champ qui conditionnera l'activation de ce champ.</key>
+	<key id="activationvalue">valeur</key>
+	<key id="activationvalue-help">valeur que devra avoir le champ pour activer ce champ.</key>
 </i18n>

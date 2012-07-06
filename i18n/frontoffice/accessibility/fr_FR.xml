@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.frontoffice.accessibility" lcid="fr_FR">
-  <key id="activation">si ″{value}″ choisi</key>
+	<key id="activation">si ″{value}″ choisi</key>
 </i18n>

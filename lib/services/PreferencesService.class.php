@@ -1,26 +1,10 @@
 <?php
 /**
  * @package modules.form
+ * @method form_PreferencesService getInstance()
  */
 class form_PreferencesService extends f_persistentdocument_DocumentService
 {
-	/**
-	 * @var form_PreferencesService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_PreferencesService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_preferences
 	 */
@@ -37,20 +21,10 @@ class form_PreferencesService extends f_persistentdocument_DocumentService
 	{
 		return $this->getPersistentProvider()->createQuery('modules_form/preferences');
 	}
-	
+
 	/**
 	 * @param form_persistentdocument_preferences $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
-	 * @return void
-	 */
-	protected function preSave($document, $parentNodeId)
-	{
-		$document->setLabel('form');
-	}
-	
-	/**
-	 * @param form_persistentdocument_preferences $document
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function postSave($document, $parentNodeId)
 	{

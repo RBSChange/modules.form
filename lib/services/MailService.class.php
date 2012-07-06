@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_MailService getInstance()
+ */
 class form_MailService extends form_TextService
 {
-	/**
-	 * @var form_MailService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_MailService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_mail
 	 */
@@ -32,12 +19,12 @@ class form_MailService extends form_TextService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/mail');
+		return $this->getPersistentProvider()->createQuery('modules_form/mail');
 	}
 
 	/**
 	 * @param form_persistentdocument_mail $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
 	 * @throws form_ReplyToFieldAlreadyExistsException
 	 * @return void
 	 */
@@ -54,27 +41,27 @@ class form_MailService extends form_TextService
 		
 		if ($parentNodeId !== NULL)
 		{
-		    $form = DocumentHelper::getDocumentInstance($parentNodeId);
+			$form = DocumentHelper::getDocumentInstance($parentNodeId);
 		}
 		else
 		{
-		    $form = $this->getFormOf($document);
+			$form = $this->getFormOf($document);
 		}
 		
-	    if ($form === null)
+		if ($form === null)
 		{
-		    if (Framework::isWarnEnabled())
-		    {
-		        Framework::warn(__METHOD__ . ' the mail field document ('. $document->__toString() .')is not in a form');		        
-		    }
+			if (Framework::isWarnEnabled())
+			{
+				Framework::warn(__METHOD__ . ' the mail field document ('. $document->__toString() .')is not in a form');				
+			}
 		} 
 		else if ($document->getUseAsReply())
 		{
-		    $oldReplyField = form_BaseformService::getInstance()->getReplyToField($form);
-		    if ($oldReplyField !== null && $oldReplyField !== $document)
+			$oldReplyField = form_BaseformService::getInstance()->getReplyToField($form);
+			if ($oldReplyField !== null && $oldReplyField !== $document)
 			{
-			    Framework::error(__METHOD__ . ' Old reply field :' . $oldReplyField->__toString());
-				throw new form_ReplyToFieldAlreadyExistsException(f_Locale::translate('&modules.form.bo.errors.Mail-field-for-replyto-exists'));
+				Framework::error(__METHOD__ . ' Old reply field :' . $oldReplyField->__toString());
+				throw new form_ReplyToFieldAlreadyExistsException(LocaleService::getInstance()->trans('m.form.bo.errors.mail-field-for-replyto-exists' /* @TODO CHECK */, array('ucf')));
 			}
 		}
 		parent::preSave($document, $parentNodeId);

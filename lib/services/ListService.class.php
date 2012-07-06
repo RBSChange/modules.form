@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_ListService getInstance()
+ */
 class form_ListService extends form_FieldService
 {
-	/**
-	 * @var form_ListService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_ListService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_list
 	 */
@@ -32,7 +19,7 @@ class form_ListService extends form_FieldService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/list');
+		return $this->getPersistentProvider()->createQuery('modules_form/list');
 	}
 
 	/**

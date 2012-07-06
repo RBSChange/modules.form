@@ -7,5 +7,5 @@
 	<section labeli18n="m.form.bo.general.display-settings">
 		<field name="trueLabel" />
 		<field name="falseLabel" />
-	</section>				
+	</section>
 </panel>

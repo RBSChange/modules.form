@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <panel>
 	<section labeli18n="m.uixul.bo.doceditor.fieldsgroup.title">
-		<field name="parentref" type="document" required="true" allow="[modules_form_recipientGroupFolder]"
-			moduleselector="form" labeli18n="m.form.document.recipientgroup.parentref"
-			shorthelpi18n="m.form.document.preferences.recipientgroup.parentref-help" />
+		<field name="parentref" type="document" required="true" allow="[modules_form_recipientGroupFolder]" moduleselector="form" labeli18n="m.form.document.recipientgroup.parentref" shorthelpi18n="m.form.document.preferences.recipientgroup.parentref-help" />
 		<field name="label" hidehelp="true" />
 		<field name="to" hidehelp="true" />
 		<field name="cc" />
@@ -15,7 +13,6 @@
 			<constructor><![CDATA[
 				this.extendMethod('fireInitializeComplete', fireInitializeCompleteExtend);
 			]]></constructor>
-			
 			<method name="fireInitializeCompleteExtend">
 				<parameter name="result" />
 				<body><![CDATA[

@@ -1,7 +1,7 @@
 <?php
 /**
- * form_BaseformService
  * @package modules.form
+ * @method form_BaseformService getInstance()
  */
 class form_BaseformService extends f_persistentdocument_DocumentService
 {
@@ -11,25 +11,8 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 
 	// These values also appear in the 'modules_form/field' Document Model, in
 	// the 'notEqual' validator.
-	const CONTENT_REPLACEMENT_NAME    = 'FIELDS';
+	const CONTENT_REPLACEMENT_NAME	= 'FIELDS';
 	const FORM_LABEL_REPLACEMENT_NAME = 'FORM_LABEL';
-
-	/**
-	 * @var form_BaseformService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_BaseformService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
 
 	/**
 	 * @return form_persistentdocument_baseform
@@ -47,7 +30,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/baseform');
+		return $this->getPersistentProvider()->createQuery('modules_form/baseform');
 	}
 
 	/**
@@ -58,11 +41,11 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 */
 	public function createStrictQuery()
 	{
-		return $this->pp->createQuery('modules_form/baseform', false);
+		return $this->getPersistentProvider()->createQuery('modules_form/baseform', false);
 	}
 
 	/**
-	 * @param String $formId
+	 * @param string $formId
 	 * @return form_persistentdocument_baseform
 	 */
 	public function getByFormId($formId)
@@ -78,7 +61,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 */
 	public function getReplyToField($document)
 	{
-		$query = $this->pp->createQuery('modules_form/mail');
+		$query = $this->getPersistentProvider()->createQuery('modules_form/mail');
 		$query->add(Restrictions::descendentOf($document->getId()));
 		$query->add(Restrictions::eq('useAsReply', true));
 		return $query->findUnique();
@@ -86,7 +69,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 
 	/**
 	 * @param form_persistentdocument_baseform $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
 	 * @return void
 	 */
 	protected function preSave($document, $parentNodeId)
@@ -108,7 +91,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param form_persistentdocument_baseform $document
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function postInsert($document, $parentNodeId)
 	{
@@ -121,7 +104,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 
 	/**
 	 * @param form_persistentdocument_baseform $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
 	 * @return void
 	 */
 	protected function postSave($document, $parentNodeId)
@@ -186,7 +169,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 *
 	 * @param form_persistentdocument_baseform $newDocument
 	 * @param form_persistentdocument_baseform $originalDocument
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 *
 	 * @throws IllegalOperationException
 	 */
@@ -204,7 +187,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 *
 	 * @param form_persistentdocument_baseform $newDocument
 	 * @param form_persistentdocument_baseform $originalDocument
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 *
 	 * @throws IllegalOperationException
 	 */
@@ -246,7 +229,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		{
 			$backUri = join(',', array('form', 'openDocument', $document->getPersistentModel()->getBackofficeName(), $document->getId(), 'resume'));
 			$openAcknowledgmentNotificationUri = join(',' , array('notification', 'openDocument', $acknowledgmentNotification->getPersistentModel()->getBackofficeName(), $acknowledgmentNotification->getId(), 'properties'));
-			$resume['properties']['acknowledgmentNotification'] = array('uri' => $openAcknowledgmentNotificationUri, 'label' => f_Locale::translateUI('&modules.uixul.bo.doceditor.open;'), 'backuri' => $backUri);
+			$resume['properties']['acknowledgmentNotification'] = array('uri' => $openAcknowledgmentNotificationUri, 'label' => LocaleService::getInstance()->trans('m.uixul.bo.doceditor.open'), 'backuri' => $backUri);
 		}
 
 		return $resume;
@@ -354,7 +337,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		{
 			$ls = LocaleService::getInstance();
 			$notification = $ns->getNewDocumentInstance();
-			$notification->setLabel($ls->transFO('m.form.document.form.acknowledgment-notification-label-prefix', array('ucf')) . ' ' . $form->getLabel());
+			$notification->setLabel($ls->trans('m.form.document.form.acknowledgment-notification-label-prefix', array('ucf')) . ' ' . $form->getLabel());
 			$notification->setCodename($codeName);
 			$notification->setTemplate('default');
 			$notification->setSubject($form->getLabel());
@@ -391,7 +374,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		}
 		if (!$this->checkCaptcha($form))
 		{
-			$errors->append(f_Locale::translate("&modules.form.bo.general.Captcha-check-failed;"));
+			$errors->append(LocaleService::getInstance()->trans("m.form.bo.general.captcha-check-failed", array('ucf')));
 		}
 
 		$eventParam = array('form' => $form, 'request' => $request, 'errors' => $errors);
@@ -493,7 +476,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 
 	/**
 	 * @param form_persistentdocument_field | form_persistentdocument_freecontent $element
-	 * @return Boolean
+	 * @return boolean
 	 */
 	private function getFieldId($element)
 	{
@@ -517,7 +500,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param form_persistentdocument_field | form_persistentdocument_freecontent $element
-	 * @return String
+	 * @return string
 	 */
 	private function getQuestionFieldType($element)
 	{
@@ -578,7 +561,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 
 		$response = form_ResponseService::getInstance()->getNewDocumentInstance();
 		$response->setContents($domDoc->saveXML());
-		$response->setLabel(f_Locale::translate("&modules.form.bo.general.Form-response-title;", array('form' => $form->getLabel())));
+		$response->setLabel(LocaleService::getInstance()->trans("m.form.bo.general.form-response-title", array('ucf'), array('form' => $form->getLabel())));
 
 		// Handle specific treatments.
 		$result = $this->handleData($form, $fields, $response, $request, $replyTo);
@@ -696,8 +679,8 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 	 * @param form_persistentdocument_response $response
 	 * @param block_BlockRequest $request
 	 * @param array $result
-	 * @param String $acknowledgmentReceiver
-	 * @param String $replyTo
+	 * @param string $acknowledgmentReceiver
+	 * @param string $replyTo
 	 * @return void
 	 */
 	protected function sendAcknowledgement($form, $response, $request, $result, $acknowledgmentReceiver, $replyTo)
@@ -741,7 +724,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$response = $params['response'];
 		$form = $params['form'];
 		
-		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType('html')->load('Form-MailContent');
+		$contentTemplate = change_TemplateLoader::getNewInstance()->setExtension('html')->load('modules', 'form', 'templates', 'Form-MailContent');
 		$contentTemplate->setAttribute('items', $response->getAllData());
 		$contentTemplate->setAttribute('response', $response->getResponseInfos());
 			
@@ -848,7 +831,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 		$result = $query->findUnique();
 		if ($result !== null && $result->getId() != $field->getId())
 		{
-			throw new form_FieldAlreadyExistsException(f_Locale::translate('&modules.form.bo.errors.Field-name-alreay-used;', array('fieldName' => $fieldName)));
+			throw new form_FieldAlreadyExistsException(LocaleService::getInstance()->trans('m.form.bo.errors.field-name-alreay-used', array('ucf'), array('fieldName' => $fieldName)));
 		}
 	}
 
@@ -886,7 +869,7 @@ class form_BaseformService extends f_persistentdocument_DocumentService
 				{
 					if ($oldNotification->getLabel() != $oldNotification->getSubject())
 					{
-						$newNotification->setSubject(f_Locale::translate('&modules.generic.backoffice.Duplicate-prefix;') . ' '.$oldNotification->getSubject());
+						$newNotification->setSubject(LocaleService::getInstance()->trans('m.generic.backoffice.duplicate-prefix', array('ucf')) . ' '.$oldNotification->getSubject());
 					}
 					$newNotification->setBody($oldNotification->getBody());
 					$newNotification->setHeader($oldNotification->getHeader());

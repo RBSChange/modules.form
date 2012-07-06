@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.freecontent" lcid="fr_FR">
-  <key id="document-name">contenu libre</key>
-  <key id="label">libellé</key>
-  <key id="label-help">libellé (n'est pas affiché sur le site).</key>
-  <key id="text">contenu</key>
-  <key id="text-help">contenu de la zone de texte (mise en page simple possible).</key>
-  <key id="activationquestion">champ</key>
-  <key id="activationquestion-help">champ qui conditionnera l'activation de ce champ.</key>
-  <key id="activationvalue">valeur</key>
-  <key id="activationvalue-help">valeur que devra avoir le champ pour activer ce champ.</key>
+	<key id="document-name">contenu libre</key>
+	<key id="label">libellé</key>
+	<key id="label-help">libellé (n'est pas affiché sur le site).</key>
+	<key id="text">contenu</key>
+	<key id="text-help">contenu de la zone de texte (mise en page simple possible).</key>
+	<key id="activationquestion">champ</key>
+	<key id="activationquestion-help">champ qui conditionnera l'activation de ce champ.</key>
+	<key id="activationvalue">valeur</key>
+	<key id="activationvalue-help">valeur que devra avoir le champ pour activer ce champ.</key>
 </i18n>

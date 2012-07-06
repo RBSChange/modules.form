@@ -3,5 +3,5 @@
 	<section labeli18n="m.form.bo.general.general">
 		<field name="label" />
 		<field name="helpText" />
-	</section>		
+	</section>
 </panel>

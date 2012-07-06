@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.list" lcid="en_GB">
-  <include id="m.form.document.field"/>
-  <key id="document-name">list field</key>
-  <key id="display">display</key>
-  <key id="display-help">display</key>
-  <key id="datasource">option list</key>
-  <key id="datasource-help">list for composing the options to choose from.</key>
-  <key id="multiple">multiple selection</key>
-  <key id="multiple-help">Determines if the visitor will be able to select more than one element in the list.</key>
-  <key id="hasblankoption-help">Allows having a header above the list. If the list is required, the user must choose a value from the list, otherwise the first (and not necessarily relevant) one will be selected by default.</key>
-  <key id="hasblankoption">Add a header</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">list field</key>
+	<key id="display">display</key>
+	<key id="display-help">display</key>
+	<key id="datasource">option list</key>
+	<key id="datasource-help">list for composing the options to choose from.</key>
+	<key id="multiple">multiple selection</key>
+	<key id="multiple-help">Determines if the visitor will be able to select more than one element in the list.</key>
+	<key id="hasblankoption-help">Allows having a header above the list. If the list is required, the user must choose a value from the list, otherwise the first (and not necessarily relevant) one will be selected by default.</key>
+	<key id="hasblankoption">Add a header</key>
 </i18n>

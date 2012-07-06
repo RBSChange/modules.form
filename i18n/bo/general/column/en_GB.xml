@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.general.column" lcid="en_GB">
-  <key id="fieldtype">field type</key>
-  <key id="fieldrequired">required</key>
-  <key id="fieldconditioned">conditioned</key>
-  <key id="activeresponse">number of active responses</key>
-  <key id="responsecount">Number of responses</key>
+	<key id="fieldtype">field type</key>
+	<key id="fieldrequired">required</key>
+	<key id="fieldconditioned">conditioned</key>
+	<key id="activeresponse">number of active responses</key>
+	<key id="responsecount">Number of responses</key>
 </i18n>

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.blocks" lcid="en_GB">
-  <key id="previewform">preview form</key>
-  <key id="confirm">form submission confirmation</key>
+	<key id="previewform">preview form</key>
+	<key id="confirm">form submission confirmation</key>
 </i18n>

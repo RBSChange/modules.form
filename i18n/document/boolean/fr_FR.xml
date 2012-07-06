@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.boolean" lcid="fr_FR">
-  <include id="m.form.document.field"/>
-  <key id="document-name">champ vrai/faux</key>
-  <key id="truelabel">libellé si vrai</key>
-  <key id="falselabel">libellé si faux</key>
-  <key id="display">affichage</key>
-  <key id="display-help">sélectionnez le type d'affichage souhaité.</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">champ vrai/faux</key>
+	<key id="truelabel">libellé si vrai</key>
+	<key id="falselabel">libellé si faux</key>
+	<key id="display">affichage</key>
+	<key id="display-help">sélectionnez le type d'affichage souhaité.</key>
 </i18n>

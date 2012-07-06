@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/schema/persistentdocument-4.0.xsd" model-version="1.0" icon="form" use-publication-dates="false" backoffice-indexable="false" has-url="false">
 	<properties>
-		<property name="label" default-value="form" />
+		<property name="label" default-value="m.form.bo.general.module-name" />
 		<property name="sender" type="Document" document-type="modules_contactcard/contact" />
-		<property name="captchaParametersSerialized" type="LongString" min-occurs="1" default-value="iw=130;ih=40;fs=20;fd=3;ml=5" />
+		<property name="captchaParametersSerialized" type="LongString" default-value="iw=130;ih=40;fs=20;fd=3;ml=5" required="true" />
 		<property name="previewpage" type="Document" document-type="modules_website/page" />
 		<property name="enableRecipientGroupFolderCreation" type="Boolean" />
 	</properties>

@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.useractionlogger" lcid="en_GB">
-  <key id="insert-recipientgroup">insert.recipientgroup {lang} {documentlabel}</key>
-  <key id="log-insert-recipientgroup">log-insert-recipientgroup</key>
-  <key id="log-update-form">log-update-form</key>
-  <key id="log-update-preferences">log-update-preferences</key>
-  <key id="log-update-recipientgroup">log-update-recipientgrou</key>
-  <key id="log-update-text">log update text</key>
-  <key id="update-form">update.form {lang} {documentlabel}</key>
-  <key id="update-preferences">update.preferences {documentlabel}</key>
-  <key id="update-recipientgroup">update.recipientgroup {lang} {documentlabel}</key>
-  <key id="update-text">update.text {lang} {documentlabel}</key>
-  <key id="insert-file"/>
-  <key id="log-insert-file"/>
-  <key id="move-file"/>
-  <key id="log-move-file"/>
+	<key id="insert-recipientgroup">insert.recipientgroup {lang} {documentlabel}</key>
+	<key id="log-insert-recipientgroup">log-insert-recipientgroup</key>
+	<key id="log-update-form">log-update-form</key>
+	<key id="log-update-preferences">log-update-preferences</key>
+	<key id="log-update-recipientgroup">log-update-recipientgrou</key>
+	<key id="log-update-text">log update text</key>
+	<key id="update-form">update.form {lang} {documentlabel}</key>
+	<key id="update-preferences">update.preferences {documentlabel}</key>
+	<key id="update-recipientgroup">update.recipientgroup {lang} {documentlabel}</key>
+	<key id="update-text">update.text {lang} {documentlabel}</key>
+	<key id="insert-file" />
+	<key id="log-insert-file" />
+	<key id="move-file" />
+	<key id="log-move-file" />
 </i18n>

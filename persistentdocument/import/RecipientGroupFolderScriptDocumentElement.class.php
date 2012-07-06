@@ -5,15 +5,15 @@
  */
 class form_RecipientGroupFolderScriptDocumentElement extends import_ScriptDocumentElement
 {
-    /**
-     * @return form_persistentdocument_recipientGroupFolder
-     */
-    protected function initPersistentDocument()
-    {
-    	return form_RecipientGroupFolderService::getInstance()->getNewDocumentInstance();
-    }
-    
-    /**
+	/**
+	 * @return form_persistentdocument_recipientGroupFolder
+	 */
+	protected function initPersistentDocument()
+	{
+		return form_RecipientGroupFolderService::getInstance()->getNewDocumentInstance();
+	}
+	
+	/**
 	 * @return f_persistentdocument_PersistentDocumentModel
 	 */
 	protected function getDocumentModel()

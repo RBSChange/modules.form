@@ -16,7 +16,7 @@ class form_persistentdocument_baseform extends form_persistentdocument_baseformb
 	
 	/**
 	 * Returns the CSS class name to be set in the generated HTML.
-	 * @return String
+	 * @return string
 	 */
 	public function getFormCssClassName()
 	{

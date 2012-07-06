@@ -6,6 +6,6 @@ class form_PHPTAL_CHANGE
 	 */
 	public static function addAttributes($namespaceCHANGE)
 	{
-        $namespaceCHANGE->addAttribute(new PHPTAL_NamespaceAttributeReplace('captcha', 30));
+		$namespaceCHANGE->addAttribute(new PHPTAL_NamespaceAttributeReplace('captcha', 30));
 	}
 }

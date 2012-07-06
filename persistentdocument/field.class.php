@@ -19,18 +19,18 @@ class form_persistentdocument_field extends form_persistentdocument_fieldbase
 	 */
 	public function setConstraintArray($constraints)
 	{   
-	    if (f_util_ArrayUtils::isNotEmpty($constraints))
-	    {
-    		$strArray = array();
-    		foreach ($constraints as $k => $v)
-    		{
-    			$strArray[] = $k.':'.$v;
-    		}
-    		$this->setValidators(join(";", $strArray));
+		if (f_util_ArrayUtils::isNotEmpty($constraints))
+		{
+			$strArray = array();
+			foreach ($constraints as $k => $v)
+			{
+				$strArray[] = $k.':'.$v;
+			}
+			$this->setValidators(join(";", $strArray));
 		}
 		else
 		{
-		    $this->setValidators(null);
+			$this->setValidators(null);
 		}
 	}	
 
@@ -60,11 +60,11 @@ class form_persistentdocument_field extends form_persistentdocument_fieldbase
 	 */
 	public function getForm()
 	{
-	    if ($this->form === NULL)
-	    {
-	        $this->form = $this->getDocumentService()->getFormOf($this);
-	    }
-	    return $this->form;
+		if ($this->form === NULL)
+		{
+			$this->form = $this->getDocumentService()->getFormOf($this);
+		}
+		return $this->form;
 	}
 	
 	/**
@@ -72,12 +72,12 @@ class form_persistentdocument_field extends form_persistentdocument_fieldbase
 	 */
 	public function setForm($form)
 	{
-	    $this->form = $form;
+		$this->form = $form;
 	}
 	
 	/**
-	 * @param Integer $elementId
-	 * @return Boolean
+	 * @param integer $elementId
+	 * @return boolean
 	 */
 	public function hasCondition()
 	{
@@ -85,7 +85,7 @@ class form_persistentdocument_field extends form_persistentdocument_fieldbase
 	}
 	
 	/**
-	 * @return Boolean
+	 * @return boolean
 	 */
 	public function inGroup()
 	{

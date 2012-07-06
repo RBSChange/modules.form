@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <perspective>
 	<models>
 		<model name="modules_generic/rootfolder">
@@ -298,7 +298,7 @@
 		<action name="createFile" single="true" icon="add" permission="Insert_file" labeli18n="m.form.bo.actions.create-file" />
 		<action name="createHidden" single="true" icon="add" permission="Insert_hidden" labeli18n="m.form.bo.actions.create-hidden" />
 		<action name="createFreecontent" single="true" icon="add" permission="Insert_freecontent" labeli18n="m.form.bo.actions.create-freecontent" />
-		<action name="createRecipientGroupList" single="true" icon="add" permission="Insert_recipientGroupList"	labeli18n="m.form.bo.actions.create-recipientgrouplist" />
+		<action name="createRecipientGroupList" single="true" icon="add" permission="Insert_recipientGroupList" labeli18n="m.form.bo.actions.create-recipientgrouplist" />
 		<action name="addRecipientGroupFolder" single="true" icon="add" permission="AddRecipientGroupFolder" />
 	</actions>
 </perspective>

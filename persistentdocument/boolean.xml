@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="1.0" extend="modules_form/field" icon="ui-boolean-field">
-  <properties>
-    <property name="trueLabel" type="String" min-occurs="1" localized="true"/>
-    <property name="falseLabel" type="String" min-occurs="1" localized="true"/>
-    <property name="display" type="String" min-occurs="1" from-list="modules_form/booleandisplaytypes"/>
-  </properties>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/schema/persistentdocument-4.0.xsd" model-version="1.0" extend="modules_form/field" icon="ui-boolean-field">
+	<properties>
+		<property name="trueLabel" type="String" localized="true" required="true" />
+		<property name="falseLabel" type="String" localized="true" required="true" />
+		<property name="display" type="String" from-list="modules_form/booleandisplaytypes" required="true" />
+	</properties>
 </document>

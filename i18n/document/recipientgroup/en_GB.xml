@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.recipientgroup" lcid="en_GB">
-  <key id="document-name">recipient group</key>
-  <key id="label">label</key>
-  <key id="description">description</key>
-  <key id="to">main recipients</key>
-  <key id="cc">secondary recipients</key>
-  <key id="cc-help">The secondary recipients are placed as carbon copies (CC) of the sent email.</key>
-  <key id="bcc">hidden recipients (BCC)</key>
-  <key id="bcc-help">The hidden recipients will be placed as blind carbon copies (BCC) of the sent email.</key>
-  <key id="parentref">parent folder</key>
+	<key id="document-name">recipient group</key>
+	<key id="label">label</key>
+	<key id="description">description</key>
+	<key id="to">main recipients</key>
+	<key id="cc">secondary recipients</key>
+	<key id="cc-help">The secondary recipients are placed as carbon copies (CC) of the sent email.</key>
+	<key id="bcc">hidden recipients (BCC)</key>
+	<key id="bcc-help">The hidden recipients will be placed as blind carbon copies (BCC) of the sent email.</key>
+	<key id="parentref">parent folder</key>
 </i18n>

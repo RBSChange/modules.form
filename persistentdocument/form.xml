@@ -2,7 +2,7 @@
 <document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/schema/persistentdocument-4.0.xsd" model-version="1.0" extend="modules_form/baseform">
 	<properties>
 		<property name="recipientGroup" type="DocumentArray" document-type="modules_form/recipientGroup" />
-		<property name="notification" type="Document" min-occurs="1" cascade-delete="true" document-type="modules_notification/notification" />
+		<property name="notification" type="Document" cascade-delete="true" document-type="modules_notification/notification" required="true" />
 		<property name="responseCount" type="Integer" default-value="0" />
 		<property name="archivedResponseCount" type="Integer" default-value="0" />
 		<property name="saveResponse" type="Boolean" default-value="true" />

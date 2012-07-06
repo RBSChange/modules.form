@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.recipientgrouplist" lcid="de_DE">
-  <include id="m.form.document.field"/>
-  <key id="document-name">Auswahlfeld der Empfänger</key>
-  <key id="multiple">Mehrfachauswahl</key>
-  <key id="display">Anzeige</key>
-  <key id="display-help">Anzeigetyp.</key>
-  <key id="hasblankoption">Eine Kopfzeile hinzufügen</key>
-  <key id="hasblankoption-help">Ermöglicht eine Kopfzeile am Listenanfang anzuzeigen. Ist die Liste obligatorisch, wird der Benutzer einen Wert aus der Liste wählen müssen, statt ihn aleatorisch anzeigen zu lassen (was nicht immer relevant ist).</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">Auswahlfeld der Empfänger</key>
+	<key id="multiple">Mehrfachauswahl</key>
+	<key id="display">Anzeige</key>
+	<key id="display-help">Anzeigetyp.</key>
+	<key id="hasblankoption">Eine Kopfzeile hinzufügen</key>
+	<key id="hasblankoption-help">Ermöglicht eine Kopfzeile am Listenanfang anzuzeigen. Ist die Liste obligatorisch, wird der Benutzer einen Wert aus der Liste wählen müssen, statt ihn aleatorisch anzeigen zu lassen (was nicht immer relevant ist).</key>
 </i18n>

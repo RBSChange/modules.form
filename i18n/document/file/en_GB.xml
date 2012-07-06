@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.file" lcid="en_GB">
-  <include id="m.form.document.field"/>
-  <key id="document-name">file field</key>
-  <key id="mediafolder">sorting folder</key>
-  <key id="mediafolder-help">Destination folder, in the "Media" module.</key>
-  <key id="allowedextensions">restrict the field to</key>
-  <key id="allowedextensions-help">Restricts the files to certain extensions. The extensions are comma-separated. For instance: jpg,jpeg,png,gif. When left empty, all file types are allowed.</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">file field</key>
+	<key id="mediafolder">sorting folder</key>
+	<key id="mediafolder-help">Destination folder, in the "Media" module.</key>
+	<key id="allowedextensions">restrict the field to</key>
+	<key id="allowedextensions-help">Restricts the files to certain extensions. The extensions are comma-separated. For instance: jpg,jpeg,png,gif. When left empty, all file types are allowed.</key>
 </i18n>

@@ -6,11 +6,11 @@
 class form_persistentdocument_form extends form_persistentdocument_formbase
 {
 	/**
-	 * @return Integer
+	 * @return integer
 	 */
 	public function getActiveResponseCount()
 	{
-	    return $this->getResponseCount() - $this->getArchivedResponseCount();
+		return $this->getResponseCount() - $this->getArchivedResponseCount();
 	}
 
 	/**

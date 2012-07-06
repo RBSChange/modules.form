@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.general.field" lcid="de_DE">
-  <key id="password">Passwort</key>
-  <key id="text">Text</key>
-  <key id="multiline-text">mehrzeiliger Text</key>
-  <key id="mail">E-mail</key>
-  <key id="boolean">Wahr/Falsch</key>
-  <key id="single-selection-list">einlmalige Auswahlliste</key>
-  <key id="multiple-selection-list">mehrfache Auswahlliste</key>
-  <key id="file">Datei zum herunterladen</key>
-  <key id="hidden">verstecktes Feld</key>
-  <key id="group">Feldgruppe</key>
-  <key id="recipient-single-selection-list">Empfängerauswahlliste</key>
-  <key id="recipient-multiple-selection-list">Empfängerauswahlliste</key>
+	<key id="password">Passwort</key>
+	<key id="text">Text</key>
+	<key id="multiline-text">mehrzeiliger Text</key>
+	<key id="mail">E-mail</key>
+	<key id="boolean">Wahr/Falsch</key>
+	<key id="single-selection-list">einlmalige Auswahlliste</key>
+	<key id="multiple-selection-list">mehrfache Auswahlliste</key>
+	<key id="file">Datei zum herunterladen</key>
+	<key id="hidden">verstecktes Feld</key>
+	<key id="group">Feldgruppe</key>
+	<key id="recipient-single-selection-list">Empfängerauswahlliste</key>
+	<key id="recipient-multiple-selection-list">Empfängerauswahlliste</key>
 </i18n>

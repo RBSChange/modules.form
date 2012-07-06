@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.group" lcid="de_DE">
-  <key id="document-name">Feldergruppe</key>
-  <key id="label">Name</key>
-  <key id="label-help">Name der Zone (auf der Webseite sichtbar).</key>
-  <key id="description">Beschreibung</key>
-  <key id="description-help">in der Zone anzuzeigender Text.</key>
+	<key id="document-name">Feldergruppe</key>
+	<key id="label">Name</key>
+	<key id="label-help">Name der Zone (auf der Webseite sichtbar).</key>
+	<key id="description">Beschreibung</key>
+	<key id="description-help">in der Zone anzuzeigender Text.</key>
 </i18n>

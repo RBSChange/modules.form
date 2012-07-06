@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.password" lcid="de_DE">
-  <include id="m.form.document.field"/>
-  <key id="document-name">Passwortfeld</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">Passwortfeld</key>
 </i18n>

@@ -21,7 +21,7 @@ class form_PreviewFormAction extends change_Action
 			$request->setParameter('DisablePublicationWorkflow', 'true');
 			$context->getController()->forward('website', 'Display');
 			
-    	    return change_View::NONE;
+			return change_View::NONE;
 		}
 		return change_View::ERROR;
 	}

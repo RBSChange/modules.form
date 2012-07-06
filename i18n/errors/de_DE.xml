@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.errors" lcid="de_DE">
-  <key id="modules-form-getpreferencesdocument">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Präferenzen öffnen″</key>
-  <key id="modules-form-archiveresponse">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Antwort archivieren″</key>
-  <key id="modules-form-export">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Exportieren″</key>
-  <key id="modules-form-editlocale">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Lokale bearbeiten″</key>
-  <key id="modules-form-order">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Elementenreihenfolge ändern″</key>
-  <key id="modules-form-previewform">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Formularvorschau″</key>
-  <key id="modules-form-enabled">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Zugang zum Modul″</key>
+	<key id="modules-form-getpreferencesdocument">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Präferenzen öffnen″</key>
+	<key id="modules-form-archiveresponse">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Antwort archivieren″</key>
+	<key id="modules-form-export">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Exportieren″</key>
+	<key id="modules-form-editlocale">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Lokale bearbeiten″</key>
+	<key id="modules-form-order">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Elementenreihenfolge ändern″</key>
+	<key id="modules-form-previewform">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Formularvorschau″</key>
+	<key id="modules-form-enabled">Sie besitzen nicht die Rechte folgende Aktion auszuführen: ″Zugang zum Modul″</key>
 </i18n>

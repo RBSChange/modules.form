@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.field" lcid="de_DE">
-  <key id="label">Name</key>
-  <key id="label-help">Feldname (auf der Webseite sichtbar).</key>
-  <key id="fieldname">Feldname</key>
-  <key id="fieldname-help">Feldname muss aus Buchstaben und Ziffern bestehen und muss mit einem Buchstaben beginnen.</key>
-  <key id="validators">Bestätiger</key>
-  <key id="validators-help">Bestätigerliste des Feldes, durch Punkt-Kommata getrennt.</key>
-  <key id="required">obligatorisches Feld</key>
-  <key id="required-help">obligatorisches Feld.</key>
-  <key id="helptext">Hilfetext des Feldes</key>
-  <key id="helptext-help">Der Hilfetext des Feldes gibt den Benutzern an, wie das Feld zu füllen ist.</key>
+	<key id="label">Name</key>
+	<key id="label-help">Feldname (auf der Webseite sichtbar).</key>
+	<key id="fieldname">Feldname</key>
+	<key id="fieldname-help">Feldname muss aus Buchstaben und Ziffern bestehen und muss mit einem Buchstaben beginnen.</key>
+	<key id="validators">Bestätiger</key>
+	<key id="validators-help">Bestätigerliste des Feldes, durch Punkt-Kommata getrennt.</key>
+	<key id="required">obligatorisches Feld</key>
+	<key id="required-help">obligatorisches Feld.</key>
+	<key id="helptext">Hilfetext des Feldes</key>
+	<key id="helptext-help">Der Hilfetext des Feldes gibt den Benutzern an, wie das Feld zu füllen ist.</key>
 </i18n>

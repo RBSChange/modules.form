@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_RecipientGroupService getInstance()
+ */
 class form_RecipientGroupService extends f_persistentdocument_DocumentService
 {
-	/**
-	 * @var form_RecipientGroupService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_RecipientGroupService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_recipientGroup
 	 */
@@ -32,12 +19,12 @@ class form_RecipientGroupService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/recipientGroup');
+		return $this->getPersistentProvider()->createQuery('modules_form/recipientGroup');
 	}
 	
 	/**
 	 * @param form_persistentdocument_recipientGroup $document
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function postInsert($document, $parentNodeId)
 	{

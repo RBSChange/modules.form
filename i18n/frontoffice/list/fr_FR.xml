@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.frontoffice.list" lcid="fr_FR">
-  <key id="blankoption">sélectionner...</key>
+	<key id="blankoption">sélectionner...</key>
 </i18n>

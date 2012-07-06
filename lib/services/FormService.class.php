@@ -1,29 +1,16 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_FormService getInstance()
+ */
 class form_FormService extends form_BaseformService
 {
 	const SEND_EMAIL_AND_APPEND_TO_MAILBOX = 2;
-	const SEND_EMAIL_ONLY                  = 1;
-	const DO_NOT_SEND_MESSAGE              = 0;
+	const SEND_EMAIL_ONLY				  = 1;
+	const DO_NOT_SEND_MESSAGE			  = 0;
 	
 	const RECIPIENT_GROUP_FIELD_NAME  = 'recipientGroups';
-	const RECIPIENT_GROUP_LIST_ID     = 'modules_form/recipientgrouplist';
-
-	/**
-	 * @var form_FormService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_FormService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
+	const RECIPIENT_GROUP_LIST_ID	 = 'modules_form/recipientgrouplist';
 
 	/**
 	 * @return form_persistentdocument_form
@@ -39,7 +26,7 @@ class form_FormService extends form_BaseformService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/form');
+		return $this->getPersistentProvider()->createQuery('modules_form/form');
 	}
 
 	/**
@@ -50,7 +37,7 @@ class form_FormService extends form_BaseformService
 	 */
 	public function createStrictQuery()
 	{
-		return $this->pp->createQuery('modules_form/form', false);
+		return $this->getPersistentProvider()->createQuery('modules_form/form', false);
 	}
 	
 	/**
@@ -77,7 +64,7 @@ class form_FormService extends form_BaseformService
 		
 		if ($document->getResponseCount())
 		{
-			$responses = $this->pp->createQuery('modules_form/response')->add(Restrictions::eq('parentForm.id', $document->getId()))->find();
+			$responses = $this->getPersistentProvider()->createQuery('modules_form/response')->add(Restrictions::eq('parentForm.id', $document->getId()))->find();
 			foreach ($responses as $response)
 			{
 				$response->delete();
@@ -178,28 +165,28 @@ class form_FormService extends form_BaseformService
 	
 	/**
 	 * @param form_persistentdocument_baseform $document
-	 * @return Integer
+	 * @return integer
 	 */
 	public function fileResponses($document)
 	{
 		try
 		{
-			$this->tm->beginTransaction();
+			$this->getTransactionManager()->beginTransaction();
 			$count = form_ResponseService::getInstance()->fileForForm($document);
 			if ($count > 0)
 			{
 				$document->setArchivedResponseCount($document->getArchivedResponseCount() + $count);
 				if ($document->isModified())
 				{
-					$this->pp->updateDocument($document);
+					$this->getPersistentProvider()->updateDocument($document);
 				}
 			}
-			$this->tm->commit();
+			$this->getTransactionManager()->commit();
 			return $count;
 		}
 		catch (Exception $e)
 		{
-			$this->tm->rollBack($e);
+			$this->getTransactionManager()->rollBack($e);
 		}
 		return 0;
 	}
@@ -208,8 +195,8 @@ class form_FormService extends form_BaseformService
 	 * @param form_persistentdocument_form $form
 	 * @param form_persistentdocument_response $response
 	 * @param f_mvc_Request $request
-	 * @param String $copyMail
-	 * @param String $replyTo
+	 * @param string $copyMail
+	 * @param string $replyTo
 	 * @return void
 	 */
 	private function sendEmail($form, $response, $request, $copyMail, $replyTo)
@@ -275,7 +262,7 @@ class form_FormService extends form_BaseformService
 		$response = $params['response'];
 		$form = $params['form'];
 		
-		$contentTemplate = TemplateLoader::getInstance()->setPackageName('modules_form')->setMimeContentType('html')->load('Form-MailContent');
+		$contentTemplate = change_TemplateLoader::getNewInstance()->setExtension('html')->load('modules', 'form', 'templates', 'Form-MailContent');
 		$contentTemplate->setAttribute('items', $response->getAllData());
 		$contentTemplate->setAttribute('response', $response->getResponseInfos());
 
@@ -409,7 +396,7 @@ class form_FormService extends form_BaseformService
 				{
 					if (f_util_StringUtils::isNotEmpty($email))
 					{
-						$emails[f_util_StringUtils::strtolower($email)] = $email;
+						$emails[f_util_StringUtils::toLower($email)] = $email;
 					}
 				}
 			}
@@ -418,7 +405,7 @@ class form_FormService extends form_BaseformService
 				$email = $document->getEmail();
 				if (f_util_StringUtils::isNotEmpty($email))
 				{
-					$emails[f_util_StringUtils::strtolower($email)] = $email;
+					$emails[f_util_StringUtils::toLower($email)] = $email;
 				}
 			}
 		}
@@ -436,7 +423,7 @@ class form_FormService extends form_BaseformService
 			{
 				if (is_string($email)  && f_util_StringUtils::isNotEmpty($email))
 				{
-					$emails[f_util_StringUtils::strtolower($email)] = $email;
+					$emails[f_util_StringUtils::toLower($email)] = $email;
 				}
 			}
 		}
@@ -445,7 +432,7 @@ class form_FormService extends form_BaseformService
 	/**
 	 * @param form_persistentdocument_form $newDocument
 	 * @param form_persistentdocument_form $originalDocument
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function preDuplicate($newDocument, $originalDocument, $parentNodeId)
 	{
@@ -462,7 +449,7 @@ class form_FormService extends form_BaseformService
 	 *
 	 * @param form_persistentdocument_form $newDocument
 	 * @param form_persistentdocument_form $originalDocument
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 * 
 	 * @throws IllegalOperationException
 	 */
@@ -494,7 +481,7 @@ class form_FormService extends form_BaseformService
 		$notification = $document->getNotification();
 		$openNotificationUri = join(',' , array('notification', 'openDocument', $notification->getPersistentModel()->getBackofficeName(), $notification->getId(), 'properties'));
 		$backUri = join(',', array('form', 'openDocument', $document->getPersistentModel()->getBackofficeName(), $document->getId(), 'resume'));
-		$resume['properties']['notification'] = array('uri' => $openNotificationUri, 'label' => f_Locale::translateUI('&modules.uixul.bo.doceditor.open;'), 'backuri' => $backUri);
+		$resume['properties']['notification'] = array('uri' => $openNotificationUri, 'label' => LocaleService::getInstance()->trans('m.uixul.bo.doceditor.open'), 'backuri' => $backUri);
 		
 		return $resume;
 	}

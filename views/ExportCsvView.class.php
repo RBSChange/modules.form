@@ -9,7 +9,7 @@ class form_ExportCsvView extends change_View
 
 		$domDoc = new DOMDocument();
 
-		$fieldNames = array('creationdate' => f_Locale::translate('&modules.form.bo.actions.SendDate;'));
+		$fieldNames = array('creationdate' => LocaleService::getInstance()->trans('m.form.bo.actions.senddate', array('ucf')));
 		
 		$query = f_persistentdocument_PersistentProvider::getInstance()->createQuery('modules_form/response')
 			->add(Restrictions::eq('parentForm.id', $form->getId()))	

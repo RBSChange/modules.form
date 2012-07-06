@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.mail" lcid="de_DE">
-  <include id="m.form.document.field"/>
-  <key id="document-name">E-mailfeld</key>
-  <key id="multiline">mehrzeiliger Text</key>
-  <key id="multiline-help">mehrzeiliger Text.</key>
-  <key id="cols">Anzahl Spalten</key>
-  <key id="cols-help">Anzahl Spalten, die die Feldgrösse bestimmt.</key>
-  <key id="size">Feldgrösse</key>
-  <key id="rows">Anzahl Zeilen</key>
-  <key id="rows-help">Zeilen in der mehrzeiligen Textzone.</key>
-  <key id="useasreply">dieses Feld nutzen um 'antworten an'</key>
-  <key id="useasreply-help">der Wert dieses Feldes wird der E-mail als 'antworten an' hinzugefügt.</key>
-  <key id="isreceiver">dieser Adresse eine Kopie zuschicken</key>
-  <key id="isreceiver-help">Bestimmt ob die in diesem Feld eingegebene E-mailadresse als Empfänger der gesendeten E-mail nach Absendung des Formulars genutzt wird.</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">E-mailfeld</key>
+	<key id="multiline">mehrzeiliger Text</key>
+	<key id="multiline-help">mehrzeiliger Text.</key>
+	<key id="cols">Anzahl Spalten</key>
+	<key id="cols-help">Anzahl Spalten, die die Feldgrösse bestimmt.</key>
+	<key id="size">Feldgrösse</key>
+	<key id="rows">Anzahl Zeilen</key>
+	<key id="rows-help">Zeilen in der mehrzeiligen Textzone.</key>
+	<key id="useasreply">dieses Feld nutzen um 'antworten an'</key>
+	<key id="useasreply-help">der Wert dieses Feldes wird der E-mail als 'antworten an' hinzugefügt.</key>
+	<key id="isreceiver">dieser Adresse eine Kopie zuschicken</key>
+	<key id="isreceiver-help">Bestimmt ob die in diesem Feld eingegebene E-mailadresse als Empfänger der gesendeten E-mail nach Absendung des Formulars genutzt wird.</key>
 </i18n>

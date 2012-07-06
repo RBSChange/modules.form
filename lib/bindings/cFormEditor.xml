@@ -24,7 +24,7 @@
 						<xul:spacer flex="2" />
 						<xul:image anonid="captcha-preview" />
 						<xul:spacer flex="1" />
-						<xul:button anonid="refresh-captcha-button" label="${trans:m.form.document.preferences.captcha.Reload,space,ucf,attr}" image="{IconsBase}/small/refresh.png" />
+						<xul:button anonid="refresh-captcha-button" label="${trans:m.form.document.preferences.captcha.reload,space,ucf,attr}" image="{IconsBase}/small/refresh.png" />
 						<xul:spacer flex="2" />
 					</xul:vbox>
 				</xul:hbox>
@@ -32,7 +32,7 @@
 		</content>
 		<implementation>
 			<constructor><![CDATA[
-				var _this = this;					
+				var _this = this;
 				var node = document.getAnonymousElementByAttribute(this, 'anonid', 'refresh-captcha-button');
 				node.addEventListener('command', function () { _this.updateCaptchaPreview(); }, true);
 			]]></constructor>
@@ -108,7 +108,7 @@
 						{
 							valueField.disabled = true;
 							valueField.value = '';
-						}				
+						}
 						valueField.replaceItems({questionId: questionId});
 					}
 					catch (e)
@@ -118,12 +118,12 @@
 				]]></body>
 			</method>
 		</implementation>
-		<handlers>			
+		<handlers>
 			<handler event="fieldChanged"><![CDATA[
 				if (this.mInitialized && event.originalTarget.name == 'activationQuestion')
 				{
 					this.setActivation();
-				}					
+				}
 			]]></handler>
 		</handlers>
 	</binding>
@@ -292,7 +292,7 @@
 				]]></body>
 			</method>
 		</implementation>
-		<handlers>			
+		<handlers>
 			<handler event="fieldChanged"><![CDATA[
 				if (this.mInitialized && event.originalTarget.name == 'multiple')
 				{
@@ -317,7 +317,7 @@
 					try
 					{
 						this.mInitialized = true;
-						var panel = this.getPanel();						
+						var panel = this.getPanel();
 						var rows = panel.fields.rows;
 						var colsLabel = document.getAnonymousElementByAttribute(panel, 'control', panel.fields.cols.getAttribute('id'));
 						
@@ -328,13 +328,13 @@
 							{
 								rows.value = '2';
 							}
-							colsLabel.setAttribute('value', "${trans:m.form.document.text.Cols,ucf,js}");
+							colsLabel.setAttribute('value', "${trans:m.form.document.text.cols,ucf,js}");
 						}
 						else
 						{
 							rows.disabled = true;
 							rows.value = '1';
-							colsLabel.setAttribute('value', "${trans:m.form.document.text.Size,ucf,js}");
+							colsLabel.setAttribute('value', "${trans:m.form.document.text.size,ucf,js}");
 						}
 					}
 					catch (e)
@@ -344,7 +344,7 @@
 				]]></body>
 			</method>
 		</implementation>
-		<handlers>			
+		<handlers>
 			<handler event="fieldChanged"><![CDATA[
 				if (this.mInitialized && event.originalTarget.name == 'multiline')
 				{
@@ -364,7 +364,7 @@
 				var button = document.createElement('toolbarbutton');
 				button.setAttribute('image', '{IconsBase}/small/add.png');
 				button.setAttribute('height', '16');
-				button.setAttribute('tooltiptext', "${trans:m.form.bo.actions.Create-RecipientGroupList,ucf,js}");
+				button.setAttribute('tooltiptext', "${trans:m.form.bo.actions.create-recipientgrouplist,ucf,js}");
 				button.addEventListener('command', function () { me.openCreationForm(); }, true);
 				helpButton.parentNode.appendChild(button);
 			]]></constructor>
@@ -372,7 +372,7 @@
 			<method name="openCreationForm">
 				<parameter name="listWidget" />
 				<body><![CDATA[
-		    		var uri = ['form', 'createRecipientGroupForForm'].join(',');
+					var uri = ['form', 'createRecipientGroupForForm'].join(',');
 					openActionUri(uri);
 				]]></body>
 			</method>
@@ -500,10 +500,10 @@
 			<xul:vbox flex="1">
 				<xul:vbox class="dialog-header-container">
 					<xul:hbox class="dialog-header">
-						<xul:label value="${trans:m.form.bo.dialog.Form-responses,ucf,attr}" class="dialog-title" />
+						<xul:label value="${trans:m.form.bo.dialog.form-responses,ucf,attr}" class="dialog-title" />
 						<xul:spacer flex="1" />
 						<xul:vbox pack="center">
-							<xul:toolbarbutton height="24" width="24" image="{IconsBase}/small/delete.png" oncommand="onCancel();" tooltiptexts="${trans:m.uixul.bo.dialog.Cancel,ucf,attr}" />
+							<xul:toolbarbutton height="24" width="24" image="{IconsBase}/small/delete.png" oncommand="onCancel();" tooltiptexts="${trans:m.uixul.bo.dialog.cancel,ucf,attr}" />
 						</xul:vbox>
 					</xul:hbox>
 				</xul:vbox>
@@ -564,7 +564,7 @@
 		<resources>
 			<stylesheet src="modules.form.cFormResponsesDialog" />
 		</resources>
-		<implementation>			
+		<implementation>
 			<method name="setupContents">
 				<parameter name="parentSection" />
 				<parameter name="contents" />

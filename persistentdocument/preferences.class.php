@@ -4,17 +4,6 @@
  */
 class form_persistentdocument_preferences extends form_persistentdocument_preferencesbase
 {
-	
-	/**
-	 * Define the label of the tree node of the document.
-	 * By default, this method returns the label property value.
-	 * @return string
-	 */
-	public function getTreeNodeLabel()
-	{
-		return LocaleService::getInstance()->trans('m.form.bo.general.module-name', array('ucf'));
-	}
-	
 	/**
 	 * Returns an associative array of CAPTCHA parameters.
 	 * In the database, CAPTCHA parameters are stored in the following form:
@@ -39,7 +28,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 */
 	public function setIw($value)
 	{
@@ -47,7 +36,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @return Integer
+	 * @return integer
 	 */
 	public function getIw()
 	{
@@ -55,7 +44,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 */
 	public function setIh($value)
 	{
@@ -63,7 +52,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @return Integer
+	 * @return integer
 	 */
 	public function getIh()
 	{
@@ -71,7 +60,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 */
 	public function setFs($value)
 	{
@@ -79,7 +68,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @return Integer
+	 * @return integer
 	 */
 	public function getFs()
 	{
@@ -87,7 +76,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 */
 	public function setFd($value)
 	{
@@ -95,7 +84,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @return Integer
+	 * @return integer
 	 */
 	public function getFd()
 	{
@@ -103,7 +92,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @param Integer $value
+	 * @param integer $value
 	 */
 	public function setMl($value)
 	{
@@ -111,7 +100,7 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @return Integer
+	 * @return integer
 	 */
 	public function getMl()
 	{
@@ -135,8 +124,8 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @param String $name
-	 * @return Integer
+	 * @param string $name
+	 * @return integer
 	 */
 	private function getCaptachaParameter($name)
 	{
@@ -149,8 +138,8 @@ class form_persistentdocument_preferences extends form_persistentdocument_prefer
 	}
 	
 	/**
-	 * @param String $name
-	 * @param Integer $value
+	 * @param string $name
+	 * @param integer $value
 	 */
 	private function setCaptachaParameter($name, $value)
 	{

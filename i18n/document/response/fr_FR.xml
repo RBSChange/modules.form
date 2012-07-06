@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.response" lcid="fr_FR">
-  <key id="document-name">réponse</key>
-  <key id="label">libellé</key>
-  <key id="parentform">formulaire</key>
-  <key id="contents">contenu</key>
+	<key id="document-name">réponse</key>
+	<key id="label">libellé</key>
+	<key id="parentform">formulaire</key>
+	<key id="contents">contenu</key>
 </i18n>

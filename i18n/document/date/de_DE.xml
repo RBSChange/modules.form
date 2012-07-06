@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.document.date" lcid="de_DE">
-  <include id="m.form.document.field"/>
-  <key id="document-name">Datumsfeld</key>
-  <key id="startdate">Mindestdatum</key>
-  <key id="startdate-help">Mindestdatum welches vom Benutzer selektiert werden kann.</key>
-  <key id="enddate">Maximaldatum</key>
-  <key id="enddate-help">Maximaldatum welches vom Benutzer selektiert werden kann.</key>
+	<include id="m.form.document.field" />
+	<key id="document-name">Datumsfeld</key>
+	<key id="startdate">Mindestdatum</key>
+	<key id="startdate-help">Mindestdatum welches vom Benutzer selektiert werden kann.</key>
+	<key id="enddate">Maximaldatum</key>
+	<key id="enddate-help">Maximaldatum welches vom Benutzer selektiert werden kann.</key>
 </i18n>

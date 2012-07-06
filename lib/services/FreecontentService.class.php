@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_FreecontentService getInstance()
+ */
 class form_FreecontentService extends f_persistentdocument_DocumentService
 {
-	/**
-	 * @var form_FreecontentService
-	 */
-	private static $instance;
-
-	/**
-	 * @return form_FreecontentService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return form_persistentdocument_freecontent
 	 */
@@ -32,12 +19,12 @@ class form_FreecontentService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_form/freecontent');
+		return $this->getPersistentProvider()->createQuery('modules_form/freecontent');
 	}
 
 	/**
-	 * @param Integer $fieldId
-	 * @return Boolean
+	 * @param integer $fieldId
+	 * @return boolean
 	 */
 	public function hasCondition($fieldId)
 	{
@@ -49,7 +36,7 @@ class form_FreecontentService extends f_persistentdocument_DocumentService
 	/**
 	 * @param form_persistentdocument_freecontent $newDocument
 	 * @param form_persistentdocument_freecontent $originalDocument
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function preDuplicate($newDocument, $originalDocument, $parentNodeId)
 	{

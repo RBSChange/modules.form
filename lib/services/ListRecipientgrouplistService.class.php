@@ -1,27 +1,14 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_ListRecipientgrouplistService getInstance()
+ */
 class form_ListRecipientgrouplistService extends change_BaseService implements list_ListItemsService
 {
-	/**
-	 * @var form_ListRecipientgrouplistService
-	 */
-	private static $instance;
-
 	/**
 	 * @var form_FormService
 	 */
 	private $parentForm;
-
-	/**
-	 * @return form_ListRecipientgrouplistService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
 
 	/**
 	 * @param form_FormService $form

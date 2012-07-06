@@ -23,7 +23,7 @@ class form_AddRecipientGroupFolderAction extends change_JSONAction
 				break;
 				
 			default:
-				return $this->sendJSONError(f_Locale::translateUI('&modules.form.bo.general.Cant-create-only-in-folder;', true));
+				return $this->sendJSONError(LocaleService::getInstance()->trans('m.form.bo.general.cant-create-only-in-folder', array('ucf')));
 		}
 
 		return $this->sendJSON($result);

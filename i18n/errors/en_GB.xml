@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.errors" lcid="en_GB">
-  <key id="modules-form-getpreferencesdocument">you do not have the appropriate permissions to perform the following operation: "Open preferences"</key>
-  <key id="modules-form-archiveresponse">you do not have the appropriate permissions to perform this operation: "Archive the answer"</key>
-  <key id="modules-form-export">you do not have the appropriate permissions to perform this operation: "Export"</key>
-  <key id="modules-form-editlocale">you do not have the appropriate permissions to perform the following operation: "Edit a locale"</key>
-  <key id="modules-form-order">you do not have the appropriate permissions to perform this operation: "Sort the elements"</key>
-  <key id="modules-form-previewform">you do not have the appropriate permissions to perform this operation: "Preview a form"
+	<key id="modules-form-getpreferencesdocument">you do not have the appropriate permissions to perform the following operation: "Open preferences"</key>
+	<key id="modules-form-archiveresponse">you do not have the appropriate permissions to perform this operation: "Archive the answer"</key>
+	<key id="modules-form-export">you do not have the appropriate permissions to perform this operation: "Export"</key>
+	<key id="modules-form-editlocale">you do not have the appropriate permissions to perform the following operation: "Edit a locale"</key>
+	<key id="modules-form-order">you do not have the appropriate permissions to perform this operation: "Sort the elements"</key>
+	<key id="modules-form-previewform">you do not have the appropriate permissions to perform this operation: "Preview a form"
 		</key>
-  <key id="modules-form-enabled">you do not have the appropriate permissions to perform the following operation: "Access the module"</key>
-  <key id="modules-form-insert-recipientgroup">you do not have the appropriate permissions to add a recipient group to this folder</key>
+	<key id="modules-form-enabled">you do not have the appropriate permissions to perform the following operation: "Access the module"</key>
+	<key id="modules-form-insert-recipientgroup">you do not have the appropriate permissions to add a recipient group to this folder</key>
 </i18n>

@@ -1,25 +1,12 @@
 <?php
+/**
+ * @package modules.form
+ * @method form_ListActivationvaluesService getInstance()
+ */
 class form_ListActivationvaluesService extends change_BaseService
 {
 	/**
-	 * @var form_ListActivationvaluesService
-	 */
-	private static $instance;
-	
-	/**
-	 * @return form_ListActivationvaluesService
-	 */
-	public static function getInstance()
-	{
-		if (is_null(self::$instance))
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-	
-	/**
-	 * @return array<list_Item>
+	 * @return list_Item[]
 	 */
 	public final function getItems()
 	{
@@ -45,8 +32,8 @@ class form_ListActivationvaluesService extends change_BaseService
 			}
 			else
 			{
-				$trueLabel = $question->getVoTruelabel() . ' [' . $ls->transBO('m.uixul.bo.languages.' . $question->getLang(), array('ucf')) . ']';
-				$falseLabel = $question->getVoFalselabel() . ' [' . $ls->transBO('m.uixul.bo.languages.' . $question->getLang(), array('ucf')) . ']';
+				$trueLabel = $question->getVoTruelabel() . ' [' . $ls->trans('m.uixul.bo.languages.' . $question->getLang(), array('ucf')) . ']';
+				$falseLabel = $question->getVoFalselabel() . ' [' . $ls->trans('m.uixul.bo.languages.' . $question->getLang(), array('ucf')) . ']';
 			}
 			
 			$results['true'] = new list_Item($trueLabel, 'true');
@@ -61,7 +48,7 @@ class form_ListActivationvaluesService extends change_BaseService
 	}
 	
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public final function getDefaultId()
 	{
