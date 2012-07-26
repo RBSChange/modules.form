@@ -86,20 +86,12 @@ class form_BlockFormBaseAction extends website_BlockAction
 		$receiverLabels = array();
 		foreach ($receiverIds as $receiverId)
 		{
-			if (is_numeric($receiverId))
+			$receiver = DocumentHelper::getDocumentInstanceIfExists($receiverId);
+			if ($receiver !== null)
 			{
-				try
-				{
-					$receiver = DocumentHelper::getDocumentInstance($receiverId);
-					$receiverLabels[] = $receiver->getLabel();
-				}
-				catch (Exception $e)
-				{
-					Framework::exception($e);
-					$receiverLabels[] = $receiverId;
-				}
+				$receiverLabels[] = $receiver->getNavigationLabel();
 			}
-			else if (f_util_StringUtils::isNotEmpty($receiverId))
+			elseif (f_util_StringUtils::isNotEmpty($receiverId))
 			{
 				$receiverLabels[] = $receiverId;
 			}
