@@ -78,7 +78,7 @@ class PHPTAL_Php_Attribute_CHANGE_captcha extends PHPTAL_Php_Attribute
 		$generator->generateCode();
 	}
 	
-	public function renderImage($attributes, $parameters, $key)
+	public static function renderImage($attributes, $parameters, $key)
 	{
 		// Get CAPTCHA parameters from the module form's preferences.
 		$pref = ModuleService::getInstance()->getPreferencesDocument('form');
@@ -112,7 +112,7 @@ class PHPTAL_Php_Attribute_CHANGE_captcha extends PHPTAL_Php_Attribute
 		return $code . ' /></span>';
 	}
 	
-	public function renderInput($attributes, $parameters, $key)
+	public static function renderInput($attributes, $parameters, $key)
 	{
 		$code = '<input type="text" class="textfield" name="formParam[' . CAPTCHA_SESSION_KEY . ']"';
 		if (isset($attributes['name']))
