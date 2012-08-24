@@ -10,4 +10,8 @@
   <key id="log-update-form">log-update-form</key>
   <key id="update-text">update.text {lang} {documentlabel}</key>
   <key id="log-update-text">log update text</key>
+  <key id="insert-form">insert.form {lang} {documentlabel}</key>
+  <key id="log-insert-form">log insert form</key>
+  <key id="insert-date">insert.date {lang} {documentlabel}</key>
+  <key id="log-insert-date">log insert date</key>
 </i18n>

@@ -151,10 +151,18 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 	private function getFieldInfos($node)
 	{
 		$value = htmlspecialchars($node->nodeValue);
+		if ($node->getAttribute('type') == 'date')
+		{
+			$mailValue = date_Formatter::toDefaultDate($value);
+		}
+		else
+		{
+			$mailValue = ($node->hasAttribute('mailValue')) ? $node->getAttribute('mailValue') : $value;
+		}
 		$infos = array(
 			'isGroup' => false,
 			'label' => $node->getAttribute('label'),
-			'mailValue' => ($node->hasAttribute('mailValue')) ? $node->getAttribute('mailValue') : $value,
+			'mailValue' => $mailValue,
 			'value' => $value
 		);
 		if ($value && $node->hasAttribute('isFile') && $node->getAttribute('isFile') == 'true')
