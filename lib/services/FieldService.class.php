@@ -212,10 +212,11 @@ class form_FieldService extends f_persistentdocument_DocumentService
 
 	/**
 	 * @param form_persistentdocument_field $document
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 * @throws form_FieldLockedException
 	 */
-	protected function preUpdate($document)
+	protected function preUpdate($document, $parentNodeId)
 	{
 		if ($document->getIsLocked() && $document->isPropertyModified("fieldName"))
 		{
@@ -225,9 +226,10 @@ class form_FieldService extends f_persistentdocument_DocumentService
 
 	/**
 	 * @param form_persistentdocument_field $document
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 */
-	protected function postUpdate($document)
+	protected function postUpdate($document, $parentNodeId)
 	{
 		$form = $this->getFormOf($document);
 		$form->getDocumentService()->onFieldChanged($form);

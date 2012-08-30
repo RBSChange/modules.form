@@ -74,7 +74,7 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 			$this->file($response->getId());
 			$count++;
 		}
-	   
+	
 		return $count;
 	}
 	
@@ -102,7 +102,7 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 	 * @return array
 	 */
 	private function getResponseContents(&$i, $fieldList, $level, $groupName)
-	{		
+	{
 		$contents = array();
 		while ($i < $fieldList->length)
 		{
@@ -137,10 +137,18 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 	private function getFieldInfos($node)
 	{
 		$value = htmlspecialchars($node->nodeValue);
+		if ($node->getAttribute('type') == 'date')
+		{
+			$mailValue = date_Formatter::toDefaultDate($value);
+		}
+		else
+		{
+			$mailValue = ($node->hasAttribute('mailValue')) ? $node->getAttribute('mailValue') : $value;
+		}
 		$infos = array(
 			'isGroup' => false,
 			'label' => $node->getAttribute('label'),
-			'mailValue' => ($node->hasAttribute('mailValue')) ? $node->getAttribute('mailValue') : $value,
+			'mailValue' => $mailValue,
 			'value' => $value
 		);
 		if ($value && $node->hasAttribute('isFile') && $node->getAttribute('isFile') == 'true')
@@ -168,7 +176,7 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 	 * @param array $allowedSections
 	 * @return array
 	 */
-	public function getResume($document, $forModuleName, $allowedSections)
+	public function getResume($document, $forModuleName, $allowedSections = null)
 	{
 		$resume = parent::getResume($document, $forModuleName, $allowedSections);
 		
@@ -176,5 +184,4 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 		
 		return $resume;
 	}
-
 }

@@ -1,6 +1,5 @@
 <?php
 /**
- * from_BlockFormBaseAction
  * @package modules.form
  */
 class form_BlockFormBaseAction extends website_BlockAction
@@ -265,7 +264,7 @@ class form_BlockFormBaseAction extends website_BlockAction
 				$templateObject->setAttribute('field', $attributes);
 			}
 			$contents[$document->getId()] = $templateObject->execute();
-		}		
+		}
 		return $contents;
 	}
 }
