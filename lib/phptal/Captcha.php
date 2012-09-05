@@ -99,8 +99,7 @@ class PHPTAL_Php_Attribute_CHANGE_Captcha extends ChangeTalAttribute
 		$url = LinkHelper::getActionLink('form', 'Captcha')
 			->setQueryParameters($parameters)
 			->setArgSeparator(f_web_HttpLink::ESCAPE_SEPARATOR)->getUrl();
-			
-		$code = '<span class="captcha"><input type="image" src="' . $url . '"';
+		$code = '<span class="captcha"><img src="' . $url . '"';
 		if (!isset($attributes['title']))
 		{
 			$attributes['title'] = LocaleService::getInstance()->trans("m.form.bo.general.captcha-click-to-have-another-one", array('ucf', 'attr'));
