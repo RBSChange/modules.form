@@ -26,7 +26,7 @@
 				<li tal:repeat="error errors">${error}</li>
 			</ul>
 			<ol>
-				<li tal:repeat="elm elements" tal:replace="elm" />
+				<li tal:repeat="elm elements" tal:replace="structure elm" />
 				<li tal:condition="useCaptcha" class="captcha">
 					<img change:captcha="key php: 'form' . form.getId()" style="vertical-align: bottom" />
 					<input change:captcha="key php: 'form' . form.getId()" />

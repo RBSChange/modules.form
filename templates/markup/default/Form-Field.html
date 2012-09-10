@@ -15,6 +15,6 @@
 		${field/label}
 		<tal:block tal:condition="hasCondition"><br /><span class="condition nojs">(${trans:m.form.frontoffice.accessibility.activation,value=activationlabel})</span></tal:block>
 	</label>	
-	${field/html}
+	${structure field/html}
 	<p tal:condition="field/description" class="help-text">${field/description}</p>
 </li>
