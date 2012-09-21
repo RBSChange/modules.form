@@ -61,7 +61,7 @@ class form_MailService extends form_TextService
 			if ($oldReplyField !== null && $oldReplyField !== $document)
 			{
 				Framework::error(__METHOD__ . ' Old reply field :' . $oldReplyField->__toString());
-				throw new form_ReplyToFieldAlreadyExistsException(LocaleService::getInstance()->trans('m.form.bo.errors.mail-field-for-replyto-exists' /* @TODO CHECK */, array('ucf')));
+				throw new form_ReplyToFieldAlreadyExistsException(LocaleService::getInstance()->trans('m.form.bo.errors.mail-field-for-replyto-exists', array('ucf')));
 			}
 		}
 		parent::preSave($document, $parentNodeId);

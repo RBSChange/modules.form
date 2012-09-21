@@ -163,8 +163,7 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 			}
 			catch (Exception $e)
 			{
-				$e; // Avoid Eclipse warning...
-				$infos['mailValue'] = LocaleService::getInstance()->trans('m.form.bo.general.unexisting-file' /* @TODO CHECK */, array('ucf'), array('id' => $value));
+				$infos['mailValue'] = LocaleService::getInstance()->trans('m.form.bo.general.unexisting-file', array('ucf'), array('id' => $value));
 			}
 		}
 		return $infos;
