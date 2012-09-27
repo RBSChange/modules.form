@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.form.bo.blocks" lcid="fr_FR">
-	<key id="previewform">formulaire de prévisualisation</key>
+	<key id="previewform">formulaire (module formulaire)</key>
 	<key id="confirm">confirmation de soumission du formulaire</key>
 </i18n>
