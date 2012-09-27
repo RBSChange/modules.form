@@ -5,7 +5,7 @@
 		<field name="previewpage" />
 		<field name="enableRecipientGroupFolderCreation" />
 	</section>
-	<section labeli18n="modules.form.bo.general.CaptchaSpaced" class="captcha">
+	<section labeli18n="modules.form.document.preferences.captcha.CaptchaSpaced" class="captcha">
 		<field name="iw" type="integer" required="true" increment="5"
 			labeli18n="modules.form.document.preferences.captcha.Width"
 			shorthelp="modules.form.document.preferences.captcha.Width-help">

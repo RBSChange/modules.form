@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blocks>
-	<block type="modules_form_form" icon="form" label="&amp;modules.form.bo.blocks.previewform;" />
+	<block type="modules_form_form" icon="form" label="&amp;modules.form.bo.blocks.Previewform;" />
 	<block type="modules_form_confirm" icon="check" label="&amp;modules.form.bo.blocks.Confirm;" />
 </blocks>
