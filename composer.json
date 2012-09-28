@@ -1,0 +1,6 @@
+{
+	"name": "rbschange/form",
+	"description": "RBS Change Form module",
+	"type": "rbschange-compatibility-module",
+	"license":"AGPL-3.0"
+}
