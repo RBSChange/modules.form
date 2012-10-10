@@ -5,7 +5,7 @@
 		<property name="activationQuestion" type="Document" document-type="modules_form/field" />
 		<property name="activationValue" type="String" from-list="modules_form/activationvalues" />
 	</properties>
-	<statuses default="PUBLICATED" />
+	<statuses default="PUBLISHED" />
 	<children>
 		<child name="fields" type="modules_form/field" />
 		<child name="groups" type="modules_form/group" />

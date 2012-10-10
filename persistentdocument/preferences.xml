@@ -7,5 +7,5 @@
 		<property name="previewpage" type="Document" document-type="modules_website/page" />
 		<property name="enableRecipientGroupFolderCreation" type="Boolean" />
 	</properties>
-	<statuses default="PUBLICATED" />
+	<statuses default="PUBLISHED" />
 </document>

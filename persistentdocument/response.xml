@@ -4,5 +4,5 @@
 		<property name="parentForm" type="Document" document-type="modules_form/form" required="true" />
 		<property name="contents" type="XHTMLFragment" required="true" />
 	</properties>
-	<statuses default="PUBLICATED" />
+	<statuses default="PUBLISHED" />
 </document>
