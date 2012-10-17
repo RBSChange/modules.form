@@ -539,6 +539,8 @@
 			<method name="setValues">
 				<parameter name="values" />
 				<body><![CDATA[
+					this.clearValues();
+					
 					var section = document.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'section');
 					section.className = 'responseContent';
 					this.appendChild(section);
