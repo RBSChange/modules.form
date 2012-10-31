@@ -159,7 +159,7 @@ class form_ResponseService extends f_persistentdocument_DocumentService
 				$infos['isFile'] = true;
 				$infos['href'] = LinkHelper::getUIActionLink('media', 'BoDisplay')->setQueryParameter('cmpref', $value)
 					->setQueryParameter('lang', $file->getI18nInfo()->getVo())->setQueryParameter('forceDownload', 'true')->getUrl();
-				$infos['linklabel'] = $file->getLabel();
+				$infos['linklabel'] = $file->getVoLabel();
 			}
 			catch (Exception $e)
 			{
