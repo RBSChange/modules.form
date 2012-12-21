@@ -3,7 +3,7 @@
 	<properties>
 		<property name="label" localized="true" />
 		<property name="fieldName" type="String">
-			<constraint name="matches" parameter="^[a-zA-Z][a-z_\-A-Z\[\]0-9]+$" />
+			<constraint name="regexp" parameter="/^[a-zA-Z][a-z_\-A-Z\[\]0-9]+$/" />
 		</property>
 		<property name="validators" type="LongString" />
 		<property name="required" type="Boolean" default-value="0" />
