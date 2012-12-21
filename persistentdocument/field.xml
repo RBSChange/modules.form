@@ -5,7 +5,7 @@
 	<properties>
 		<add name="label" localized="true" />
 		<add name="fieldName" type="String">
-			<constraints>matches:^[a-zA-Z][a-z_\-A-Z\[\]0-9]+$</constraints>
+			<constraints>regexp:/^[a-zA-Z][a-z_\-A-Z\[\]0-9]+$/</constraints>
 		</add>
 		<add name="validators" type="LongString" />
 		<add name="required" type="Boolean" min-occurs="1" default-value="0" />
