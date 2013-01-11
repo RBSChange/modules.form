@@ -8,7 +8,7 @@
 	<key id="enddate">date maximale</key>
 	<key id="enddate-help">Date maximale que l'utilisateur pourra sélectionner.</key>
 	<key id="floatingstartdate">date minimale</key>
-	<key id="floatingstartdate-help">Date minimale que l'utilisateur pourra sélectionner. Le format à utiliser est de la forme "+1m +7d -1y" avec les lettres "y" pour les années, "m" pour les mois, "w" pour les semaines et "d" pour les jours.</key>
+	<key id="floatingstartdate-help">Date minimale que l'utilisateur pourra sélectionner. Le format à utiliser est de la forme "+1m +7d -1y" avec les lettres "y" pour les années, "m" pour les mois, "w" pour les semaines et "d" pour les jours. Laisser le champ vide pour sélectionner le jour courrant.</key>
 	<key id="floatingenddate">date maximale</key>
-	<key id="floatingenddate-help">Date maximale que l'utilisateur pourra sélectionner. Le format à utiliser est de la forme "+1m +7d -1y" avec les lettres "y" pour les années, "m" pour les mois, "w" pour les semaines et "d" pour les jours.</key>
+	<key id="floatingenddate-help">Date maximale que l'utilisateur pourra sélectionner. Le format à utiliser est de la forme "+1m +7d -1y" avec les lettres "y" pour les années, "m" pour les mois, "w" pour les semaines et "d" pour les jours. Laisser le champ vide pour sélectionner le jour courrant.</key>
 </i18n>
