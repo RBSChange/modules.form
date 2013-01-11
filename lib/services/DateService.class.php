@@ -52,4 +52,22 @@ class form_DateService extends form_FieldService
 		}
 		return $txtValue;
 	}
+	
+	/**
+	 * @param form_persistentdocument_date $document
+	 * @param string[] $propertiesName
+	 * @param array $datas
+	 * @param integer $parentId
+	 */
+	public function addFormProperties($document, $propertiesName, &$datas, $parentId = null)
+	{
+		parent::addFormProperties($document, $propertiesName, $datas, $parentId);
+	
+		$options = array();
+		foreach (list_ValuededitablelistService::getInstance()->getByListId('modules_form/floatingdatesamples')->getItemdocumentsArray() as $item)
+		{
+			$options[] = array ('label' => $item->getTreeNodeLabel(), 'value' => $item->getValue());
+		}
+		$datas['floatingDateSamples'] = $options;
+	}
 }

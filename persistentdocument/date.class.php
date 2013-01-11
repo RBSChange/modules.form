@@ -10,47 +10,73 @@ class form_persistentdocument_date extends form_persistentdocument_datebase
 	 */
 	public function getStartDatePicker()
 	{
-		if ( !$this->getStartDate() )
+		if ($this->getRangeType() == 'fixed')
 		{
-			return form_DateService::DEFAULT_START_DATE;
+			if ($this->getStartDate())
+			{
+				return $this->getStartDate();
+			}
 		}
-		return $this->getStartDate();
+		elseif ($this->getRangeType() == 'floating')
+		{
+			if ($this->getFloatingStartDate())
+			{
+				return $this->calculateDateFromFloating($this->getFloatingStartDate());
+			}
+		}
+		return form_DateService::DEFAULT_START_DATE;
 	}
-
+	
 	/**
 	 * @return string
 	 */
 	public function getEndDatePicker()
 	{
-		if (!$this->getEndDate() )
+		if ($this->getRangeType() == 'fixed')
 		{
-			return form_DateService::DEFAULT_END_DATE;
+			if ($this->getEndDate())
+			{
+				return $this->getEndDate();
+			}
 		}
-		return $this->getEndDate();
+		elseif ($this->getRangeType() == 'floating')
+		{
+			if ($this->getFloatingEndDate())
+			{
+				return $this->calculateDateFromFloating($this->getFloatingEndDate());
+			}
+		}
+		return form_DateService::DEFAULT_END_DATE;
 	}
-
+	
 	/**
-	 * @return string
+	 * @return String
 	 */
 	public function getUiStartDatePicker()
 	{
-		if ( !$this->getUiStartDate() )
-		{
-			return form_DateService::DEFAULT_START_DATE;
-		}
-		return $this->getUiStartDate();
+		return date_Converter::convertDateToLocal($this->getStartDatePicker());
 	}
-
+	
 	/**
-	 * @return string
+	 * @return String
 	 */
 	public function getUiEndDatePicker()
 	{
-		if (!$this->getUiEndDate() )
-		{
-			return form_DateService::DEFAULT_END_DATE;
-		}
-		return $this->getUiEndDate();
+		return date_Converter::convertDateToLocal($this->getEndDatePicker());
+	}
+	
+	/**
+	 * @param string $floatingDate
+	 * @return date_Calendar
+	 */
+	public function calculateDateFromFloating($floatingDate)
+	{
+		$floatingDate = preg_replace('/([+\-][0-9]+)y/', '\\1year', $floatingDate);
+		$floatingDate = preg_replace('/([+\-][0-9]+)m/', '\\1month', $floatingDate);
+		$floatingDate = preg_replace('/([+\-][0-9]+)w/', '\\1week', $floatingDate);
+		$floatingDate = preg_replace('/([+\-][0-9]+)d/', '\\1day', $floatingDate);
+		$date = new DateTime($floatingDate);
+		return date_Calendar::getInstance($date->format('Y-m-d H:i:s'));
 	}
 	
 	/**
@@ -64,19 +90,19 @@ class form_persistentdocument_date extends form_persistentdocument_datebase
 			return form_DateService::DEFAULT_VALIDATORS;
 		}
 		
-		$validators = array('date:'.$format);
+		$validators = array('date:' . $format);
 		if ($this->getStartDate())
 		{
-			$validators[] =  substr($this->getUIStartDate(),0, 10);
+			$validators[] = substr($this->getUIStartDate(), 0, 10);
 		}
 		else
 		{
 			$validators[] = '';
 		}
-
+		
 		if ($this->getEndDate())
 		{
-			$validators[] =   substr($this->getUIEndDate(),0, 10);
+			$validators[] = substr($this->getUIEndDate(), 0, 10);
 		}
 		else
 		{
@@ -84,5 +110,33 @@ class form_persistentdocument_date extends form_persistentdocument_datebase
 		}
 		
 		return implode('|', $validators);
+	}
+	
+	/**
+	 * @return boolean
+	 */
+	public function isValid()
+	{
+		if (!parent::isValid())
+		{
+			return false;
+		}
+		
+		$startDate = date_Calendar::getInstance($this->getStartDatePicker());
+		$endDate = date_Calendar::getInstance($this->getEndDatePicker());
+		if ($endDate->isBefore($startDate))
+		{
+			if ($this->getRangeType() == 'fixed')
+			{
+				$fieldName = 'startDate';
+			}
+			elseif ($this->getRangeType() == 'floating')
+			{
+				$fieldName = 'floatingStartDate';
+			}
+			$this->validationErrors->rejectValue($fieldName, LocaleService::getInstance()->trans('m.form.bo.general.must-start-before-end', array('ucf')));
+			return false;
+		}
+		return true;
 	}
 }

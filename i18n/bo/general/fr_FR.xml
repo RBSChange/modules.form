@@ -36,4 +36,6 @@
 	<key id="iphone-specific-configurations">configurations spécifiques à l'iPhone</key>
 	<key id="unexisting-file">le fichier n'existe plus ({id})</key>
 	<key id="locked">verrouillé</key>
+	<key id="range">intervalle de dates autorisées</key>
+	<key id="must-start-before-end">la date de début de l'intervalle doit être avant la date de fin.</key>
 </i18n>
