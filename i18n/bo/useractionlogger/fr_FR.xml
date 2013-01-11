@@ -114,4 +114,6 @@
   <key id="log-deletelocalization-boolean">log deletelocalization boolean</key>
   <key id="update-candidacyinquiryform">update.candidacyinquiryform {lang} {documentlabel}</key>
   <key id="log-update-candidacyinquiryform">log update candidacyinquiryform</key>
+  <key id="move-date">move.date {destinationlabel} {lang} {documentlabel}</key>
+  <key id="log-move-date">log move date</key>
 </i18n>

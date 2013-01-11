@@ -1,0 +1,4 @@
+Version: 3.6.4
+
+- add new rangeType, floatingStartDate and floatingEndDate fields in modules_form/date
+- add new modules_form/rangetypes and modules_form/floatingdatesamples lists

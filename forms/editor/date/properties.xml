@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <panel>
-	<section labeli18n="modules.form.bo.general.General">
+	<section labeli18n="m.form.bo.general.general">
 		<field name="label" />
 		<field name="required" />
 		<field name="helpText" />
+	</section>
+	<section labeli18n="m.form.bo.general.range">
+		<field name="rangeType" />
 		<field name="startDate" />
 		<field name="endDate" />
+		<field name="floatingStartDate" class="template" size="20" />
+		<field name="floatingEndDate" class="template" size="20" />
 	</section>
-	<section labeli18n="modules.form.bo.general.Activation-conditions" class="activation-conditions">
+	<section labeli18n="m.form.bo.general.activation-conditions" class="activation-conditions">
 		<field name="activationQuestion" type="dropdownlist" emptylabel="" nocache="true" />
 		<field name="activationValue" />
 	</section>
+	<xul>
+		<javascript>
+			<constructor><![CDATA[
+				var me = this;
+				this.fields.rangeType.addEventListener('fieldChanged', function () {me.onRangeTypeChanged();}, true);
+				this.addEventListener('panelInitializeComplete', function () { me.onRangeTypeChanged(); }, true);
+				this.extendMethod('fireInitializeComplete', this.initializeCompleteExtend);
+			]]></constructor>
+			
+			<method name="onRangeTypeChanged">
+				<body><![CDATA[
+					try
+					{
+						var fields = this.fields;
+						var field = fields.rangeType;
+						if (field.value == "fixed")
+						{
+							this.getElementByAnonId('row_startDate').removeAttribute('collapsed');
+							this.getElementByAnonId('row_endDate').removeAttribute('collapsed');
+							fields.floatingStartDate.value = '';
+							this.getElementByAnonId('row_floatingStartDate').setAttribute('collapsed', 'true');
+							fields.floatingEndDate.value = '';
+							this.getElementByAnonId('row_floatingEndDate').setAttribute('collapsed', 'true');
+						}
+						else
+						{
+							fields.startDate.value = '';
+							this.getElementByAnonId('row_startDate').setAttribute('collapsed', 'true');
+							fields.endDate.value = '';
+							this.getElementByAnonId('row_endDate').setAttribute('collapsed', 'true');
+							this.getElementByAnonId('row_floatingStartDate').removeAttribute('collapsed');
+							this.getElementByAnonId('row_floatingEndDate').removeAttribute('collapsed');
+						}
+					}
+					catch (e)
+					{
+						wCore.error("date.propertiespanel.onRangeTypeChanged", [result], e);
+					}
+				]]></body>
+			</method>
+			
+			<method name="initializeCompleteExtend">
+				<parameter name="result" />
+				<body><![CDATA[
+				var fields = this.fields;
+				try
+				{
+					if (result.contents.floatingDateSamples)
+					{
+						this.setMenuItems(result.contents.floatingDateSamples, fields.floatingStartDate);
+						this.setMenuItems(result.contents.floatingDateSamples, fields.floatingEndDate);
+					}
+				}
+				catch (e)
+				{
+					wCore.error("date.properties.fireInitializeCompleteExtend", [result], e);
+				}
+				]]></body>
+			</method>
+			
+			<method name="setMenuItems">
+				<parameter name="metas" />
+				<parameter name="field" />
+				<body><![CDATA[
+					field.clearSubstitutions();
+					for (var i = 0; i < metas.length; i++)
+					{
+						field.addSubstitution(metas[i].label, metas[i].value);
+					}
+				]]></body>
+			</method>
+		</javascript>
+	</xul>
 </panel>

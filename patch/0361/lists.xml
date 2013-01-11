@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+	<binding fileName="modules/list/persistentdocument/import/list_binding.xml" />
+	
+	<systemfolder module="list" relatedmodule="form">
+		<staticlist listid="modules_form/rangetypes" label="m.form.lists.rangetypes-label" description="m.form.lists.rangetypes-description">
+			<staticitem label="m.form.lists.rangetypes-fixed" value="fixed" />
+			<staticitem label="m.form.lists.rangetypes-floating" value="floating" />
+		</staticlist>
+
+		<valuededitablelist listid="modules_form/floatingdatesamples" label="m.form.lists.floatingdatesamples-label"
+			description="m.form.lists.floatingdatesamples-description">
+			<valueditem byValue="+5y" label="m.form.lists.floatingdatesamples-nextfiveyears" />
+			<valueditem byValue="+1y" label="m.form.lists.floatingdatesamples-nextyear" />
+			<valueditem byValue="+1m" label="m.form.lists.floatingdatesamples-nextmonth" />
+			<valueditem byValue="+1w" label="m.form.lists.floatingdatesamples-nextweek" />
+			<valueditem byValue="-1w" label="m.form.lists.floatingdatesamples-lastweek" />
+			<valueditem byValue="-1m" label="m.form.lists.floatingdatesamples-lastmonth" />
+			<valueditem byValue="-1y" label="m.form.lists.floatingdatesamples-lastyear" />
+			<valueditem byValue="-5y" label="m.form.lists.floatingdatesamples-lastfiveyears" />
+			<valueditem byValue="-16y" label="m.form.lists.floatingdatesamples-lastsixteenyears" />
+			<valueditem byValue="-70y" label="m.form.lists.floatingdatesamples-lastseventyyears" />
+		</valuededitablelist>
+	</systemfolder>
+</script>

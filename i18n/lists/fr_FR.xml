@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.form.lists" lcid="fr_FR">
+	<key id="rangetypes-label">types d'intervalles de dates</key>
+	<key id="rangetypes-description">liste des types d'intervalles pour les champs de type date</key>
+	<key id="rangetypes-fixed">dates fixes</key>
+	<key id="rangetypes-floating">dates relatives à la date courante</key>
+	<key id="floatingdatesamples-label">formats de date flotante</key>
+	<key id="floatingdatesamples-description">liste d'exemples de formats de date flotante</key>
+	<key id="floatingdatesamples-nextfiveyears">les 5 prochaines années</key>
+	<key id="floatingdatesamples-nextyear">la prochaine année</key>
+	<key id="floatingdatesamples-nextmonth">le prochain mois</key>
+	<key id="floatingdatesamples-nextweek">la prochaine semaine</key>
+	<key id="floatingdatesamples-lastweek">la dernière semaine</key>
+	<key id="floatingdatesamples-lastmonth">le dernier mois</key>
+	<key id="floatingdatesamples-lastyear">la dernière année</key>
+	<key id="floatingdatesamples-lastfiveyears">les 5 dernières années</key>
+	<key id="floatingdatesamples-lastsixteenyears">les 16 dernières années</key>
+	<key id="floatingdatesamples-lastseventyyears">les 70 dernières années</key>
+</i18n>

@@ -474,10 +474,13 @@ abstract class FormHelper
 	 */
 	private static function fromDateFieldDocument($field, $value)
 	{
+		$startDateCalendar = date_Calendar::getInstance($field->getUiStartDatePicker());
+		$endDateCalendar = date_Calendar::getInstance($field->getUiEndDatePicker());
 		$attributes = array(
-			'startDate' => date_DateFormat::format(date_Calendar::getInstance($field->getUiStartDatePicker()), 'd/m/Y'),
-			'endDate'   => date_DateFormat::format(date_Calendar::getInstance($field->getUiEndDatePicker()), 'd/m/Y')
-			);
+			'startDate' => date_DateFormat::format($startDateCalendar, 'd/m/Y'),
+			'endDate' => date_DateFormat::format($endDateCalendar, 'd/m/Y'),
+			'yearRange' => $startDateCalendar->getYear() . ':' . $endDateCalendar->getYear()
+		);
 		return self::dateBox($field->getFieldName(), $field->getId(), $value, $attributes);
 	}
 

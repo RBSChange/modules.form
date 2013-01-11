@@ -58,4 +58,5 @@
   <actiondef modulename="form" actionname="deletelocalization.text" label="m.form.bo.useractionlogger.deletelocalization-text"/>
   <actiondef modulename="form" actionname="deletelocalization.boolean" label="m.form.bo.useractionlogger.deletelocalization-boolean"/>
   <actiondef modulename="form" actionname="update.candidacyinquiryform" label="m.form.bo.useractionlogger.update-candidacyinquiryform"/>
+  <actiondef modulename="form" actionname="move.date" label="m.form.bo.useractionlogger.move-date"/>
 </script>

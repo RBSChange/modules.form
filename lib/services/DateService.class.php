@@ -3,13 +3,13 @@ class form_DateService extends form_FieldService
 {
 	const DEFAULT_VALIDATORS = 'date:d/m/Y';
 	const DEFAULT_START_DATE = '1970-01-01';
-	const DEFAULT_END_DATE   = '2050-12-31';
-
+	const DEFAULT_END_DATE = '2050-12-31';
+	
 	/**
 	 * @var form_DateService
 	 */
 	private static $instance;
-
+	
 	/**
 	 * @return form_DateService
 	 */
@@ -21,7 +21,7 @@ class form_DateService extends form_FieldService
 		}
 		return self::$instance;
 	}
-
+	
 	/**
 	 * @return form_persistentdocument_date
 	 */
@@ -29,7 +29,7 @@ class form_DateService extends form_FieldService
 	{
 		return $this->getNewDocumentInstanceByModelName('modules_form/date');
 	}
-
+	
 	/**
 	 * Create a query based on 'modules_form/date' model
 	 * @return f_persistentdocument_criteria_Query
@@ -38,7 +38,7 @@ class form_DateService extends form_FieldService
 	{
 		return $this->pp->createQuery('modules_form/date');
 	}
-
+	
 	/**
 	 * @param form_persistentdocument_date $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
@@ -50,19 +50,37 @@ class form_DateService extends form_FieldService
 		$document->setValidators(self::DEFAULT_VALIDATORS);
 	}
 	
-    /**
-     * @param form_persistentdocument_date $field
-     * @param DOMElement $fieldElm
-     * @param mixed $rawValue
-     * @return string
-     */
-    public function buildXmlElementResponse($field, $fieldElm, $rawValue)
-    {
-        $txtValue = parent::buildXmlElementResponse($field, $fieldElm, $rawValue); 
+	/**
+	 * @param form_persistentdocument_date $field
+	 * @param DOMElement $fieldElm
+	 * @param mixed $rawValue
+	 * @return string
+	 */
+	public function buildXmlElementResponse($field, $fieldElm, $rawValue)
+	{
+		$txtValue = parent::buildXmlElementResponse($field, $fieldElm, $rawValue);
 		if (!empty($txtValue))
 		{
-		    $txtValue = date_Calendar::getInstanceFromFormat($txtValue, f_Locale::translate('&framework.date.date.default-date-format;'))->toString();
+			$txtValue = date_Calendar::getInstanceFromFormat($txtValue, f_Locale::translate('&framework.date.date.default-date-format;'))->toString();
 		}
 		return $txtValue;
-    }
+	}
+	
+	/**
+	 * @param form_persistentdocument_date $document
+	 * @param string[] $propertiesName
+	 * @param array $datas
+	 * @param integer $parentId
+	 */
+	public function addFormProperties($document, $propertiesName, &$datas, $parentId = null)
+	{
+		parent::addFormProperties($document, $propertiesName, $datas, $parentId);
+		
+		$options = array();
+		foreach (list_ValuededitablelistService::getInstance()->getByListId('modules_form/floatingdatesamples')->getItemdocumentsArray() as $item)
+		{
+			$options[] = array ('label' => $item->getTreeNodeLabel(), 'value' => $item->getValue());
+		}
+		$datas['floatingDateSamples'] = $options;
+	}
 }

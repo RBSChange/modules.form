@@ -3,7 +3,10 @@
 	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
 	model-version="1.0" extend="modules_form/field" icon="ui-date-picker">
 	<properties>
+		<add name="rangeType" type="String" min-occurs="1" default-value="fixed" from-list="modules_form/rangetypes" />
 		<add name="startDate" type="DateTime" />
 		<add name="endDate" type="DateTime" />
+		<add name="floatingStartDate" type="String" />
+		<add name="floatingEndDate" type="String" />
 	</properties>
 </document>
