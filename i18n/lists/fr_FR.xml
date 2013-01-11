@@ -10,6 +10,8 @@
 	<key id="floatingdatesamples-nextyear">la prochaine année</key>
 	<key id="floatingdatesamples-nextmonth">le prochain mois</key>
 	<key id="floatingdatesamples-nextweek">la prochaine semaine</key>
+	<key id="floatingdatesamples-nextday">le jour suivant</key>
+	<key id="floatingdatesamples-lastday">la veille</key>
 	<key id="floatingdatesamples-lastweek">la dernière semaine</key>
 	<key id="floatingdatesamples-lastmonth">le dernier mois</key>
 	<key id="floatingdatesamples-lastyear">la dernière année</key>

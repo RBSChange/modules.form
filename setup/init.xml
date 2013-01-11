@@ -42,16 +42,18 @@
 		</staticlist>
 		
 		<staticlist listid="modules_form/rangetypes" label="m.form.lists.rangetypes-label" description="m.form.lists.rangetypes-description">
-			<staticitem labeli18n="m.form.lists.rangetypes-fixed" value="fixed" />
-			<staticitem labeli18n="m.form.lists.rangetypes-floating" value="floating" />
+			<staticitem label="m.form.lists.rangetypes-fixed" value="fixed" />
+			<staticitem label="m.form.lists.rangetypes-floating" value="floating" />
 		</staticlist>
-		
+
 		<valuededitablelist listid="modules_form/floatingdatesamples" label="m.form.lists.floatingdatesamples-label"
 			description="m.form.lists.floatingdatesamples-description">
 			<valueditem byValue="+5y" label="m.form.lists.floatingdatesamples-nextfiveyears" />
 			<valueditem byValue="+1y" label="m.form.lists.floatingdatesamples-nextyear" />
 			<valueditem byValue="+1m" label="m.form.lists.floatingdatesamples-nextmonth" />
 			<valueditem byValue="+1w" label="m.form.lists.floatingdatesamples-nextweek" />
+			<valueditem byValue="+1d" label="m.form.lists.floatingdatesamples-nextday" />
+			<valueditem byValue="-1d" label="m.form.lists.floatingdatesamples-lastday" />
 			<valueditem byValue="-1w" label="m.form.lists.floatingdatesamples-lastweek" />
 			<valueditem byValue="-1m" label="m.form.lists.floatingdatesamples-lastmonth" />
 			<valueditem byValue="-1y" label="m.form.lists.floatingdatesamples-lastyear" />

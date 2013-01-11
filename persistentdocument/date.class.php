@@ -19,10 +19,7 @@ class form_persistentdocument_date extends form_persistentdocument_datebase
 		}
 		elseif ($this->getRangeType() == 'floating')
 		{
-			if ($this->getFloatingStartDate())
-			{
-				return $this->calculateDateFromFloating($this->getFloatingStartDate());
-			}
+			return $this->calculateDateFromFloating($this->getFloatingStartDate());
 		}
 		return form_DateService::DEFAULT_START_DATE;
 	}
@@ -41,10 +38,7 @@ class form_persistentdocument_date extends form_persistentdocument_datebase
 		}
 		elseif ($this->getRangeType() == 'floating')
 		{
-			if ($this->getFloatingEndDate())
-			{
-				return $this->calculateDateFromFloating($this->getFloatingEndDate());
-			}
+			return $this->calculateDateFromFloating($this->getFloatingEndDate());
 		}
 		return form_DateService::DEFAULT_END_DATE;
 	}
