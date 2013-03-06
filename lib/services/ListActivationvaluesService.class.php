@@ -21,7 +21,7 @@ class form_ListActivationvaluesService extends BaseService
 	/**
 	 * @return array<list_Item>
 	 */
-	public final function getItems()
+	public function getItems()
 	{
 		try
 		{
@@ -67,7 +67,7 @@ class form_ListActivationvaluesService extends BaseService
 	/**
 	 * @return String
 	 */
-	public final function getDefaultId()
+	public function getDefaultId()
 	{
 		return null;
 	}

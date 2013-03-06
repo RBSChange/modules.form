@@ -21,7 +21,7 @@ class form_ListActivationfieldsService extends BaseService
 	/**
 	 * @return array<list_Item>
 	 */
-	public final function getItems()
+	public function getItems()
 	{
 		$request = Controller::getInstance()->getContext()->getRequest();
 		$form = null;
@@ -76,7 +76,7 @@ class form_ListActivationfieldsService extends BaseService
 	/**
 	 * @return String
 	 */
-	public final function getDefaultId()
+	public function getDefaultId()
 	{
 		return null;
 	}
