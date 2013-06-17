@@ -426,6 +426,10 @@ class form_FieldService extends f_persistentdocument_DocumentService
 				$constraintArray['blank'] = 'false';
 			}
 		}
+		else
+		{
+			unset($constraintArray['blank']);
+		}
 		$strArray = array();
 		foreach ($constraintArray as $k => $v)
 		{
