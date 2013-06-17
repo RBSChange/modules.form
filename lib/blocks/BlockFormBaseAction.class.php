@@ -56,7 +56,8 @@ class form_BlockFormBaseAction extends website_BlockAction
 				if ($confirmpage instanceof website_persistentdocument_page && $confirmpage->isPublished())
 				{
 					$agaviUser->setAttribute('form_success_parameters_confirmpage_' . $form->getId(), $request->getParameters());
-					$this->redirectToUrl(LinkHelper::getDocumentUrl($confirmpage, $this->getLang(), array('formParam[id]' => $form->getId())));
+					$lang = RequestContext::getInstance()->getLang();
+					$this->redirectToUrl(LinkHelper::getDocumentUrl($confirmpage, $lang, array('formParam[id]' => $form->getId())));
 					return website_BlockView::NONE;
 				}
 				$agaviUser->setAttribute('form_success_parameters_noconfirmpage_' . $form->getId(), $request->getParameters());

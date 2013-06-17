@@ -240,15 +240,15 @@ class form_FormService extends form_BaseformService
 		
 		if (count($emails) === 0)
 		{
-			return true;	
+			return true;
 		}
 		
 		$website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
+		$lang = RequestContext::getInstance()->getLang();
 		$ns = notification_NotificationService::getInstance();
-		$configuredNotif = $ns->getConfiguredByCodeName($notification->getCodeName(), $website->getId(), $website->getLang());
+		$configuredNotif = $ns->getConfiguredByCodeName($notification->getCodeName(), $website->getId(), $lang);
 		if ($configuredNotif instanceof notification_persistentdocument_notification)
 		{
-
 		 	$configuredNotif->setSendingModuleName('form');
 		 	
 			$configuredNotif->setSendingReplyTo($replyTo);
